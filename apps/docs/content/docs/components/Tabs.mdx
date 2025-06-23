@@ -1,0 +1,71 @@
+---
+title: Tabs
+description: A tabs component for organizing content into multiple views
+---
+
+import BlendTypeTable from "@/components/ui/BlendTypeTable";
+
+# Tabs
+
+<BlendTypeTable tableRows={[
+  {
+    propName: "variant",
+    propType: "TabsVariant",
+    propDescription: "Visual variant of the tabs (boxed, floating, underline)",
+    propDefault: "TabsVariant.BOXED",
+  },
+  {
+    propName: "size",
+    propType: "TabsSize",
+    propDescription: "Size of the tabs (md, lg)",
+    propDefault: "TabsSize.MD",
+  },
+  {
+    propName: "value",
+    propType: "string",
+    propDescription: "Currently selected tab value",
+    propDefault: "undefined",
+  },
+  {
+    propName: "defaultValue",
+    propType: "string",
+    propDescription: "Default selected tab value",
+    propDefault: "undefined",
+  },
+  {
+    propName: "onValueChange",
+    propType: "(value: string) => void",
+    propDescription: "Callback when tab selection changes",
+    propDefault: "undefined",
+  },
+  {
+    propName: "expanded",
+    propType: "boolean",
+    propDescription: "Whether the tabs list should expand to full width",
+    propDefault: "false",
+  },
+  {
+    propName: "leftSlot",
+    propType: "ReactNode",
+    propDescription: "Content to display on the left side of the tab trigger",
+    propDefault: "undefined",
+  },
+  {
+    propName: "rightSlot",
+    propType: "ReactNode",
+    propDescription: "Content to display on the right side of the tab trigger",
+    propDefault: "undefined",
+  },
+  {
+    propName: "children",
+    propType: "string | number",
+    propDescription: "Content of the tab trigger",
+    propDefault: "undefined",
+  },
+  {
+    propName: "disabled",
+    propType: "boolean",
+    propDescription: "Whether the tab is disabled",
+    propDefault: "false",
+  },
+]} /> 

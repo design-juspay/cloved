@@ -1,0 +1,65 @@
+---
+title: Alert
+description: A component for displaying important messages and notifications
+---
+
+import BlendTypeTable from "@/components/ui/BlendTypeTable";
+
+# Alert
+
+<BlendTypeTable tableRows={[
+  {
+    propName: "heading",
+    propType: "string",
+    propDescription: "The main heading text for the alert",
+    propDefault: "undefined",
+  },
+  {
+    propName: "description",
+    propType: "string",
+    propDescription: "The descriptive text content of the alert",
+    propDefault: "undefined",
+  },
+  {
+    propName: "variant",
+    propType: "AlertVariant",
+    propDescription: "The visual variant of the alert (primary, success, warning, error, purple, orange, neutral)",
+    propDefault: "AlertVariant.PRIMARY",
+  },
+  {
+    propName: "style",
+    propType: "AlertStyle",
+    propDescription: "The style variant of the alert (subtle, noFill)",
+    propDefault: "AlertStyle.SUBTLE",
+  },
+  {
+    propName: "primaryAction",
+    propType: "AlertAction",
+    propDescription: "Primary action button configuration with label and onClick handler",
+    propDefault: "undefined",
+  },
+  {
+    propName: "secondaryAction",
+    propType: "AlertAction",
+    propDescription: "Secondary action button configuration with label and onClick handler",
+    propDefault: "undefined",
+  },
+  {
+    propName: "onClose",
+    propType: "() => void",
+    propDescription: "Callback function when the close button is clicked",
+    propDefault: "undefined",
+  },
+  {
+    propName: "icon",
+    propType: "ReactNode",
+    propDescription: "Custom icon to display in the alert",
+    propDefault: "undefined",
+  },
+  {
+    propName: "actionPlacement",
+    propType: "AlertActionPlacement",
+    propDescription: "Placement of action buttons (bottom, right)",
+    propDefault: "AlertActionPlacement.BOTTOM",
+  },
+]} /> 

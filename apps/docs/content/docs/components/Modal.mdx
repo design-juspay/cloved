@@ -1,0 +1,107 @@
+---
+title: Modal
+description: A modal dialog component for overlaying content
+---
+
+import BlendTypeTable from "@/components/ui/BlendTypeTable";
+
+# Modal
+
+<BlendTypeTable tableRows={[
+  {
+    propName: "isOpen",
+    propType: "boolean",
+    propDescription: "Whether the modal is currently open",
+    propDefault: "false",
+  },
+  {
+    propName: "onClose",
+    propType: "() => void",
+    propDescription: "Callback function when modal should close",
+    propDefault: "undefined",
+  },
+  {
+    propName: "title",
+    propType: "string",
+    propDescription: "Title text for the modal header",
+    propDefault: "undefined",
+  },
+  {
+    propName: "subtitle",
+    propType: "string",
+    propDescription: "Subtitle text for the modal header",
+    propDefault: "undefined",
+  },
+  {
+    propName: "children",
+    propType: "ReactNode",
+    propDescription: "Content to display in the modal body",
+    propDefault: "undefined",
+  },
+  {
+    propName: "primaryAction",
+    propType: "ModalButtonAction",
+    propDescription: "Primary action button configuration",
+    propDefault: "undefined",
+  },
+  {
+    propName: "secondaryAction",
+    propType: "ModalButtonAction",
+    propDescription: "Secondary action button configuration",
+    propDefault: "undefined",
+  },
+  {
+    propName: "className",
+    propType: "string",
+    propDescription: "Additional CSS classes for the modal",
+    propDefault: "undefined",
+  },
+  {
+    propName: "showCloseButton",
+    propType: "boolean",
+    propDescription: "Whether to show the close button in header",
+    propDefault: "true",
+  },
+  {
+    propName: "showHeader",
+    propType: "boolean",
+    propDescription: "Whether to show the modal header",
+    propDefault: "true",
+  },
+  {
+    propName: "showFooter",
+    propType: "boolean",
+    propDescription: "Whether to show the modal footer",
+    propDefault: "true",
+  },
+  {
+    propName: "closeOnBackdropClick",
+    propType: "boolean",
+    propDescription: "Whether clicking backdrop closes the modal",
+    propDefault: "true",
+  },
+  {
+    propName: "customHeader",
+    propType: "ReactNode",
+    propDescription: "Custom header content",
+    propDefault: "undefined",
+  },
+  {
+    propName: "customFooter",
+    propType: "ReactNode",
+    propDescription: "Custom footer content",
+    propDefault: "undefined",
+  },
+  {
+    propName: "headerRightSlot",
+    propType: "ReactNode",
+    propDescription: "Content to display on the right side of header",
+    propDefault: "undefined",
+  },
+  {
+    propName: "showDivider",
+    propType: "boolean",
+    propDescription: "Whether to show divider between header and content",
+    propDefault: "true",
+  },
+]} /> 

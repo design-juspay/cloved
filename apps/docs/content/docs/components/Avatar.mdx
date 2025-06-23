@@ -1,0 +1,59 @@
+---
+title: Avatar
+description: An avatar component for displaying user profile images or initials
+---
+
+import BlendTypeTable from "@/components/ui/BlendTypeTable";
+
+# Avatar
+
+<BlendTypeTable tableRows={[
+  {
+    propName: "src",
+    propType: "string",
+    propDescription: "Source URL for the avatar image",
+    propDefault: "undefined",
+  },
+  {
+    propName: "alt",
+    propType: "string",
+    propDescription: "Alt text for the avatar image",
+    propDefault: "undefined",
+  },
+  {
+    propName: "fallback",
+    propType: "React.ReactNode",
+    propDescription: "Fallback content when image fails to load",
+    propDefault: "undefined",
+  },
+  {
+    propName: "size",
+    propType: "AvatarSize",
+    propDescription: "Size of the avatar (sm, md, lg, xl)",
+    propDefault: "AvatarSize.MD",
+  },
+  {
+    propName: "shape",
+    propType: "AvatarShape",
+    propDescription: "Shape of the avatar (circular, rounded)",
+    propDefault: "AvatarShape.CIRCULAR",
+  },
+  {
+    propName: "online",
+    propType: "boolean",
+    propDescription: "Whether to show online status indicator",
+    propDefault: "false",
+  },
+  {
+    propName: "leadingSlot",
+    propType: "React.ReactNode",
+    propDescription: "Content to display before the avatar",
+    propDefault: "undefined",
+  },
+  {
+    propName: "trailingSlot",
+    propType: "React.ReactNode",
+    propDescription: "Content to display after the avatar",
+    propDefault: "undefined",
+  },
+]} /> 

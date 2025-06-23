@@ -1,0 +1,83 @@
+---
+title: Checkbox
+description: A checkbox component for selection and form inputs
+---
+
+import BlendTypeTable from "@/components/ui/BlendTypeTable";
+
+# Checkbox
+
+<BlendTypeTable tableRows={[
+  {
+    propName: "id",
+    propType: "string",
+    propDescription: "Unique identifier for the checkbox",
+    propDefault: "undefined",
+  },
+  {
+    propName: "value",
+    propType: "string",
+    propDescription: "Value associated with the checkbox",
+    propDefault: "undefined",
+  },
+  {
+    propName: "checked",
+    propType: "boolean | 'indeterminate'",
+    propDescription: "Current checked state of the checkbox",
+    propDefault: "undefined",
+  },
+  {
+    propName: "defaultChecked",
+    propType: "boolean",
+    propDescription: "Initial checked state for uncontrolled component",
+    propDefault: "undefined",
+  },
+  {
+    propName: "onCheckedChange",
+    propType: "(checked: boolean | 'indeterminate') => void",
+    propDescription: "Callback when checked state changes",
+    propDefault: "undefined",
+  },
+  {
+    propName: "disabled",
+    propType: "boolean",
+    propDescription: "Whether the checkbox is disabled",
+    propDefault: "false",
+  },
+  {
+    propName: "required",
+    propType: "boolean",
+    propDescription: "Whether the checkbox is required",
+    propDefault: "false",
+  },
+  {
+    propName: "error",
+    propType: "boolean",
+    propDescription: "Whether to show error state",
+    propDefault: "false",
+  },
+  {
+    propName: "size",
+    propType: "CheckboxSize",
+    propDescription: "Size of the checkbox (sm, md)",
+    propDefault: "CheckboxSize.MEDIUM",
+  },
+  {
+    propName: "children",
+    propType: "ReactNode",
+    propDescription: "Label content for the checkbox",
+    propDefault: "undefined",
+  },
+  {
+    propName: "subtext",
+    propType: "string",
+    propDescription: "Additional text below the checkbox label",
+    propDefault: "undefined",
+  },
+  {
+    propName: "slot",
+    propType: "ReactNode",
+    propDescription: "Custom slot content",
+    propDefault: "undefined",
+  },
+]} /> 
