@@ -1,257 +1,169 @@
-# Content Management & Search Integration Guide
+# Content Management Guide
 
-This guide explains how to add new MDX files and content that will automatically work with the search functionality in both local development and deployed versions.
+Quick guide for adding and managing MDX content in the documentation site.
 
-## 🔄 How Search Auto-Updates Work
+## 🔄 How Search Works
 
-### **Automatic Content Detection**
-The search system automatically detects and indexes:
-- ✅ **New MDX files** added to `/content/docs/`
-- ✅ **New sections** and headings in existing files
-- ✅ **Updated content** in any MDX file
-- ✅ **New directories** and subdirectories
-
-### **Search Index Generation**
-- **Local Development**: Search index updates automatically when you save files
-- **Deployed Version**: Search index regenerates during each build/deployment
+The search system automatically indexes all MDX content:
+- **Local Development**: Updates automatically when you save files
+- **Deployed Version**: Rebuilds during each deployment
+- **Coverage**: All text, headings, and metadata in MDX files
 
 ## 📝 Adding New Content
 
-### 1. **Adding New MDX Files**
+### 1. Create MDX File
 
-Create new files in the `/content/docs/` directory:
+Add files to `/content/docs/` directory:
 
 ```bash
-# Example: Adding a new component documentation
-touch content/docs/components/NewComponent.mdx
+# Example: New component documentation
+touch apps/docs/content/docs/components/NewComponent.mdx
 ```
 
-**File Structure Example:**
-```
-content/docs/
-├── index.mdx                    # Main docs page
-├── getting-started.mdx          # Getting started guide
-├── components/
-│   ├── meta.json               # Navigation metadata
-│   ├── Button.mdx              # Existing component
-│   ├── Alert.mdx               # Existing component
-│   └── NewComponent.mdx        # ← Your new file
-└── guides/                     # ← New section
-    ├── meta.json
-    ├── installation.mdx
-    └── configuration.mdx
-```
-
-### 2. **MDX File Format**
-
-Each MDX file should follow this structure:
+### 2. MDX File Format
 
 ```mdx
 ---
-title: Your Page Title
+title: Component Name
 description: Brief description for search results
 ---
 
-# Your Page Title
+# Component Name
 
-Your content here will be automatically indexed for search.
-
-## Section 1
-
-This section content will be searchable.
-
-## Section 2
-
-This section content will also be searchable.
-
-### Subsection
-
-Even subsections are indexed for search.
-```
-
-### 3. **Navigation Metadata**
-
-Update or create `meta.json` files for navigation:
-
-```json
-{
-  "title": "Components",
-  "pages": [
-    "Button",
-    "Alert", 
-    "NewComponent"
-  ]
-}
-```
-
-## 🔍 What Gets Indexed for Search
-
-The search system automatically indexes:
-
-### **Page-Level Content**
-- ✅ **Page titles** (from frontmatter `title`)
-- ✅ **Page descriptions** (from frontmatter `description`)
-- ✅ **Page URLs** (automatically generated)
-
-### **Content-Level Indexing**
-- ✅ **All text content** in the MDX body
-- ✅ **Headings** (H1, H2, H3, H4, H5, H6)
-- ✅ **Paragraph text**
-- ✅ **List items**
-- ✅ **Code block content**
-- ✅ **Table content**
-
-### **Component Content**
-- ✅ **Custom component text** (like BlendTypeTable)
-- ✅ **Component props and descriptions**
-- ✅ **Code examples**
-
-## 🚀 Development Workflow
-
-### **Local Development**
-1. **Add/Edit Content**: Create or modify MDX files
-2. **Auto-Reload**: Next.js automatically detects changes
-3. **Search Updates**: Search index updates automatically
-4. **Test Search**: Search functionality works immediately
-
-```bash
-# Start development server
-npm run dev
-
-# Add new content - search updates automatically!
-# No additional steps needed
-```
-
-### **Deployment Workflow**
-1. **Add/Edit Content**: Create or modify MDX files
-2. **Commit Changes**: Git commit your new content
-3. **Deploy**: Run deployment command
-4. **Search Index Rebuilds**: Automatically includes new content
-
-```bash
-# Deploy to staging (includes new content)
-npm run deploy:staging
-
-# Test search on staging
-# https://docs-staging.web.app
-
-# Deploy to production
-npm run deploy:production
-```
-
-## 📁 Content Organization Examples
-
-### **Adding a New Component**
-```bash
-# 1. Create the MDX file
-echo '---
-title: DatePicker
-description: A date picker component for form inputs
----
-
-# DatePicker
-
-A flexible date picker component.
+Your content here is automatically searchable.
 
 ## Usage
 
 ```jsx
-<DatePicker onChange={handleDateChange} />
+<ComponentName prop="value" />
 ```
 
 ## Props
 
-- `onChange`: Function called when date changes
-- `value`: Current selected date
-' > content/docs/components/DatePicker.mdx
+- `prop`: Description of the prop
+```
+
+### 3. Update Navigation
+
+Edit the appropriate `meta.json` file:
+
+```json
+{
+  "title": "Components",
+  "defaultOpen": true,
+  "pages": ["Button", "Alert", "NewComponent"]
+}
+```
+
+## 📁 Current Content Structure
+
+```
+content/docs/
+├── index.mdx                    # Home page
+├── meta.json                    # Main navigation
+└── components/
+    ├── meta.json               # Component navigation
+    ├── Alert.mdx               # ✅ Available
+    ├── Avatar.mdx              # ✅ Available
+    ├── Button.mdx              # ✅ Available
+    ├── Checkbox.mdx            # ✅ Available
+    ├── DatePicker.mdx          # ✅ Available
+    ├── Modal.mdx               # ✅ Available
+    ├── Tabs.mdx                # ✅ Available
+    └── TextInput.mdx           # ✅ Available
+```
+
+## 🚀 Development Workflow
+
+### Adding New Component Documentation
+
+```bash
+# 1. Create MDX file
+echo '---
+title: NewComponent
+description: A new component for the design system
+---
+
+# NewComponent
+
+Description of the component.
+
+## Usage
+
+```jsx
+import { NewComponent } from "blend-v1";
+
+<NewComponent />
+```
+' > apps/docs/content/docs/components/NewComponent.mdx
 
 # 2. Update navigation
-# Edit content/docs/components/meta.json to include "DatePicker"
+# Edit apps/docs/content/docs/components/meta.json
 
-# 3. Search automatically includes it!
+# 3. Test locally
+pnpm docs:dev
+
+# 4. Deploy
+pnpm deploy:staging
 ```
 
-### **Adding a New Section**
+### Adding New Section
+
 ```bash
-# 1. Create new directory
-mkdir content/docs/api-reference
-
-# 2. Create meta.json
+# 1. Create directory and meta.json
+mkdir apps/docs/content/docs/guides
 echo '{
-  "title": "API Reference",
-  "pages": ["overview", "authentication", "endpoints"]
-}' > content/docs/api-reference/meta.json
+  "title": "Guides",
+  "pages": ["getting-started", "theming"]
+}' > apps/docs/content/docs/guides/meta.json
 
-# 3. Add content files
+# 2. Add content files
 echo '---
-title: API Overview
-description: Overview of our API endpoints
+title: Getting Started
+description: How to get started with the design system
 ---
 
-# API Overview
+# Getting Started
 
-Our API provides access to all platform features.
-' > content/docs/api-reference/overview.mdx
+Welcome to our design system.
+' > apps/docs/content/docs/guides/getting-started.mdx
 
-# 4. Search automatically indexes the new section!
+# 3. Update main navigation
+# Edit apps/docs/content/docs/meta.json to include "guides"
 ```
 
-## 🔧 Advanced Search Features
+## 🔍 Search Features
 
-### **Custom Search Tags** (Optional)
-You can add custom tags to frontmatter for better search categorization:
+### What Gets Indexed
+- ✅ Page titles and descriptions
+- ✅ All headings (H1-H6)
+- ✅ Paragraph text
+- ✅ Code examples
+- ✅ List items
 
-```mdx
----
-title: Button Component
-description: A versatile button component
-tags: ["component", "ui", "form", "interactive"]
----
-```
+### Search Optimization Tips
+- Use descriptive headings
+- Include relevant keywords in descriptions
+- Structure content with clear sections
+- Add code examples for components
 
-### **Search-Optimized Content**
-Write content with search in mind:
+## ✅ Quick Checklist
 
-```mdx
-# Good for Search
-## Installation Guide
-Install the component using npm or yarn.
+When adding new content:
 
-## Button Props
-The Button component accepts these properties:
-- variant: primary, secondary, danger
-- size: small, medium, large
-
-# Also Good
-### Common Use Cases
-- Form submissions
-- Navigation actions
-- Call-to-action buttons
-```
-
-## ✅ Verification Checklist
-
-After adding new content, verify search works:
-
-### **Local Development**
-- [ ] Start dev server: `npm run dev`
-- [ ] Add new MDX file with content
-- [ ] Open search dialog (Cmd/Ctrl + K)
-- [ ] Search for terms from your new content
-- [ ] Verify results appear
-
-### **Deployed Version**
-- [ ] Deploy to staging: `npm run deploy:staging`
-- [ ] Visit staging URL
-- [ ] Test search functionality
-- [ ] Deploy to production: `npm run deploy:production`
+- [ ] Create MDX file with proper frontmatter
+- [ ] Update relevant `meta.json` for navigation
+- [ ] Test locally with `pnpm docs:dev`
+- [ ] Verify search works for new content
+- [ ] Deploy to staging: `pnpm deploy:staging`
+- [ ] Test on staging environment
+- [ ] Deploy to production: `pnpm deploy:production`
 
 ## 🎯 Key Points
 
-1. **No Manual Steps**: Search indexing is completely automatic
-2. **Real-Time Updates**: Local development updates search immediately
-3. **Build-Time Generation**: Deployed versions rebuild search index on each deployment
-4. **Full Content Coverage**: All text content in MDX files is searchable
-5. **Structured Data**: Headings, sections, and metadata are properly indexed
+1. **Automatic Indexing**: All MDX content is automatically searchable
+2. **Real-Time Updates**: Local development updates search immediately  
+3. **Build-Time Generation**: Deployed versions rebuild search on each deployment
+4. **No Manual Steps**: Just add MDX files and update navigation
 
-The search system is designed to "just work" - add content and it becomes searchable automatically! 🚀
+The search system works automatically - add content and it becomes searchable! 🚀
