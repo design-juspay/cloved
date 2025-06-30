@@ -9,6 +9,7 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-tooltip": "^1.2.7",
     "blend-v1": "workspace:*",
     "fumadocs-core": "15.5.4",

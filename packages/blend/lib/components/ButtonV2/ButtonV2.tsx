@@ -109,10 +109,10 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
               <Text
                 fontFamily="InterDisplay"
                 variant="body.md"
+                as="span"
                 style={{
                   fontWeight: 500,
                 }}
-                as="span"
                 color="inherit"
               >
                 {text}

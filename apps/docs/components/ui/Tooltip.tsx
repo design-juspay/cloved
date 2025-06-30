@@ -8,6 +8,7 @@ type TooltipProps = {
   align?: "start" | "center" | "end";
   sideOffset?: number;
   alignOffset?: number;
+  maxWidth?: string;
 };
 
 const Tooltip = ({
@@ -17,6 +18,7 @@ const Tooltip = ({
   align = "center",
   sideOffset = 0,
   alignOffset = 0,
+  maxWidth = "700px",
 }: TooltipProps) => {
   return (
     <RadixTooltip.Provider>
@@ -27,6 +29,7 @@ const Tooltip = ({
           align={align}
           sideOffset={sideOffset}
           alignOffset={alignOffset}
+          style={{ maxWidth }}
           className="bg-[var(--color-fd-secondary)] text-foreground rounded-md p-2 shadow-md"
         >
           {content}

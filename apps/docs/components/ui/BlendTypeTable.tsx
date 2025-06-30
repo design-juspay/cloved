@@ -3,27 +3,16 @@ import React from "react";
 import Tooltip from "./Tooltip";
 import { InfoIcon } from "lucide-react";
 
-type TableRow = {
+export type TableRow = {
   propName: string;
   propType: string;
   propDescription: string;
   propDefault: string;
+  typeDefinition?: string;
+  llmContext?: string;
 };
 
-const defaultTableRows: TableRow[] = [
-  {
-    propName: "blendType",
-    propType: "string",
-    propDescription: "The type of blend to use",
-    propDefault: "linear",
-  },
-];
-
-const BlendTypeTable = ({
-  tableRows = defaultTableRows,
-}: {
-  tableRows: TableRow[];
-}) => {
+const BlendTypeTable = ({ tableRows }: { tableRows: TableRow[] }) => {
   return (
     <div>
       <table>
@@ -44,7 +33,13 @@ const BlendTypeTable = ({
                     <InfoIcon className="w-4 h-4" />
                   </Tooltip>
                 </td>
-                <td>{row.propType}</td>
+                <td>
+                  {row.typeDefinition && (
+                    <Tooltip content={row.typeDefinition} side="right">
+                      <InfoIcon className="w-4 h-4" />
+                    </Tooltip>
+                  )}
+                </td>
                 <td>{row.propDefault}</td>
               </tr>
             ))}
