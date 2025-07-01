@@ -1,0 +1,95 @@
+---
+title: Tooltip
+description: A flexible tooltip component for displaying contextual information on hover or focus with customizable positioning, sizing, and content slots.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import tooltipMeta from "@/meta/tooltip.context";
+
+# Tooltip Component Documentation
+
+## Description
+A flexible tooltip component for displaying contextual information on hover or focus with customizable positioning, sizing, and content slots.
+
+## Features
+- Multiple positioning options (top, right, bottom, left)
+- Flexible alignment (start, center, end)
+- Two sizes (small, large)
+- Optional arrow indicator
+- Custom content slots with directional placement
+- Controlled and uncontrolled modes
+- Customizable delay duration
+- Offset positioning control
+- Accessible design with proper ARIA attributes
+- Keyboard navigation support
+
+## Props
+
+<BlendTypeTable componentMeta={tooltipMeta} />
+
+## Usage Examples
+
+### Basic Tooltip
+Simple tooltip with text content
+
+```tsx
+<Tooltip content="This is a helpful tooltip">
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+### Tooltip with Custom Positioning
+Tooltip with specific side and alignment
+
+```tsx
+<Tooltip 
+  content="Positioned tooltip"
+  side={TooltipSide.RIGHT}
+  align={TooltipAlign.START}
+  showArrow={true}
+  size={TooltipSize.LARGE}
+>
+  <IconButton icon={<InfoIcon />} />
+</Tooltip>
+```
+
+### Tooltip with Rich Content
+Tooltip containing complex content and custom slot
+
+```tsx
+<Tooltip 
+  content={
+    <div>
+      <strong>Pro Tip</strong>
+      <p>Use keyboard shortcuts for faster navigation</p>
+    </div>
+  }
+  slot={<Badge variant="info">New</Badge>}
+  slotDirection={TooltipSlotDirection.RIGHT}
+  delayDuration={500}
+>
+  <Button variant="secondary">Advanced Feature</Button>
+</Tooltip>
+```
+
+### Controlled Tooltip
+Tooltip with controlled open state
+
+```tsx
+const [isOpen, setIsOpen] = useState(false);
+
+<Tooltip 
+  content="Controlled tooltip content"
+  open={isOpen}
+  side={TooltipSide.BOTTOM}
+  offset={10}
+>
+  <Button 
+    onMouseEnter={() => setIsOpen(true)}
+    onMouseLeave={() => setIsOpen(false)}
+  >
+    Controlled Tooltip
+  </Button>
+</Tooltip>
+```
+

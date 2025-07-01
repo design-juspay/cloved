@@ -10,6 +10,23 @@ export type TableRow = {
   propDefault: string;
   typeDefinition?: string;
   llmContext?: string;
+  // New fields for MCP functionality
+  category?: string; // For prop grouping (e.g., "Styling", "Behavior", "Content")
+  required?: boolean; // Whether prop is required
+};
+
+export type ExampleUsage = {
+  title: string;
+  description?: string;
+  code: string;
+};
+
+export type ComponentMeta = {
+  componentName: string;
+  componentDescription?: string;
+  features?: string[];
+  usageExamples?: ExampleUsage[];
+  props: TableRow[];
 };
 
 const BlendTypeTable = ({ tableRows }: { tableRows: TableRow[] }) => {

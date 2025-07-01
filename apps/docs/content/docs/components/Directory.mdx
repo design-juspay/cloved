@@ -1,0 +1,156 @@
+---
+title: Directory
+description: A hierarchical navigation directory component that organizes content into collapsible sections with nested navigation items, supporting icons, links, and keyboard navigation.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import directoryMeta from "@/meta/directory.context";
+
+# Directory Component Documentation
+
+## Description
+A hierarchical navigation directory component that organizes content into collapsible sections with nested navigation items, supporting icons, links, and keyboard navigation.
+
+## Features
+- Hierarchical navigation structure
+- Collapsible sections with expand/collapse
+- Nested navigation items support
+- Left and right slot content for items
+- Click and link navigation support
+- Keyboard navigation between sections
+- Default open/closed state control
+- Accessible design with proper ARIA
+- Custom styling support
+- Responsive layout
+
+## Props
+
+<BlendTypeTable componentMeta={directoryMeta} />
+
+## Usage Examples
+
+### Basic Directory
+Simple directory with sections and navigation items
+
+```tsx
+<Directory 
+  directoryData={[
+    {
+      label: "Getting Started",
+      items: [
+        { label: "Installation", href: "/docs/installation" },
+        { label: "Quick Start", href: "/docs/quick-start" },
+        { label: "Configuration", href: "/docs/configuration" }
+      ]
+    },
+    {
+      label: "Components",
+      items: [
+        { label: "Button", href: "/docs/button" },
+        { label: "Input", href: "/docs/input" },
+        { label: "Modal", href: "/docs/modal" }
+      ]
+    }
+  ]}
+/>
+```
+
+### Directory with Icons and Actions
+Directory with left slot icons and right slot actions
+
+```tsx
+<Directory 
+  directoryData={[
+    {
+      label: "Navigation",
+      isCollapsible: true,
+      defaultOpen: true,
+      items: [
+        { 
+          label: "Dashboard", 
+          href: "/dashboard",
+          leftSlot: <DashboardIcon />,
+          rightSlot: <Badge>New</Badge>
+        },
+        { 
+          label: "Analytics", 
+          href: "/analytics",
+          leftSlot: <AnalyticsIcon />,
+          onClick: () => handleAnalyticsClick()
+        },
+        { 
+          label: "Settings", 
+          href: "/settings",
+          leftSlot: <SettingsIcon />
+        }
+      ]
+    }
+  ]}
+/>
+```
+
+### Nested Directory Structure
+Directory with nested navigation items
+
+```tsx
+<Directory 
+  directoryData={[
+    {
+      label: "API Reference",
+      isCollapsible: true,
+      items: [
+        { 
+          label: "Authentication",
+          items: [
+            { label: "Login", href: "/api/auth/login" },
+            { label: "Logout", href: "/api/auth/logout" },
+            { label: "Refresh Token", href: "/api/auth/refresh" }
+          ]
+        },
+        { 
+          label: "User Management",
+          items: [
+            { label: "Get User", href: "/api/users/get" },
+            { label: "Update User", href: "/api/users/update" },
+            { label: "Delete User", href: "/api/users/delete" }
+          ]
+        }
+      ]
+    }
+  ]}
+/>
+```
+
+### Custom Directory with Actions
+Directory with custom click handlers and mixed navigation
+
+```tsx
+<Directory 
+  className="custom-directory"
+  directoryData={[
+    {
+      label: "Tools",
+      isCollapsible: false,
+      items: [
+        { 
+          label: "Export Data", 
+          onClick: () => handleExport(),
+          leftSlot: <ExportIcon />,
+          rightSlot: <ChevronRightIcon />
+        },
+        { 
+          label: "Import Data", 
+          onClick: () => handleImport(),
+          leftSlot: <ImportIcon />
+        },
+        { 
+          label: "View Reports", 
+          href: "/reports",
+          leftSlot: <ReportIcon />
+        }
+      ]
+    }
+  ]}
+/>
+```
+

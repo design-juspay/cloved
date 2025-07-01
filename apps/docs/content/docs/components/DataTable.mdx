@@ -1,11 +1,89 @@
 ---
 title: DataTable
-description: A comprehensive data table component with sorting, filtering, pagination, and inline editing capabilities
+description: A comprehensive data table component with advanced features including sorting, filtering, pagination, search, inline editing, and row expansion capabilities.
 ---
 
-import BlendTypeTable from "@/components/ui/BlendTypeTable";
-import dataTableContext from "@/meta/dataTable.context";
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import dataTableMeta from "@/meta/dataTable.context";
 
-# DataTable
+# DataTable Component Documentation
 
-<BlendTypeTable tableRows={dataTableContext} /> 
+## Description
+A comprehensive data table component with advanced features including sorting, filtering, pagination, search, inline editing, and row expansion capabilities.
+
+## Features
+- Advanced sorting and filtering
+- Server-side and client-side data handling
+- Pagination with customizable page sizes
+- Universal search functionality
+- Inline editing capabilities
+- Row expansion for detailed views
+- Column management (show/hide columns)
+- Bulk actions support
+- Custom cell rendering
+- Loading states and empty states
+
+## Props
+
+<BlendTypeTable componentMeta={dataTableMeta} />
+
+## Usage Examples
+
+### Basic Data Table
+Simple data table with basic configuration
+
+```tsx
+<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  title="User Management"
+/>
+```
+
+### Table with Search and Filtering
+Data table with search and column filtering enabled
+
+```tsx
+<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  enableSearch={true}
+  enableFiltering={true}
+  searchPlaceholder="Search users..."
+/>
+```
+
+### Table with Pagination
+Data table with custom pagination settings
+
+```tsx
+<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  pagination={{
+    currentPage: 1,
+    pageSize: 20,
+    totalRows: 100,
+    pageSizeOptions: [10, 20, 50]
+  }}
+/>
+```
+
+### Table with Row Expansion
+Data table with expandable rows for detailed views
+
+```tsx
+<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  enableRowExpansion={true}
+  renderExpandedRow={({ row }) => (
+    <div>Detailed view for {row.name}</div>
+  )}
+/>
+```
+

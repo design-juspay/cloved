@@ -1,14 +1,83 @@
-import type { TableRow } from "@/components/ui/BlendTypeTable";
+import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
-const dataTable: TableRow[] = [
-  {
-    propName: "data",
-    propType: "T[]",
-    typeDefinition: `T extends Record<string, unknown>`,
-    propDescription: "Array of data objects to display in the table",
-    llmContext: "Array of data objects to display in the table",
-    propDefault: "-",
-  },
+const dataTableMeta: ComponentMeta = {
+  componentName: "DataTable",
+  componentDescription: "A comprehensive data table component with advanced features including sorting, filtering, pagination, search, inline editing, and row expansion capabilities.",
+  features: [
+    "Advanced sorting and filtering",
+    "Server-side and client-side data handling",
+    "Pagination with customizable page sizes",
+    "Universal search functionality",
+    "Inline editing capabilities",
+    "Row expansion for detailed views",
+    "Column management (show/hide columns)",
+    "Bulk actions support",
+    "Custom cell rendering",
+    "Loading states and empty states"
+  ],
+  usageExamples: [
+    {
+      title: "Basic Data Table",
+      description: "Simple data table with basic configuration",
+      code: `<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  title="User Management"
+/>`
+    },
+    {
+      title: "Table with Search and Filtering",
+      description: "Data table with search and column filtering enabled",
+      code: `<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  enableSearch={true}
+  enableFiltering={true}
+  searchPlaceholder="Search users..."
+/>`
+    },
+    {
+      title: "Table with Pagination",
+      description: "Data table with custom pagination settings",
+      code: `<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  pagination={{
+    currentPage: 1,
+    pageSize: 20,
+    totalRows: 100,
+    pageSizeOptions: [10, 20, 50]
+  }}
+/>`
+    },
+    {
+      title: "Table with Row Expansion",
+      description: "Data table with expandable rows for detailed views",
+      code: `<DataTable
+  data={tableData}
+  columns={columns}
+  idField="id"
+  enableRowExpansion={true}
+  renderExpandedRow={({ row }) => (
+    <div>Detailed view for {row.name}</div>
+  )}
+/>`
+    }
+  ],
+  props: [
+    {
+      propName: "data",
+      propType: "T[]",
+      typeDefinition: `T extends Record<string, unknown>`,
+      propDescription: "Array of data objects to display in the table",
+      llmContext: "Array of data objects to display in the table",
+      propDefault: "-",
+      category: "Data",
+      required: true,
+    },
   {
     propName: "columns",
     propType: "ColumnDefinition<T>[]",
@@ -380,6 +449,7 @@ enum FilterType {
     llmContext: "Custom bulk actions to display in the bulk action bar",
     propDefault: "-",
   },
-];
+  ]
+};
 
-export default dataTable;
+export default dataTableMeta;

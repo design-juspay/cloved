@@ -1,0 +1,96 @@
+---
+title: Text
+description: A versatile text component with semantic HTML support, typography variants, and comprehensive styling options for consistent text rendering across the design system.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import textMeta from "@/meta/text.context";
+
+# Text Component Documentation
+
+## Description
+A versatile text component with semantic HTML support, typography variants, and comprehensive styling options for consistent text rendering across the design system.
+
+## Features
+- Multiple typography variants (body, display, heading, code)
+- Semantic HTML tag support (p, h1-h5, span, code, etc.)
+- Automatic semantic tag selection based on variant
+- Custom font size and weight overrides
+- Color customization support
+- Text truncation capabilities
+- Responsive typography scaling
+- Accessible markup generation
+- Custom styling support
+
+## Props
+
+<BlendTypeTable componentMeta={textMeta} />
+
+## Usage Examples
+
+### Basic Text with Variants
+Text using different typography variants
+
+```tsx
+<Text variant="body.md">
+  This is body text in medium size.
+</Text>
+
+<Text variant="heading.lg">
+  This is a large heading
+</Text>
+
+<Text variant="code.sm">
+  console.log('Hello World');
+</Text>
+```
+
+### Custom Semantic Tags
+Text with explicit semantic HTML tags
+
+```tsx
+<Text variant="heading.xl" as="h1">
+  Main Page Title
+</Text>
+
+<Text variant="body.sm" as="span" color="gray.600">
+  Subtitle or description text
+</Text>
+
+<Text as="label" fontWeight={600}>
+  Form Label
+</Text>
+```
+
+### Text with Custom Styling
+Text with custom colors, weights, and truncation
+
+```tsx
+<Text 
+  variant="body.lg"
+  color="primary.500"
+  fontWeight={700}
+  truncate={true}
+  style={{ maxWidth: '200px' }}
+>
+  This text will be truncated if it's too long
+</Text>
+```
+
+### Display and Heading Variants
+Large display text and various heading sizes
+
+```tsx
+<Text variant="display.xl">
+  Hero Display Text
+</Text>
+
+<Text variant="heading.2xl">
+  Section Title
+</Text>
+
+<Text variant="heading.md" color="gray.700">
+  Subsection Heading
+</Text>
+```
+

@@ -1,0 +1,90 @@
+---
+title: Select
+description: A versatile select menu component with grouped items, multi-selection support, search functionality, and flexible positioning for complex selection scenarios.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import selectMeta from "@/meta/select.context";
+
+# Select Component Documentation
+
+## Description
+A versatile select menu component with grouped items, multi-selection support, search functionality, and flexible positioning for complex selection scenarios.
+
+## Features
+- Single and multi-selection modes
+- Grouped menu items with labels
+- Search functionality for filtering
+- Custom slot content (up to 4 slots per item)
+- Submenu support for nested options
+- Flexible positioning and alignment
+- Modal mode for mobile devices
+- Collision boundary detection
+- Customizable dimensions
+- Accessible keyboard navigation
+
+## Props
+
+<BlendTypeTable componentMeta={selectMeta} />
+
+## Usage Examples
+
+### Basic Select Menu
+Simple select with grouped items
+
+```tsx
+<SelectMenu
+  trigger={<Button text="Select Options" />}
+  items={[
+    {
+      groupLabel: "Actions",
+      items: [
+        { label: "Edit", value: "edit" },
+        { label: "Delete", value: "delete" },
+        { label: "Archive", value: "archive" }
+      ]
+    }
+  ]}
+  onSelect={(value) => handleSelection(value)}
+/>
+```
+
+### Multi-Select with Search
+Select menu with multiple selection and search
+
+```tsx
+<SelectMenu
+  trigger={<Button text="Choose Multiple" />}
+  allowMultiSelect={true}
+  enableSearch={true}
+  selected={selectedValues}
+  onSelect={setSelectedValues}
+  items={menuItems}
+/>
+```
+
+### Select with Custom Positioning
+Select menu with custom positioning
+
+```tsx
+<SelectMenu
+  trigger={<IconButton icon={<MoreIcon />} />}
+  side={SelectMenuSide.LEFT}
+  alignment={SelectMenuAlignment.START}
+  maxHeight={300}
+  items={contextMenuItems}
+/>
+```
+
+### Modal Select for Mobile
+Select that becomes modal on mobile
+
+```tsx
+<SelectMenu
+  trigger={<Button text="Mobile Friendly" />}
+  asModal={true}
+  items={mobileMenuItems}
+  onSelect={handleMobileSelection}
+/>
+```
+

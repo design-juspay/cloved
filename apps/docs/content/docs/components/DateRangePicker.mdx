@@ -1,0 +1,93 @@
+---
+title: Daterangepicker
+description: A comprehensive date range picker component with calendar interface, time selection, preset ranges, and flexible configuration options for selecting date and time ranges.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import daterangepickerMeta from "@/meta/daterangepicker.context";
+
+# Daterangepicker Component Documentation
+
+## Description
+A comprehensive date range picker component with calendar interface, time selection, preset ranges, and flexible configuration options for selecting date and time ranges.
+
+## Features
+- Interactive calendar grid for date selection
+- Optional time picker for precise time selection
+- Quick preset ranges (today, yesterday, last 7 days, etc.)
+- Custom date range selection
+- Min/max date constraints
+- Future/past date restrictions
+- Single date selection mode
+- Custom trigger element support
+- Accessible keyboard navigation
+- Customizable date formatting
+- Disabled state support
+
+## Props
+
+<BlendTypeTable componentMeta={daterangepickerMeta} />
+
+## Usage Examples
+
+### Basic Date Range Picker
+Simple date range picker with default settings
+
+```tsx
+const [dateRange, setDateRange] = useState({
+  startDate: new Date(),
+  endDate: new Date()
+});
+
+<DateRangePicker 
+  value={dateRange}
+  onChange={setDateRange}
+  placeholder="Select date range"
+/>
+```
+
+### Date Range Picker with Time
+Date range picker with time selection enabled
+
+```tsx
+<DateRangePicker 
+  value={selectedRange}
+  onChange={handleRangeChange}
+  showTimePicker={true}
+  showPresets={true}
+  placeholder="Select date and time range"
+/>
+```
+
+### Constrained Date Range Picker
+Date range picker with date constraints
+
+```tsx
+<DateRangePicker 
+  value={dateRange}
+  onChange={setDateRange}
+  minDate={new Date('2024-01-01')}
+  maxDate={new Date('2024-12-31')}
+  disableFutureDates={true}
+  showPresets={false}
+/>
+```
+
+### Custom Date Range Picker
+Date range picker with custom trigger and formatting
+
+```tsx
+<DateRangePicker 
+  value={dateRange}
+  onChange={setDateRange}
+  triggerElement={
+    <Button 
+      text="Choose Dates" 
+      leadingIcon={<CalendarIcon />}
+    />
+  }
+  dateFormat="MM/dd/yyyy"
+  allowSingleDateSelection={true}
+/>
+```
+

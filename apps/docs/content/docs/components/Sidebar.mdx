@@ -1,0 +1,105 @@
+---
+title: Sidebar
+description: A navigation sidebar component for organizing hierarchical content with collapsible sections, custom styling, and responsive behavior.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import sidebarMeta from "@/meta/sidebar.context";
+
+# Sidebar Component Documentation
+
+## Description
+A navigation sidebar component for organizing hierarchical content with collapsible sections, custom styling, and responsive behavior.
+
+## Features
+- Hierarchical navigation structure
+- Collapsible sections and items
+- Custom content slots
+- Responsive design
+- Active state management
+- Icon and badge support
+- Nested navigation items
+- Customizable styling
+- Accessible navigation
+- Mobile-friendly layout
+
+## Props
+
+<BlendTypeTable componentMeta={sidebarMeta} />
+
+## Usage Examples
+
+### Basic Sidebar
+Simple sidebar with navigation items
+
+```tsx
+<Sidebar>
+  <SidebarSection title="Navigation">
+    <SidebarItem href="/dashboard" icon={<DashboardIcon />}>
+      Dashboard
+    </SidebarItem>
+    <SidebarItem href="/users" icon={<UsersIcon />}>
+      Users
+    </SidebarItem>
+    <SidebarItem href="/settings" icon={<SettingsIcon />}>
+      Settings
+    </SidebarItem>
+  </SidebarSection>
+</Sidebar>
+```
+
+### Collapsible Sidebar
+Sidebar with collapsible sections
+
+```tsx
+<Sidebar>
+  <SidebarSection title="Main" collapsible defaultOpen>
+    <SidebarItem href="/home">Home</SidebarItem>
+    <SidebarItem href="/profile">Profile</SidebarItem>
+  </SidebarSection>
+  <SidebarSection title="Admin" collapsible>
+    <SidebarItem href="/admin/users">User Management</SidebarItem>
+    <SidebarItem href="/admin/settings">System Settings</SidebarItem>
+  </SidebarSection>
+</Sidebar>
+```
+
+### Sidebar with Badges
+Sidebar items with notification badges
+
+```tsx
+<Sidebar>
+  <SidebarItem 
+    href="/messages" 
+    icon={<MessageIcon />}
+    badge={<Badge variant="danger">5</Badge>}
+  >
+    Messages
+  </SidebarItem>
+  <SidebarItem 
+    href="/notifications"
+    icon={<BellIcon />}
+    badge={<Badge variant="info">12</Badge>}
+  >
+    Notifications
+  </SidebarItem>
+</Sidebar>
+```
+
+### Nested Sidebar Navigation
+Sidebar with nested navigation items
+
+```tsx
+<Sidebar>
+  <SidebarSection title="Products">
+    <SidebarItem href="/products">All Products</SidebarItem>
+    <SidebarItem href="/products/categories">
+      Categories
+      <SidebarItem href="/products/categories/electronics">Electronics</SidebarItem>
+      <SidebarItem href="/products/categories/clothing">Clothing</SidebarItem>
+    </SidebarItem>
+    <SidebarItem href="/products/inventory">Inventory</SidebarItem>
+  </SidebarSection>
+</Sidebar>
+```
+

@@ -1,0 +1,88 @@
+---
+title: Splittag
+description: A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import splittagMeta from "@/meta/splittag.context";
+
+# Splittag Component Documentation
+
+## Description
+A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.
+
+## Features
+- Split design with main content and action button
+- Multiple size variants
+- Color customization options
+- Icon support for both sections
+- Disabled state handling
+- Click handlers for both sections
+- Accessible keyboard navigation
+- Custom styling support
+- Flexible content layout
+- Responsive design
+
+## Props
+
+<BlendTypeTable componentMeta={splittagMeta} />
+
+## Usage Examples
+
+### Basic Split Tag
+Simple split tag with text and action
+
+```tsx
+<SplitTag
+  mainContent="JavaScript"
+  onMainClick={() => console.log('Main clicked')}
+  onActionClick={() => console.log('Action clicked')}
+/>
+```
+
+### Split Tag with Icons
+Split tag with icons in both sections
+
+```tsx
+<SplitTag
+  mainContent="React"
+  mainIcon={<ReactIcon />}
+  actionIcon={<CloseIcon />}
+  onMainClick={() => selectFramework('react')}
+  onActionClick={() => removeFramework('react')}
+/>
+```
+
+### Colored Split Tag
+Split tag with custom colors
+
+```tsx
+<SplitTag
+  mainContent="Premium User"
+  backgroundColor="#ffd700"
+  textColor="#000"
+  actionBackgroundColor="#ff6b6b"
+  onMainClick={() => viewProfile()}
+  onActionClick={() => removeTag()}
+/>
+```
+
+### Large Split Tag with Custom Content
+Large split tag with complex content
+
+```tsx
+<SplitTag
+  size={SplitTagSize.LARGE}
+  mainContent={
+    <div>
+      <span>John Doe</span>
+      <small>Administrator</small>
+    </div>
+  }
+  actionIcon={<EditIcon />}
+  onMainClick={() => viewUser('john-doe')}
+  onActionClick={() => editUser('john-doe')}
+  disabled={!canEdit}
+/>
+```
+

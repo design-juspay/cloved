@@ -1,0 +1,157 @@
+---
+title: Menu
+description: A versatile dropdown menu component with support for grouped items, submenus, search functionality, and customizable positioning for creating rich contextual menus.
+---
+
+import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
+import menuMeta from "@/meta/menu.context";
+
+# Menu Component Documentation
+
+## Description
+A versatile dropdown menu component with support for grouped items, submenus, search functionality, and customizable positioning for creating rich contextual menus.
+
+## Features
+- Grouped menu items with labels
+- Submenu support for nested navigation
+- Search functionality with filtering
+- Multiple item variants (default, action)
+- Action types (primary, danger)
+- Custom slot content (up to 4 slots per item)
+- Flexible positioning and alignment
+- Controlled and uncontrolled modes
+- Collision boundary detection
+- Modal mode support
+- Accessible keyboard navigation
+
+## Props
+
+<BlendTypeTable componentMeta={menuMeta} />
+
+## Usage Examples
+
+### Basic Menu
+Simple menu with grouped items
+
+```tsx
+<Menu 
+  trigger={<Button text="Actions" />}
+  items={[
+    {
+      label: "File Operations",
+      items: [
+        { label: "New File", onClick: () => createFile() },
+        { label: "Open File", onClick: () => openFile() },
+        { label: "Save File", onClick: () => saveFile() }
+      ]
+    },
+    {
+      items: [
+        { 
+          label: "Delete", 
+          variant: MenuItemV2Variant.ACTION,
+          actionType: MenuItemV2ActionType.DANGER,
+          onClick: () => deleteFile()
+        }
+      ]
+    }
+  ]}
+/>
+```
+
+### Menu with Search
+Menu with search functionality enabled
+
+```tsx
+<Menu 
+  trigger={<Button text="Select User" />}
+  enableSearch={true}
+  searchPlaceholder="Search users..."
+  items={[
+    {
+      label: "Team Members",
+      items: [
+        { 
+          label: "John Doe", 
+          subLabel: "john@example.com",
+          slot1: <Avatar src="/john.jpg" size="sm" />
+        },
+        { 
+          label: "Jane Smith", 
+          subLabel: "jane@example.com",
+          slot1: <Avatar src="/jane.jpg" size="sm" />
+        }
+      ]
+    }
+  ]}
+/>
+```
+
+### Menu with Submenus
+Menu with nested submenu items
+
+```tsx
+<Menu 
+  trigger={<Button text="More Options" />}
+  items={[
+    {
+      items: [
+        { 
+          label: "Export",
+          slot1: <ExportIcon />,
+          subMenu: [
+            { label: "Export as PDF", onClick: () => exportPDF() },
+            { label: "Export as CSV", onClick: () => exportCSV() },
+            { label: "Export as JSON", onClick: () => exportJSON() }
+          ]
+        },
+        { 
+          label: "Share",
+          slot1: <ShareIcon />,
+          subMenu: [
+            { label: "Copy Link", onClick: () => copyLink() },
+            { label: "Email", onClick: () => shareEmail() },
+            { label: "Social Media", onClick: () => shareSocial() }
+          ]
+        }
+      ]
+    }
+  ]}
+/>
+```
+
+### Controlled Menu with Custom Positioning
+Menu with controlled state and custom positioning
+
+```tsx
+const [isOpen, setIsOpen] = useState(false);
+
+<Menu 
+  trigger={<Button text="Settings" />}
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  side={MenuSide.LEFT}
+  alignment={MenuAlignment.START}
+  sideOffset={10}
+  maxWidth={300}
+  items={[
+    {
+      label: "Preferences",
+      items: [
+        { 
+          label: "Theme", 
+          subLabel: "Dark mode enabled",
+          slot1: <ThemeIcon />,
+          slot4: <ChevronRightIcon />
+        },
+        { 
+          label: "Notifications", 
+          slot1: <NotificationIcon />,
+          slot4: <Switch checked={true} />
+        }
+      ]
+    }
+  ]}
+/>
+```
+
