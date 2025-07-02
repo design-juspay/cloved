@@ -72,7 +72,7 @@ const TextInput = ({
     : paddingX;
   return (
     <Block display="flex" flexDirection="column" gap={8} width={"100%"}>
-      <InputLabels
+     <InputLabels
         label={label}
         sublabel={sublabel}
         helpIconHintText={helpIconHintText}

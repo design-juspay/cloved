@@ -1,11 +1,16 @@
 import React, { forwardRef, useState } from 'react';
-import { SwitchGroupProps, SwitchProps } from './types';
-import { StyledSwitchGroupLabel } from './StyledSwitch';
+import { SwitchGroupProps } from './types';
+import { 
+  isSwitchElement,
+  createSwitchGroupChangeHandler,
+  getSwitchTextProps
+} from './utils';
 import Block from '../Primitives/Block/Block';
 import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
 import { Switch } from './Switch';
 import { useComponentToken } from "../../context/useComponentToken";
 import { SwitchTokensType } from './switch.token';
+import { SwitchSize } from './types';
 
 const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
   (
@@ -27,16 +32,17 @@ const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
     const isControlled = controlledValue !== undefined;
     const values = isControlled ? controlledValue : internalValues;
 
-    const isSwitchElement = (
-      child: React.ReactElement
-    ): child is React.ReactElement<SwitchProps> => {
-      return child.type === Switch;
-    };
+    const handleGroupChange = createSwitchGroupChangeHandler(
+      values,
+      isControlled,
+      setInternalValues,
+      onChange
+    );
 
     const enhancedChildren = React.Children.map(children, child => {
       if (!React.isValidElement(child)) return child;
 
-      if (isSwitchElement(child)) {
+      if (isSwitchElement(child, Switch)) {
         const childValue = child.props.value;
 
         if (!childValue) return child;
@@ -44,25 +50,10 @@ const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
         return React.cloneElement(child, {
           checked: values.includes(childValue),
           onChange: (checked: boolean) => {
-            let newValues: string[];
-
-            if (checked) {
-              newValues = [...values, childValue];
-            } else {
-              newValues = values.filter(v => v !== childValue);
-            }
-
-            if (!isControlled) {
-              setInternalValues(newValues);
-            }
-
-            if (child.props.onChange) {
-              child.props.onChange(checked);
-            }
-
-            if (onChange) {
-              onChange(newValues);
-            }
+            handleGroupChange(checked, childValue);
+            
+            // Call original onChange if it exists
+            child.props.onChange?.(checked);
           },
           name: name,
           disabled: disabled || child.props.disabled,
@@ -82,15 +73,9 @@ const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
         gap={tokens.gap}
       >
         {label && (
-          <StyledSwitchGroupLabel>
-            <PrimitiveText
-              as="span"
-              fontSize={tokens.content.label.font.md.fontSize}
-              fontWeight={tokens.content.label.font.md.fontWeight}
-            >
-              {label}
-            </PrimitiveText>
-          </StyledSwitchGroupLabel>
+          <GroupLabel tokens={tokens}>
+            {label}
+          </GroupLabel>
         )}
         <Block display="flex" flexDirection="column" gap={tokens.gap}>
           {enhancedChildren}
@@ -99,6 +84,28 @@ const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(
     );
   }
 );
+
+/**
+ * Extracted group label component for better maintainability
+ */
+const GroupLabel: React.FC<{
+  children: React.ReactNode;
+  tokens: SwitchTokensType;
+}> = ({ children, tokens }) => {
+  const textProps = getSwitchTextProps(tokens, SwitchSize.MEDIUM, false, false);
+  
+  return (
+    <PrimitiveText
+      as="label"
+      fontSize={textProps.fontSize}
+      fontWeight={textProps.fontWeight}
+      color={textProps.color}
+      style={{ marginBottom: tokens.gap }}
+    >
+      {children}
+    </PrimitiveText>
+  );
+};
 
 SwitchGroup.displayName = 'SwitchGroup';
 

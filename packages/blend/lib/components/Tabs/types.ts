@@ -20,6 +20,7 @@ export type TabsListProps = ComponentPropsWithoutRef<typeof TabsPrimitive.List> 
   variant?: TabsVariant;
   size?: TabsSize;
   expanded?: boolean;
+  fitContent?: boolean;
 };
 
 export type TabsTriggerProps = ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {

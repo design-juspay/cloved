@@ -30,12 +30,10 @@ export type DateRangePickerProps = {
   showPresets?: boolean;
   placeholder?: string;
   isDisabled?: boolean;
-  className?: string;
   icon?: ReactNode;
   minDate?: Date;
   maxDate?: Date;
   dateFormat?: string;
-  ariaLabel?: string;
   allowSingleDateSelection?: boolean;
   disableFutureDates?: boolean;
   disablePastDates?: boolean;

@@ -3,16 +3,21 @@ import { Check, Minus } from 'lucide-react';
 import { CheckboxProps, CheckboxSize } from './types';
 import { 
   getCheckboxDataState, 
-  extractPixelValue
+  extractPixelValue,
+  createCheckboxInputProps,
+  getCurrentCheckedState,
+  getCheckboxIconColor,
+  getCheckboxTextProps,
+  getCheckboxSubtextProps,
+  getCheckboxLabelStyles
 } from './checkboxUtils';
 import {
   StyledCheckboxRoot,
-  StyledCheckboxIndicator,
-  StyledLabel
+  StyledCheckboxIndicator
 } from './StyledCheckbox';
 import Block from '../Primitives/Block/Block';
 import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
-import { useComponentToken } from '../../context/useComponentToken'; // Or '../../context/ThemeContext'
+import { useComponentToken } from '../../context/useComponentToken';
 import { CheckboxTokensType } from './checkbox.token';
 
 export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
@@ -26,7 +31,6 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       disabled = false,
       required = false,
       error = false,
-
       size = CheckboxSize.MEDIUM,
       children,
       subtext,
@@ -35,36 +39,14 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
     ref
   ) => {
     const tokens = useComponentToken("CHECKBOX") as CheckboxTokensType;
-    // TODO: This is a temporary fix to avoid the warning about useId.
-    // We need to find a better solution to handle the id.
     const generatedId = React.useId();
     const uniqueId = id || generatedId;
     
-    // Determine if this is a controlled component
-    const isControlled = checked !== undefined;
-    
-    // For controlled components, use checked; for uncontrolled, use defaultChecked
-    const inputProps = isControlled 
-      ? { checked: checked === 'indeterminate' ? false : checked } 
-      : { defaultChecked: defaultChecked };
-
-    // Get the current checked state for styling and data purposes
-    const currentChecked = isControlled ? checked : defaultChecked;
-
-    const getIconColor = () => {
-      if (disabled) {
-        return currentChecked === 'indeterminate' 
-          ? tokens.icon.color.indeterminate?.disabled 
-          : tokens.icon.color.checked?.disabled;
-      }
-      return currentChecked === 'indeterminate'
-        ? tokens.icon.color.indeterminate?.default
-        : tokens.icon.color.checked?.default;
-    };
+    const inputProps = createCheckboxInputProps(checked, defaultChecked);
+    const currentChecked = getCurrentCheckedState(checked, defaultChecked);
 
     return (
-      <Block display="flex" flexDirection="column">
-        <Block display="flex" alignItems="center">
+        <Block display="flex" alignItems="flex-start" gap={tokens.gap}>
           <StyledCheckboxRoot
             ref={ref}
             id={uniqueId}
@@ -80,88 +62,148 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
             $checked={currentChecked || false}
             $error={error}
           >
-            <StyledCheckboxIndicator
-              forceMount={checked === 'indeterminate' ? true : undefined}
+            <CheckboxIndicator
+              checked={currentChecked}
               size={size}
-            >
-              {currentChecked && (
-                <Block 
-                  as="span" 
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  width="100%"
-                  height="100%"
-                >
-                  {currentChecked === 'indeterminate' ? (
-                    <Minus 
-                      size={extractPixelValue(tokens.icon.size[size].width)}
-                      color={getIconColor()}
-                      strokeWidth={tokens.icon.size[size].strokeWidth}
-                    />
-                  ) : (
-                    <Check 
-                      size={extractPixelValue(tokens.icon.size[size].width)}
-                      color={getIconColor()}
-                      strokeWidth={tokens.icon.size[size].strokeWidth}
-                    />
-                  )}
-                </Block>
-              )}
-            </StyledCheckboxIndicator>
+              tokens={tokens}
+              disabled={disabled}
+            />
           </StyledCheckboxRoot>
+
+
+        <Block display="flex" flexDirection="column" gap={tokens.content.gap}>
+          <Block display="flex" alignItems="center">
+          <CheckboxContent
+            uniqueId={uniqueId}
+            disabled={disabled}
+            error={error}
+            required={required}
+            size={size}
+            children={children}
+            tokens={tokens}
+          />
           
-          {children && (
-            <StyledLabel
-              htmlFor={uniqueId}
-              $isDisabled={disabled}
-              $error={error}
-            >
-              <PrimitiveText
-                as="span"
-                fontSize={tokens.content.label.font[size].fontSize}
-                fontWeight={tokens.content.label.font[size].fontWeight}
-              >
-                {children}
-                {required && (
-                  <PrimitiveText
-                    as="span"
-                    color={tokens.required.color}
-                    margin={`0 0 0 ${tokens.required.spacing}`}
-                  >
-                    *
-                  </PrimitiveText>
-                )}
-              </PrimitiveText>
-            </StyledLabel>
-          )}
           {slot && (
             <Block as="span" marginLeft={tokens.slotGap}>
               {slot}
             </Block>
           )}
-        </Block>
-
-        {subtext && (
-          <Block 
-            marginLeft={tokens.content.subtext.spacing.left[size]}
-            marginTop={tokens.content.subtext.spacing.top}
-          >
-            <PrimitiveText
-              as="span"
-              color={disabled ? tokens.content.subtext.color.disabled : 
-                     error ? tokens.content.subtext.color.error : 
-                     tokens.content.subtext.color.default}
-              fontSize={tokens.content.subtext.font[size].fontSize}
-            >
-              {subtext}
-            </PrimitiveText>
           </Block>
+
+         {subtext && (
+          <CheckboxSubtext
+            size={size}
+            disabled={disabled}
+            error={error}
+            tokens={tokens}
+          >
+            {subtext}
+          </CheckboxSubtext>
         )}
-      </Block>
+        </Block>
+        </Block>
     );
   }
 );
+
+const CheckboxIndicator: React.FC<{
+  checked: boolean | 'indeterminate';
+  size: CheckboxSize;
+  tokens: CheckboxTokensType;
+  disabled: boolean;
+}> = ({ checked, size, tokens, disabled }) => (
+  <StyledCheckboxIndicator
+    forceMount={checked === 'indeterminate' ? true : undefined}
+    size={size}
+  >
+    {checked && (
+      <Block 
+        as="span" 
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        width="100%"
+        height="100%"
+      >
+        {checked === 'indeterminate' ? (
+          <Minus 
+            size={extractPixelValue(tokens.icon.size[size].width)}
+            color={getCheckboxIconColor(tokens, checked, disabled)}
+            strokeWidth={tokens.icon.size[size].strokeWidth}
+          />
+        ) : (
+          <Check 
+            size={extractPixelValue(tokens.icon.size[size].width)}
+            color={getCheckboxIconColor(tokens, checked, disabled)}
+            strokeWidth={tokens.icon.size[size].strokeWidth}
+          />
+        )}
+      </Block>
+    )}
+  </StyledCheckboxIndicator>
+);
+
+const CheckboxContent: React.FC<{
+  uniqueId: string;
+  disabled: boolean;
+  error: boolean;
+  required: boolean;
+  size: CheckboxSize;
+  children?: React.ReactNode;
+  tokens: CheckboxTokensType;
+}> = ({ uniqueId, disabled, error, required, size, children, tokens }) => {
+  if (!children) return null;
+
+  const labelStyles = getCheckboxLabelStyles(disabled);
+  const textProps = getCheckboxTextProps(tokens, size, disabled, error);
+
+  return (
+    <label
+      htmlFor={uniqueId}
+      style={labelStyles}
+    >
+      <PrimitiveText
+        as="span"
+        fontSize={textProps.fontSize}
+        fontWeight={textProps.fontWeight}
+        color={textProps.color}
+      >
+        {children}
+        {required && (
+          <PrimitiveText
+            as="span"
+            color={tokens.required.color}
+            style={{ marginLeft: tokens.required.spacing }}
+          >
+            *
+          </PrimitiveText>
+        )}
+      </PrimitiveText>
+    </label>
+  );
+};
+
+const CheckboxSubtext: React.FC<{
+  size: CheckboxSize;
+  disabled: boolean;
+  error: boolean;
+  tokens: CheckboxTokensType;
+  children: React.ReactNode;
+}> = ({ size, disabled, error, tokens, children }) => {
+  const subtextProps = getCheckboxSubtextProps(tokens, size, disabled, error);
+
+  return (
+    <Block>
+      <PrimitiveText
+        as="span"
+        color={subtextProps.color}
+        fontSize={subtextProps.fontSize}
+      >
+        {children}
+      </PrimitiveText>
+    </Block>
+  );
+};
 
 Checkbox.displayName = 'Checkbox';
 

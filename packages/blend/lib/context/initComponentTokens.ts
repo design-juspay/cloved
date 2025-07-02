@@ -22,6 +22,8 @@ import { getPopoverTokens } from "../components/Popover/popover.tokens";
 import { getMenuTokens } from "../components/Menu/menu.tokens";
 import { getMultiSelectTokens } from "../components/MultiSelect/multiSelect.tokens";
 import { getTableToken } from "../components/DataTable/dataTable.tokens";
+import { getCalendarToken } from "../components/DateRangePicker/dateRangePicker.tokens";
+import { getAccordionToken } from "../components/Accordion/accordion.tokens";
 
 const initTokens = (
   componentTokens: ComponentTokenType,
@@ -61,6 +63,8 @@ const initTokens = (
       componentTokens.MULTI_SELECT ??
       getMultiSelectTokens(foundationTokens),
     TABLE: componentTokens.TABLE ?? getTableToken(foundationTokens),
+    CALENDAR: componentTokens.CALENDAR ?? getCalendarToken(foundationTokens),
+    ACCORDION: componentTokens.ACCORDION ?? getAccordionToken(foundationTokens),
   };
 };
 

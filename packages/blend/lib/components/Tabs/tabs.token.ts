@@ -2,261 +2,175 @@ import { CSSObject } from "styled-components";
 import { FOUNDATION_THEME, ThemeType } from "../../tokens";
 import { TabsVariant, TabsSize } from "./types";
 
-export type TabsInteractionState =
-  | "default"
-  | "hover"
-  | "active"
-  | "focus"
-  | "disabled";
+export type TabsState = "default" | "hover" | "active" | "disabled";
 
-export type TabsTokensType = Readonly<{
-  rootLayout?: {
-    width?: CSSObject["width"];
+export type TabsTokensType = {
+  gap: {
+    [key in TabsVariant]: CSSObject["gap"];
   };
-
+  
   list: {
-    layout: {
-      [key in TabsVariant]?: {
-        display?: CSSObject["display"];
-        width?: CSSObject["width"];
-        alignItems?: CSSObject["alignItems"];
-        gap?: CSSObject["gap"];
-        padding?: CSSObject["padding"];
-        borderBottomWidth?: CSSObject["borderWidth"];
-        borderBottomColor?: CSSObject["borderColor"];
-        backgroundColor?: CSSObject["backgroundColor"];
-        borderRadius?: CSSObject["borderRadius"];
-      };
+    padding: {
+      [key in TabsVariant]: CSSObject["padding"];
     };
-    expandedLayout?: {
-      justifyContent?: CSSObject["justifyContent"];
+    backgroundColor: {
+      [key in TabsVariant]: CSSObject["backgroundColor"];
     };
-    size?: {
-      [key in TabsSize]?: {
-        height?: CSSObject["height"];
-      };
+    borderRadius: {
+      [key in TabsVariant]: CSSObject["borderRadius"];
+    };
+    borderBottom: {
+      [key in TabsVariant]: CSSObject["borderBottom"];
     };
   };
-
+  
   trigger: {
-    size: {
-      [key in TabsSize]: {
-        height: CSSObject["height"];
-        paddingX: CSSObject["paddingLeft"];
-        fontSize: CSSObject["fontSize"];
-      };
+    height: {
+      [key in TabsSize]: CSSObject["height"];
     };
-    font: {
-      [key in TabsVariant]?: {
-        [key in Extract<TabsInteractionState, "default" | "active">]?: {
-          fontWeight: CSSObject["fontWeight"];
-        };
+    padding: {
+      [key in TabsSize]: CSSObject["padding"];
+    };
+    fontSize: {
+      [key in TabsSize]: CSSObject["fontSize"];
+    };
+    
+    iconGap: CSSObject["gap"];
+    
+    fontWeight: {
+      [key in TabsVariant]: {
+        [key in TabsState]?: CSSObject["fontWeight"];
       };
     };
     color: {
-      [key in TabsVariant]?: {
-        [key in Extract<
-          TabsInteractionState,
-          "default" | "hover" | "active" | "disabled"
-        >]?: CSSObject["color"];
+      [key in TabsVariant]: {
+        [key in TabsState]?: CSSObject["color"];
       };
     };
-    background: {
-      [key in TabsVariant]?: {
-        [key in Extract<
-          TabsInteractionState,
-          "default" | "hover" | "active"
-        >]?: CSSObject["backgroundColor"];
+    backgroundColor: {
+      [key in TabsVariant]: {
+        [key in TabsState]?: CSSObject["backgroundColor"];
       };
     };
-    border: {
-      [key in TabsVariant]?: {
-        radius?: CSSObject["borderRadius"];
-        underlineHeight?: CSSObject["height"];
-        underlineColor?: CSSObject["borderColor"];
-      };
-    };
-    shadow?: {
-      [key in Extract<TabsVariant, "boxed">]?: {
-        [key in Extract<
-          TabsInteractionState,
-          "active"
-        >]?: CSSObject["boxShadow"];
-      };
-    };
-    iconSpacing?: {
-      gap?: CSSObject["gap"];
-    };
-    focus?: {
-      outlineColor?: CSSObject["borderColor"];
-      outlineWidth?: CSSObject["borderWidth"];
-      outlineOffset?: CSSObject["outlineOffset"];
-      ringWidth?: CSSObject["string"];
-      ringColor?: CSSObject["borderColor"];
-      ringOffset?: CSSObject["string"];
-    };
-    disabledOpacity?: CSSObject["opacity"];
-  };
-
-  content: {
-    padding?: CSSObject["padding"];
-    marginTop?: CSSObject["marginTop"];
-    animation?: {
-      duration?: CSSObject["transitionDuration"];
-      timingFunction?: CSSObject["transitionTimingFunction"];
+    borderRadius: {
+      [key in TabsVariant]: CSSObject["borderRadius"];
     };
   };
-
-  transition?: {
-    duration?: CSSObject["transitionDuration"];
-    easing?: CSSObject["transitionTimingFunction"];
+  
+  underline: {
+    height: CSSObject["height"];
+    color: CSSObject["color"];
   };
-}>;
+};
 
 export const getTabsTokens = (foundationToken: ThemeType): TabsTokensType => {
-  const underlineBorderColor = foundationToken.colors.gray[700];
-  const underlineBorderWidth = foundationToken.border.width[2];
-  const listBottomBorderColor = foundationToken.colors.gray[200];
-
   return {
-    rootLayout: {
-      width: "100%",
+    gap: {
+      [TabsVariant.UNDERLINE]: foundationToken.unit[12],
+      [TabsVariant.BOXED]: foundationToken.unit[4],
+      [TabsVariant.FLOATING]: foundationToken.unit[8],
     },
+    
     list: {
-      layout: {
-        underline: {
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          gap: foundationToken.unit[12],
-          borderBottomWidth: foundationToken.border.width[1],
-          borderBottomColor: listBottomBorderColor,
-        },
-        boxed: {
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          gap: foundationToken.unit[4],
-          backgroundColor: foundationToken.colors.gray[50],
-          padding: foundationToken.unit[4],
-          borderRadius: foundationToken.border.radius[8],
-        },
-        floating: {
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          gap: foundationToken.unit[8],
-        },
+      padding: {
+        [TabsVariant.UNDERLINE]: "0",
+        [TabsVariant.BOXED]: foundationToken.unit[4],
+        [TabsVariant.FLOATING]: "0",
       },
-      expandedLayout: {
-        justifyContent: "space-between",
+      backgroundColor: {
+        [TabsVariant.UNDERLINE]: "transparent",
+        [TabsVariant.BOXED]: foundationToken.colors.gray[50],
+        [TabsVariant.FLOATING]: "transparent",
       },
-      size: {
-        lg: { height: foundationToken.unit[48] },
+      borderRadius: {
+        [TabsVariant.UNDERLINE]: "0",
+        [TabsVariant.BOXED]: foundationToken.border.radius[8],
+        [TabsVariant.FLOATING]: "0",
+      },
+      borderBottom: {
+        [TabsVariant.UNDERLINE]: `${foundationToken.border.width[1]} solid ${foundationToken.colors.gray[200]}`,
+        [TabsVariant.BOXED]: "none",
+        [TabsVariant.FLOATING]: "none",
       },
     },
+    
     trigger: {
-      size: {
-        md: {
-          height: foundationToken.unit[36],
-          paddingX: foundationToken.unit[12],
-          fontSize: foundationToken.font.size.body.md.fontSize,
-        },
-        lg: {
-          height: foundationToken.unit[40],
-          paddingX: foundationToken.unit[12],
-          fontSize: foundationToken.font.size.body.md.fontSize,
-        },
+      height: {
+        [TabsSize.MD]: foundationToken.unit[36],
+        [TabsSize.LG]: foundationToken.unit[40],
       },
-      font: {
-        underline: {
-          default: { fontWeight: foundationToken.font.weight[500] },
-          active: { fontWeight: foundationToken.font.weight[600] },
+      padding: {
+        [TabsSize.MD]: `0 ${foundationToken.unit[12]}`,
+        [TabsSize.LG]: `0 ${foundationToken.unit[12]}`,
+      },
+      fontSize: {
+        [TabsSize.MD]: foundationToken.font.size.body.md.fontSize,
+        [TabsSize.LG]: foundationToken.font.size.body.md.fontSize,
+      },
+      
+      iconGap: foundationToken.unit[8],
+      
+      fontWeight: {
+        [TabsVariant.UNDERLINE]: {
+          default: foundationToken.font.weight[500],
+          active: foundationToken.font.weight[600],
         },
-        boxed: {
-          default: { fontWeight: foundationToken.font.weight[500] },
-          active: { fontWeight: foundationToken.font.weight[600] },
+        [TabsVariant.BOXED]: {
+          default: foundationToken.font.weight[500],
+          active: foundationToken.font.weight[600],
         },
-        floating: {
-          default: { fontWeight: foundationToken.font.weight[500] },
-          active: { fontWeight: foundationToken.font.weight[600] },
+        [TabsVariant.FLOATING]: {
+          default: foundationToken.font.weight[500],
+          active: foundationToken.font.weight[600],
         },
       },
       color: {
-        underline: {
+        [TabsVariant.UNDERLINE]: {
           default: foundationToken.colors.gray[500],
           hover: foundationToken.colors.gray[600],
           active: foundationToken.colors.gray[700],
           disabled: foundationToken.colors.gray[400],
         },
-        boxed: {
+        [TabsVariant.BOXED]: {
           default: foundationToken.colors.gray[500],
           hover: foundationToken.colors.gray[600],
           active: foundationToken.colors.gray[700],
           disabled: foundationToken.colors.gray[400],
         },
-        floating: {
+        [TabsVariant.FLOATING]: {
           default: foundationToken.colors.gray[500],
           hover: foundationToken.colors.gray[700],
           active: foundationToken.colors.gray[700],
           disabled: foundationToken.colors.gray[400],
         },
       },
-      background: {
-        underline: {
+      backgroundColor: {
+        [TabsVariant.UNDERLINE]: {
           default: "transparent",
           hover: "transparent",
           active: "transparent",
         },
-        boxed: {
+        [TabsVariant.BOXED]: {
           default: "transparent",
           hover: foundationToken.colors.gray[0],
           active: foundationToken.colors.gray[0],
         },
-        floating: {
+        [TabsVariant.FLOATING]: {
           default: "transparent",
           hover: foundationToken.colors.gray[50],
           active: foundationToken.colors.gray[100],
         },
       },
-      border: {
-        underline: {
-          underlineHeight: underlineBorderWidth,
-          underlineColor: underlineBorderColor,
-        },
-        boxed: {
-          radius: foundationToken.border.radius[8],
-        },
-        floating: {
-          radius: foundationToken.border.radius[8],
-        },
-      },
-      shadow: {
-        boxed: {
-          active: foundationToken.shadows.sm,
-        },
-      },
-      iconSpacing: {
-        gap: foundationToken.unit[8],
-      },
-      focus: {
-        ringWidth: foundationToken.border.width[2],
-        ringColor: foundationToken.colors.primary[500],
-        ringOffset: foundationToken.unit[2],
-      },
-      disabledOpacity: foundationToken.opacity[50],
-    },
-    content: {
-      padding: foundationToken.unit[16],
-      marginTop: foundationToken.unit[16],
-      animation: {
-        duration: "0.2s",
-        timingFunction: "ease-in-out",
+      borderRadius: {
+        [TabsVariant.UNDERLINE]: "0",
+        [TabsVariant.BOXED]: foundationToken.border.radius[8],
+        [TabsVariant.FLOATING]: foundationToken.border.radius[8],
       },
     },
-    transition: {
-      duration: "0.2s",
-      easing: "ease-in-out",
+    
+    underline: {
+      height: foundationToken.border.width[2],
+      color: foundationToken.colors.gray[700],
     },
   };
 };

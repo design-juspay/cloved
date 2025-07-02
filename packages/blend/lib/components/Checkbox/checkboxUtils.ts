@@ -1,5 +1,5 @@
-// import { CheckboxSize } from './types'; // Not strictly needed if getSpacingBySize etc. are removed
-// import { FOUNDATION_THEME } from '../../tokens'; // Not needed if token-specific utils are removed
+import { CheckboxSize } from './types';
+import { CheckboxTokensType } from './checkbox.token';
 
 export const getCheckboxDataState = (checked: boolean | 'indeterminate'): string => {
   if (checked === 'indeterminate') return 'indeterminate';
@@ -25,14 +25,135 @@ export const extractPixelValue = (tokenValue: string | number | undefined): numb
   return 0; // fallback for undefined or unparsable
 };
 
-// This function is not currently used in Checkbox.tsx but kept for potential future use.
-// If it were to be used with the new token system, it would likely need access to the `tokens` object.
+/**
+ * Determines if the checkbox component is controlled based on the checked prop
+ */
+export const isControlledCheckbox = (checked: boolean | 'indeterminate' | undefined): boolean => {
+  return checked !== undefined;
+};
+
+/**
+ * Creates input props for controlled vs uncontrolled components
+ */
+export const createCheckboxInputProps = (
+  checked: boolean | 'indeterminate' | undefined,
+  defaultChecked: boolean
+) => {
+  return isControlledCheckbox(checked) 
+    ? { checked: checked === 'indeterminate' ? false : checked } 
+    : { defaultChecked: defaultChecked };
+};
+
+/**
+ * Gets the current checked state for styling purposes
+ */
+export const getCurrentCheckedState = (
+  checked: boolean | 'indeterminate' | undefined,
+  defaultChecked: boolean
+): boolean | 'indeterminate' => {
+  return isControlledCheckbox(checked) ? checked! : defaultChecked;
+};
+
+/**
+ * Gets the icon color based on checkbox state
+ */
+export const getCheckboxIconColor = (
+  tokens: CheckboxTokensType,
+  currentChecked: boolean | 'indeterminate',
+  disabled: boolean
+): string => {
+  if (disabled) {
+    return currentChecked === 'indeterminate' 
+      ? String(tokens.icon.color.indeterminate?.disabled || '')
+      : String(tokens.icon.color.checked?.disabled || '');
+  }
+  return currentChecked === 'indeterminate'
+    ? String(tokens.icon.color.indeterminate?.default || '')
+    : String(tokens.icon.color.checked?.default || '');
+};
+
+/**
+ * Gets the text color based on checkbox state
+ */
+export const getCheckboxTextColor = (
+  tokens: CheckboxTokensType,
+  disabled: boolean,
+  error: boolean
+): string => {
+  if (disabled) return String(tokens.content.label.color.disabled || '');
+  if (error) return String(tokens.content.label.color.error || '');
+  return String(tokens.content.label.color.default || '');
+};
+
+/**
+ * Gets the subtext color based on checkbox state
+ */
+export const getCheckboxSubtextColor = (
+  tokens: CheckboxTokensType,
+  disabled: boolean,
+  error: boolean
+): string => {
+  if (disabled) return String(tokens.content.subtext.color.disabled || '');
+  if (error) return String(tokens.content.subtext.color.error || '');
+  return String(tokens.content.subtext.color.default || '');
+};
+
+/**
+ * Gets the text properties for checkbox labels
+ */
+export const getCheckboxTextProps = (
+  tokens: CheckboxTokensType,
+  size: CheckboxSize,
+  disabled: boolean,
+  error: boolean
+): {
+  fontSize: string;
+  fontWeight: string;
+  color: string;
+} => ({
+  fontSize: String(tokens.content.label.font[size]?.fontSize || ''),
+  fontWeight: String(tokens.content.label.font[size]?.fontWeight || ''),
+  color: getCheckboxTextColor(tokens, disabled, error)
+});
+
+/**
+ * Gets the subtext properties for checkbox
+ */
+export const getCheckboxSubtextProps = (
+  tokens: CheckboxTokensType,
+  size: CheckboxSize,
+  disabled: boolean,
+  error: boolean
+): {
+  fontSize: string;
+  color: string;
+} => ({
+  fontSize: String(tokens.content.subtext.font[size]?.fontSize || ''),
+  color: getCheckboxSubtextColor(tokens, disabled, error)
+});
+
+/**
+ * Gets label styles for checkbox components
+ */
+export const getCheckboxLabelStyles = (
+  disabled: boolean
+) => ({
+  cursor: disabled ? 'not-allowed' as const : 'pointer' as const,
+  display: 'flex' as const,
+  alignItems: 'center' as const,
+  margin: 0,
+  padding: 0
+});
+
+/**
+ * Gets accessibility attributes for checkbox
+ */
 export const getAccessibilityAttributes = (uniqueId: string, isIndeterminate: boolean) => {
   return {
     role: "checkbox",
     "aria-checked": isIndeterminate ? "mixed" : undefined,
     "aria-labelledby": `${uniqueId}-label`,
-    "aria-describedby": `${uniqueId}-description` // Assuming a description element exists
+    "aria-describedby": `${uniqueId}-description`
   };
 };
 

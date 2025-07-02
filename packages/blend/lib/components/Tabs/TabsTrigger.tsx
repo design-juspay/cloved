@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import { TabsTriggerProps, TabsVariant, TabsSize } from './types';
 import { StyledTabsTrigger, IconContainer } from './StyledTabs';
-import { useComponentToken } from '../../context/useComponentToken'; // Import hook
-import { TabsTokensType } from './tabs.token'; // Import token type
+import { useComponentToken } from '../../context/useComponentToken';
+import { TabsTokensType } from './tabs.token';
 
 const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   (
@@ -18,7 +18,7 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     },
     ref
   ) => {
-    const tokens = useComponentToken("TABS") as TabsTokensType; // Use hook
+    const tabsToken = useComponentToken("TABS") as TabsTokensType;
 
     return (
       <StyledTabsTrigger
@@ -26,12 +26,21 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         value={value}
         $variant={variant}
         $size={size}
+        $tabsToken={tabsToken}
         className={className}
         {...props}
       >
-        {leftSlot && <IconContainer style={{ marginRight: tokens.trigger.iconSpacing?.gap }}>{leftSlot}</IconContainer>}
+        {leftSlot && (
+          <IconContainer $tabsToken={tabsToken} style={{ marginRight: tabsToken.trigger.iconGap }}>
+            {leftSlot}
+          </IconContainer>
+        )}
         {children}
-        {rightSlot && <IconContainer style={{ marginLeft: tokens.trigger.iconSpacing?.gap }}>{rightSlot}</IconContainer>}
+        {rightSlot && (
+          <IconContainer $tabsToken={tabsToken} style={{ marginLeft: tabsToken.trigger.iconGap }}>
+            {rightSlot}
+          </IconContainer>
+        )}
       </StyledTabsTrigger>
     );
   }

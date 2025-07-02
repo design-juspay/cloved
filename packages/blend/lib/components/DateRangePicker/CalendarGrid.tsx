@@ -1,8 +1,23 @@
-import { forwardRef, useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
+import { forwardRef, useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import styled, { CSSObject } from 'styled-components';
 import { DateRange } from './types';
-import dateRangePickerTokens from './dateRangePicker.tokens';
+import { CalendarTokenType } from './dateRangePicker.tokens';
 import Block from '../Primitives/Block/Block';
+import {
+  handleCalendarDateClick,
+  getDayNames,
+  getMonthHeight,
+  getVisibleMonths,
+  findCurrentMonthIndex,
+  getScrollToMonth,
+  generateInitialMonths,
+  handleLoadMoreMonths,
+  handleCalendarScroll,
+  createCalendarMonthData,
+  calculateDayCellProps,
+} from './utils';
+import { useComponentToken } from '../../context/useComponentToken';
+import { FOUNDATION_THEME } from '../../tokens';
 
 type CalendarGridProps = {
   selectedRange: DateRange;
@@ -13,37 +28,27 @@ type CalendarGridProps = {
   disablePastDates?: boolean;
 }
 
-const StyledDayCell = styled(Block)<{
-  $isStart: boolean;
-  $isEnd: boolean;
-  $isRangeDay: boolean;
-  $isTodayDay: boolean;
-  $isSingleDate: boolean;
-  $isDisabled: boolean;
-}>`
-  ${dateRangePickerTokens.calendar.dayCell}
-  ${dateRangePickerTokens.calendar.hoverState}
-  
-  ${props => props.$isSingleDate && dateRangePickerTokens.calendar.singleDate}
-  ${props => props.$isStart && !props.$isSingleDate && dateRangePickerTokens.calendar.startDate}
-  ${props => props.$isEnd && !props.$isSingleDate && dateRangePickerTokens.calendar.endDate}
-  ${props => props.$isRangeDay && !props.$isStart && !props.$isEnd && dateRangePickerTokens.calendar.rangeDay}
-  ${props => props.$isTodayDay && !props.$isStart && !props.$isEnd && dateRangePickerTokens.calendar.todayDay}
-  ${props => props.$isDisabled && dateRangePickerTokens.states.disabledDay}
-  
-  color: ${props => {
-    if (props.$isStart || props.$isEnd || props.$isSingleDate) {
-      return dateRangePickerTokens.text.selectedDay.color;
-    }
-    if (props.$isTodayDay && !props.$isRangeDay) {
-      return dateRangePickerTokens.text.todayDay.color;
-    }
-    return dateRangePickerTokens.text.dayNumber.color;
-  }};
-`;
+const CONTAINER_HEIGHT = 300;
+const MONTH_HEIGHT = getMonthHeight();
+const LOAD_THRESHOLD = 100;
 
-const StyledTodayIndicator = styled(Block)`
-  ${dateRangePickerTokens.calendar.todayIndicator}
+const StyledDayCell = styled(Block)<{ 
+  $cellStyles: CSSObject; 
+  $textColor: string; 
+  $isDisabled: boolean; 
+  $isSelected: boolean;
+  $calendarToken: CalendarTokenType;
+}>`
+  ${props => props.$cellStyles}
+  color: ${props => props.$textColor};
+  cursor: ${props => props.$isDisabled ? 'not-allowed' : 'pointer'};
+  
+  ${props => !props.$isDisabled && !props.$isSelected && `
+    &:hover {
+      border: ${props.$calendarToken.calendar.calendarGrid.day.hover.border};
+      border-radius: ${props.$calendarToken.calendar.calendarGrid.day.hover.borderRadius};
+    }
+  `}
 `;
 
 const CalendarGrid = forwardRef<HTMLDivElement, CalendarGridProps>(
@@ -58,179 +63,186 @@ const CalendarGrid = forwardRef<HTMLDivElement, CalendarGridProps>(
     },
     ref
   ) => {
-    const currentMonthRef = useRef<HTMLDivElement>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [scrollTop, setScrollTop] = useState(0);
+    const animationFrameRef = useRef<number | undefined>(undefined);
+    const isInitialized = useRef(false);
+    const [isLoadingPast, setIsLoadingPast] = useState(false);
+    const [isLoadingFuture, setIsLoadingFuture] = useState(false);
+    const [months, setMonths] = useState<{ month: number; year: number }[]>([]);
+    const calendarToken = useComponentToken("CALENDAR") as CalendarTokenType;
 
-    // Scroll to current month when component mounts
+    // Initialize months
     useEffect(() => {
-      if (currentMonthRef.current) {
-        currentMonthRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+      const initialMonths = generateInitialMonths(today);
+      setMonths(initialMonths);
+    }, [today]);
+
+    const dayNames = useMemo(() => getDayNames(), []);
+
+    const { visibleMonths, totalHeight } = getVisibleMonths(
+      scrollTop,
+      CONTAINER_HEIGHT,
+      months,
+      MONTH_HEIGHT,
+      2
+    );
+
+    // Handle loading more months
+    const loadMoreMonths = useCallback(async (direction: 'past' | 'future') => {
+      if (direction === 'past') setIsLoadingPast(true);
+      else setIsLoadingFuture(true);
+
+      const currentScrollTop = scrollContainerRef.current?.scrollTop || 0;
+
+      try {
+        const newChunk = await handleLoadMoreMonths(months, direction, isLoadingPast, isLoadingFuture);
+        
+        if (newChunk) {
+          setMonths(prevMonths => {
+            const newMonths = direction === 'past' 
+              ? [...newChunk, ...prevMonths]
+              : [...prevMonths, ...newChunk];
+            
+            requestAnimationFrame(() => {
+              if (scrollContainerRef.current && direction === 'past') {
+                const addedHeight = newChunk.length * MONTH_HEIGHT;
+                scrollContainerRef.current.scrollTop = currentScrollTop + addedHeight;
+              }
+            });
+            
+            return newMonths;
+          });
+        }
+      } finally {
+        if (direction === 'past') setIsLoadingPast(false);
+        else setIsLoadingFuture(false);
       }
+    }, [months, isLoadingPast, isLoadingFuture]);
+
+    const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+      const newScrollTop = e.currentTarget.scrollTop;
+      const scrollHeight = e.currentTarget.scrollHeight;
+      const clientHeight = e.currentTarget.clientHeight;
+      
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(() => {
+        setScrollTop(newScrollTop);
+      });
+
+      const { shouldLoadPast, shouldLoadFuture } = handleCalendarScroll(
+        newScrollTop,
+        scrollHeight,
+        clientHeight,
+        LOAD_THRESHOLD
+      );
+
+      if (shouldLoadPast && !isLoadingPast) {
+        loadMoreMonths('past');
+      }
+      
+      if (shouldLoadFuture && !isLoadingFuture) {
+        loadMoreMonths('future');
+      }
+    }, [loadMoreMonths, isLoadingPast, isLoadingFuture]);
+
+    // Initialize scroll position
+    useEffect(() => {
+      if (!isInitialized.current && scrollContainerRef.current && months.length > 0) {
+        const currentMonthIndex = findCurrentMonthIndex(months, today);
+        if (currentMonthIndex !== -1) {
+          const scrollPosition = getScrollToMonth(currentMonthIndex, MONTH_HEIGHT);
+          
+          requestAnimationFrame(() => {
+            if (scrollContainerRef.current) {
+              scrollContainerRef.current.scrollTop = scrollPosition;
+              setScrollTop(scrollPosition);
+              isInitialized.current = true;
+            }
+          });
+        }
+      }
+    }, [months, today]);
+
+    useEffect(() => {
+      return () => {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+      };
     }, []);
 
-    // Generate months to display - from Jan 2012 to 5 years in the future
-    const months = [];
-    const startYear = 2012;
-    const startMonth = 0;
-    const currentDate = new Date();
-    const endYear = currentDate.getFullYear() + 5;
-
-    for (let year = startYear; year <= endYear; year++) {
-      const monthStart = year === startYear ? startMonth : 0;
-      for (let month = monthStart; month <= 11; month++) {
-        months.push({ month, year });
-      }
-    }
-
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
-    ];
-
-    const isStartDate = (date: Date): boolean => {
-      if (!selectedRange.startDate) return false;
-      return (
-        date.getDate() === selectedRange.startDate.getDate() &&
-        date.getMonth() === selectedRange.startDate.getMonth() &&
-        date.getFullYear() === selectedRange.startDate.getFullYear()
-      );
-    };
-
-    const isEndDate = (date: Date): boolean => {
-      if (!selectedRange.endDate) return false;
-      return (
-        date.getDate() === selectedRange.endDate.getDate() &&
-        date.getMonth() === selectedRange.endDate.getMonth() &&
-        date.getFullYear() === selectedRange.endDate.getFullYear()
-      );
-    };
-
-    const isInRange = (date: Date): boolean => {
-      if (!selectedRange.startDate || !selectedRange.endDate) return false;
-      return date > selectedRange.startDate && date < selectedRange.endDate;
-    };
-
-    const isToday = (date: Date): boolean => {
-      return (
-        date.getDate() === today.getDate() &&
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear()
-      );
-    };
-
-    const handleDateClick = (year: number, month: number, day: number) => {
+    const handleDateClick = useCallback((year: number, month: number, day: number, isDoubleClick: boolean = false) => {
       const clickedDate = new Date(year, month, day);
+      const newRange = handleCalendarDateClick(
+        clickedDate,
+        selectedRange,
+        allowSingleDateSelection,
+        today,
+        disableFutureDates,
+        disablePastDates,
+        isDoubleClick
+      );
 
-      // Don't allow selecting disabled dates
-      if (
-        (disableFutureDates && clickedDate > today) ||
-        (disablePastDates && clickedDate < today)
-      ) {
-        return;
+      if (newRange) {
+        onDateSelect(newRange);
       }
+    }, [selectedRange, allowSingleDateSelection, today, disableFutureDates, disablePastDates, onDateSelect]);
 
-      let newRange: DateRange;
-
-      if (!selectedRange.startDate || allowSingleDateSelection) {
-        // If no start date is selected or single date selection is allowed, set both start and end to the clicked date
-        newRange = {
-          startDate: clickedDate,
-          endDate: clickedDate,
-        };
-      } else if (!selectedRange.endDate || clickedDate < selectedRange.startDate) {
-        // If no end date is selected or clicked date is before start date, set clicked date as start date
-        newRange = {
-          startDate: clickedDate,
-          endDate: selectedRange.endDate || clickedDate,
-        };
-      } else {
-        // Otherwise, set clicked date as end date
-        newRange = {
-          startDate: selectedRange.startDate,
-          endDate: clickedDate,
-        };
-      }
-
-      onDateSelect(newRange);
-    };
-
-    const renderMonthCalendar = (year: number, month: number) => {
-      const firstDayOfMonth = new Date(year, month, 1);
-      const lastDayOfMonth = new Date(year, month + 1, 0);
-      const daysInMonth = lastDayOfMonth.getDate();
-
-      let firstDayOfWeek = firstDayOfMonth.getDay();
-      firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
-
-      // Create a 2D array for the calendar grid
-      const weeks = [];
-      let week = Array(7).fill(null);
-      let dayCounter = 1;
-
-      for (let i = firstDayOfWeek; i < 7 && dayCounter <= daysInMonth; i++) {
-        week[i] = dayCounter++;
-      }
-      weeks.push(week);
-
-      while (dayCounter <= daysInMonth) {
-        week = Array(7).fill(null);
-        for (let i = 0; i < 7 && dayCounter <= daysInMonth; i++) {
-          week[i] = dayCounter++;
-        }
-        weeks.push(week);
-      }
-
-      const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+    const renderMonthCalendar = useCallback((year: number, month: number, monthIndex: number) => {
+      const monthData = createCalendarMonthData(year, month, monthIndex, MONTH_HEIGHT);
 
       return (
-        <Block style={{...dateRangePickerTokens.calendar.gridContainer}}
-          key={`month-${year}-${month}`}
-          data-month={`${month}-${year}`}
-          data-current-month={isCurrentMonth ? 'true' : 'false'}
-          ref={isCurrentMonth ? currentMonthRef : null}
+        <Block 
+          key={monthData.key}
+          style={{
+            ...calendarToken.calendar.calendarGrid.month.container,
+            top: monthData.topOffset,
+            left: 0,
+            right: 0,
+            height: monthData.monthHeight,
+          }}
         >
-          <Block style={{...dateRangePickerTokens.calendar.monthHeader}}>
-            {monthNames[month]} {year}
+          <Block style={{...calendarToken.calendar.calendarGrid.month.header}}>
+            {monthData.monthName} {year}
           </Block>
 
-          <Block style={{...dateRangePickerTokens.calendar.dayNamesContainer}}>
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
-              <Block style={{...dateRangePickerTokens.calendar.dayName}}>
-                {day}
-              </Block>
-            ))}
-          </Block>
-
-          {weeks.map((week, weekIndex) => (
-            <Block style={{...dateRangePickerTokens.calendar.weekRow}} key={weekIndex}>
-              {week.map((day, dayIndex) => {
+          {monthData.weeks.map((week: (number | null)[], weekIndex: number) => (
+            <Block style={{...calendarToken.calendar.calendarGrid.week.row}} key={weekIndex}>
+              {week.map((day: number | null, dayIndex: number) => {
                 if (day === null) {
-                  return <Block style={{...dateRangePickerTokens.calendar.emptyCell}} key={dayIndex} />;
+                  return <Block style={{...calendarToken.calendar.calendarGrid.day.empty}} key={dayIndex} />;
                 }
 
                 const date = new Date(year, month, day);
-                const isRangeDay = isInRange(date);
-                const isStart = isStartDate(date);
-                const isEnd = isEndDate(date);
-                const isTodayDay = isToday(date);
-                const isSingleDate = isStart && isEnd;
-                const isDisabled = Boolean(
-                  (disableFutureDates && date > today) || (disablePastDates && date < today)
+                const cellProps = calculateDayCellProps(
+                  date,
+                  selectedRange,
+                  today,
+                  disableFutureDates,
+                  disablePastDates,
+                  calendarToken
                 );
+
+                const isSelected = cellProps.dateStates.isStart || cellProps.dateStates.isEnd || cellProps.dateStates.isSingleDate;
 
                 return (
                   <StyledDayCell
                     key={`${year}-${month}-${day}`}
-                    onClick={() => handleDateClick(year, month, day)}
-                    $isStart={isStart}
-                    $isEnd={isEnd}
-                    $isRangeDay={isRangeDay}
-                    $isTodayDay={isTodayDay}
-                    $isSingleDate={isSingleDate}
-                    $isDisabled={isDisabled}
+                    $cellStyles={cellProps.styles as CSSObject  }
+                    $textColor={String(cellProps.textColor || '')}
+                    $isDisabled={cellProps.dateStates.isDisabled}
+                    $isSelected={isSelected}
+                    $calendarToken={calendarToken}
+                    onClick={() => handleDateClick(year, month, day, false)}
+                    onDoubleClick={() => handleDateClick(year, month, day, true)}
                   >
                     {day}
-                    {isTodayDay && !isStart && !isEnd && !isRangeDay && (
-                      <StyledTodayIndicator />
+                    {cellProps.showTodayIndicator && (
+                      <Block style={{...calendarToken.calendar.calendarGrid.day.todayIndicator}} />
                     )}
                   </StyledDayCell>
                 );
@@ -239,11 +251,67 @@ const CalendarGrid = forwardRef<HTMLDivElement, CalendarGridProps>(
           ))}
         </Block>
       );
-    };
+    }, [selectedRange, today, disableFutureDates, disablePastDates, handleDateClick, calendarToken]);
+
+    const renderLoader = (position: 'top' | 'bottom') => (
+      <Block
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: position === 'top' ? 'sticky' : 'relative',
+          top: position === 'top' ? 0 : 'auto',
+          zIndex: 5,
+          padding: '16px',
+        }}
+      >
+        <Block
+          style={{
+            width: FOUNDATION_THEME.unit[20],
+            height: FOUNDATION_THEME.unit[20],
+            border: `2px solid ${FOUNDATION_THEME.colors.gray[200]}`,
+            borderTop: `2px solid ${FOUNDATION_THEME.colors.primary[500]}`,
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+          }}
+        />
+        
+        <style>
+          {`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}
+        </style>
+      </Block>
+    );
 
     return (
-      <Block style={{...dateRangePickerTokens.calendar.gridContainer}} ref={ref}>
-        {months.map(({ year, month }) => renderMonthCalendar(year, month))}
+      <Block style={{...calendarToken.calendar.calendarGrid.container}} ref={ref}>
+        <Block style={{...calendarToken.calendar.calendarGrid.week.header}}>
+          {dayNames.map((day, index) => (
+            <Block style={{...calendarToken.calendar.calendarGrid.week.dayName}} key={index}>
+              {day}
+            </Block>
+          ))}
+        </Block>
+        
+        <Block 
+          ref={scrollContainerRef}
+          style={{...calendarToken.calendar.calendarGrid.container}}
+          onScroll={handleScroll}
+        >
+          {isLoadingPast && renderLoader('top')}
+          
+          <Block style={{ height: totalHeight, position: 'relative' }}>
+            {visibleMonths.map(({ year, month, index }) => 
+              renderMonthCalendar(year, month, index)
+            )}
+          </Block>
+          
+          {isLoadingFuture && renderLoader('bottom')}
+        </Block>
       </Block>
     );
   }

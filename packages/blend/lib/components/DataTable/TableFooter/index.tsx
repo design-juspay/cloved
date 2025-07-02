@@ -2,7 +2,8 @@ import { forwardRef } from 'react';
 import { TableFooterProps } from './types';
 import { DataTablePagination } from '../DataTablePagination';
 import Block from '../../Primitives/Block/Block';
-import dataTableTokens from '../dataTable.tokens';
+import  { TableTokenType } from '../dataTable.tokens';
+import { useComponentToken } from '../../../context/useComponentToken';
 
 const TableFooter = forwardRef<HTMLDivElement, TableFooterProps>(({
   pagination,
@@ -13,16 +14,18 @@ const TableFooter = forwardRef<HTMLDivElement, TableFooterProps>(({
   onPageChange,
   onPageSizeChange,
 }, ref) => {
+  const tableToken = useComponentToken("TABLE") as TableTokenType;
+
   if (!pagination) {
     return null;
   }
+
 
   return (
     <Block
       ref={ref}
       style={{
-        ...dataTableTokens.pagination.container,
-        flexShrink: 0,
+        ...tableToken.dataTable.table.footer,
       }}
     >
       <DataTablePagination

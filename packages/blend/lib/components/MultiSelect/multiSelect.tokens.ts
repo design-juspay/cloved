@@ -198,9 +198,7 @@ export const multiSelectTokens: MultiSelectTokensType = {
   },
 };
 
-export const getMultiSelectTokens = (
-  foundationToken: FoundationTokenType
-): MultiSelectTokensType => {
+export const getMultiSelectTokens = (foundationToken: FoundationTokenType): MultiSelectTokensType => {
   return {
     trigger: {
       padding: {

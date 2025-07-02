@@ -9,6 +9,7 @@ export type SwitchTokensType = Readonly<{
   // Base spacing
   gap: CSSObject["gap"];
   slotGap: CSSObject["gap"];
+  contentGap: CSSObject["gap"];
 
   // Core dimensions
   height: {
@@ -48,6 +49,7 @@ export type SwitchTokensType = Readonly<{
         width: CSSObject["width"];
         height: CSSObject["height"];
         top: CSSObject["top"];
+        left: CSSObject["left"];
         offset: {
           active: CSSObject["left"];
           inactive: CSSObject["left"];
@@ -129,7 +131,7 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
   return {
     gap: foundationToken.unit[8],
     slotGap: foundationToken.unit[6],
-
+    contentGap: foundationToken.unit[4],
     height: {
       sm: foundationToken.unit[12],
       md: foundationToken.unit[16]
@@ -182,6 +184,7 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
           width: foundationToken.unit[10],
           height: foundationToken.unit[10],
           top: '1px',
+          left: '1px',
           offset: {
             active: foundationToken.unit[12],
             inactive: foundationToken.unit[2]
@@ -191,6 +194,7 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
           width: foundationToken.unit[14],
           height: foundationToken.unit[14],
           top: '1px',
+          left: '1px',
           offset: {
             active: foundationToken.unit[16],
             inactive: foundationToken.unit[2]
@@ -217,7 +221,7 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
             fontWeight: foundationToken.font.weight[500]
           }
         }
-      },
+      },  
       sublabel: {
         color: {
           default: foundationToken.colors.gray[400],

@@ -3,7 +3,6 @@ import { MoreVertical, Edit2, ArrowUp, ArrowDown } from 'lucide-react';
 import { styled } from 'styled-components';
 import { TableHeaderProps } from './types';
 import { FilterType, ColumnDefinition } from '../types';
-import dataTableTokens from '../dataTable.tokens';
 import { Checkbox } from '../../../main';
 import { CheckboxSize } from '../../Checkbox/types';
 import { ColumnManager } from '../ColumnManager';
@@ -18,25 +17,9 @@ import { SearchInput } from '../../Inputs/SearchInput';
 import MultiSelectMenu from '../../MultiSelect/MultiSelectMenu';
 import SingleSelectMenu from '../../SingleSelect/SingleSelectMenu';
 import { SelectMenuGroupType } from '../../Select/types';
+import  { TableTokenType } from '../dataTable.tokens';
 
-const TableHead = styled.thead`
-  ${dataTableTokens.thead.base}
-  background-color: ${FOUNDATION_THEME.colors.gray[25]};
-`;
-
-const TableHeaderCell = styled.th<{ $isSortable?: boolean; width?: string }>`
-  ${dataTableTokens.th.base}
-  ${props => props.$isSortable && dataTableTokens.th.sortable}
-  ${props => props.width && `width: ${props.width};`}
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  box-sizing: border-box;
-`;
-
-const TableRow = styled.tr`
-  ${dataTableTokens.tr.base}
-`;
+import { useComponentToken } from '../../../context/useComponentToken';
 
 const MoreIcon = styled(MoreVertical)`
   cursor: pointer;
@@ -79,6 +62,7 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
   const [columnSelectedValues, setColumnSelectedValues] = useState<Record<string, string[]>>({});
   const [selectMenuStates, setSelectMenuStates] = useState<Record<string, boolean>>({});
   const editableRef = useRef<HTMLDivElement>(null);
+  const tableToken = useComponentToken("TABLE") as TableTokenType;
 
   useEffect(() => {
     setLocalColumns(visibleColumns);
@@ -377,39 +361,55 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
   };
 
   return (
-    <TableHead ref={ref} style={{ position: 'sticky', top: 0, zIndex: 10 }}>
-      <TableRow>
+    <thead ref={ref} style={{ position: 'sticky', top: 0, zIndex: 10, backgroundColor: tableToken.dataTable.table.header.backgroundColor, borderBottom: tableToken.dataTable.table.header.borderBottom, height: tableToken.dataTable.table.header.height }}>
+      <tr style={{ height: tableToken.dataTable.table.header.height, ...tableToken.dataTable.table.header.row }}>
         {enableRowExpansion && (
-          <TableHeaderCell $isSortable={false} width="50px" style={{ minWidth: '50px', maxWidth: '50px' }}>
+          <th style={{ 
+            ...tableToken.dataTable.table.header.cell,
+            width: '50px', 
+            minWidth: '50px', 
+            maxWidth: '50px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            boxSizing: 'border-box'
+          }}>
             <Block display='flex' alignItems='center' justifyContent='center'>
             </Block>
-          </TableHeaderCell>
+          </th>
         )}
         
-        <TableHeaderCell $isSortable={false} width="60px" style={{ minWidth: '60px', maxWidth: '60px' }}>
-          <Block display='flex' alignItems='center' justifyContent='center' width={FOUNDATION_THEME.unit[40]}>
-            <Checkbox
-              checked={selectAll}
-              onCheckedChange={onSelectAll}
-              size={CheckboxSize.MEDIUM}
-            />
-          </Block>
-        </TableHeaderCell>
+        <th style={{ 
+          ...tableToken.dataTable.table.header.cell,
+          width: '60px', 
+          minWidth: '60px', 
+          maxWidth: '60px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          boxSizing: 'border-box'
+                   }}>
+            <Block display='flex' alignItems='center' justifyContent='center' width={FOUNDATION_THEME.unit[40]}>
+              <Checkbox
+                checked={selectAll}
+                onCheckedChange={onSelectAll}
+                size={CheckboxSize.MEDIUM}
+              />
+            </Block>
+          </th>
 
         {localColumns.map((column, index) => {
-          const columnWidth = getColumnWidth(column, index);
+          const columnStyles = getColumnWidth(column, index);
           const isEditing = editingField === String(column.field);
           const columnConfig = getColumnTypeConfig(column.type || ColumnType.TEXT);
           
           return (
-            <TableHeaderCell
+            <th
               key={String(column.field)}
-              $isSortable={!!column.isSortable}
-              width={columnWidth}
               style={{ 
-                width: columnWidth,
-                minWidth: columnWidth,
-                maxWidth: columnWidth
+                ...tableToken.dataTable.table.header.cell,
+                ...(column.isSortable && tableToken.dataTable.table.header.sortable),
+                ...columnStyles
               }}
             >
               <Block
@@ -462,7 +462,9 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
                           textOverflow: 'ellipsis',
                           whiteSpace: 'nowrap',
                           minWidth: 0,
-                          flex: 1
+                          flex: 1,
+                          display: 'block',
+                          cursor: 'default'
                         }}
                       >
                         {column.header}
@@ -478,10 +480,13 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
                           transition='opacity 0.2s'
                           zIndex={2}
                           flexShrink={0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleHeaderEdit(String(column.field));
+                          }}
                         >
                           <EditIcon 
                             size={14} 
-                            onClick={() => handleHeaderEdit(String(column.field))}
                           />
                         </Block>
                       )}
@@ -497,6 +502,7 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
                     flexShrink={0}
                     width='16px'
                     height='16px'
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Popover
                       trigger={<MoreIcon size={16} />}
@@ -508,22 +514,32 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
                   </Block>
                 )}
               </Block>
-            </TableHeaderCell>
+            </th>
           );
         })}
 
         {enableInlineEdit && (
-          <TableHeaderCell $isSortable={false} width="100px" style={{ minWidth: '100px', maxWidth: '100px' }}>
+          <th style={{ 
+            ...tableToken.dataTable.table.header.cell,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            boxSizing: 'border-box'
+          }}>
             <Block display='flex' alignItems='center' justifyContent='center'>
               <PrimitiveText as='span' style={{ fontSize: FOUNDATION_THEME.font.size.body.sm.fontSize }}>
                 Actions
               </PrimitiveText>
             </Block>
-          </TableHeaderCell>
+          </th>
         )}
 
         {enableColumnManager && (
-          <TableHeaderCell $isSortable={false} width="50px" style={{ minWidth: '50px', maxWidth: '50px' }}>
+          <th style={{ 
+            ...tableToken.dataTable.table.header.cell,
+            overflow: 'hidden',
+            boxSizing: 'border-box'
+          }}>
             <Block position='relative'>
               <ColumnManager
                 columns={initialColumns}
@@ -531,10 +547,10 @@ const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps<Record<
                 onColumnChange={onColumnChange}
               />
             </Block>
-          </TableHeaderCell>
+          </th>
         )}
-      </TableRow>
-    </TableHead>
+      </tr>
+    </thead>
   );
 });
 

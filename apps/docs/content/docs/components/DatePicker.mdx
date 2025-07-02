@@ -1,0 +1,106 @@
+---
+title: DatePicker
+description: A flexible date picker component for selecting dates in forms
+---
+
+# DatePicker
+
+A versatile date picker component that provides an intuitive interface for date selection in forms and applications.
+
+## Features
+
+- **Flexible Date Selection**: Support for single date, date range, and multiple date selection
+- **Customizable Appearance**: Themeable design that matches your application's style
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Internationalization**: Support for multiple locales and date formats
+- **Validation**: Built-in date validation and custom validation rules
+
+## Basic Usage
+
+```jsx
+import { DatePicker } from 'blend-v1';
+
+function MyForm() {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  return (
+    <DatePicker
+      value={selectedDate}
+      onChange={setSelectedDate}
+      placeholder="Select a date"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `Date \| null` | `null` | The currently selected date |
+| `onChange` | `(date: Date \| null) => void` | - | Callback fired when the date changes |
+| `placeholder` | `string` | `"Select date"` | Placeholder text when no date is selected |
+| `disabled` | `boolean` | `false` | Whether the date picker is disabled |
+| `minDate` | `Date` | - | Minimum selectable date |
+| `maxDate` | `Date` | - | Maximum selectable date |
+| `format` | `string` | `"MM/dd/yyyy"` | Date format for display |
+
+## Advanced Examples
+
+### Date Range Selection
+
+```jsx
+<DatePicker
+  mode="range"
+  value={dateRange}
+  onChange={setDateRange}
+  placeholder="Select date range"
+/>
+```
+
+### With Validation
+
+```jsx
+<DatePicker
+  value={selectedDate}
+  onChange={setSelectedDate}
+  minDate={new Date()}
+  maxDate={addDays(new Date(), 30)}
+  validate={(date) => {
+    if (isWeekend(date)) {
+      return "Weekends are not allowed";
+    }
+    return null;
+  }}
+/>
+```
+
+## Styling
+
+The DatePicker component can be customized using CSS variables or by passing custom styles:
+
+```css
+.date-picker {
+  --date-picker-bg: #ffffff;
+  --date-picker-border: #e2e8f0;
+  --date-picker-text: #1a202c;
+  --date-picker-selected: #3182ce;
+}
+```
+
+## Accessibility
+
+The DatePicker component follows WAI-ARIA guidelines:
+
+- Full keyboard navigation support
+- Screen reader announcements
+- Focus management
+- High contrast mode support
+
+## Common Use Cases
+
+- **Form Date Inputs**: Collecting birth dates, appointment dates, etc.
+- **Event Scheduling**: Selecting event dates and times
+- **Filtering**: Date range filters for data tables
+- **Booking Systems**: Hotel check-in/check-out dates
+- **Reporting**: Date range selection for reports

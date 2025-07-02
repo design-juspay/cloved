@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import { RadioSize } from './types';
-
 import { RadioTokensType } from './radio.token';
-import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
 import { useComponentToken } from "../../context/useComponentToken";
 
 export const StyledRadioInput = styled.input<{
@@ -59,45 +57,4 @@ export const StyledRadioInput = styled.input<{
   }}
 `;
 
-export const StyledRadioLabel = styled.label<{
-  $isDisabled: boolean;
-  $error?: boolean;
-}>`
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  min-height: ${() => {
-    const radioTokens = useComponentToken("RADIO") as RadioTokensType;
-    return radioTokens.height.md;
-  }};
-  cursor: ${({ $isDisabled }) => $isDisabled ? 'not-allowed' : 'pointer'};
-  line-height: 1;
-`;
-
-export const StyledRadioText = styled(PrimitiveText)<{
-  $isDisabled?: boolean;
-  $error?: boolean;
-  $isSubtext?: boolean;
-  $margin?: string;
-}>`
-  ${({ $isDisabled, $error, $isSubtext, $margin }) => {
-    const radioTokens = useComponentToken("RADIO") as RadioTokensType;
-    const state = $isDisabled ? 'disabled' : $error ? 'error' : 'default';
-    
-    return css`
-      color: ${$isSubtext ? radioTokens.content.sublabel.color[state] : radioTokens.content.label.color[state]};
-      margin: ${$margin || 0};
-    `;
-  }}
-`;
-
-export const StyledRadioGroupLabel = styled(PrimitiveText).attrs({ as: 'label' })`
-  ${() => {
-    const radioTokens = useComponentToken("RADIO") as RadioTokensType;
-    return css`
-      color: ${radioTokens.content.label.color.default};
-      margin-bottom: ${radioTokens.gap};
-    `;
-  }}
-`; 
+ 

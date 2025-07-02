@@ -1,85 +1,15 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Edit, Save, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { styled } from 'styled-components';
 import { TableBodyProps } from './types';
-import dataTableTokens from '../dataTable.tokens';
 import TableCell from '../TableCell';
-import { Checkbox } from '../../../main';
-import { CheckboxSize } from '../../Checkbox/types';
 import Block from '../../Primitives/Block/Block';
 import { FOUNDATION_THEME } from '../../../tokens';
+import  { TableTokenType } from '../dataTable.tokens';
 
-const StyledTableBody = styled.tbody`
-  ${dataTableTokens.tbody}
-`;
+import { useComponentToken } from '../../../context/useComponentToken';
 
-const TableRow = styled.tr`
-  ${dataTableTokens.tr.base}
-`;
-
-const ExpandedRow = styled.tr`
-  ${dataTableTokens.tr.base}
-  background-color: ${FOUNDATION_THEME.colors.gray[25]};
-`;
-
-const StyledTableCell = styled.td<{ width?: string }>`
-  ${dataTableTokens.td.base}
-  ${props => props.width && `width: ${props.width};`}
-  overflow: hidden;
-  box-sizing: border-box;
-  max-width: 0;
-`;
-
-const ExpandedCell = styled.td`
-  ${dataTableTokens.td.base}
-  padding: ${FOUNDATION_THEME.unit[16]};
-  border-top: 1px solid ${FOUNDATION_THEME.colors.gray[200]};
-`;
-
-const EmptyStateCell = styled.td`
-  ${dataTableTokens.td.base}
-`;
-
-const ActionButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: ${FOUNDATION_THEME.colors.gray[100]};
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
-const ExpandButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  color: ${FOUNDATION_THEME.colors.gray[500]};
-
-  &:hover {
-    background-color: ${FOUNDATION_THEME.colors.gray[100]};
-    color: ${FOUNDATION_THEME.colors.gray[700]};
-  }
-`;
+import { ButtonV2, ButtonTypeV2, ButtonSizeV2, Checkbox, CheckboxSize } from '../../../main';
 
 const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<string, unknown>>>(({
   currentData,
@@ -100,6 +30,7 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
   onCancelEdit,
   onRowExpand,
   onFieldChange,
+  onRowClick,
   getColumnWidth,
 }, ref) => {
   const getColSpan = () => {
@@ -110,8 +41,34 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
     return colSpan;
   };
 
+  const tableToken = useComponentToken("TABLE") as TableTokenType;
+
+const TableRow = styled.tr<{ isClickable?: boolean }>`
+  ${tableToken.dataTable.table.body.row}`;
+
+const StyledTableCell = styled.td<{ width?: string }>`
+  ${tableToken.dataTable.table.body.cell}
+  ${props => props.width && `width: ${props.width};`}
+  overflow: hidden;
+  box-sizing: border-box;
+  max-width: 0;
+`;
+
+const EmptyStateCell = styled.td`
+  ${tableToken.dataTable.table.body.cell}
+`;
+
+const ExpandedCell = styled.td`
+${tableToken.dataTable.table.body.cell}
+${tableToken.dataTable.table.body.cell.expandable}
+`;
+
+const ExpandButton = styled.button`
+  ${tableToken.dataTable.table.body.cell.expandable.expandButton}
+`;
+
   return (
-    <StyledTableBody ref={ref}>
+    <tbody ref={ref}>
       {currentData.length > 0 ? (
         currentData.map((row, index) => {
           const rowId = String(row[idField]);
@@ -120,11 +77,19 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
           const canExpand = isRowExpandable ? isRowExpandable(row, index) : true;
           
           return (
-            <>
-              <TableRow key={rowId}>
+            <React.Fragment key={rowId}>
+              <TableRow 
+                isClickable={!!onRowClick}
+                onClick={() => onRowClick && onRowClick(row, index)}
+              >
                 {enableRowExpansion && (
                   <StyledTableCell width="50px" style={{ minWidth: `${FOUNDATION_THEME.unit[52]}`, maxWidth: `${FOUNDATION_THEME.unit[52]}` }}>
-                    <Block display='flex' alignItems='center' justifyContent='center'>
+                    <Block 
+                      display='flex' 
+                      alignItems='center' 
+                      justifyContent='center'
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       {canExpand ? (
                         <ExpandButton
                           onClick={() => onRowExpand(row[idField])}
@@ -137,14 +102,20 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
                           )}
                         </ExpandButton>
                       ) : (
-                        <div style={{ width: '32px', height: '32px' }} />
+                        <></>
                       )}
                     </Block>
                   </StyledTableCell>
                 )}
 
-                <StyledTableCell width="60px" style={{ minWidth: '60px', maxWidth: '60px' }}>
-                  <Block display='flex' alignItems='center' justifyContent='center' width={FOUNDATION_THEME.unit[40]}>
+                <StyledTableCell>
+                  <Block 
+                    display='flex' 
+                    alignItems='center' 
+                    justifyContent='center' 
+                    width={FOUNDATION_THEME.unit[40]}
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <Checkbox
                       checked={!!selectedRows[rowId]}
                       onCheckedChange={() => onRowSelect(row[idField])}
@@ -155,7 +126,7 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
                 </StyledTableCell>
 
                 {visibleColumns.map((column, index) => {
-                  const columnWidth = getColumnWidth(column, index);
+                  const columnStyles = getColumnWidth(column, index);
                   const currentValue = isEditing ? editValues[rowId]?.[column.field] : row[column.field];
                   
                   return (
@@ -165,37 +136,46 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
                       row={isEditing ? editValues[rowId] : row}
                       isEditing={isEditing}
                       currentValue={currentValue}
-                      width={columnWidth}
+                      width={columnStyles}
                       onFieldChange={(value) => onFieldChange(row[idField], column.field, value)}
                     />
                   );
                 })}
 
                 {enableInlineEdit && (
-                  <StyledTableCell width="100px" style={{ minWidth: '100px', maxWidth: '100px' }}>
-                    <Block display='flex' alignItems='center' justifyContent='center' gap={FOUNDATION_THEME.unit[4]}>
+                  <StyledTableCell style={{ minWidth: '100px', maxWidth: '100px' }}>
+                    <Block 
+                      display='flex' 
+                      alignItems='center' 
+                      justifyContent='center' 
+                      gap={FOUNDATION_THEME.unit[4]}
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       {isEditing ? (
                         <>
-                          <ActionButton
+                          <ButtonV2
                             onClick={() => onSaveRow(row[idField])}
                             title="Save"
-                          >
-                            <Save size={16} color={FOUNDATION_THEME.colors.green[600]} />
-                          </ActionButton>
-                          <ActionButton
+                            buttonType={ButtonTypeV2.SECONDARY}
+                            leadingIcon={<Save size={16} />}
+                            size={ButtonSizeV2.SMALL}
+                          />
+                          <ButtonV2
                             onClick={() => onCancelEdit(row[idField])}
                             title="Cancel"
-                          >
-                            <X size={16} color={FOUNDATION_THEME.colors.red[600]} />
-                          </ActionButton>
+                            buttonType={ButtonTypeV2.SECONDARY}
+                            leadingIcon={<X size={16} />}
+                            size={ButtonSizeV2.SMALL}
+                          />
                         </>
                       ) : (
-                        <ActionButton
+                        <ButtonV2
                           onClick={() => onEditRow(row[idField])}
                           title="Edit"
-                        >
-                          <Edit size={16} color={FOUNDATION_THEME.colors.primary[600]} />
-                        </ActionButton>
+                          buttonType={ButtonTypeV2.SECONDARY}
+                          leadingIcon={<Edit size={16} />}
+                          size={ButtonSizeV2.SMALL}
+                        />
                       )}
                     </Block>
                   </StyledTableCell>
@@ -207,7 +187,7 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
               </TableRow>
 
               {enableRowExpansion && isExpanded && renderExpandedRow && canExpand && (
-                <ExpandedRow key={`${rowId}-expanded`}>
+                <TableRow key={`${rowId}-expanded`} isClickable={false}>
                   <ExpandedCell colSpan={getColSpan()}>
                     {renderExpandedRow({
                       row,
@@ -216,19 +196,19 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps<Record<stri
                       toggleExpansion: () => onRowExpand(row[idField])
                     })}
                   </ExpandedCell>
-                </ExpandedRow>
-              )}
-            </>
-          );
-        })
+                </TableRow>
+                              )}
+            </React.Fragment>
+            );
+          })
       ) : (
-        <TableRow>
+        <TableRow isClickable={false}>
           <EmptyStateCell colSpan={getColSpan()}>
             No data available
           </EmptyStateCell>
         </TableRow>
       )}
-    </StyledTableBody>
+    </tbody>
   );
 });
 
