@@ -8,6 +8,7 @@ export type RadioIndicatorState = "active" | "inactive";
 export type RadioTokensType = Readonly<{
   gap: CSSObject["gap"];
   slotGap: CSSObject["gap"];
+  groupGap: CSSObject["gap"];
   indicator: {
     [key in RadioIndicatorState]: {
       background: {
@@ -66,8 +67,9 @@ export type RadioTokensType = Readonly<{
 
 export const getRadioTokens = (foundationToken: ThemeType): RadioTokensType => {
   return {
-    gap: foundationToken.unit[8],
-    slotGap: foundationToken.unit[6],
+    gap: foundationToken.unit[4],
+    slotGap: foundationToken.unit[8],
+    groupGap: foundationToken.unit[12],
     indicator: {
       inactive: {
         background: {

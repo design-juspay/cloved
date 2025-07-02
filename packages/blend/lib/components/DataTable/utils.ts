@@ -198,30 +198,56 @@ export const formatCurrency = (amount: number, currency = 'INR'): string => {
 
 export const getDefaultColumnWidth = <T extends Record<string, unknown>>(
   column: ColumnDefinition<T>
-): string => {
-  if (column.width) return column.width;
+): { minWidth: string; maxWidth: string } => {
+  if (column.minWidth && column.maxWidth) {
+    return { minWidth: column.minWidth, maxWidth: column.maxWidth };
+  }
+  
+  if (column.minWidth) {
+    return { minWidth: column.minWidth, maxWidth: '300px' };
+  }
+  
+  if (column.maxWidth) {
+    return { minWidth: '120px', maxWidth: column.maxWidth };
+  }
   
   switch (column.type) {
     case ColumnType.AVATAR:
-      return '250px';
+      return { minWidth: '200px', maxWidth: '300px' };
     case ColumnType.TAG:
-      return '120px';
+      return { minWidth: '100px', maxWidth: '150px' };
     case ColumnType.SELECT:
-      return '140px';
+      return { minWidth: '120px', maxWidth: '180px' };
     case ColumnType.MULTISELECT:
-      return '180px';
+      return { minWidth: '150px', maxWidth: '220px' };
     case ColumnType.DATE:
     case ColumnType.DATE_RANGE:
-      return '130px';
+      return { minWidth: '120px', maxWidth: '160px' };
     case ColumnType.NUMBER:
-      return '100px';
+      return { minWidth: '80px', maxWidth: '120px' };
     case ColumnType.TEXT:
-      return '200px';
+      return { minWidth: '120px', maxWidth: '250px' };
     case ColumnType.CUSTOM:
-      return '200px';
+      return { minWidth: '120px', maxWidth: '250px' };
     default:
-      return '150px';
+      return { minWidth: '120px', maxWidth: '200px' };
   }
+};
+
+export const getColumnStyles = <T extends Record<string, unknown>>(
+  column: ColumnDefinition<T>
+): React.CSSProperties => {
+  const { minWidth, maxWidth } = getDefaultColumnWidth(column);
+  
+  return {
+    minWidth,
+    maxWidth,
+    width: 'auto',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box'
+  };
 };
 
 export const formatDate = (dateString: string): string => {

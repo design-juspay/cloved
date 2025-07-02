@@ -270,7 +270,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
             <Block flexGrow={1}>{topbar}</Block>
           </Block>
 
-          <Block padding="24px">{children}</Block>
+          <Block>{children}</Block>
         </MainContentContainer>
       </Block>
     );

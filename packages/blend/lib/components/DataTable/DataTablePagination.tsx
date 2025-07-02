@@ -6,6 +6,8 @@ import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
 import PrimitiveButton from '../Primitives/PrimitiveButton/PrimitiveButton';
 import Menu from '../Menu/Menu';
 import { MenuAlignment } from '../Menu/types';
+import  { TableTokenType } from './dataTable.tokens';
+import { useComponentToken } from '../../context/useComponentToken';
 
 type DataTablePaginationProps = {
   currentPage: number;
@@ -26,6 +28,9 @@ export function DataTablePagination({
   onPageChange,
   onPageSizeChange,
 }: DataTablePaginationProps) {
+
+  const tableToken = useComponentToken("TABLE") as TableTokenType;
+
   
   const totalPages = Math.ceil(totalRows / pageSize);
 
@@ -95,8 +100,8 @@ export function DataTablePagination({
       <Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[8]}>
         <PrimitiveText 
           as="span" 
-          fontSize={FOUNDATION_THEME.font.size.body.md.fontSize}
-          color={FOUNDATION_THEME.colors.gray[600]}
+          fontSize={tableToken.dataTable.table.footer.pagination.pageText.fontSize}
+          color={tableToken.dataTable.table.footer.pagination.pageText.color}
         >
           Rows per page:
         </PrimitiveText>
@@ -109,14 +114,14 @@ export function DataTablePagination({
           trigger={
             <PrimitiveButton
               contentCentered
-              gap={FOUNDATION_THEME.unit[4]}
-              paddingX={FOUNDATION_THEME.unit[8]}
-              paddingY={FOUNDATION_THEME.unit[4]}
+              gap={tableToken.dataTable.table.footer.pagination.pageSizeSelector.gap}
+              paddingX={tableToken.dataTable.table.footer.pagination.pageSizeSelector.padding}
+              paddingY={tableToken.dataTable.table.footer.pagination.pageSizeSelector.padding}
               border="none"
-              borderRadius={FOUNDATION_THEME.border.radius[2]}
-              backgroundColor={FOUNDATION_THEME.colors.gray[25]}
+              borderRadius={tableToken.dataTable.table.footer.pagination.pageSizeSelector.borderRadius}
+              backgroundColor={tableToken.dataTable.table.footer.pagination.pageSizeSelector.backgroundColor}
               _hover={{
-                backgroundColor: FOUNDATION_THEME.colors.gray[50],
+                backgroundColor: tableToken.dataTable.table.footer.pagination.pageSizeSelector.hoverColor,
               }}
               color={FOUNDATION_THEME.colors.gray[600]}
               disabled={isLoading}
@@ -143,7 +148,7 @@ export function DataTablePagination({
         )}
       </Block>
       
-      <Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[4]}>
+      <Block display="flex" alignItems="center" gap={tableToken.dataTable.table.footer.pagination.pageNavigation.gap}>
         <PrimitiveButton
           contentCentered
           size={32}

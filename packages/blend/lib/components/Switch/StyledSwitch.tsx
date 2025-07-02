@@ -20,12 +20,8 @@ export const StyledSwitchRoot = styled.button<{
       cursor: ${$isDisabled ? 'not-allowed' : 'pointer'};
       transition: background-color ${tokens.transition.duration} ${tokens.transition.easing};
       
-      /* Reset all margin and padding */
       margin: 0;
-      padding: 0;
-      margin-right: ${tokens.gap};
-      
-      /* Prevent any inherited spacing */
+      padding: 0;      
       display: inline-flex;
       align-items: center;
       justify-content: flex-start;
@@ -65,10 +61,11 @@ export const StyledSwitchThumb = styled.div<{
     return css`
       position: absolute;
       top: ${tokens.thumb.size[size].top};
+      left: ${$isChecked ? `${tokens.thumb.size[size].left}` : '-1px'};
       border-radius: ${tokens.borderRadius.thumb};
       background-color: ${tokens.thumb.background};
       border: ${tokens.thumb.border.width} solid ${tokens.thumb.border.color};
-      transition: transform ${tokens.transition.duration} ${tokens.transition.easing};
+      transition: all ${tokens.transition.duration} ${tokens.transition.easing};
       
       width: ${tokens.thumb.size[size].width};
       height: ${tokens.thumb.size[size].height};
@@ -78,49 +75,3 @@ export const StyledSwitchThumb = styled.div<{
   }}
 `;
 
-export const StyledSwitchLabel = styled.label<{
-  $isDisabled: boolean;
-  $error?: boolean;
-}>`
-  ${({ $isDisabled, $error }) => {
-    const tokens = useComponentToken('SWITCH') as SwitchTokensType;
-    return css`
-      color: ${$error 
-        ? tokens.content.label.color.error 
-        : $isDisabled 
-          ? tokens.content.label.color.disabled 
-          : tokens.content.label.color.default};
-      font-weight: ${tokens.content.label.font.md.fontWeight};
-      cursor: ${$isDisabled ? 'not-allowed' : 'pointer'};
-      display: flex;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-      
-      /* Reset any inherited spacing that could affect alignment */
-      & > span {
-        line-height: 1;
-        display: block;
-        margin: 0;
-        padding: 0;
-      }
-      
-      /* Reset any nested spans as well */
-      & span {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-    `;
-  }}
-`;
-
-export const StyledSwitchGroupLabel = styled.div`
-  ${() => {
-    const tokens = useComponentToken('SWITCH') as SwitchTokensType;
-    return css`
-      color: ${tokens.content.label.color.default};
-      font-weight: ${tokens.content.label.font.md.fontWeight};
-      margin-bottom: ${tokens.gap};
-    `;
-  }}
-`;

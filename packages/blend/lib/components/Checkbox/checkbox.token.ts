@@ -71,6 +71,7 @@ export type CheckboxTokensType = Readonly<{
 
   // $target: 'content' (Wrapper for label and subtext)
   content: {
+    gap: CSSObject["gap"];
     // Sub-target: 'label'
     label: {
       // $property: 'color'
@@ -203,6 +204,7 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
     },
 
     content: {
+      gap: foundationToken.unit[2],
       label: {
         color: {
           default: foundationToken.colors.gray[600],

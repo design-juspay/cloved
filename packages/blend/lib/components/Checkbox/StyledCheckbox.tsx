@@ -7,11 +7,9 @@ import { CheckboxTokensType } from './checkbox.token';
 const getInteractionState = (
   isDisabled: boolean, 
   error?: boolean
-  // isHovered is not used here as hover styles are applied directly in &:hover
 ): Exclude<CheckboxInteractionState, 'hover'> => {
   if (isDisabled) return 'disabled';
   if (error) return 'error';
-  // Note: hover state for background/border is handled separately in &:hover
   return 'default';
 };
 
@@ -22,7 +20,6 @@ export const StyledCheckboxRoot = styled(CheckboxPrimitive.Root)<{
   $checked: boolean | 'indeterminate';
   $error?: boolean;
 }>`
-  all: unset; /* Reset all styles for better cross-browser consistency */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +40,6 @@ export const StyledCheckboxRoot = styled(CheckboxPrimitive.Root)<{
       height: ${tokens.indicator.size[size].height};
       margin: 0;
       padding: 0;
-      margin-right: ${tokens.checkboxMarginRight};
       flex-shrink: 0;
       transition: all ${tokens.transition.duration} ${tokens.transition.easing};
 
@@ -71,15 +67,14 @@ export const StyledCheckboxRoot = styled(CheckboxPrimitive.Root)<{
 `;
 
 export const StyledCheckboxIndicator = styled(CheckboxPrimitive.Indicator)<{
-  size: CheckboxSize; // size might be used if indicator has size-specific styles not covered by root
+  size: CheckboxSize;
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  /* Icon color is set in Checkbox.tsx as it depends on more states */
-  
+
   ${() => { // Removed 'theme' as it's not used and useComponentToken is used instead
     const tokens = useComponentToken("CHECKBOX") as CheckboxTokensType;
     return css`
@@ -116,33 +111,4 @@ export const StyledCheckboxIndicator = styled(CheckboxPrimitive.Indicator)<{
   }
 `;
 
-export const StyledLabel = styled.label<{
-  $isDisabled: boolean;
-  $error?: boolean;
-}>`
-  color: ${({ $isDisabled, $error }) => {
-    const tokens = useComponentToken("CHECKBOX") as CheckboxTokensType;
-    const interactionState = getInteractionState($isDisabled, $error);
-    return tokens.content.label.color[interactionState];
-  }};
-  /* Font weight and size are applied in Checkbox.tsx via PrimitiveText */
-  cursor: ${({ $isDisabled }) => $isDisabled ? 'not-allowed' : 'pointer'};
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  
-  /* Reset any inherited spacing that could affect alignment */
-  & > span {
-    line-height: 1;
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Reset any nested spans as well */
-  & span {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-`;
+

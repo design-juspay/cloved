@@ -4,8 +4,10 @@ import { styled } from 'styled-components';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DateRangePreset } from './types';
 import { getPresetLabel } from './utils';
-import dateRangePickerTokens from './dateRangePicker.tokens';
+import { CalendarTokenType } from './dateRangePicker.tokens';
 import Block from '../Primitives/Block/Block';
+import { useComponentToken } from '../../context/useComponentToken';
+import PrimitiveButton from '../Primitives/PrimitiveButton/PrimitiveButton';
 
 type QuickRangeSelectorProps = {
   isOpen: boolean;
@@ -18,45 +20,30 @@ type QuickRangeSelectorProps = {
   disablePastDates?: boolean;
 }
 
-const StyledTrigger = styled.button<{ $isOpen: boolean }>`
-  ${dateRangePickerTokens.quickRange.trigger}
-  width: 100%;
-  background: transparent;
-  padding: 8px 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+// const StyledTrigger = styled.button<{ $isOpen: boolean }>`
+//   ${dateRangePickerTokens.quickRange.trigger}
+//   width: 100%;
+//   background: transparent;
+//   padding: 8px 12px;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
   
-  &:focus {
-    outline: none;
-  }
+//   &:focus {
+//     outline: none;
+//   }
+// `;
+
+
+const StyledItem = styled(DropdownMenu.Item)<{ $isActive: boolean; $calendarToken: CalendarTokenType }>`
+  ${props => props.$calendarToken.quickRange.item}
+  ${props => props.$calendarToken.quickRange.item.text}
+  ${props => props.$isActive && props.$calendarToken.quickRange.item.active}
 `;
 
-const StyledContent = styled(DropdownMenu.Content)`
-  ${dateRangePickerTokens.dropdown.content}
-
-`;
-
-const StyledItem = styled(DropdownMenu.Item)<{ $isActive: boolean }>`
-  ${dateRangePickerTokens.dropdown.item}
-  ${dateRangePickerTokens.text.value}
-  ${props => props.$isActive && dateRangePickerTokens.dropdown.activeItem}
-  
-  display: block;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 3px;
-  
-  &:focus {
-    outline: none;
-  }
-  
-  &[data-highlighted] {
-    ${props => !props.$isActive && `
-      background-color: rgba(0, 0, 0, 0.05);
-    `}
-  }
+const StyledContent = styled(DropdownMenu.Content)<{ $calendarToken: CalendarTokenType }>`
+  ${props => props.$calendarToken.quickRange.content}
 `;
 
 const QuickRangeSelector = forwardRef<HTMLDivElement, QuickRangeSelectorProps>(
@@ -73,6 +60,7 @@ const QuickRangeSelector = forwardRef<HTMLDivElement, QuickRangeSelectorProps>(
     },
     ref
   ) => {
+    const calendarToken = useComponentToken("CALENDAR") as CalendarTokenType;
     const activePresetLabel = getPresetLabel(activePreset);
 
     const getFilteredPresets = () => {
@@ -115,28 +103,29 @@ const QuickRangeSelector = forwardRef<HTMLDivElement, QuickRangeSelectorProps>(
 
     const filteredPresets = getFilteredPresets();
 
-    const handlePresetSelect = (preset: DateRangePreset) => {
+  const handlePresetSelect = (preset: DateRangePreset) => {
       onPresetSelect(preset);
-    };
+  };
 
     return (
-      <Block position='relative' width='100%' ref={ref} className={className}>
+      <Block position='relative' width={calendarToken.quickRange.width} ref={ref} className={className}>
         <DropdownMenu.Root open={isOpen} onOpenChange={onToggle}>
           <DropdownMenu.Trigger asChild>
-            <StyledTrigger $isOpen={isOpen}>
-              <Block as='span' style={{...dateRangePickerTokens.text.value}}>
+            <PrimitiveButton style={{...calendarToken.quickRange.trigger}}>
+              <Block as='span' color={calendarToken.quickRange.trigger.text.color} fontSize={calendarToken.quickRange.trigger.text.fontSize}>
                 {activePresetLabel}
               </Block>
-              {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </StyledTrigger>
+              {isOpen ? <ChevronUp size={calendarToken.quickRange.trigger.iconSize as number} color={calendarToken.quickRange.trigger.text.color} /> : <ChevronDown size={calendarToken.quickRange.trigger.iconSize as number} color={calendarToken.quickRange.trigger.text.color} />}
+            </PrimitiveButton>
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Portal>
-            <StyledContent align="start" sideOffset={4}>
+            <StyledContent align="start" sideOffset={4} $calendarToken={calendarToken}>
               {filteredPresets.map((preset) => (
                 <StyledItem
                   key={preset}
                   $isActive={preset === activePreset}
+                  $calendarToken={calendarToken}
                   onSelect={() => handlePresetSelect(preset)}
                 >
                   {getPresetLabel(preset)}

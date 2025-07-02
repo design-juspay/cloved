@@ -28,6 +28,7 @@ A powerful, feature-rich data table component with built-in support for:
 - **Pagination**: Client-side and server-side pagination
 - **Inline Editing**: Edit cells directly in the table
 - **Row Expansion**: Expandable rows with custom content
+- **Row Click Actions**: Click handlers with automatic visual feedback
 - **Bulk Actions**: Select multiple rows and perform bulk operations
 - **Column Management**: Show/hide columns dynamically
 - **Export**: CSV export functionality
@@ -89,6 +90,26 @@ Each has specific expected data structures for type safety.
   onSearchChange={(config) => fetchData(config)}
   onFilterChange={(filters) => fetchData(filters)}
   onPageChange={(page) => fetchData(page)}
+/>
+\`\`\`
+
+### With Row Click Actions
+\`\`\`tsx
+<DataTable
+  data={users}
+  columns={columns}
+  idField="id"
+  onRowClick={(row, index) => {
+    // Navigate to user profile
+    navigate(\`/users/\${row.id}\`);
+    
+    // Or open a modal
+    setSelectedUser(row);
+    setShowModal(true);
+    
+    // Or trigger any custom action
+    console.log('Clicked row:', row, 'at index:', index);
+  }}
 />
 \`\`\`
 
@@ -189,6 +210,10 @@ const data: User[] = [
       description: 'Show loading states when data is being fetched',
       control: 'boolean',
     },
+    onRowClick: {
+      description: 'Callback function when a row is clicked. Automatically adds cursor pointer and hover effects.',
+      control: false,
+    },
   },
 };
 
@@ -272,7 +297,8 @@ const userColumns: ColumnDefinition<User>[] = [
     isSortable: true,
     isFilterable: true,
     filterType: FilterType.TEXT,
-    width: '250px',
+    minWidth: '220px',
+    maxWidth: '300px',
   },
   {
     field: 'email',
@@ -282,7 +308,8 @@ const userColumns: ColumnDefinition<User>[] = [
     isEditable: true,
     isFilterable: true,
     filterType: FilterType.TEXT,
-    width: '200px',
+    minWidth: '180px',
+    maxWidth: '250px',
   },
   {
     field: 'role',
@@ -299,7 +326,8 @@ const userColumns: ColumnDefinition<User>[] = [
       { id: 'designer', label: 'Designer', value: 'Designer' },
       { id: 'analyst', label: 'Analyst', value: 'Analyst' },
     ],
-    width: '140px',
+    minWidth: '120px',
+    maxWidth: '160px',
   },
   {
     field: 'department',
@@ -317,7 +345,8 @@ const userColumns: ColumnDefinition<User>[] = [
       { id: 'sales', label: 'Sales', value: 'Sales' },
       { id: 'support', label: 'Customer Service', value: 'Customer Service' },
     ],
-    width: '150px',
+    minWidth: '130px',
+    maxWidth: '180px',
   },
   {
     field: 'status',
@@ -353,7 +382,8 @@ const userColumns: ColumnDefinition<User>[] = [
       { id: 'pending', label: 'Pending', value: 'Pending' },
       { id: 'suspended', label: 'Suspended', value: 'Suspended' },
     ],
-    width: '120px',
+    minWidth: '100px',
+    maxWidth: '140px',
   },
   {
     field: 'salary',
@@ -369,7 +399,8 @@ const userColumns: ColumnDefinition<User>[] = [
     isEditable: true,
     isFilterable: true,
     filterType: FilterType.NUMBER,
-    width: '120px',
+    minWidth: '100px',
+    maxWidth: '140px',
   },
   {
     field: 'joinDate',
@@ -378,25 +409,52 @@ const userColumns: ColumnDefinition<User>[] = [
     isSortable: true,
     isFilterable: true,
     filterType: FilterType.DATE,
-    width: '130px',
+    minWidth: '120px',
+    maxWidth: '150px',
   },
   {
     field: 'lastLogin',
     header: 'Last Login',
     type: ColumnType.TEXT,
     isSortable: true,
-    width: '120px',
+    minWidth: '110px',
+    maxWidth: '140px',
   },
 ];
 
 // Story: Basic DataTable
+const DefaultComponent = (args: typeof Default.args) => {
+  const handleRowClick = (row: Record<string, unknown>, index: number) => {
+    const user = row as User;
+    const userData = user.name as AvatarData;
+    console.log('🖱️ Row clicked:', { 
+      user: userData.label, 
+      email: user.email, 
+      role: user.role,
+      index 
+    });
+    alert(`Clicked on employee: ${userData.label}\nEmail: ${user.email}\nRole: ${user.role}\n\nRow index: ${index}`);
+  };
+
+  return (
+    <DataTable
+      {...args}
+      data={sampleUsers as Record<string, unknown>[]}
+      columns={userColumns as unknown as ColumnDefinition<Record<string, unknown>>[]}
+      idField="id"
+      onRowClick={handleRowClick}
+    />
+  );
+};
+
 export const Default: Story = {
+  render: DefaultComponent,
   args: {
     data: sampleUsers,
     columns: userColumns as unknown as ColumnDefinition<Record<string, unknown>>[],
     idField: 'id',
     title: 'Employee Directory',
-    description: 'Manage your team members and their information',
+    description: 'Manage your team members and their information. Click on any row to see details!',
     isHoverable: true,
     enableSearch: false,
     enableAdvancedFilter: false,
@@ -415,12 +473,16 @@ This is the simplest form of the DataTable component showing:
 - **Custom rendering**: Avatar and Tag columns have custom \`renderCell\` functions
 - **Column management**: Users can show/hide columns
 - **Sorting**: Click column headers to sort
+- **Row click interactions**: Click any row to trigger custom actions (shows alert in this demo)
+- **Visual feedback**: Automatic cursor pointer and hover effects for clickable rows
 - **Responsive design**: Table adapts to different screen sizes
 
 The data uses proper type-safe structures:
 - \`name\` field uses \`AvatarData\` for avatar display
 - \`status\` field uses \`TagData\` for tag display
 - Other fields use appropriate primitive types
+
+**Try clicking on any row** to see the \`onRowClick\` handler in action!
         `,
       },
     },
@@ -428,13 +490,39 @@ The data uses proper type-safe structures:
 };
 
 // Story: With Search and Filtering
+const WithSearchAndFilteringComponent = (args: typeof WithSearchAndFiltering.args) => {
+  const handleRowClick = (row: Record<string, unknown>, index: number) => {
+    const user = row as User;
+    const userData = user.name as AvatarData;
+    console.log('🖱️ Row clicked in search/filter demo:', { 
+      user: userData.label, 
+      email: user.email, 
+      department: user.department,
+      index 
+    });
+    // Example: Navigate to employee profile
+    alert(`Opening profile for: ${userData.label}\nDepartment: ${user.department}\nEmail: ${user.email}`);
+  };
+
+  return (
+    <DataTable
+      {...args}
+      data={sampleUsers as Record<string, unknown>[]}
+      columns={userColumns as unknown as ColumnDefinition<Record<string, unknown>>[]}
+      idField="id"
+      onRowClick={handleRowClick}
+    />
+  );
+};
+
 export const WithSearchAndFiltering: Story = {
+  render: WithSearchAndFilteringComponent,
   args: {
     data: sampleUsers,
     columns: userColumns as unknown as ColumnDefinition<Record<string, unknown>>[],
     idField: 'id',
     title: 'Employee Directory',
-    description: 'Search and filter employees by various criteria',
+    description: 'Search and filter employees by various criteria. Click any row to view profile!',
     isHoverable: true,
     enableSearch: true,
     searchPlaceholder: 'Search employees...',
@@ -454,12 +542,16 @@ This story demonstrates:
 - **Filter types**: TEXT, SELECT, NUMBER, DATE filters
 - **Real-time filtering**: Results update as you type
 - **Combined filtering**: Multiple filters work together
+- **Row click interactions**: Click any row to view employee profile
 
 Try:
 1. Search for "john" in the search box
 2. Filter by "Engineering" department (click column header)
 3. Filter by "Active" status (click column header)
 4. Combine multiple filters
+5. **Click on any row** to see the profile action
+
+Row clicks work seamlessly with search and filtering - click any visible row to trigger actions.
         `,
       },
     },
@@ -596,6 +688,20 @@ const WithAdvancedFilteringComponent = (args: typeof WithAdvancedFiltering.args)
     console.log('Advanced Filters changed:', filters);
   };
 
+  const handleRowClick = (row: Record<string, unknown>, index: number) => {
+    const user = row as User;
+    const userData = user.name as AvatarData;
+    const statusData = user.status as TagData;
+    console.log('🖱️ Row clicked in advanced filter demo:', { 
+      user: userData.label, 
+      status: statusData.text,
+      salary: user.salary,
+      index 
+    });
+    // Example: Open detailed view with all information
+    alert(`Employee Details:\n\nName: ${userData.label}\nRole: ${user.role}\nDepartment: ${user.department}\nStatus: ${statusData.text}\nSalary: $${user.salary.toLocaleString()}\nJoined: ${user.joinDate}`);
+  };
+
   return (
     <DataTable
       {...args}
@@ -605,6 +711,7 @@ const WithAdvancedFilteringComponent = (args: typeof WithAdvancedFiltering.args)
       advancedFilterComponent={DemoAdvancedFilterComponent}
       advancedFilters={advancedFilters}
       onAdvancedFiltersChange={handleAdvancedFiltersChange}
+      onRowClick={handleRowClick}
     />
   );
 };
@@ -616,7 +723,7 @@ export const WithAdvancedFiltering: Story = {
     columns: userColumns as unknown as ColumnDefinition<Record<string, unknown>>[],
     idField: 'id',
     title: 'Employee Directory',
-    description: 'Try the advanced filters for complex filtering scenarios',
+    description: 'Try the advanced filters for complex filtering scenarios. Click any row for detailed employee view!',
     isHoverable: true,
     enableSearch: true,
     enableFiltering: true,
@@ -642,14 +749,16 @@ Advanced Filter Features:
 - Combine multiple filters with AND logic
 - Clear all filters at once
 - Custom filter component with full UI control
+- Row click interactions show detailed employee information
 
 Try:
 1. Click "Advanced Filters" button
 2. Add filter rules with different combinations
 3. Use both column filters (header dropdowns) and advanced filters
 4. Notice how they work together for comprehensive filtering
+5. **Click any filtered row** to view detailed employee information
 
-The advanced filter component can be customized for your specific needs and can trigger API calls for server-side filtering.
+The advanced filter component can be customized for your specific needs and can trigger API calls for server-side filtering. Row clicks provide quick access to detailed views.
         `,
       },
     },
@@ -948,13 +1057,44 @@ Pagination configuration:
 };
 
 // Story: With Custom Header Slots
+const WithCustomHeaderSlotsComponent = (args: typeof WithCustomHeaderSlots.args) => {
+  const handleRowClick = (row: Record<string, unknown>, index: number) => {
+    const user = row as User;
+    const userData = user.name as AvatarData;
+    console.log('🖱️ Row clicked in header slots demo:', { 
+      user: userData.label, 
+      role: user.role,
+      lastLogin: user.lastLogin,
+      index 
+    });
+    // Example: Quick action menu
+    const action = confirm(`Quick Actions for ${userData.label}:\n\nClick OK to Edit Employee\nClick Cancel to View Details`);
+    if (action) {
+      alert(`Opening edit form for: ${userData.label}`);
+    } else {
+      alert(`Viewing details for: ${userData.label}\nRole: ${user.role}\nLast Login: ${user.lastLogin}`);
+    }
+  };
+
+  return (
+    <DataTable
+      {...args}
+      data={sampleUsers as Record<string, unknown>[]}
+      columns={userColumns as unknown as ColumnDefinition<Record<string, unknown>>[]}
+      idField="id"
+      onRowClick={handleRowClick}
+    />
+  );
+};
+
 export const WithCustomHeaderSlots: Story = {
+  render: WithCustomHeaderSlotsComponent,
   args: {
     data: sampleUsers,
     columns: userColumns as unknown as ColumnDefinition<Record<string, unknown>>[],
     idField: 'id',
     title: 'Employee Management System',
-    description: 'Complete employee management with custom actions',
+    description: 'Complete employee management with custom actions. Click rows for quick actions!',
     isHoverable: true,
     enableSearch: true,
     enableFiltering: true,
@@ -1019,6 +1159,9 @@ Use cases:
 - Settings and configuration
 - Status indicators
 - Custom search controls
+- Row click quick actions (Edit/View options in this demo)
+
+**Try clicking any row** to see quick action options - this demonstrates how row clicks can provide immediate access to common actions like editing or viewing details.
         `,
       },
     },

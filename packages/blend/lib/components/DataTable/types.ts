@@ -21,8 +21,10 @@ export type ColumnDefinition<T extends Record<string, unknown>> = {
   header: string;
   /** Column type for filtering and display - must be a valid ColumnType */
   type: ColumnType;
-  /** Width of the column - must be a valid CSS width string */
-  width?: string;
+  /** Minimum width of the column - must be a valid CSS width string */
+  minWidth?: string;
+  /** Maximum width of the column - must be a valid CSS width string */
+  maxWidth?: string;
   /** Whether column is sortable */
   isSortable?: boolean;
   /** Whether column is initially visible */
@@ -201,6 +203,8 @@ export type DataTableProps<T extends Record<string, unknown>> = {
   onRowCancel?: (rowId: unknown) => void;
   /** Callback when row expansion changes */
   onRowExpansionChange?: (rowId: unknown, isExpanded: boolean, rowData: T) => void;
+  /** Callback when row is clicked */
+  onRowClick?: (row: T, index: number) => void;
   /** Optional additional class name */
   className?: string;
   /** Custom slot on the left side of the toolbar */

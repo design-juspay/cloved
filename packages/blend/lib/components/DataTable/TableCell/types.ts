@@ -5,6 +5,6 @@ export type TableCellProps<T extends Record<string, unknown>> = {
   row: T;
   isEditing: boolean;
   currentValue: unknown;
-  width: string;
+  width: React.CSSProperties;
   onFieldChange: (value: unknown) => void;
 }; 

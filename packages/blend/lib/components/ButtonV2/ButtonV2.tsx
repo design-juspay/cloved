@@ -107,7 +107,6 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
             )}
             {text && (
               <Text
-                fontFamily="InterDisplay"
                 variant="body.md"
                 style={{
                   fontWeight: 500,

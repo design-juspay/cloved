@@ -3,13 +3,18 @@ import * as RadixAccordion from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 import { styled } from "styled-components";
 import { AccordionProps, AccordionType } from "./types";
-import accordionTokens from "./accordion.tokens";
+import { AccordionTokenType } from "./accordion.tokens";
+import { useComponentToken } from "../../context/useComponentToken";
 
 const StyledAccordionRoot = styled(RadixAccordion.Root)<{ 
   $accordionType: AccordionType 
+  $AccordionToken: AccordionTokenType
 }>((props) => ({
-  ...accordionTokens.base.container,
-  ...accordionTokens.type[props.$accordionType].container,
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  gap: props.$AccordionToken.gap[props.$accordionType],
+  borderRadius: props.$AccordionToken.borderRadius[props.$accordionType],
 }));
 
 const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
@@ -24,6 +29,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
     },
     ref
   ) => {
+    const accordionToken = useComponentToken("ACCORDION") as AccordionTokenType;
     const renderChildren = () => {
       return React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
@@ -48,6 +54,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         value={value as string[] | undefined}
         defaultValue={defaultValue as string[] | undefined}
         onValueChange={onValueChange as ((value: string[]) => void) | undefined}
+        $AccordionToken={accordionToken}
         {...commonProps}
       >
         {renderChildren()}
@@ -59,6 +66,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         value={value as string | undefined}
         defaultValue={defaultValue as string | undefined}
         onValueChange={onValueChange as ((value: string) => void) | undefined}
+        $AccordionToken={accordionToken}
         {...commonProps}
       >
         {renderChildren()}

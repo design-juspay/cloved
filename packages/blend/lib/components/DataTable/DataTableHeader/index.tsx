@@ -95,8 +95,6 @@ const DataTableHeader = forwardRef<HTMLDivElement, DataTableHeaderProps<Record<s
                          Advanced Filters {advancedFilters.length > 0 && `(${advancedFilters.length})`}
                        </Button>
                      }
-                     heading="Advanced Filters"
-                     description="Configure complex filters for your data"
                     size={PopoverSize.MEDIUM}
                     align="end"
                     alignOffset={-20}
@@ -131,10 +129,8 @@ const DataTableHeader = forwardRef<HTMLDivElement, DataTableHeaderProps<Record<s
             <Block
               display='flex'
               alignItems='center'
-              style={{
-                maxHeight: `${FOUNDATION_THEME.unit[36]}`,
-                flexShrink: 0,
-              }}
+              maxHeight={tableToken.header.headerSlot1.maxHeight}
+              flexShrink={tableToken.header.headerSlot1.flexShrink}
             >
               {headerSlot1}
             </Block>
@@ -144,10 +140,8 @@ const DataTableHeader = forwardRef<HTMLDivElement, DataTableHeaderProps<Record<s
             <Block
               display='flex'
               alignItems='center'
-              style={{
-                maxHeight: `${FOUNDATION_THEME.unit[36]}`,
-                flexShrink: 0,
-              }}
+              maxHeight={tableToken.header.headerSlot2.maxHeight}
+              flexShrink={tableToken.header.headerSlot2.flexShrink}
             >
               {headerSlot2}
             </Block>
@@ -157,10 +151,8 @@ const DataTableHeader = forwardRef<HTMLDivElement, DataTableHeaderProps<Record<s
             <Block
               display='flex'
               alignItems='center'
-              style={{
-                maxHeight: `${FOUNDATION_THEME.unit[36]}`,
-                flexShrink: 0,
-              }}
+              maxHeight={tableToken.header.headerSlot3.maxHeight}
+              flexShrink={tableToken.header.headerSlot3.flexShrink}
             >
               {headerSlot3}
             </Block>

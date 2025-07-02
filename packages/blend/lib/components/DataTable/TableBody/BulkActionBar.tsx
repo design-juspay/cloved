@@ -5,6 +5,8 @@ import { ButtonSize, ButtonType } from '../../Button/types';
 import Block from '../../Primitives/Block/Block';
 import PrimitiveText from '../../Primitives/PrimitiveText/PrimitiveText';
 import { FOUNDATION_THEME } from '../../../tokens';
+import { useComponentToken } from '../../../context/useComponentToken';
+import { TableTokenType } from '../dataTable.tokens';
 
 export type BulkActionBarProps = {
   selectedCount: number;
@@ -19,34 +21,36 @@ const BulkActionBar = forwardRef<HTMLDivElement, BulkActionBarProps>(({
   onDeselectAll,
   customActions,
 }, ref) => {
+  const tableToken = useComponentToken("TABLE") as TableTokenType;
   if (selectedCount === 0) return null;
 
   return (
     <Block
       ref={ref}
+      position='absolute'
+      display='flex'
+      alignItems='center'
+      borderRadius={tableToken.dataTable.bulkActions.borderRadius}
+      color={tableToken.dataTable.bulkActions.color}
+      backgroundColor={tableToken.dataTable.bulkActions.backgroundColor}
+      zIndex={tableToken.dataTable.bulkActions.zIndex}
+      gap={tableToken.dataTable.bulkActions.gap}
+      border={tableToken.dataTable.bulkActions.border}
+      padding={tableToken.dataTable.bulkActions.padding}
+      boxShadow={tableToken.dataTable.bulkActions.boxShadow}
+      minWidth={tableToken.dataTable.bulkActions.minWidth}
       style={{
-        position: 'absolute',
-        top: '80%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 1000,
-        backgroundColor: FOUNDATION_THEME.colors.gray[0],
-        color: FOUNDATION_THEME.colors.gray[700],
-        borderRadius: `${FOUNDATION_THEME.border.radius[12]}`,
-        padding: `${FOUNDATION_THEME.unit[8]} ${FOUNDATION_THEME.unit[16]}`,
-        boxShadow: FOUNDATION_THEME.shadows.lg,
-        display: 'flex',
-        alignItems: 'center',
-        gap: FOUNDATION_THEME.unit[12],
-        minWidth: '320px',
-        border: `${FOUNDATION_THEME.border.width[1]} solid ${FOUNDATION_THEME.colors.gray[200]}`,
+        top: tableToken.dataTable.bulkActions.top,
+        left: tableToken.dataTable.bulkActions.left,
+        transform: tableToken.dataTable.bulkActions.transform,
       }}
     >
       <PrimitiveText
         style={{
-          fontSize: FOUNDATION_THEME.font.size.body.sm.fontSize,
-          fontWeight: FOUNDATION_THEME.font.weight[500],
-          flex: 1,        }}
+          fontSize: tableToken.dataTable.bulkActions.selectText.fontSize,
+          fontWeight: tableToken.dataTable.bulkActions.selectText.fontWeight,
+          flex: tableToken.dataTable.bulkActions.selectText.flex,
+        }}
       >
         {selectedCount} selected
       </PrimitiveText>

@@ -14,5 +14,5 @@ export type TableHeaderProps<T extends Record<string, unknown>> = {
   onColumnChange: (columns: ColumnDefinition<T>[]) => void;
   onColumnFilter?: (field: keyof T, type: FilterType, value: string | string[], operator?: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'gt' | 'lt' | 'gte' | 'lte') => void;
   onHeaderChange?: (field: keyof T, newHeader: string) => void;
-  getColumnWidth: (column: ColumnDefinition<T>, index: number) => string;
+  getColumnWidth: (column: ColumnDefinition<T>, index: number) => React.CSSProperties;
 }; 

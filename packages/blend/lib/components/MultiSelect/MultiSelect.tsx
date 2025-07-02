@@ -208,7 +208,7 @@ const MultiSelect = ({
                       style={{
                         height: "100%",
                         marginLeft: 8,
-                        backgroundColor:
+                        backgroundColor: 
                           multiSelectTokens.trigger.selectionTag.container[
                             selectionTagType
                           ].backgroundColor,

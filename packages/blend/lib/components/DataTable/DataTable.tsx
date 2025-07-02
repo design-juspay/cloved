@@ -1,11 +1,10 @@
 import { useState, useEffect, useMemo, forwardRef } from 'react';
-import { styled } from 'styled-components';
 import { DataTableProps, SortDirection, SortConfig, ColumnDefinition, SearchConfig, ColumnFilter, FilterType } from './types';
-import dataTableTokens, { TableTokenType } from './dataTable.tokens';
+import  { TableTokenType } from './dataTable.tokens';
 import {
-  sortData, searchData, applyColumnFilters, getDefaultColumnWidth, 
+  sortData, searchData, applyColumnFilters,
   updateColumnFilter, exportSelectedRowsToCSV, getSelectedRowCount,
-  createSearchConfig, clearAllFiltersAndSearch
+  createSearchConfig, clearAllFiltersAndSearch, getColumnStyles
 } from './utils';
 import DataTableHeader from './DataTableHeader';
 import TableHeader from './TableHeader';
@@ -13,16 +12,8 @@ import TableBodyComponent from './TableBody';
 import TableFooter from './TableFooter';
 import BulkActionBar from './TableBody/BulkActionBar';
 import Block from '../Primitives/Block/Block';
-import { FOUNDATION_THEME } from '../../tokens';
 
 import { useComponentToken } from '../../context/useComponentToken';
-
-const Table = styled.table<{ $isHoverable?: boolean }>`
-  ${dataTableTokens.table.base}
-  table-layout: fixed;
-  width: 100%;
-  min-width: 800px;
-`;
 
 const DataTable = forwardRef(<T extends Record<string, unknown>>(
   {
@@ -31,7 +22,6 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
     idField,
     title,
     description,
-    isHoverable = true,
     defaultSort,
     enableSearch = false,
     searchPlaceholder = "Search...",
@@ -64,6 +54,7 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
     onRowSave,
     onRowCancel,
     onRowExpansionChange,
+    onRowClick,
     headerSlot1,
     headerSlot2,
     headerSlot3,
@@ -82,15 +73,12 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
   const [selectedRows, setSelectedRows] = useState<Record<string, boolean>>({});
   const [selectAll, setSelectAll] = useState<boolean | 'indeterminate'>(false);
   
-  // Search and filter state
   const [searchConfig, setSearchConfig] = useState<SearchConfig>({ query: '', caseSensitive: false });
   const [columnFilters, setColumnFilters] = useState<ColumnFilter[]>([]);
   
-  // Inline edit state
   const [editingRows, setEditingRows] = useState<Record<string, boolean>>({});
   const [editValues, setEditValues] = useState<Record<string, T>>({});
 
-  // Row expansion state
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
   const totalRows = pagination?.totalRows || data.length;
@@ -106,7 +94,6 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
       result = searchData(result, searchConfig, visibleColumns);
     }
 
-    // Apply local column filters if not server-side filtering
     if (enableFiltering && !serverSideFiltering && columnFilters.length > 0) {
       result = applyColumnFilters(result, columnFilters);
     }
@@ -269,8 +256,8 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
     setSelectAll(false);
   };
 
-  const getColumnWidth = (column: ColumnDefinition<T>) => {
-    return getDefaultColumnWidth(column);
+  const getColumnWidth = (column: ColumnDefinition<T>): React.CSSProperties => {
+    return getColumnStyles(column);
   };
 
   const handleEditRow = (rowId: unknown) => {
@@ -365,9 +352,10 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
       />
 
       <Block style={{
-        borderRadius: 8,
-        border: `1px solid ${FOUNDATION_THEME.colors.gray[200]}`,
-        maxHeight: 'calc(100vh - 200px)',
+        borderRadius: tableToken.dataTable.borderRadius,
+        border: tableToken.dataTable.border,
+        maxHeight: tableToken.dataTable.maxHeight,
+        minHeight: tableToken.dataTable.minHeight,
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
@@ -382,58 +370,57 @@ const DataTable = forwardRef(<T extends Record<string, unknown>>(
         />
 
         <Block style={{
-          overflowX: 'auto',
-          overflowY: 'hidden',
           flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
+          overflowX: 'auto',
+          overflowY: 'auto',
           scrollBehavior: 'smooth',
           WebkitOverflowScrolling: 'touch',
         }}>
-          <Block style={{
-            overflowY: 'auto',
-            flex: 1,
-            minHeight: 0,
+          <table style={{
+            width: tableToken.dataTable.table.width,
+            tableLayout: tableToken.dataTable.table.tableLayout,
+            borderCollapse: tableToken.dataTable.table.borderCollapse,
+            borderSpacing: tableToken.dataTable.table.borderSpacing,
+            position: tableToken.dataTable.table.position,
           }}>
-            <Table $isHoverable={isHoverable}>
-              <TableHeader
-                visibleColumns={visibleColumns as ColumnDefinition<Record<string, unknown>>[]}
-                initialColumns={initialColumns as ColumnDefinition<Record<string, unknown>>[]}
-                selectAll={selectAll}
-                enableInlineEdit={enableInlineEdit}
-                enableColumnManager={enableColumnManager}
-                enableRowExpansion={enableRowExpansion}
-                data={data}
-                columnFilters={columnFilters}
-                onSort={handleSort}
-                onSelectAll={handleSelectAll}
-                onColumnChange={(columns) => setVisibleColumns(columns as ColumnDefinition<T>[])}
-                onColumnFilter={handleColumnFilter}
-                getColumnWidth={getColumnWidth as (column: ColumnDefinition<Record<string, unknown>>, index: number) => string}
-              />
-              <TableBodyComponent
-                currentData={currentData}
-                visibleColumns={visibleColumns as ColumnDefinition<Record<string, unknown>>[]}
-                idField={idField}
-                selectedRows={selectedRows}
-                editingRows={editingRows}
-                editValues={editValues}
-                expandedRows={expandedRows}
-                enableInlineEdit={enableInlineEdit}
-                enableColumnManager={enableColumnManager}
-                enableRowExpansion={enableRowExpansion}
-                renderExpandedRow={renderExpandedRow as ((expandedData: { row: Record<string, unknown>; index: number; isExpanded: boolean; toggleExpansion: () => void; }) => React.ReactNode) | undefined}
-                isRowExpandable={isRowExpandable as ((row: Record<string, unknown>, index: number) => boolean) | undefined}
-                onRowSelect={handleRowSelect}
-                onEditRow={handleEditRow}
-                onSaveRow={handleSaveRow}
-                onCancelEdit={handleCancelEdit}
-                onRowExpand={handleRowExpand}
-                onFieldChange={handleFieldChange}
-                getColumnWidth={getColumnWidth as (column: ColumnDefinition<Record<string, unknown>>, index: number) => string}
-              />
-            </Table>
-          </Block>
+            <TableHeader
+              visibleColumns={visibleColumns as ColumnDefinition<Record<string, unknown>>[]}
+              initialColumns={initialColumns as ColumnDefinition<Record<string, unknown>>[]}
+              selectAll={selectAll}
+              enableInlineEdit={enableInlineEdit}
+              enableColumnManager={enableColumnManager}
+              enableRowExpansion={enableRowExpansion}
+              data={data}
+              columnFilters={columnFilters}
+              onSort={handleSort}
+              onSelectAll={handleSelectAll}
+              onColumnChange={(columns) => setVisibleColumns(columns as ColumnDefinition<T>[])}
+              onColumnFilter={handleColumnFilter}
+              getColumnWidth={getColumnWidth as (column: ColumnDefinition<Record<string, unknown>>, index: number) => React.CSSProperties}
+            />
+            <TableBodyComponent
+              currentData={currentData}
+              visibleColumns={visibleColumns as ColumnDefinition<Record<string, unknown>>[]}
+              idField={idField}
+              selectedRows={selectedRows}
+              editingRows={editingRows}
+              editValues={editValues}
+              expandedRows={expandedRows}
+              enableInlineEdit={enableInlineEdit}
+              enableColumnManager={enableColumnManager}
+              enableRowExpansion={enableRowExpansion}
+              renderExpandedRow={renderExpandedRow as ((expandedData: { row: Record<string, unknown>; index: number; isExpanded: boolean; toggleExpansion: () => void; }) => React.ReactNode) | undefined}
+              isRowExpandable={isRowExpandable as ((row: Record<string, unknown>, index: number) => boolean) | undefined}
+              onRowSelect={handleRowSelect}
+              onEditRow={handleEditRow}
+              onSaveRow={handleSaveRow}
+              onCancelEdit={handleCancelEdit}
+              onRowExpand={handleRowExpand}
+              onFieldChange={handleFieldChange}
+              getColumnWidth={getColumnWidth as (column: ColumnDefinition<Record<string, unknown>>, index: number) => React.CSSProperties}
+              onRowClick={onRowClick as ((row: Record<string, unknown>, index: number) => void) | undefined}
+            />
+          </table>
         </Block>
         
         <TableFooter
