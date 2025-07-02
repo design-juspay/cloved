@@ -1,0 +1,23 @@
+{
+  "name": "mcp",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "blend": "./index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "node -e \"require('fs').chmodSync('index.js', '755')\"",
+    "watch": "echo 'No watch needed for JavaScript files'",
+    "inspector": "npx @modelcontextprotocol/inspector index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24"
+  }
+}
