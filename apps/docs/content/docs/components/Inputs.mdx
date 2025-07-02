@@ -3,8 +3,6 @@ title: Inputs
 description: A comprehensive collection of input components including TextInput, NumberInput, SearchInput, OTPInput, TextArea, and specialized inputs for various data types and use cases.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import inputsMeta from "@/meta/inputs.context";
 
 # Inputs Component Documentation
 
@@ -25,7 +23,40 @@ A comprehensive collection of input components including TextInput, NumberInput,
 
 ## Props
 
-<BlendTypeTable componentMeta={inputsMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `label` | `string` | Yes | The main label text for the input | `-` |
+| `sublabel` | `string` | No | Additional label text displayed below the main label | `undefined` |
+| `hintText` | `string` | No | Hint text displayed below the input | `undefined` |
+| `helpIconHintText` | `string` | No | Text displayed in help tooltip next to the label | `undefined` |
+| `errorMessage` | `string` | No | Error message displayed when input is in error state | `undefined` |
+| `leftSlot` | `React.ReactNode` | No | Custom content displayed on the left side of the input | `undefined` |
+| `rightSlot` | `React.ReactNode` | No | Custom content displayed on the right side of the input | `undefined` |
+| `placeholder` | `string` | No | Placeholder text for the input | `undefined` |
+| `name` | `string` | No | Name attribute for form submission | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `value` | `string` | Yes | The current value of the input | `-` |
+| `required` | `boolean` | No | Whether the input is required (shows asterisk) | `false` |
+| `error` | `boolean` | No | Whether the input is in error state | `false` |
+| `disabled` | `boolean` | No | Whether the input is disabled | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onChange` | `(e: React.ChangeEvent<HTMLInputElement>) => void` | Yes | Callback fired when the input value changes | `-` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `TextInputSize` | No | Size variant of the input | `TextInputSize.MEDIUM` |
 
 ## Usage Examples
 
@@ -91,4 +122,3 @@ Number input with help tooltip
   disabled={false}
 />
 ```
-

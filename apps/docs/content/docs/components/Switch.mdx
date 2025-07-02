@@ -3,8 +3,6 @@ title: Switch
 description: A toggle switch component for binary on/off states with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import switchMeta from "@/meta/switch.context";
 
 # Switch Component Documentation
 
@@ -25,7 +23,38 @@ A toggle switch component for binary on/off states with support for controlled a
 
 ## Props
 
-<BlendTypeTable componentMeta={switchMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `id` | `string` | No | Unique identifier for the switch input | `auto-generated` |
+| `label` | `ReactNode` | No | Label content for the switch | `undefined` |
+| `subtext` | `ReactNode` | No | Additional descriptive text below the switch | `undefined` |
+| `slot` | `ReactNode` | No | Custom content slot next to the switch label | `undefined` |
+| `name` | `string` | No | Name attribute for form submission | `undefined` |
+| `value` | `string` | No | Value attribute for the switch input | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `checked` | `boolean` | No | Controlled checked state of the switch | `undefined` |
+| `defaultChecked` | `boolean` | No | Default checked state for uncontrolled mode | `false` |
+| `disabled` | `boolean` | No | Whether the switch is disabled | `false` |
+| `required` | `boolean` | No | Whether the switch is required (shows asterisk) | `false` |
+| `error` | `boolean` | No | Whether the switch is in error state | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onChange` | `(checked: boolean) => void` | No | Callback fired when the switch state changes | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `SwitchSize` | No | Size variant of the switch | `SwitchSize.MEDIUM` |
 
 ## Usage Examples
 
@@ -77,4 +106,3 @@ Switch with additional content slot
   defaultChecked={true}
 />
 ```
-

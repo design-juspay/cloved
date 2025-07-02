@@ -24,7 +24,50 @@ A flexible and accessible accordion component built on Radix UI that allows user
 
 ## Props
 
-<BlendTypeTable componentMeta={accordionMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `ReactNode` | Yes | AccordionItem components to render within the accordion | `-` |
+| `value` | `string` | Yes | Unique identifier for the accordion item (AccordionItem prop) | `-` |
+| `title` | `string` | Yes | Main heading text for the accordion item (AccordionItem prop) | `-` |
+| `subtext` | `string` | No | Secondary text below the title (AccordionItem prop) | `undefined` |
+| `leftSlot` | `ReactNode` | No | Custom content on the left side of the header (AccordionItem prop) | `undefined` |
+| `rightSlot` | `ReactNode` | No | Custom content on the right side of the header (AccordionItem prop) | `undefined` |
+| `subtextSlot` | `ReactNode` | No | Custom content in the subtext area (AccordionItem prop) | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `accordionType` | `AccordionType` | No | Visual style variant of the accordion | `AccordionType.NO_BORDER` |
+| `chevronPosition` | `AccordionChevronPosition` | No | Position of the expand/collapse chevron (AccordionItem prop) | `AccordionChevronPosition.RIGHT` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `defaultValue` | `string \| string[]` | No | Default expanded item(s) for uncontrolled mode | `undefined` |
+| `value` | `string \| string[]` | No | Controlled expanded item(s) value | `undefined` |
+| `isDisabled` | `boolean` | No | Whether the accordion item is disabled (AccordionItem prop) | `false` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `isMultiple` | `boolean` | No | Whether multiple items can be expanded simultaneously | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onValueChange` | `(value: string \| string[]) => void` | No | Callback fired when expansion state changes | `undefined` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `className` | `string` | No | Additional CSS class names for the accordion container | `undefined` |
 
 ## Usage Examples
 
@@ -98,4 +141,3 @@ const [expandedItems, setExpandedItems] = useState(['item1']);
   </AccordionItem>
 </Accordion>
 ```
-

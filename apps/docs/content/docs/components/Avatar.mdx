@@ -24,7 +24,28 @@ A flexible avatar component for displaying user profile images with automatic fa
 
 ## Props
 
-<BlendTypeTable componentMeta={avatarMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `src` | `string` | No | URL of the avatar image to display | `undefined` |
+| `alt` | `string` | No | Alternative text for the avatar image and fallback initials generation | `''` |
+| `fallback` | `React.ReactNode` | No | Custom fallback content when image is not available | `undefined` |
+| `leadingSlot` | `React.ReactNode` | No | Custom content to display before the avatar | `undefined` |
+| `trailingSlot` | `React.ReactNode` | No | Custom content to display after the avatar | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `AvatarSize` | No | Size variant of the avatar | `AvatarSize.MD` |
+| `shape` | `AvatarShape` | No | Shape variant of the avatar | `AvatarShape.CIRCULAR` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `online` | `boolean` | No | Whether to show online status indicator | `false` |
 
 ## Usage Examples
 
@@ -74,4 +95,3 @@ Avatar with leading and trailing content slots
   trailingSlot={<Button size="sm" variant="ghost"><EditIcon /></Button>}
 />
 ```
-

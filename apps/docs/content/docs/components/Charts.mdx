@@ -22,7 +22,46 @@ A comprehensive charting component that supports line, bar, and pie charts with 
 
 ## Props
 
-<BlendTypeTable componentMeta={chartsMeta} />
+### Configuration
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `chartType` | `ChartType` | No | The type of chart to render | `ChartType.LINE` |
+| `metrics` | `string[]` | No | Array of metric names to display | `-` |
+
+### Data
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `data` | `NewNestedDataPoint[]` | Yes | Array of data points for chart visualization | `-` |
+
+### Labels
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `xAxisLabel` | `string` | No | Label for the X-axis | `-` |
+| `yAxisLabel` | `string` | No | Label for the Y-axis | `-` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `colors` | `string[]` | No | Array of colors for chart elements | `DEFAULT_COLORS` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `slot1` | `ReactNode` | No | First slot for custom content in chart header | `-` |
+| `slot2` | `ReactNode` | No | Second slot for custom content in chart header | `-` |
+| `slot3` | `ReactNode` | No | Third slot for custom content in chart header | `-` |
+| `chartHeaderSlot` | `ReactNode` | Yes | Custom content for the chart header | `-` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `legendPosition` | `ChartLegendPosition` | No | Position of the chart legend | `ChartLegendPosition.TOP` |
 
 ## Usage Examples
 
@@ -62,4 +101,3 @@ Pie chart with right-positioned legend
   chartHeaderSlot="Market Share"
 />
 ```
-

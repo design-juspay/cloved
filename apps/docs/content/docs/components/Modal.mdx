@@ -3,8 +3,6 @@ title: Modal
 description: A flexible modal dialog component for displaying content in an overlay with customizable header, footer, and action buttons.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import modalMeta from "@/meta/modal.context";
 
 # Modal Component Documentation
 
@@ -24,7 +22,56 @@ A flexible modal dialog component for displaying content in an overlay with cust
 
 ## Props
 
-<BlendTypeTable componentMeta={modalMeta} />
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `isOpen` | `boolean` | Yes | Controls whether the modal is open or closed | `-` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClose` | `() => void` | Yes | Callback function called when the modal should be closed | `-` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `title` | `string` | No | The title text displayed in the modal header | `undefined` |
+| `subtitle` | `string` | No | The subtitle text displayed below the title | `undefined` |
+| `children` | `ReactNode` | Yes | The content to be displayed in the modal body | `-` |
+| `customHeader` | `ReactNode` | No | Custom content to replace the default header | `undefined` |
+| `customFooter` | `ReactNode` | No | Custom content to replace the default footer | `undefined` |
+| `headerRightSlot` | `ReactNode` | No | Additional content to display on the right side of the header | `undefined` |
+
+### Actions
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `primaryAction` | `ModalButtonAction` | No | Configuration for the primary action button | `undefined` |
+| `secondaryAction` | `ModalButtonAction` | No | Configuration for the secondary action button | `undefined` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `className` | `string` | No | Additional CSS class names for the modal | `undefined` |
+| `showDivider` | `boolean` | No | Whether to show a divider line below the header | `false` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `showCloseButton` | `boolean` | No | Whether to show the close button in the header | `true` |
+| `closeOnBackdropClick` | `boolean` | No | Whether clicking the backdrop should close the modal | `true` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `showHeader` | `boolean` | No | Whether to show the modal header | `true` |
+| `showFooter` | `boolean` | No | Whether to show the modal footer with action buttons | `true` |
 
 ## Usage Examples
 
@@ -103,4 +150,3 @@ Modal with additional content in header right slot
   <div>Settings content here</div>
 </Modal>
 ```
-

@@ -3,8 +3,6 @@ title: Snackbar
 description: A toast notification system for displaying temporary messages with multiple variants, action buttons, and automatic dismissal functionality.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import snackbarMeta from "@/meta/snackbar.context";
 
 # Snackbar Component Documentation
 
@@ -25,7 +23,32 @@ A toast notification system for displaying temporary messages with multiple vari
 
 ## Props
 
-<BlendTypeTable componentMeta={snackbarMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `header` | `string` | Yes | The main heading text of the toast notification | `-` |
+| `description` | `string` | No | Additional descriptive text for the toast notification | `undefined` |
+| `label` | `string` | Yes | Text label for the action button (ActionButton property) | `-` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `variant` | `SnackbarVariant` | No | The visual variant determining the toast's appearance and icon | `SnackbarVariant.INFO` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClose` | `() => void` | No | Callback function called when the toast is closed | `undefined` |
+| `onClick` | `() => void` | Yes | Click handler for the action button (ActionButton property) | `-` |
+
+### Actions
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `actionButton` | `ActionButton` | No | Configuration for an optional action button in the toast | `undefined` |
 
 ## Usage Examples
 
@@ -115,4 +138,3 @@ const showProgressToasts = () => {
   }, 3000);
 };
 ```
-

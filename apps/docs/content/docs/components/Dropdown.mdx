@@ -3,8 +3,6 @@ title: Dropdown
 description: A form dropdown component that combines a label, trigger button, and menu for selecting options with support for icons, hints, and customizable styling.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import dropdownMeta from "@/meta/dropdown.context";
 
 # Dropdown Component Documentation
 
@@ -24,7 +22,15 @@ A form dropdown component that combines a label, trigger button, and menu for se
 
 ## Props
 
-<BlendTypeTable componentMeta={dropdownMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `label` | `string` | No | The main label text for the dropdown | `'Your Label'` |
+| `optionalLabel` | `string` | No | Optional label text displayed next to the main label | `'(optional)'` |
+| `hintText` | `string` | No | Hint text displayed below the dropdown | `'This is a hint text'` |
+| `slot` | `React.ReactNode` | No | Custom content (usually an icon) displayed in the trigger button | `undefined` |
+| `items` | `MenuV2GroupType[]` | Yes | Array of menu groups containing selectable items | `-` |
 
 ## Usage Examples
 
@@ -132,4 +138,3 @@ Dropdown with custom styling and content
   ]}
 />
 ```
-

@@ -3,8 +3,6 @@ title: Select
 description: A versatile select menu component with grouped items, multi-selection support, search functionality, and flexible positioning for complex selection scenarios.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import selectMeta from "@/meta/select.context";
 
 # Select Component Documentation
 
@@ -25,7 +23,45 @@ A versatile select menu component with grouped items, multi-selection support, s
 
 ## Props
 
-<BlendTypeTable componentMeta={selectMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `trigger` | `React.ReactNode` | No | The trigger element that opens the select menu | `undefined` |
+| `items` | `SelectMenuGroupType[]` | Yes | Array of grouped menu items for selection | `-` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `selected` | `string \| string[]` | No | Currently selected value(s) | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onSelect` | `(value: string \| string[]) => void` | No | Callback fired when selection changes | `undefined` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `allowMultiSelect` | `boolean` | No | Whether multiple items can be selected | `false` |
+| `asModal` | `boolean` | No | Whether to render as modal on mobile devices | `false` |
+
+### Features
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `enableSearch` | `boolean` | No | Whether to enable search functionality | `false` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `side` | `SelectMenuSide` | No | Side where menu appears relative to trigger | `SelectMenuSide.BOTTOM` |
+| `alignment` | `SelectMenuAlignment` | No | Alignment of menu relative to trigger | `SelectMenuAlignment.CENTER` |
+| `maxHeight` | `number` | No | Maximum height of the menu in pixels | `undefined` |
 
 ## Usage Examples
 
@@ -87,4 +123,3 @@ Select that becomes modal on mobile
   onSelect={handleMobileSelection}
 />
 ```
-

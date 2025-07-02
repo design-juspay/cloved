@@ -1,12 +1,9 @@
 ---
-title: Multiselect
+title: MultiSelect
 description: A comprehensive multi-selection dropdown component with grouped items, search functionality, customizable positioning, and flexible selection display options for selecting multiple values from a list.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import multiselectMeta from "@/meta/multiselect.context";
-
-# Multiselect Component Documentation
+# MultiSelect Component Documentation
 
 ## Description
 A comprehensive multi-selection dropdown component with grouped items, search functionality, customizable positioning, and flexible selection display options for selecting multiple values from a list.
@@ -25,7 +22,52 @@ A comprehensive multi-selection dropdown component with grouped items, search fu
 
 ## Props
 
-<BlendTypeTable componentMeta={multiselectMeta} />
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `selectedValues` | `string[]` | Yes | Array of currently selected values | `-` |
+| `disabled` | `boolean` | No | Whether the multi-select is disabled | `false` |
+| `required` | `boolean` | No | Whether the multi-select is required (shows asterisk) | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onChange` | `(selectedValue: string) => void` | Yes | Callback fired when a selection changes | `-` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `items` | `MultiSelectMenuGroupType[]` | Yes | Array of grouped menu items for selection | `-` |
+| `label` | `string` | Yes | The main label text for the multi-select | `-` |
+| `placeholder` | `string` | Yes | Placeholder text displayed when no items are selected | `-` |
+| `sublabel` | `string` | No | Additional label text displayed below the main label | `undefined` |
+| `helpIconHintText` | `string` | No | Text displayed in help tooltip next to the label | `undefined` |
+| `hintText` | `string` | No | Hint text displayed below the multi-select | `undefined` |
+| `slot` | `React.ReactNode` | No | Custom content (usually an icon) displayed in the trigger | `undefined` |
+| `name` | `string` | No | Name attribute for form submission | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `variant` | `MultiSelectVariant` | No | Visual variant of the multi-select component | `MultiSelectVariant.CONTAINER` |
+| `selectionTagType` | `MultiSelectSelectionTagType` | No | How selected items are displayed (count or individual tags) | `MultiSelectSelectionTagType.COUNT` |
+| `size` | `MultiSelectMenuSize` | No | Size variant of the multi-select menu | `MultiSelectMenuSize.MEDIUM` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `side` | `MultiSelectMenuSide` | No | Side where the menu should appear relative to the trigger | `MultiSelectMenuSide.BOTTOM` |
+| `alignment` | `MultiSelectMenuAlignment` | No | Alignment of the menu relative to the trigger | `MultiSelectMenuAlignment.CENTER` |
+| `minWidth` | `number` | No | Minimum width of the dropdown menu in pixels | `undefined` |
+| `maxWidth` | `number` | No | Maximum width of the dropdown menu in pixels | `undefined` |
+| `maxHeight` | `number` | No | Maximum height of the dropdown menu in pixels | `undefined` |
+| `sideOffset` | `number` | No | Distance in pixels between the menu and trigger | `5` |
+| `alignOffset` | `number` | No | Offset in pixels for menu alignment | `0` |
 
 ## Usage Examples
 
@@ -139,4 +181,3 @@ Multi-select with form integration and validation
   items={formOptions}
 />
 ```
-

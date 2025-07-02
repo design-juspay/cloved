@@ -3,8 +3,6 @@ title: Sidebar
 description: A navigation sidebar component for organizing hierarchical content with collapsible sections, custom styling, and responsive behavior.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import sidebarMeta from "@/meta/sidebar.context";
 
 # Sidebar Component Documentation
 
@@ -25,7 +23,52 @@ A navigation sidebar component for organizing hierarchical content with collapsi
 
 ## Props
 
-<BlendTypeTable componentMeta={sidebarMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `React.ReactNode` | Yes | Sidebar sections and items to display | `-` |
+| `title` | `string` | No | Title for the sidebar section (SidebarSection prop) | `undefined` |
+| `icon` | `React.ReactNode` | No | Icon to display for the sidebar item (SidebarItem prop) | `undefined` |
+| `badge` | `React.ReactNode` | No | Badge or notification indicator (SidebarItem prop) | `undefined` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `className` | `string` | No | Additional CSS class names for the sidebar | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `collapsed` | `boolean` | No | Whether the sidebar is in collapsed state | `false` |
+| `defaultOpen` | `boolean` | No | Whether the section is open by default (SidebarSection prop) | `true` |
+| `active` | `boolean` | No | Whether the sidebar item is currently active (SidebarItem prop) | `false` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `width` | `string \| number` | No | Width of the sidebar | `'280px'` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `collapsible` | `boolean` | No | Whether the section can be collapsed (SidebarSection prop) | `false` |
+
+### Navigation
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `href` | `string` | No | URL for the sidebar item link (SidebarItem prop) | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClick` | `() => void` | No | Click handler for the sidebar item (SidebarItem prop) | `undefined` |
 
 ## Usage Examples
 
@@ -102,4 +145,3 @@ Sidebar with nested navigation items
   </SidebarSection>
 </Sidebar>
 ```
-

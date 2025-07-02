@@ -3,8 +3,6 @@ title: Primitives
 description: A collection of low-level, unstyled primitive components that serve as building blocks for creating custom UI components with full control over styling and behavior.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import primitivesMeta from "@/meta/primitives.context";
 
 # Primitives Component Documentation
 
@@ -25,7 +23,54 @@ A collection of low-level, unstyled primitive components that serve as building 
 
 ## Props
 
-<BlendTypeTable componentMeta={primitivesMeta} />
+### Composition
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `asChild` | `boolean` | No | Merges props with the first child element instead of rendering a wrapper | `false` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `React.ReactNode` | Yes | Child elements to render within the primitive | `-` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `className` | `string` | No | CSS class names for styling the primitive | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onSelect` | `(event: Event) => void` | No | Callback fired when an item is selected (for selectable primitives) | `undefined` |
+| `onOpenChange` | `(open: boolean) => void` | No | Callback fired when open state changes | `undefined` |
+| `onCheckedChange` | `(checked: boolean) => void` | No | Callback fired when checked state changes | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `disabled` | `boolean` | No | Whether the primitive is disabled | `false` |
+| `open` | `boolean` | No | Controlled open state (for dialog/dropdown primitives) | `undefined` |
+| `checked` | `boolean` | No | Controlled checked state (for checkbox/radio primitives) | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | No | Preferred side for positioning (for floating primitives) | `'bottom'` |
+| `align` | `'start' \| 'center' \| 'end'` | No | Alignment relative to the trigger (for floating primitives) | `'center'` |
+| `sideOffset` | `number` | No | Distance in pixels from the trigger (for floating primitives) | `0` |
+
+### Form
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `value` | `string` | No | Value for form submission (for input primitives) | `undefined` |
+| `name` | `string` | No | Name attribute for form submission | `undefined` |
 
 ## Usage Examples
 
@@ -145,4 +190,3 @@ const CustomCheckbox = ({ children, ...props }) => {
   );
 };
 ```
-

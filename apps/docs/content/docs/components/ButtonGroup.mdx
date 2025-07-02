@@ -6,7 +6,7 @@ description: A flexible button group component that organizes multiple buttons w
 import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
 import buttongroupMeta from "@/meta/buttongroup.context";
 
-# Buttongroup Component Documentation
+# ButtonGroup Component Documentation
 
 ## Description
 A flexible button group component that organizes multiple buttons with intelligent styling modes, positioning, and layout options for cohesive user interfaces.
@@ -23,7 +23,29 @@ A flexible button group component that organizes multiple buttons with intellige
 
 ## Props
 
-<BlendTypeTable componentMeta={buttongroupMeta} />
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `ButtonSize` | No | Size applied to all buttons in the group | `ButtonSize.MEDIUM` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `isStacked` | `boolean` | No | Whether buttons should be stacked with connected borders | `true` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `mode` | `ButtonGroupMode` | No | Styling mode that determines how button types are transformed within the group | `ButtonGroupMode.SINGLE_PRIMARY` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `ReactNode` | Yes | Button components to be grouped together | `-` |
 
 ## Usage Examples
 
@@ -83,4 +105,3 @@ Button group with large size and custom styling
   <Button text="Publish" buttonType={ButtonType.PRIMARY} />
 </ButtonGroup>
 ```
-

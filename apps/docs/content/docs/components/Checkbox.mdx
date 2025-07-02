@@ -25,7 +25,37 @@ A versatile checkbox component with support for controlled and uncontrolled stat
 
 ## Props
 
-<BlendTypeTable componentMeta={checkboxMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `id` | `string` | No | Unique identifier for the checkbox input | `auto-generated` |
+| `value` | `string` | No | Value attribute for the checkbox input | `undefined` |
+| `children` | `ReactNode` | No | Label content for the checkbox | `undefined` |
+| `subtext` | `string` | No | Additional descriptive text below the checkbox | `undefined` |
+| `slot` | `ReactNode` | No | Custom content slot next to the checkbox label | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `checked` | `boolean \| 'indeterminate'` | No | Controlled checked state of the checkbox | `undefined` |
+| `defaultChecked` | `boolean` | No | Default checked state for uncontrolled mode | `false` |
+| `disabled` | `boolean` | No | Whether the checkbox is disabled | `false` |
+| `required` | `boolean` | No | Whether the checkbox is required (shows asterisk) | `false` |
+| `error` | `boolean` | No | Whether the checkbox is in error state | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onCheckedChange` | `(checked: boolean \| 'indeterminate') => void` | No | Callback fired when the checked state changes | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `CheckboxSize` | No | Size variant of the checkbox | `CheckboxSize.MEDIUM` |
 
 ## Usage Examples
 
@@ -79,4 +109,3 @@ Checkbox in indeterminate state with custom slot content
   Select all items
 </Checkbox>
 ```
-

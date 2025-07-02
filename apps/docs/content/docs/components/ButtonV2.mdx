@@ -6,7 +6,7 @@ description: An enhanced button component with comprehensive styling options, mu
 import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
 import buttonv2Meta from "@/meta/buttonv2.context";
 
-# Buttonv2 Component Documentation
+# ButtonV2 Component Documentation
 
 ## Description
 An enhanced button component with comprehensive styling options, multiple variants, loading states, and flexible layout configurations for modern user interfaces.
@@ -25,7 +25,42 @@ An enhanced button component with comprehensive styling options, multiple varian
 
 ## Props
 
-<BlendTypeTable componentMeta={buttonv2Meta} />
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `buttonType` | `ButtonTypeV2` | No | The visual type/variant of the button | `ButtonTypeV2.PRIMARY` |
+| `size` | `ButtonSizeV2` | No | The size of the button | `ButtonSizeV2.MEDIUM` |
+| `subType` | `ButtonSubTypeV2` | No | The subtype that affects button styling and behavior | `ButtonSubTypeV2.DEFAULT` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `text` | `string` | No | The text content displayed in the button | `undefined` |
+| `leadingIcon` | `React.ReactNode` | No | Icon element to display before the button text | `undefined` |
+| `trailingIcon` | `React.ReactNode` | No | Icon element to display after the button text | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `disabled` | `boolean` | No | Whether the button is disabled and non-interactive | `false` |
+| `loading` | `boolean` | No | Whether the button is in a loading state with spinner | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClick` | `() => void` | No | Callback function called when the button is clicked | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `buttonGroupPosition` | `'center' \| 'left' \| 'right'` | No | Position of the button within a button group | `undefined` |
+| `fullWidth` | `boolean` | No | Whether the button should take the full width of its container | `false` |
+| `justifyContent` | `CSSObject['justifyContent']` | No | CSS justify-content property for button content alignment | `undefined` |
 
 ## Usage Examples
 
@@ -105,4 +140,3 @@ Full width and inline button variants
   onClick={() => handleInlineAction()}
 />
 ```
-

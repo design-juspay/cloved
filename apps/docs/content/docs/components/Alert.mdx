@@ -22,7 +22,39 @@ A versatile alert component for displaying important messages, notifications, an
 
 ## Props
 
-<BlendTypeTable componentMeta={alertMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `heading` | `string` | Yes | The main heading text of the alert | `-` |
+| `description` | `string` | Yes | The description text providing more details about the alert | `-` |
+| `icon` | `ReactNode` | No | Custom icon to display in the alert | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `variant` | `AlertVariant` | No | The visual variant of the alert determining its color scheme | `AlertVariant.PRIMARY` |
+| `style` | `AlertStyle` | No | The visual style of the alert | `undefined` |
+
+### Actions
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `primaryAction` | `AlertAction` | No | Primary action button configuration | `undefined` |
+| `secondaryAction` | `AlertAction` | No | Secondary action button configuration | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClose` | `() => void` | No | Callback function called when the alert is closed | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `actionPlacement` | `AlertActionPlacement` | No | Placement of action buttons within the alert | `AlertActionPlacement.RIGHT` |
 
 ## Usage Examples
 
@@ -89,4 +121,3 @@ Alert with actions placed at the bottom
   }}
 />
 ```
-

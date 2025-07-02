@@ -22,7 +22,42 @@ A versatile button component with multiple variants, sizes, and states for user 
 
 ## Props
 
-<BlendTypeTable componentMeta={buttonMeta} />
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `buttonType` | `ButtonTypeV2` | No | The type of button to use | `ButtonTypeV2.PRIMARY` |
+| `size` | `ButtonSizeV2` | No | The size of the button | `ButtonSizeV2.MEDIUM` |
+| `subType` | `ButtonSubTypeV2` | No | The subtype of the button | `ButtonSubTypeV2.DEFAULT` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `text` | `string` | No | The text content of the button | `undefined` |
+| `leadingIcon` | `React.ReactNode` | No | Icon to display before the button text | `undefined` |
+| `trailingIcon` | `React.ReactNode` | No | Icon to display after the button text | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `disabled` | `boolean` | No | Whether the button is disabled | `false` |
+| `loading` | `boolean` | No | Whether the button is in loading state | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onClick` | `function` | No | Callback function called when button is clicked | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `buttonGroupPosition` | `'center' \| 'left' \| 'right'` | No | Position of the button within a button group | `undefined` |
+| `fullWidth` | `boolean` | No | Whether the button should take full width of its container | `false` |
+| `justifyContent` | `CSSObject['justifyContent']` | No | CSS justify-content property for button content alignment | `undefined` |
 
 ## Usage Examples
 
@@ -65,4 +100,3 @@ Button that takes full width of container
   buttonType={ButtonTypeV2.SECONDARY} 
 />
 ```
-

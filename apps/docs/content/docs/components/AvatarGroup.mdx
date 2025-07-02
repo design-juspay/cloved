@@ -6,7 +6,7 @@ description: A sophisticated avatar group component that displays multiple user 
 import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
 import avatargroupMeta from "@/meta/avatargroup.context";
 
-# Avatargroup Component Documentation
+# AvatarGroup Component Documentation
 
 ## Description
 A sophisticated avatar group component that displays multiple user avatars with overflow handling, selection capabilities, and an interactive menu for managing large sets of users.
@@ -24,7 +24,40 @@ A sophisticated avatar group component that displays multiple user avatars with 
 
 ## Props
 
-<BlendTypeTable componentMeta={avatargroupMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `avatars` | `AvatarData[]` | Yes | Array of avatar data objects to display in the group | `-` |
+| `id` | `string \| number` | Yes | Unique identifier for the avatar (AvatarData property) | `-` |
+| `src` | `string` | No | Image source URL for the avatar (AvatarData property) | `undefined` |
+| `alt` | `string` | No | Alternative text for the avatar image (AvatarData property) | `undefined` |
+| `fallback` | `string \| React.ReactNode` | No | Fallback content when image is not available (AvatarData property) | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `maxCount` | `number` | No | Maximum number of avatars to display before showing overflow counter | `5` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `AvatarSize` | No | Size of all avatars in the group | `AvatarSize.MD` |
+| `shape` | `AvatarShape` | No | Shape of all avatars in the group | `AvatarShape.CIRCULAR` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `selectedAvatarIds` | `(string \| number)[]` | No | Array of selected avatar IDs for controlled selection | `[]` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onSelectionChange` | `(selectedIds: (string \| number)[]) => void` | No | Callback fired when avatar selection changes | `undefined` |
 
 ## Usage Examples
 
@@ -90,4 +123,3 @@ Avatar group for displaying large teams with overflow
   onSelectionChange={handleMemberSelection}
 />
 ```
-

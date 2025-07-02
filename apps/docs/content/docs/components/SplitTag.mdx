@@ -1,12 +1,9 @@
 ---
-title: Splittag
+title: SplitTag
 description: A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import splittagMeta from "@/meta/splittag.context";
-
-# Splittag Component Documentation
+# SplitTag Component Documentation
 
 ## Description
 A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.
@@ -25,7 +22,41 @@ A tag component with split functionality, featuring a main content area and a se
 
 ## Props
 
-<BlendTypeTable componentMeta={splittagMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `mainContent` | `React.ReactNode` | Yes | Content to display in the main section of the split tag | `-` |
+| `mainIcon` | `React.ReactNode` | No | Icon to display in the main section | `undefined` |
+| `actionIcon` | `React.ReactNode` | No | Icon to display in the action section | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onMainClick` | `() => void` | No | Click handler for the main section | `undefined` |
+| `onActionClick` | `() => void` | No | Click handler for the action section | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `size` | `SplitTagSize` | No | Size variant of the split tag | `SplitTagSize.MEDIUM` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `backgroundColor` | `string` | No | Background color for the main section | `undefined` |
+| `textColor` | `string` | No | Text color for the main section | `undefined` |
+| `actionBackgroundColor` | `string` | No | Background color for the action section | `undefined` |
+| `className` | `string` | No | Additional CSS class names | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `disabled` | `boolean` | No | Whether the split tag is disabled | `false` |
 
 ## Usage Examples
 
@@ -85,4 +116,3 @@ Large split tag with complex content
   disabled={!canEdit}
 />
 ```
-

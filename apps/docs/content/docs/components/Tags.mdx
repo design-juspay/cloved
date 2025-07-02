@@ -3,8 +3,6 @@ title: Tags
 description: A versatile tag component for displaying labels, categories, or status indicators with multiple variants, sizes, and interactive capabilities.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import tagsMeta from "@/meta/tags.context";
 
 # Tags Component Documentation
 
@@ -25,7 +23,47 @@ A versatile tag component for displaying labels, categories, or status indicator
 
 ## Props
 
-<BlendTypeTable componentMeta={tagsMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `React.ReactNode` | Yes | Content to display inside the tag | `-` |
+| `leadingIcon` | `React.ReactNode` | No | Icon to display before the tag content | `undefined` |
+| `trailingIcon` | `React.ReactNode` | No | Icon to display after the tag content | `undefined` |
+
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `variant` | `TagVariant` | No | Visual variant of the tag | `TagVariant.SOLID` |
+| `size` | `TagSize` | No | Size variant of the tag | `TagSize.MEDIUM` |
+
+### Styling
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `color` | `string` | No | Color theme for the tag | `'gray'` |
+| `className` | `string` | No | Additional CSS class names | `undefined` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `removable` | `boolean` | No | Whether the tag can be removed (shows close button) | `false` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onRemove` | `() => void` | No | Callback fired when the remove button is clicked | `undefined` |
+| `onClick` | `() => void` | No | Callback fired when the tag is clicked | `undefined` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `disabled` | `boolean` | No | Whether the tag is disabled | `false` |
+| `loading` | `boolean` | No | Whether the tag is in loading state | `false` |
 
 ## Usage Examples
 
@@ -109,4 +147,3 @@ Tags with various sizes and states
   </div>
 </div>
 ```
-

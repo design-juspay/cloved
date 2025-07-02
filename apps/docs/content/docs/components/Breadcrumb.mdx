@@ -24,7 +24,15 @@ A navigation breadcrumb component that displays the current page's location with
 
 ## Props
 
-<BlendTypeTable componentMeta={breadcrumbMeta} />
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `items` | `BreadcrumbItemType[]` | Yes | Array of breadcrumb items to display in the navigation | `-` |
+| `label` | `string` | Yes | Display text for the breadcrumb item (BreadcrumbItemType property) | `-` |
+| `href` | `string` | Yes | URL link for the breadcrumb item (BreadcrumbItemType property) | `-` |
+| `leftSlot` | `React.ReactNode` | No | Custom content to display on the left side of the breadcrumb item (BreadcrumbItemType property) | `undefined` |
+| `rightSlot` | `React.ReactNode` | No | Custom content to display on the right side of the breadcrumb item (BreadcrumbItemType property) | `undefined` |
 
 ## Usage Examples
 
@@ -108,4 +116,3 @@ Breadcrumb that demonstrates overflow handling
   ]}
 />
 ```
-

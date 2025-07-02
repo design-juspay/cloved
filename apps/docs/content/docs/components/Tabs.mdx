@@ -3,8 +3,6 @@ title: Tabs
 description: A flexible tabs component built on Radix UI primitives, providing multiple visual variants and customizable tab triggers with content panels.
 ---
 
-import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
-import tabsMeta from "@/meta/tabs.context";
 
 # Tabs Component Documentation
 
@@ -23,7 +21,47 @@ A flexible tabs component built on Radix UI primitives, providing multiple visua
 
 ## Props
 
-<BlendTypeTable componentMeta={tabsMeta} />
+### Appearance
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `variant` | `TabsVariant` | No | The visual variant of the tabs | `TabsVariant.UNDERLINE` |
+| `size` | `TabsSize` | No | The size of the tabs | `TabsSize.MD` |
+
+### State
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `defaultValue` | `string` | No | The default active tab value (uncontrolled mode) | `undefined` |
+| `value` | `string` | No | The active tab value (controlled mode) | `undefined` |
+
+### Events
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `onValueChange` | `(value: string) => void` | No | Callback fired when the active tab changes | `undefined` |
+
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `orientation` | `'horizontal' \| 'vertical'` | No | The orientation of the tabs | `'horizontal'` |
+| `dir` | `'ltr' \| 'rtl'` | No | The reading direction of the tabs | `'ltr'` |
+| `expanded` | `boolean` | No | Whether the tab list should expand to fill available space (TabsList prop) | `false` |
+
+### Behavior
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `activationMode` | `'automatic' \| 'manual'` | No | Whether tabs are activated automatically on focus or manually | `'automatic'` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `leftSlot` | `ReactNode` | No | Content to display on the left side of tab trigger (TabsTrigger prop) | `undefined` |
+| `rightSlot` | `ReactNode` | No | Content to display on the right side of tab trigger (TabsTrigger prop) | `undefined` |
+| `children` | `string \| number` | Yes | The text content of the tab trigger (TabsTrigger prop) | `-` |
 
 ## Usage Examples
 
@@ -116,4 +154,3 @@ const [activeTab, setActiveTab] = useState("profile");
   <TabsContent value="notifications">Notification settings</TabsContent>
 </Tabs>
 ```
-

@@ -6,7 +6,7 @@ description: A streamlined button group component designed specifically for Butt
 import { BlendTypeTable } from "@/components/ui/BlendTypeTable";
 import buttongroupv2Meta from "@/meta/buttongroupv2.context";
 
-# Buttongroupv2 Component Documentation
+# ButtonGroupV2 Component Documentation
 
 ## Description
 A streamlined button group component designed specifically for ButtonV2 components, providing flexible layout options with stacked and inline arrangements.
@@ -22,7 +22,17 @@ A streamlined button group component designed specifically for ButtonV2 componen
 
 ## Props
 
-<BlendTypeTable componentMeta={buttongroupv2Meta} />
+### Layout
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `stacked` | `boolean` | No | Whether buttons should be stacked together with no gaps (true) or spaced apart (false) | `false` |
+
+### Content
+
+| Prop Name | Type | Required | Description | Default Value |
+|-----------|------|----------|-------------|---------------|
+| `children` | `ReactElement<ButtonV2Props> \| ReactElement<ButtonV2Props>[]` | Yes | ButtonV2 components to be grouped together | `-` |
 
 ## Usage Examples
 
@@ -97,4 +107,3 @@ Form action buttons in stacked layout
   />
 </ButtonGroupV2>
 ```
-
