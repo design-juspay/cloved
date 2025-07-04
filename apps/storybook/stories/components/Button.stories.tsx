@@ -11,7 +11,6 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: `
-# Button Component
 
 A versatile button component with multiple variants, sizes, and states.
 
@@ -212,24 +211,6 @@ export const ButtonStates: Story = {
   },
 };
 
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    buttonType: ButtonType.PRIMARY,
-    size: ButtonSize.MEDIUM,
-    subType: ButtonSubType.DEFAULT,
-    text: 'Playground Button',
-    isLoading: false,
-    isDisabled: false,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different button configurations. Use the controls panel below to experiment with different props.',
-      },
-    },
-  },
-};
 
 // Loading state
 export const Loading: Story = {

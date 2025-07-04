@@ -11,8 +11,6 @@ const meta: Meta<typeof Switch> = {
     docs: {
       description: {
         component: `
-# Switch Component
-
 A toggle switch component for binary on/off states with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration capabilities.
 
 ## Features
@@ -487,136 +485,7 @@ export const SwitchGroupExamples: Story = {
   },
 };
 
-// Form integration example
-export const FormIntegration: Story = {
-  render: () => {
-    const [formData, setFormData] = useState({
-      notifications: true,
-      marketing: false,
-      analytics: false,
-      darkMode: false,
-      autoSave: true,
-    });
 
-    const [errors, setErrors] = useState({
-      notifications: false,
-    });
-
-    const handleSubmit = () => {
-      const newErrors = {
-        notifications: !formData.notifications,
-      };
-      setErrors(newErrors);
-      
-      if (!newErrors.notifications) {
-        alert(`Settings saved:\n${JSON.stringify(formData, null, 2)}`);
-      }
-    };
-
-    return (
-      <div style={{ maxWidth: '400px', padding: '24px', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-        <h3 style={{ margin: '0 0 24px 0', fontSize: '18px', fontWeight: '600' }}>App Settings</h3>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <Switch
-            checked={formData.notifications}
-            onChange={(checked) => {
-              setFormData(prev => ({ ...prev, notifications: checked }));
-              if (checked) setErrors(prev => ({ ...prev, notifications: false }));
-            }}
-            required={true}
-            error={errors.notifications}
-            size={SwitchSize.MEDIUM}
-            label="Enable notifications"
-            subtext={errors.notifications ? "Notifications are required for the app to function properly" : "Get important updates and alerts"}
-            slot={<Bell size={16} color={formData.notifications ? "#10b981" : "#ef4444"} />}
-          />
-
-          <Switch
-            checked={formData.marketing}
-            onChange={(checked) => setFormData(prev => ({ ...prev, marketing: checked }))}
-            size={SwitchSize.MEDIUM}
-            label="Marketing emails"
-            subtext="Receive promotional content and product updates"
-          />
-
-          <Switch
-            checked={formData.analytics}
-            onChange={(checked) => setFormData(prev => ({ ...prev, analytics: checked }))}
-            size={SwitchSize.MEDIUM}
-            label="Usage analytics"
-            subtext="Help us improve the app by sharing usage data"
-            slot={<Shield size={16} color={formData.analytics ? "#3b82f6" : "#6b7280"} />}
-          />
-
-          <Switch
-            checked={formData.darkMode}
-            onChange={(checked) => setFormData(prev => ({ ...prev, darkMode: checked }))}
-            size={SwitchSize.MEDIUM}
-            label="Dark mode"
-            subtext="Use dark theme for better viewing in low light"
-            slot={<Moon size={16} color={formData.darkMode ? "#6366f1" : "#6b7280"} />}
-          />
-
-          <Switch
-            checked={formData.autoSave}
-            onChange={(checked) => setFormData(prev => ({ ...prev, autoSave: checked }))}
-            size={SwitchSize.SMALL}
-            label="Auto-save changes"
-            subtext="Automatically save your work"
-            slot={<Zap size={14} color={formData.autoSave ? "#f59e0b" : "#6b7280"} />}
-          />
-        </div>
-
-        <button 
-          onClick={handleSubmit}
-          style={{ 
-            marginTop: '24px', 
-            padding: '12px 24px', 
-            backgroundColor: '#3b82f6', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: '500',
-            width: '100%'
-          }}
-        >
-          Save Settings
-        </button>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Real-world form integration example with validation, error handling, and comprehensive settings.',
-      },
-    },
-  },
-};
-
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    label: 'Playground switch',
-    size: SwitchSize.MEDIUM,
-    checked: undefined,
-    defaultChecked: false,
-    disabled: false,
-    required: false,
-    error: false,
-    subtext: '',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different switch configurations. Use the controls panel below to experiment with different props.',
-      },
-    },
-  },
-};
 
 // Uncontrolled switch
 export const UncontrolledSwitch: Story = {
@@ -665,4 +534,4 @@ export const UncontrolledSwitch: Story = {
       },
     },
   },
-}; 
+};

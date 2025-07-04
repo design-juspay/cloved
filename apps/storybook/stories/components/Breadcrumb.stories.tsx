@@ -27,8 +27,6 @@ const meta: Meta<typeof Breadcrumb> = {
     docs: {
       description: {
         component: `
-# Breadcrumb Component
-
 A navigation breadcrumb component that displays the current page's location within a navigational hierarchy with support for overflow handling and custom content slots.
 
 ## Features
@@ -692,45 +690,3 @@ export const SingleItem: Story = {
     },
   },
 };
-
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    items: [
-      { 
-        label: "Home", 
-        href: "/",
-        leftSlot: <Home size={16} />
-      },
-      { 
-        label: "Products", 
-        href: "/products",
-        leftSlot: <Package size={16} />
-      },
-      { 
-        label: "Electronics", 
-        href: "/products/electronics",
-        leftSlot: <Globe size={16} />
-      },
-      { 
-        label: "Current Page", 
-        href: "/products/electronics/current",
-        rightSlot: <span style={{ 
-          backgroundColor: '#10b981', 
-          color: 'white', 
-          padding: '2px 6px', 
-          borderRadius: '4px', 
-          fontSize: '10px',
-          fontWeight: '500'
-        }}>Active</span>
-      }
-    ]
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different breadcrumb configurations. Use the controls panel below to experiment with different items.',
-      },
-    },
-  },
-}; 

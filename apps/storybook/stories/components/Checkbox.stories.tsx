@@ -11,8 +11,6 @@ const meta: Meta<typeof Checkbox> = {
     docs: {
       description: {
         component: `
-# Checkbox Component
-
 A versatile checkbox component with support for controlled and uncontrolled states, indeterminate state, multiple sizes, and comprehensive form integration capabilities.
 
 ## Features
@@ -427,127 +425,7 @@ export const WithSlots: Story = {
   },
 };
 
-// Form integration example
-export const FormIntegration: Story = {
-  render: () => {
-    const [formData, setFormData] = useState({
-      newsletter: false,
-      terms: false,
-      privacy: false,
-      marketing: 'indeterminate' as boolean | 'indeterminate',
-    });
 
-    const [errors, setErrors] = useState({
-      terms: false,
-      privacy: false,
-    });
-
-    const handleSubmit = () => {
-      const newErrors = {
-        terms: !formData.terms,
-        privacy: !formData.privacy,
-      };
-      setErrors(newErrors);
-      
-      if (!newErrors.terms && !newErrors.privacy) {
-        alert('Form submitted successfully!');
-      }
-    };
-
-    return (
-      <div style={{ maxWidth: '400px', padding: '24px', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-        <h3 style={{ margin: '0 0 24px 0', fontSize: '18px', fontWeight: '600' }}>Preferences</h3>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <Checkbox
-            checked={formData.newsletter}
-            onCheckedChange={(checked) => setFormData(prev => ({ ...prev, newsletter: checked === true }))}
-            size={CheckboxSize.MEDIUM}
-            subtext="Get updates about new features and releases"
-          >
-            Subscribe to newsletter
-          </Checkbox>
-
-          <Checkbox
-            checked={formData.terms}
-            onCheckedChange={(checked) => setFormData(prev => ({ ...prev, terms: checked === true }))}
-            required={true}
-            error={errors.terms}
-            size={CheckboxSize.MEDIUM}
-            subtext={errors.terms ? "You must accept the terms to continue" : "Please read our terms of service"}
-          >
-            I accept the terms and conditions
-          </Checkbox>
-
-          <Checkbox
-            checked={formData.privacy}
-            onCheckedChange={(checked) => setFormData(prev => ({ ...prev, privacy: checked === true }))}
-            required={true}
-            error={errors.privacy}
-            size={CheckboxSize.MEDIUM}
-            subtext={errors.privacy ? "Privacy policy acceptance is required" : "We respect your privacy"}
-          >
-            I agree to the privacy policy
-          </Checkbox>
-
-          <Checkbox
-            checked={formData.marketing}
-            onCheckedChange={(checked) => setFormData(prev => ({ ...prev, marketing: checked }))}
-            size={CheckboxSize.MEDIUM}
-            subtext="Partial preferences selected"
-          >
-            Marketing communications
-          </Checkbox>
-        </div>
-
-        <button 
-          onClick={handleSubmit}
-          style={{ 
-            marginTop: '24px', 
-            padding: '12px 24px', 
-            backgroundColor: '#3b82f6', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: '500'
-          }}
-        >
-          Save Preferences
-        </button>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Real-world form integration example with validation and error handling.',
-      },
-    },
-  },
-};
-
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    children: 'Playground checkbox',
-    size: CheckboxSize.MEDIUM,
-    checked: undefined,
-    defaultChecked: false,
-    disabled: false,
-    required: false,
-    error: false,
-    subtext: '',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different checkbox configurations. Use the controls panel below to experiment with different props.',
-      },
-    },
-  },
-};
 
 // Uncontrolled checkbox
 export const UncontrolledCheckbox: Story = {
@@ -598,4 +476,4 @@ export const UncontrolledCheckbox: Story = {
       },
     },
   },
-}; 
+};

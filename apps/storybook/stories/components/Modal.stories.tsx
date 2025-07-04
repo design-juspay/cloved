@@ -49,8 +49,6 @@ const meta: Meta<typeof Modal> = {
       },
       description: {
         component: `
-# Modal Component
-
 A flexible modal dialog component for displaying content in an overlay with customizable header, footer, and action buttons.
 
 ## Features:
@@ -719,91 +717,6 @@ export const SuccessModal: Story = {
     docs: {
       description: {
         story: 'Success modal for positive feedback and confirmations.',
-      },
-    },
-  },
-};
-
-// Playground
-export const Playground: Story = {
-  args: {
-    isOpen: false,
-    title: 'Modal Title',
-    subtitle: 'Modal subtitle',
-    showCloseButton: true,
-    showHeader: true,
-    showFooter: true,
-    closeOnBackdropClick: true,
-    showDivider: false
-  },
-  argTypes: {
-    isOpen: {
-      control: 'boolean',
-      description: 'Controls whether the modal is open or closed'
-    },
-    title: {
-      control: 'text',
-      description: 'The title text displayed in the modal header'
-    },
-    subtitle: {
-      control: 'text',
-      description: 'The subtitle text displayed below the title'
-    },
-    showCloseButton: {
-      control: 'boolean',
-      description: 'Whether to show the close button in the header'
-    },
-    showHeader: {
-      control: 'boolean',
-      description: 'Whether to show the modal header'
-    },
-    showFooter: {
-      control: 'boolean',
-      description: 'Whether to show the modal footer with action buttons'
-    },
-    closeOnBackdropClick: {
-      control: 'boolean',
-      description: 'Whether clicking the backdrop should close the modal'
-    },
-    showDivider: {
-      control: 'boolean',
-      description: 'Whether to show a divider line below the header'
-    }
-  },
-  render: (args) => {
-    const [isOpen, setIsOpen] = useState(false);
-    
-    return (
-      <>
-        <Button 
-          buttonType={ButtonType.PRIMARY}
-          text="Open Playground Modal"
-          onClick={() => setIsOpen(true)}
-        />
-        
-        <Modal
-          {...args}
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          primaryAction={{
-            text: "Primary Action",
-            onClick: () => setIsOpen(false)
-          }}
-          secondaryAction={{
-            text: "Secondary Action",
-            onClick: () => setIsOpen(false)
-          }}
-        >
-          <p>This is the modal content area. You can customize all the modal properties using the controls below.</p>
-          <p>Try changing the different options to see how they affect the modal's appearance and behavior.</p>
-        </Modal>
-      </>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground for testing all Modal component props and configurations.',
       },
     },
   },

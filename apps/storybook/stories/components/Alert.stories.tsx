@@ -11,7 +11,6 @@ const meta: Meta<typeof Alert> = {
     docs: {
       description: {
         component: `
-# Alert Component
 
 A versatile alert component for displaying important messages, notifications, and status updates with various styles and action buttons.
 
@@ -327,77 +326,3 @@ export const ClosableAlerts: Story = {
     },
   },
 };
-
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    heading: 'Playground Alert',
-    description: 'Use the controls below to experiment with different alert configurations.',
-    variant: AlertVariant.PRIMARY,
-    style: AlertStyle.SUBTLE,
-    actionPlacement: AlertActionPlacement.RIGHT,
-    primaryAction: {
-      label: "Primary Action",
-      onClick: () => console.log('Primary action clicked')
-    },
-    secondaryAction: {
-      label: "Secondary Action",
-      onClick: () => console.log('Secondary action clicked')
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different alert configurations. Use the controls panel below to experiment with different props.',
-      },
-    },
-  },
-};
-
-// Real-world examples
-export const Examples: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
-      <Alert
-        heading="Form Validation Error"
-        description="Please fix the following errors before submitting the form."
-        variant={AlertVariant.ERROR}
-        icon={<XCircle size={16} />}
-        primaryAction={{
-          label: "Show Errors",
-          onClick: () => console.log('Show errors clicked')
-        }}
-        onClose={() => console.log('Alert dismissed')}
-      />
-      <Alert
-        heading="Data Saved Successfully"
-        description="Your changes have been saved automatically."
-        variant={AlertVariant.SUCCESS}
-        icon={<CheckCircle size={16} />}
-        style={AlertStyle.SUBTLE}
-      />
-      <Alert
-        heading="Storage Almost Full"
-        description="You're using 90% of your storage space. Consider upgrading your plan."
-        variant={AlertVariant.WARNING}
-        icon={<AlertTriangle size={16} />}
-        actionPlacement={AlertActionPlacement.BOTTOM}
-        primaryAction={{
-          label: "Upgrade Now",
-          onClick: () => console.log('Upgrade clicked')
-        }}
-        secondaryAction={{
-          label: "Manage Storage",
-          onClick: () => console.log('Manage storage clicked')
-        }}
-      />
-    </div>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Real-world examples showing common alert use cases in applications.',
-      },
-    },
-  },
-}; 

@@ -11,8 +11,6 @@ const meta: Meta<typeof Radio> = {
     docs: {
       description: {
         component: `
-# Radio Component
-
 A radio button component for single selection within groups, with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.
 
 ## Features
@@ -450,155 +448,7 @@ export const RadioGroupVariations: Story = {
   },
 };
 
-// Complex form example
-export const FormIntegration: Story = {
-  render: () => {
-    const [formData, setFormData] = useState({
-      plan: '',
-      billing: '',
-      features: '',
-    });
 
-    const handleFormSubmit = () => {
-      const missingFields = Object.entries(formData)
-        .filter(([, value]) => !value)
-        .map(([key]) => key);
-
-      if (missingFields.length > 0) {
-        alert(`Please select: ${missingFields.join(', ')}`);
-      } else {
-        alert(`Form submitted:\nPlan: ${formData.plan}\nBilling: ${formData.billing}\nFeatures: ${formData.features}`);
-      }
-    };
-
-    return (
-      <div style={{ maxWidth: '500px', padding: '24px', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-        <h3 style={{ margin: '0 0 24px 0', fontSize: '18px', fontWeight: '600' }}>
-          Create Your Subscription
-        </h3>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <RadioGroup 
-            name="plan"
-            label="Select Plan"
-            value={formData.plan}
-            onChange={(value) => setFormData(prev => ({ ...prev, plan: value }))}
-          >
-            <Radio 
-              value="starter" 
-              slot={<Star size={16} color="#fbbf24" />}
-              subtext="$19/month - Basic features for individuals"
-            >
-              Starter Plan
-            </Radio>
-            <Radio 
-              value="professional" 
-              slot={<Shield size={16} color="#3b82f6" />}
-              subtext="$49/month - Advanced features for teams"
-            >
-              Professional Plan
-            </Radio>
-            <Radio 
-              value="enterprise" 
-              slot={<Clock size={16} color="#8b5cf6" />}
-              subtext="$99/month - Premium features for organizations"
-            >
-              Enterprise Plan
-            </Radio>
-          </RadioGroup>
-
-          <RadioGroup 
-            name="billing"
-            label="Billing Cycle"
-            value={formData.billing}
-            onChange={(value) => setFormData(prev => ({ ...prev, billing: value }))}
-          >
-            <Radio 
-              value="monthly"
-              subtext="Pay month-to-month with flexibility"
-            >
-              Monthly Billing
-            </Radio>
-            <Radio 
-              value="yearly"
-              subtext="Save 20% with annual billing"
-            >
-              Yearly Billing (Save 20%)
-            </Radio>
-          </RadioGroup>
-
-          <RadioGroup 
-            name="features"
-            label="Additional Features"
-            value={formData.features}
-            onChange={(value) => setFormData(prev => ({ ...prev, features: value }))}
-          >
-            <Radio 
-              value="standard"
-              subtext="Core features included"
-            >
-              Standard Features
-            </Radio>
-            <Radio 
-              value="premium"
-              subtext="Includes priority support and advanced analytics"
-            >
-              Premium Features (+$10/month)
-            </Radio>
-          </RadioGroup>
-        </div>
-
-        <button 
-          onClick={handleFormSubmit}
-          style={{ 
-            marginTop: '24px', 
-            padding: '12px 24px', 
-            backgroundColor: '#3b82f6', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: '500',
-            width: '100%'
-          }}
-        >
-          Create Subscription
-        </button>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Complex form example with multiple radio groups and comprehensive validation.',
-      },
-    },
-  },
-};
-
-// Interactive playground
-export const Playground: Story = {
-  args: {
-    children: 'Playground radio',
-    value: 'playground',
-    name: 'playground-group',
-    size: RadioSize.MEDIUM,
-    checked: false,
-    defaultChecked: false,
-    disabled: false,
-    required: false,
-    error: false,
-    subtext: '',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground to test different radio configurations. Use the controls panel below to experiment with different props.',
-      },
-    },
-  },
-};
 
 // Uncontrolled Radio Group
 export const UncontrolledRadioGroup: Story = {
@@ -624,4 +474,4 @@ export const UncontrolledRadioGroup: Story = {
       },
     },
   },
-}; 
+};
