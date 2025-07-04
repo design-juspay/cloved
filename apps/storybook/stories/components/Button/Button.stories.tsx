@@ -4,7 +4,7 @@ import { Button, ButtonType, ButtonSize, ButtonSubType } from 'blend-v1';
 import { Plus, Download, Settings, Heart, Star } from 'lucide-react';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button/Button (v1)',
   component: Button,
   parameters: {
     layout: 'centered',
