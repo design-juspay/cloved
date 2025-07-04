@@ -66,8 +66,21 @@ For each component, extract from MDX documentation:
 
 ## File Naming Convention
 - File: `ComponentName.stories.tsx`
-- Location: `apps/storybook/stories/components/`
-- Title: `'Components/ComponentName'`
+- Location: `apps/storybook/stories/components/` or `apps/storybook/stories/components/ComponentGroup/`
+- Title: `'Components/ComponentName'` or `'Components/ComponentGroup/ComponentName'`
+
+## Folder Organization Pattern
+- **Related Components**: Group related components in shared folders
+- **Example**: Button folder contains Button (v1), ButtonV2, ButtonGroup (v1), ButtonGroupV2
+- **Structure**: 
+  ```
+  apps/storybook/stories/components/Button/
+  ├── Button.stories.tsx (title: 'Components/Button/Button (v1)')
+  ├── ButtonV2.stories.tsx (title: 'Components/Button/ButtonV2')
+  ├── ButtonGroup.stories.tsx (title: 'Components/Button/ButtonGroup (v1)')
+  └── ButtonGroupV2.stories.tsx (title: 'Components/Button/ButtonGroupV2')
+  ```
+- **Benefits**: Logical grouping, easy comparison between versions, better navigation
 
 ## Control Types Mapping
 - `string` → `'text'`
@@ -85,4 +98,4 @@ For each component, extract from MDX documentation:
 - `WithIcons` - Icon examples
 - `Loading` - Loading state
 - `Disabled` - Disabled state
-- `Examples` - Real-world usage 
+- `Examples` - Real-world usage
