@@ -3,6 +3,23 @@ import React from 'react';
 import { Charts, ChartType, ChartLegendPosition, NewNestedDataPoint } from 'blend-v1';
 import { TrendingUp, Calendar, DollarSign, Users, Activity, BarChart3, PieChart, LineChart } from 'lucide-react';
 
+// Disable animations in Storybook
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .recharts-line-curve,
+    .recharts-bar-rectangle,
+    .recharts-pie-sector {
+      animation: none !important;
+      transition: none !important;
+    }
+    .recharts-layer {
+      animation: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 const meta: Meta<typeof Charts> = {
   title: 'Components/Charts',
   component: Charts,
