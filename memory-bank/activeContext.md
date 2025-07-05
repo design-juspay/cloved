@@ -1,7 +1,7 @@
 # Active Context: Storybook Implementation
 
 ## Current Focus
-Working on both Phase 4 complex components and Phase 5 specialized components. Just completed Tags and SplitTag components, organized in a shared Tags folder.
+Working on both Phase 4 complex components and Phase 5 specialized components. Just completed Snackbar component with all variants and interactive examples.
 
 ## Immediate Tasks
 1. ✅ **Phase 1**: Plan the implementation approach and create task breakdown
@@ -17,18 +17,19 @@ Working on both Phase 4 complex components and Phase 5 specialized components. J
 - **Approach**: Systematic implementation in phases based on component complexity
 - **Organization**: Related components grouped in shared folders (e.g., Button folder, Tags folder)
 - **Animations**: Disabled chart animations in Storybook to prevent distracting effects
+- **Button Props**: Use `text` and `leadingIcon` props for Button component (not `children` or `leftIcon`)
 
 ## Recent Accomplishments
-1. ✅ **Tags Component Complete**: Implemented comprehensive Tag story with all variants, colors, sizes, shapes, icons, and interactive examples
-2. ✅ **SplitTag Component Complete**: Created SplitTag story with primary/secondary combinations, interactive examples, and real-world use cases
-3. ✅ **Folder Organization**: Organized both Tag and SplitTag in shared Tags folder with proper title structure
-4. ✅ **Progress Update**: 21 of 34 components completed (62%), working on both Phase 4 & 5 simultaneously
+1. ✅ **Snackbar Component Complete**: Implemented comprehensive Snackbar story with all variants (Info, Success, Warning, Error), action buttons, close callbacks, multiple stacking, and real-world examples
+2. ✅ **Button Integration**: Updated all trigger buttons with descriptive text using `text` prop and relevant icons using `leadingIcon` prop
+3. ✅ **UI Refinements**: Adjusted container height to prevent scrolling, maintained component's internal padding from design tokens
+4. ✅ **Progress Update**: 22 of 34 components completed (65%), working on both Phase 4 & 5 simultaneously
 
 ## Next Steps
 1. Continue with remaining Phase 4 complex components
 2. Continue with remaining Phase 5 specialized components
 3. Focus on DataTable, Menu, Dropdown, Sidebar, Directory (Phase 4)
-4. Focus on AvatarGroup, Snackbar, StatCard, GradientBlur (Phase 5)
+4. Focus on AvatarGroup, StatCard, GradientBlur (Phase 5)
 
 ## Resources Available
 - ✅ Existing Button.stories.tsx pattern
@@ -38,6 +39,7 @@ Working on both Phase 4 complex components and Phase 5 specialized components. J
 - ✅ Component exports available in `blend-v1` package
 - ✅ Charts story as reference for complex data visualization components
 - ✅ Tags folder as reference for organizing related components
+- ✅ Snackbar implementation as reference for toast notifications
 
 ## Constraints
 - Must maintain consistency with existing Button story pattern
@@ -46,10 +48,11 @@ Working on both Phase 4 complex components and Phase 5 specialized components. J
 - Must follow TypeScript best practices and proper imports
 - Must consider performance implications (e.g., disabling animations where appropriate)
 - Must organize related components in shared folders for better maintainability
+- Must use correct Button props (`text`, `leadingIcon`) not legacy props
 
 ## Technical Notes
-- **Tags Organization**: Both Tag and SplitTag components organized in `apps/storybook/stories/components/Tags/`
-- **SplitTag Implementation**: Automatically applies NO_FILL variant to primary tag and ATTENTIVE variant to secondary tag
-- **Interactive Examples**: Both Tags and SplitTag include interactive examples with state management
-- **Real-world Use Cases**: Comprehensive examples for e-commerce, monitoring, project management, and more
-- **Progress Tracking**: Now working on both Phase 4 and Phase 5 components simultaneously
+- **Snackbar Implementation**: Uses `addSnackbar` function to trigger notifications, component provides internal styling through design tokens
+- **Button Props**: Button component expects `text` prop for label and `leadingIcon` prop for icons (pass component reference, not JSX)
+- **Container Styling**: Story decorators provide layout containers, but component styling comes from internal tokens
+- **Progress Tracking**: Now at 65% completion with 22 components done, 10 remaining
+- **Phase Status**: Both Phase 4 and Phase 5 are in progress simultaneously
