@@ -147,7 +147,7 @@ pnpm deploy:production
 
 ```bash
 # Documentation development
-pnpm docs
+pnpm docs:dev
 
 # Storybook development
 pnpm storybook

@@ -35,7 +35,7 @@ npx create-turbo@latest -e design-system
 
 ### Development Commands
 
-- `pnpm docs` - Run documentation site locally
+- `pnpm docs:dev` - Run documentation site locally
 - `pnpm storybook` - Run Storybook locally
 - `pnpm storybook:build` - Build Storybook for production
 - `pnpm docs:build` - Build documentation site
@@ -49,7 +49,7 @@ npx create-turbo@latest -e design-system
 ### Release Commands
 
 - `pnpm changeset` - Generate a changeset
-- `pnpm version` - Version packages with changesets
+- `pnpm changeset:version` - Version packages with changesets
 - `pnpm release` - Build and publish packages
 
 For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).

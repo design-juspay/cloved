@@ -9,13 +9,13 @@
     "storybook": "turbo run storybook",
     "storybook:build": "turbo run build-storybook",
     "storybook:preview": "turbo run preview-storybook",
-    "docs": "turbo run dev --filter=docs",
+    "docs:dev": "turbo run dev --filter=docs",
     "docs:build": "turbo run build --filter=docs",
     "deploy:staging": "cd apps/docs && npm run deploy:staging-env",
     "deploy:production": "cd apps/docs && npm run deploy:production-env",
     "deploy:setup": "cd apps/docs && npm run setup:hosting",
     "changeset": "changeset",
-    "version": "changeset version",
+    "changeset:version": "changeset version",
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
