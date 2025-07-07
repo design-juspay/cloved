@@ -61,6 +61,7 @@ import {
 import { getTableToken, TableTokenType } from "../components/DataTable/dataTable.tokens";
 import { CalendarTokenType, getCalendarToken } from "../components/DateRangePicker/dateRangePicker.tokens";
 import { AccordionTokenType, getAccordionToken } from "../components/Accordion/accordion.tokens";
+import { getStatCardToken, StatCardTokenType } from "../components/StatCard/statcard.tokens";
 
 export type ComponentTokenType = {
   TAGS?: TagTokensType;
@@ -87,7 +88,7 @@ export type ComponentTokenType = {
   TABLE?: TableTokenType
   CALENDAR?: CalendarTokenType;
   ACCORDION?: AccordionTokenType;
-  // add supprort for other components here
+  STAT_CARD?: StatCardTokenType;
 };
 
 type ThemeContextType = {
@@ -122,6 +123,7 @@ const ThemeContext = createContext<ThemeContextType>({
     TABLE: getTableToken(FOUNDATION_THEME),
     CALENDAR: getCalendarToken(FOUNDATION_THEME),
     ACCORDION: getAccordionToken(FOUNDATION_THEME),
+    STAT_CARD: getStatCardToken(FOUNDATION_THEME),
   },
 });
 

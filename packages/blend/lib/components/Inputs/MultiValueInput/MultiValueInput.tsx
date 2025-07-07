@@ -17,10 +17,11 @@ const MultiValueInput = ({
   error,
   errorMessage,
   hintText,
-  tags,
+  tags = [],
   onTagAdd,
   onTagRemove,
   size = TextInputSize.MEDIUM,
+  ...rest
 }: MultiValueInputProps) => {
   const multiValueInputTokens = useComponentToken(
     "MULTI_VALUE_INPUT"
@@ -107,6 +108,7 @@ const MultiValueInput = ({
           onKeyDown={handleKeyDown}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          {...rest}
         />
       </Block>
       <InputFooter

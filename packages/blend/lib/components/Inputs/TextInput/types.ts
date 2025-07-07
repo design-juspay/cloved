@@ -3,11 +3,6 @@ export enum TextInputSize {
   LARGE = "lg",
 }
 
-// export enum InputVariant {
-//   SEARCH = "search",
-//   TEXT = "text",
-// }
-
 export enum TextInputState {
   DEFAULT = "default",
   HOVER = "hover",
@@ -16,21 +11,19 @@ export enum TextInputState {
   DISABLED = "disabled",
 }
 
-
-export type InputProps = {
-  required?: boolean;
+export type TextInputProps = {
   label: string;
   sublabel?: string;
   hintText?: string;
   helpIconHintText?: string;
   error?: boolean;
   errorMessage?: string;
-  disabled?: boolean;
   size?: TextInputSize;
   leftSlot?: React.ReactNode;
   rightSlot?: React.ReactNode;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  name?: string;
-};
+} & Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size" | "style" | "className"
+>;

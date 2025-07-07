@@ -3,7 +3,7 @@ import PrimitiveInput from "../../Primitives/PrimitiveInput/PrimitiveInput";
 import { useRef, useState, useEffect } from "react";
 import InputLabels from "../utils/InputLabels/InputLabels";
 import InputFooter from "../utils/InputFooter/InputFooter";
-import { TextInputSize, InputProps } from "./types";
+import { TextInputSize, TextInputProps } from "./types";
 import { useComponentToken } from "../../../context/useComponentToken";
 import { TextInputTokensType } from "./textInput.tokens";
 
@@ -37,7 +37,8 @@ const TextInput = ({
   onChange,
   name,
   required = false,
-}: InputProps) => {
+  ...rest
+}: TextInputProps) => {
   const textInputTokens = useComponentToken(
     "TEXT_INPUT"
   ) as TextInputTokensType;
@@ -72,7 +73,7 @@ const TextInput = ({
     : paddingX;
   return (
     <Block display="flex" flexDirection="column" gap={8} width={"100%"}>
-     <InputLabels
+      <InputLabels
         label={label}
         sublabel={sublabel}
         helpIconHintText={helpIconHintText}
@@ -125,6 +126,7 @@ const TextInput = ({
             border: textInputTokens.input.border.disabled,
             cursor: "not-allowed",
           }}
+          {...rest}
         />
         {rightSlot && (
           <Block

@@ -23,10 +23,8 @@ import { MultiSelectTokensType } from "../components/MultiSelect/multiSelect.tok
 import { TableTokenType } from "../components/DataTable/dataTable.tokens";
 import { CalendarTokenType } from "../components/DateRangePicker/dateRangePicker.tokens";
 import { AccordionTokenType } from "../components/Accordion/accordion.tokens";
+import { StatCardTokenType } from "../components/StatCard/statcard.tokens";
 
-// DONT CHANGE TYPES FOR NOW, SIMPLY KEEP ADDING
-// TYPES FOR RETURNS
-// WE WILL ADAPT TO BETTER TYPES LATER
 export const useComponentToken = (
   component: keyof ComponentTokenType
 ):
@@ -53,7 +51,8 @@ export const useComponentToken = (
   | MultiSelectTokensType
   | TableTokenType
   | CalendarTokenType 
-  | AccordionTokenType => {
+  | AccordionTokenType 
+  | StatCardTokenType=> {
   const { componentTokens } = useTheme();
   switch (component) {
     case "TOOLTIP":
@@ -94,13 +93,19 @@ export const useComponentToken = (
       return componentTokens.MENU;
     case "MULTI_SELECT":
       return componentTokens.MULTI_SELECT;
-    case "TABLE": 
+    case "TABLE":
       return componentTokens.TABLE;
     case "CALENDAR":
       return componentTokens.CALENDAR;
     case "ACCORDION":
       return componentTokens.ACCORDION;
-      default:
+    case "UNIT_INPUT":
+      return componentTokens.UNIT_INPUT;
+    case "MULTI_VALUE_INPUT":
+      return componentTokens.MULTI_VALUE_INPUT;
+    case "STAT_CARD":
+      return componentTokens.STAT_CARD;
+    default:
       throw new Error(`Unknown component token: ${component}`);
   }
 };

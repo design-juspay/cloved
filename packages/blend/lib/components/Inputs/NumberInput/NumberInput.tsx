@@ -26,6 +26,7 @@ const NumberInput = ({
   label = "Number Input",
   hintText,
   name,
+  ...rest
 }: NumberInputProps) => {
   const numberInputTokens = useComponentToken(
     "NUMBER_INPUT"
@@ -77,6 +78,7 @@ const NumberInput = ({
             border: numberInputTokens.input.border.disabled,
             cursor: "not-allowed",
           }}
+          {...rest}
         />
         <Block
           display="flex"

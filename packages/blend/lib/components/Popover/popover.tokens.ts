@@ -7,7 +7,6 @@ export type PopoverTokenType = {
   background: CSSObject["backgroundColor"];
   border: CSSObject["border"];
   shadow: CSSObject["boxShadow"];
-  padding: CSSObject["padding"];
   gap: CSSObject["gap"];
   zIndex: CSSObject["zIndex"];
   borderRadius: CSSObject["borderRadius"];
@@ -44,12 +43,10 @@ export type PopoverTokenType = {
 export const getPopoverTokens = (
   foundationTokens: FoundationTokenType
 ): PopoverTokenType => {
-  const popoverPadding = `${foundationTokens.unit[12]} ${foundationTokens.unit[16]} ${foundationTokens.unit[16]} ${foundationTokens.unit[16]}`;
   return {
     background: foundationTokens.colors.gray[0],
     border: foundationTokens.border.radius[8],
     shadow: foundationTokens.shadows.lg,
-    padding: popoverPadding,
     gap: foundationTokens.unit[12],
     zIndex: 1000,
     borderRadius: foundationTokens.border.radius[8],
