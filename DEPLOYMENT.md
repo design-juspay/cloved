@@ -46,8 +46,8 @@ pnpm deploy:production
          └───────────┬───────────┘
                      │
               ┌──────▼──────┐
-              │   Firebase   │
-              │   Hosting    │
+              │   Firebase  │
+              │   Hosting   │
               └─────────────┘
 ```
 
