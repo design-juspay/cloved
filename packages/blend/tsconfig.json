@@ -17,6 +17,6 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true
   },
-  "include": ["src", "lib", "../../apps/storybook/stories/components/Tabs.stories.tsx"],
+  "include": ["src", "lib"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
