@@ -4,7 +4,6 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules",
     "storybook": "turbo run storybook",
     "storybook:build": "turbo run build-storybook",
