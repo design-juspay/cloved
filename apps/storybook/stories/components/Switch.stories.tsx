@@ -1,13 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
-import { Switch, SwitchGroup, SwitchSize } from 'blend-v1';
-import { Settings, Wifi, Bluetooth, Shield, Bell, Moon, Star, Zap } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React, { useState } from "react";
+import { Switch, SwitchGroup, SwitchSize } from "blend-v1";
+import {
+  Settings,
+  Wifi,
+  Bluetooth,
+  Shield,
+  Bell,
+  Moon,
+  Star,
+  Zap,
+} from "lucide-react";
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Switch',
+  title: "Components/Switch",
   component: Switch,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `
@@ -44,52 +53,52 @@ import { Switch, SwitchGroup, SwitchSize } from 'blend-v1';
   },
   argTypes: {
     checked: {
-      control: 'boolean',
-      description: 'Controlled checked state of the switch',
+      control: "boolean",
+      description: "Controlled checked state of the switch",
     },
     defaultChecked: {
-      control: 'boolean',
-      description: 'Default checked state for uncontrolled mode',
+      control: "boolean",
+      description: "Default checked state for uncontrolled mode",
     },
     size: {
-      control: 'select',
+      control: "select",
       options: Object.values(SwitchSize),
-      description: 'Size variant of the switch',
+      description: "Size variant of the switch",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Whether the switch is disabled',
+      control: "boolean",
+      description: "Whether the switch is disabled",
     },
     required: {
-      control: 'boolean',
-      description: 'Whether the switch is required (shows asterisk)',
+      control: "boolean",
+      description: "Whether the switch is required (shows asterisk)",
     },
     error: {
-      control: 'boolean',
-      description: 'Whether the switch is in error state',
+      control: "boolean",
+      description: "Whether the switch is in error state",
     },
     label: {
-      control: 'text',
-      description: 'Label content for the switch',
+      control: "text",
+      description: "Label content for the switch",
     },
     subtext: {
-      control: 'text',
-      description: 'Additional descriptive text below the switch',
+      control: "text",
+      description: "Additional descriptive text below the switch",
     },
     value: {
-      control: 'text',
-      description: 'Value attribute for the switch input',
+      control: "text",
+      description: "Value attribute for the switch input",
     },
     name: {
-      control: 'text',
-      description: 'Name attribute for form submission',
+      control: "text",
+      description: "Name attribute for form submission",
     },
     onChange: {
-      action: 'changed',
-      description: 'Callback fired when the switch state changes',
+      action: "changed",
+      description: "Callback fired when the switch state changes",
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -98,7 +107,7 @@ type Story = StoryObj<typeof Switch>;
 // Default story
 export const Default: Story = {
   args: {
-    label: 'Default switch',
+    label: "Default switch",
     size: SwitchSize.MEDIUM,
     defaultChecked: false,
     disabled: false,
@@ -116,17 +125,21 @@ export const SwitchSizes: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Switch
           size={SwitchSize.SMALL}
           checked={sizes.small}
-          onChange={(checked) => setSizes(prev => ({ ...prev, small: checked }))}
+          onChange={(checked) =>
+            setSizes((prev) => ({ ...prev, small: checked }))
+          }
           label="Small switch"
         />
-        <Switch 
+        <Switch
           size={SwitchSize.MEDIUM}
           checked={sizes.medium}
-          onChange={(checked) => setSizes(prev => ({ ...prev, medium: checked }))}
+          onChange={(checked) =>
+            setSizes((prev) => ({ ...prev, medium: checked }))
+          }
           label="Medium switch"
         />
       </div>
@@ -135,7 +148,8 @@ export const SwitchSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different switch sizes: Small and Medium. Click to toggle each switch.',
+        story:
+          "Different switch sizes: Small and Medium. Click to toggle each switch.",
       },
     },
   },
@@ -154,42 +168,64 @@ export const SwitchStates: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div style={{ marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Interactive States:</div>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div
+          style={{ marginBottom: "8px", fontWeight: "500", fontSize: "14px" }}
+        >
+          Interactive States:
+        </div>
+        <Switch
           checked={states.off}
-          onChange={(checked) => setStates(prev => ({ ...prev, off: checked }))}
+          onChange={(checked) =>
+            setStates((prev) => ({ ...prev, off: checked }))
+          }
           label="Off state (Click to turn on)"
         />
-        <Switch 
+        <Switch
           checked={states.on}
-          onChange={(checked) => setStates(prev => ({ ...prev, on: checked }))}
+          onChange={(checked) =>
+            setStates((prev) => ({ ...prev, on: checked }))
+          }
           label="On state (Click to turn off)"
         />
-        
-        <div style={{ marginTop: '16px', marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Disabled States:</div>
-        <Switch 
-          disabled={true}
-          defaultChecked={false}
-          label="Disabled off"
-        />
-        <Switch 
-          disabled={true}
-          defaultChecked={true}
-          label="Disabled on"
-        />
-        
-        <div style={{ marginTop: '16px', marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Other States:</div>
-        <Switch 
+
+        <div
+          style={{
+            marginTop: "16px",
+            marginBottom: "8px",
+            fontWeight: "500",
+            fontSize: "14px",
+          }}
+        >
+          Disabled States:
+        </div>
+        <Switch disabled={true} defaultChecked={false} label="Disabled off" />
+        <Switch disabled={true} defaultChecked={true} label="Disabled on" />
+
+        <div
+          style={{
+            marginTop: "16px",
+            marginBottom: "8px",
+            fontWeight: "500",
+            fontSize: "14px",
+          }}
+        >
+          Other States:
+        </div>
+        <Switch
           error={true}
           checked={states.error}
-          onChange={(checked) => setStates(prev => ({ ...prev, error: checked }))}
+          onChange={(checked) =>
+            setStates((prev) => ({ ...prev, error: checked }))
+          }
           label="Error state"
         />
-        <Switch 
+        <Switch
           required={true}
           checked={states.required}
-          onChange={(checked) => setStates(prev => ({ ...prev, required: checked }))}
+          onChange={(checked) =>
+            setStates((prev) => ({ ...prev, required: checked }))
+          }
           label="Required field"
         />
       </div>
@@ -198,7 +234,8 @@ export const SwitchStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different switch states: interactive toggles, disabled variants, error states, and required fields.',
+        story:
+          "Different switch states: interactive toggles, disabled variants, error states, and required fields.",
       },
     },
   },
@@ -208,18 +245,18 @@ export const SwitchStates: Story = {
 export const ControlledSwitch: Story = {
   render: () => {
     const [isEnabled, setIsEnabled] = useState(false);
-    
+
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Switch
           checked={isEnabled}
           onChange={setIsEnabled}
           size={SwitchSize.MEDIUM}
           label="Dark mode"
           subtext="Toggle between light and dark themes"
         />
-        <div style={{ fontSize: '14px', color: '#666' }}>
-          Current mode: {isEnabled ? 'Dark' : 'Light'}
+        <div style={{ fontSize: "14px", color: "#666" }}>
+          Current mode: {isEnabled ? "Dark" : "Light"}
         </div>
       </div>
     );
@@ -227,7 +264,7 @@ export const ControlledSwitch: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Controlled switch with state management and visual feedback.',
+        story: "Controlled switch with state management and visual feedback.",
       },
     },
   },
@@ -243,27 +280,33 @@ export const WithSubtext: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Switch
           size={SwitchSize.MEDIUM}
           label="Push notifications"
           subtext="Get notified about important updates and messages"
           checked={subtextStates.notifications}
-          onChange={(checked) => setSubtextStates(prev => ({ ...prev, notifications: checked }))}
+          onChange={(checked) =>
+            setSubtextStates((prev) => ({ ...prev, notifications: checked }))
+          }
         />
-        <Switch 
+        <Switch
           size={SwitchSize.SMALL}
           label="Auto-sync data"
           subtext="Automatically sync your data across all devices"
           checked={subtextStates.sync}
-          onChange={(checked) => setSubtextStates(prev => ({ ...prev, sync: checked }))}
+          onChange={(checked) =>
+            setSubtextStates((prev) => ({ ...prev, sync: checked }))
+          }
         />
-        <Switch 
+        <Switch
           error={true}
           label="Enhanced privacy"
           subtext="This setting requires premium subscription"
           checked={subtextStates.privacy}
-          onChange={(checked) => setSubtextStates(prev => ({ ...prev, privacy: checked }))}
+          onChange={(checked) =>
+            setSubtextStates((prev) => ({ ...prev, privacy: checked }))
+          }
         />
       </div>
     );
@@ -271,7 +314,8 @@ export const WithSubtext: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Switches with additional descriptive subtext. Click to toggle each switch.',
+        story:
+          "Switches with additional descriptive subtext. Click to toggle each switch.",
       },
     },
   },
@@ -287,30 +331,48 @@ export const WithSlots: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Switch
           size={SwitchSize.MEDIUM}
           label="Wi-Fi"
-          slot={<Wifi size={16} color={slotStates.wifi ? "#10b981" : "#6b7280"} />}
+          slot={
+            <Wifi size={16} color={slotStates.wifi ? "#10b981" : "#6b7280"} />
+          }
           subtext="Connect to wireless networks"
           checked={slotStates.wifi}
-          onChange={(checked) => setSlotStates(prev => ({ ...prev, wifi: checked }))}
+          onChange={(checked) =>
+            setSlotStates((prev) => ({ ...prev, wifi: checked }))
+          }
         />
-        <Switch 
+        <Switch
           size={SwitchSize.MEDIUM}
           label="Bluetooth"
-          slot={<Bluetooth size={16} color={slotStates.bluetooth ? "#3b82f6" : "#6b7280"} />}
+          slot={
+            <Bluetooth
+              size={16}
+              color={slotStates.bluetooth ? "#3b82f6" : "#6b7280"}
+            />
+          }
           subtext="Connect to Bluetooth devices"
           checked={slotStates.bluetooth}
-          onChange={(checked) => setSlotStates(prev => ({ ...prev, bluetooth: checked }))}
+          onChange={(checked) =>
+            setSlotStates((prev) => ({ ...prev, bluetooth: checked }))
+          }
         />
-        <Switch 
+        <Switch
           size={SwitchSize.MEDIUM}
           label="Premium features"
-          slot={<Star size={16} color={slotStates.premium ? "#fbbf24" : "#6b7280"} />}
+          slot={
+            <Star
+              size={16}
+              color={slotStates.premium ? "#fbbf24" : "#6b7280"}
+            />
+          }
           subtext="Access advanced functionality"
           checked={slotStates.premium}
-          onChange={(checked) => setSlotStates(prev => ({ ...prev, premium: checked }))}
+          onChange={(checked) =>
+            setSlotStates((prev) => ({ ...prev, premium: checked }))
+          }
         />
       </div>
     );
@@ -318,7 +380,8 @@ export const WithSlots: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Switches with custom content slots (icons) for visual enhancement. Click to toggle each switch.',
+        story:
+          "Switches with custom content slots (icons) for visual enhancement. Click to toggle each switch.",
       },
     },
   },
@@ -340,53 +403,63 @@ export const ErrorAndValidation: Story = {
         setShowError(true);
       } else {
         setShowError(false);
-        alert('Terms accepted successfully!');
+        alert("Terms accepted successfully!");
       }
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Switch 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Switch
           required={true}
           label="Required setting"
           checked={errorStates.required}
-          onChange={(checked) => setErrorStates(prev => ({ ...prev, required: checked }))}
+          onChange={(checked) =>
+            setErrorStates((prev) => ({ ...prev, required: checked }))
+          }
         />
-        <Switch 
+        <Switch
           error={true}
           label="Error state"
           checked={errorStates.error}
-          onChange={(checked) => setErrorStates(prev => ({ ...prev, error: checked }))}
+          onChange={(checked) =>
+            setErrorStates((prev) => ({ ...prev, error: checked }))
+          }
         />
-        <Switch 
-          required={true} 
+        <Switch
+          required={true}
           error={true}
           label="Required with error"
           checked={errorStates.requiredError}
-          onChange={(checked) => setErrorStates(prev => ({ ...prev, requiredError: checked }))}
+          onChange={(checked) =>
+            setErrorStates((prev) => ({ ...prev, requiredError: checked }))
+          }
         />
-        <Switch 
-          required={true} 
+        <Switch
+          required={true}
           error={showError}
           label="Accept terms and conditions"
-          subtext={showError ? "You must accept the terms to continue" : "Please read our terms of service"}
+          subtext={
+            showError
+              ? "You must accept the terms to continue"
+              : "Please read our terms of service"
+          }
           checked={errorStates.terms}
           onChange={(checked) => {
-            setErrorStates(prev => ({ ...prev, terms: checked }));
+            setErrorStates((prev) => ({ ...prev, terms: checked }));
             if (checked) setShowError(false);
           }}
         />
-        
-        <button 
+
+        <button
           onClick={handleSubmit}
-          style={{ 
-            marginTop: '8px', 
-            padding: '8px 16px', 
-            backgroundColor: '#3b82f6', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '4px',
-            cursor: 'pointer'
+          style={{
+            marginTop: "8px",
+            padding: "8px 16px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
           }}
         >
           Submit
@@ -397,7 +470,8 @@ export const ErrorAndValidation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Switches with required indicators, error states, and form validation.',
+        story:
+          "Switches with required indicators, error states, and form validation.",
       },
     },
   },
@@ -407,33 +481,35 @@ export const ErrorAndValidation: Story = {
 export const SwitchGroupExamples: Story = {
   render: () => {
     const [groupStates, setGroupStates] = useState({
-      basicGroup: ['wifi'],
-      settingsGroup: ['notifications', 'sync'],
+      basicGroup: ["wifi"],
+      settingsGroup: ["notifications", "sync"],
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
         <SwitchGroup
           label="Network Settings"
           name="network"
           value={groupStates.basicGroup}
-          onChange={(values) => setGroupStates(prev => ({ ...prev, basicGroup: values }))}
+          onChange={(values) =>
+            setGroupStates((prev) => ({ ...prev, basicGroup: values }))
+          }
         >
-          <Switch 
-            value="wifi" 
-            label="Wi-Fi" 
+          <Switch
+            value="wifi"
+            label="Wi-Fi"
             subtext="Connect to wireless networks"
             slot={<Wifi size={16} color="#10b981" />}
           />
-          <Switch 
-            value="bluetooth" 
-            label="Bluetooth" 
+          <Switch
+            value="bluetooth"
+            label="Bluetooth"
             subtext="Connect to Bluetooth devices"
             slot={<Bluetooth size={16} color="#3b82f6" />}
           />
-          <Switch 
-            value="cellular" 
-            label="Cellular Data" 
+          <Switch
+            value="cellular"
+            label="Cellular Data"
             subtext="Use cellular network for internet"
           />
         </SwitchGroup>
@@ -442,36 +518,48 @@ export const SwitchGroupExamples: Story = {
           label="App Preferences"
           name="preferences"
           value={groupStates.settingsGroup}
-          onChange={(values) => setGroupStates(prev => ({ ...prev, settingsGroup: values }))}
+          onChange={(values) =>
+            setGroupStates((prev) => ({ ...prev, settingsGroup: values }))
+          }
         >
-          <Switch 
-            value="notifications" 
-            label="Push Notifications" 
+          <Switch
+            value="notifications"
+            label="Push Notifications"
             subtext="Receive app notifications"
             slot={<Bell size={16} color="#f59e0b" />}
           />
-          <Switch 
-            value="sync" 
-            label="Auto Sync" 
+          <Switch
+            value="sync"
+            label="Auto Sync"
             subtext="Automatically sync data"
           />
-          <Switch 
-            value="analytics" 
-            label="Usage Analytics" 
+          <Switch
+            value="analytics"
+            label="Usage Analytics"
             subtext="Help improve the app"
           />
-          <Switch 
-            value="darkmode" 
-            label="Dark Mode" 
+          <Switch
+            value="darkmode"
+            label="Dark Mode"
             subtext="Use dark theme"
             slot={<Moon size={16} color="#6366f1" />}
           />
         </SwitchGroup>
 
-        <div style={{ fontSize: '14px', color: '#666', padding: '12px', backgroundColor: '#f9fafb', borderRadius: '6px' }}>
+        <div
+          style={{
+            fontSize: "14px",
+            color: "#666",
+            padding: "12px",
+            backgroundColor: "#f9fafb",
+            borderRadius: "6px",
+          }}
+        >
           <strong>Selected values:</strong>
-          <br />Network: {groupStates.basicGroup.join(', ') || 'None'}
-          <br />Preferences: {groupStates.settingsGroup.join(', ') || 'None'}
+          <br />
+          Network: {groupStates.basicGroup.join(", ") || "None"}
+          <br />
+          Preferences: {groupStates.settingsGroup.join(", ") || "None"}
         </div>
       </div>
     );
@@ -479,13 +567,12 @@ export const SwitchGroupExamples: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Switch groups for managing multiple related switches with coordinated state. Click to toggle individual switches.',
+        story:
+          "Switch groups for managing multiple related switches with coordinated state. Click to toggle individual switches.",
       },
     },
   },
 };
-
-
 
 // Uncontrolled switch
 export const UncontrolledSwitch: Story = {
@@ -497,31 +584,48 @@ export const UncontrolledSwitch: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <div>
-          <Switch 
+          <Switch
             checked={uncontrolledStates.defaultOff}
-            onChange={(checked) => setUncontrolledStates(prev => ({ ...prev, defaultOff: checked }))}
+            onChange={(checked) =>
+              setUncontrolledStates((prev) => ({
+                ...prev,
+                defaultOff: checked,
+              }))
+            }
             size={SwitchSize.MEDIUM}
-            label={`Started off (now ${uncontrolledStates.defaultOff ? 'on' : 'off'})`}
+            label={`Started off (now ${uncontrolledStates.defaultOff ? "on" : "off"})`}
           />
         </div>
         <div>
-          <Switch 
+          <Switch
             checked={uncontrolledStates.defaultOn}
-            onChange={(checked) => setUncontrolledStates(prev => ({ ...prev, defaultOn: checked }))}
+            onChange={(checked) =>
+              setUncontrolledStates((prev) => ({ ...prev, defaultOn: checked }))
+            }
             size={SwitchSize.MEDIUM}
-            label={`Started on (now ${uncontrolledStates.defaultOn ? 'on' : 'off'})`}
+            label={`Started on (now ${uncontrolledStates.defaultOn ? "on" : "off"})`}
           />
         </div>
         <div>
-          <Switch 
+          <Switch
             checked={uncontrolledStates.selfManaged}
-            onChange={(checked) => setUncontrolledStates(prev => ({ ...prev, selfManaged: checked }))}
+            onChange={(checked) =>
+              setUncontrolledStates((prev) => ({
+                ...prev,
+                selfManaged: checked,
+              }))
+            }
             size={SwitchSize.SMALL}
             label="Self-managed switch"
-            subtext={`Current state: ${uncontrolledStates.selfManaged ? 'enabled' : 'disabled'}`}
-            slot={<Settings size={14} color={uncontrolledStates.selfManaged ? "#10b981" : "#6b7280"} />}
+            subtext={`Current state: ${uncontrolledStates.selfManaged ? "enabled" : "disabled"}`}
+            slot={
+              <Settings
+                size={14}
+                color={uncontrolledStates.selfManaged ? "#10b981" : "#6b7280"}
+              />
+            }
           />
         </div>
       </div>
@@ -530,7 +634,8 @@ export const UncontrolledSwitch: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates switches with different initial states but full interactivity. Click to toggle - the labels show current state values.',
+        story:
+          "Demonstrates switches with different initial states but full interactivity. Click to toggle - the labels show current state values.",
       },
     },
   },

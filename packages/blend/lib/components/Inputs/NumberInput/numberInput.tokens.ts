@@ -84,7 +84,7 @@ const numberInputTokens: Readonly<NumberInputTokensType> = {
 };
 
 export const getNumberInputTokens = (
-  foundationTheme: FoundationTokenType
+  foundationTheme: FoundationTokenType,
 ): NumberInputTokensType => {
   return {
     input: {

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const avatargroupMeta: ComponentMeta = {
   componentName: "AvatarGroup",
-  componentDescription: "A sophisticated avatar group component that displays multiple user avatars with overflow handling, selection capabilities, and an interactive menu for managing large sets of users.",
+  componentDescription:
+    "A sophisticated avatar group component that displays multiple user avatars with overflow handling, selection capabilities, and an interactive menu for managing large sets of users.",
   features: [
     "Configurable maximum visible avatar count",
     "Overflow counter with expandable menu",
@@ -12,7 +13,7 @@ const avatargroupMeta: ComponentMeta = {
     "Accessible keyboard navigation",
     "Click outside to close menu",
     "Responsive positioning",
-    "Screen reader support"
+    "Screen reader support",
   ],
   usageExamples: [
     {
@@ -27,7 +28,7 @@ const avatargroupMeta: ComponentMeta = {
     { id: 5, alt: "Charlie Wilson" }
   ]}
   maxCount={3}
-/>`
+/>`,
     },
     {
       title: "Avatar Group with Selection",
@@ -40,7 +41,7 @@ const avatargroupMeta: ComponentMeta = {
   size={AvatarSize.LG}
   selectedAvatarIds={selectedIds}
   onSelectionChange={setSelectedIds}
-/>`
+/>`,
     },
     {
       title: "Rounded Avatar Group",
@@ -57,7 +58,7 @@ const avatargroupMeta: ComponentMeta = {
   maxCount={3}
   size={AvatarSize.MD}
   shape={AvatarShape.ROUNDED}
-/>`
+/>`,
     },
     {
       title: "Large Team Avatar Group",
@@ -68,8 +69,8 @@ const avatargroupMeta: ComponentMeta = {
   size={AvatarSize.SM}
   selectedAvatarIds={selectedMembers}
   onSelectionChange={handleMemberSelection}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -94,8 +95,10 @@ const avatargroupMeta: ComponentMeta = {
       propName: "maxCount",
       propType: "number",
       typeDefinition: "number",
-      propDescription: "Maximum number of avatars to display before showing overflow counter",
-      llmContext: "Maximum number of avatars to display before showing overflow counter",
+      propDescription:
+        "Maximum number of avatars to display before showing overflow counter",
+      llmContext:
+        "Maximum number of avatars to display before showing overflow counter",
       propDefault: "5",
       category: "Layout",
       required: false,
@@ -172,7 +175,8 @@ const avatargroupMeta: ComponentMeta = {
       propName: "alt",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Alternative text for the avatar image (AvatarData property)",
+      propDescription:
+        "Alternative text for the avatar image (AvatarData property)",
       llmContext: "Alternative text for the avatar image (AvatarData property)",
       propDefault: "undefined",
       category: "Content",
@@ -182,13 +186,15 @@ const avatargroupMeta: ComponentMeta = {
       propName: "fallback",
       propType: "string | React.ReactNode",
       typeDefinition: "string | React.ReactNode",
-      propDescription: "Fallback content when image is not available (AvatarData property)",
-      llmContext: "Fallback content when image is not available (AvatarData property)",
+      propDescription:
+        "Fallback content when image is not available (AvatarData property)",
+      llmContext:
+        "Fallback content when image is not available (AvatarData property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default avatargroupMeta;

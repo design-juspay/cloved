@@ -31,7 +31,7 @@ const SearchInput = ({
   name,
 }: SearchInputProps) => {
   const searchInputTokens = useComponentToken(
-    "SEARCH_INPUT"
+    "SEARCH_INPUT",
   ) as SearchInputTokensType;
 
   const leftSlotRef = useRef<HTMLDivElement>(null);

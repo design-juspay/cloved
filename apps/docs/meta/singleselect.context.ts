@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const singleselectMeta: ComponentMeta = {
   componentName: "SingleSelect",
-  componentDescription: "A single-selection dropdown component with grouped items, search functionality, and customizable positioning for selecting one value from a list of options.",
+  componentDescription:
+    "A single-selection dropdown component with grouped items, search functionality, and customizable positioning for selecting one value from a list of options.",
   features: [
     "Single item selection with controlled state",
     "Grouped menu items with labels and separators",
@@ -13,7 +14,7 @@ const singleselectMeta: ComponentMeta = {
     "Form integration with labels and validation",
     "Disabled state and required field support",
     "Submenu support for nested options",
-    "Customizable dimensions and styling"
+    "Customizable dimensions and styling",
   ],
   usageExamples: [
     {
@@ -44,7 +45,7 @@ const singleselectMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Single Select with Search",
@@ -76,7 +77,7 @@ const singleselectMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Single Select with Custom Positioning",
@@ -92,7 +93,7 @@ const singleselectMeta: ComponentMeta = {
   maxWidth={300}
   maxHeight={200}
   items={priorityOptions}
-/>`
+/>`,
     },
     {
       title: "Form Single Select with Validation",
@@ -110,8 +111,8 @@ const singleselectMeta: ComponentMeta = {
   slot={<CategoryIcon />}
   name="productCategory"
   items={categoryOptions}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -229,7 +230,8 @@ const singleselectMeta: ComponentMeta = {
       propName: "enableSearch",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to enable search functionality for filtering items",
+      propDescription:
+        "Whether to enable search functionality for filtering items",
       llmContext: "Whether to enable search functionality for filtering items",
       propDefault: "false",
       category: "Features",
@@ -259,7 +261,8 @@ const singleselectMeta: ComponentMeta = {
       propName: "slot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content (usually an icon) displayed in the trigger",
+      propDescription:
+        "Custom content (usually an icon) displayed in the trigger",
       llmContext: "Custom content (usually an icon) displayed in the trigger",
       propDefault: "undefined",
       category: "Content",
@@ -284,7 +287,8 @@ const singleselectMeta: ComponentMeta = {
         RIGHT = "right",
         BOTTOM = "bottom",
       }`,
-      propDescription: "Side where the menu should appear relative to the trigger",
+      propDescription:
+        "Side where the menu should appear relative to the trigger",
       llmContext: "Side where the menu should appear relative to the trigger",
       propDefault: "SelectMenuSide.BOTTOM",
       category: "Layout",
@@ -354,7 +358,7 @@ const singleselectMeta: ComponentMeta = {
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default singleselectMeta;

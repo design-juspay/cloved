@@ -42,7 +42,7 @@ export type PopoverTokenType = {
 };
 
 export const getPopoverTokens = (
-  foundationTokens: FoundationTokenType
+  foundationTokens: FoundationTokenType,
 ): PopoverTokenType => {
   const popoverPadding = `${foundationTokens.unit[12]} ${foundationTokens.unit[16]} ${foundationTokens.unit[16]} ${foundationTokens.unit[16]}`;
   return {
@@ -89,4 +89,3 @@ export const getPopoverTokens = (
     },
   };
 };
-

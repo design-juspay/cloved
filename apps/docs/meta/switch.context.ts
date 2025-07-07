@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const switchMeta: ComponentMeta = {
   componentName: "Switch",
-  componentDescription: "A toggle switch component for binary on/off states with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.",
+  componentDescription:
+    "A toggle switch component for binary on/off states with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.",
   features: [
     "Controlled and uncontrolled modes",
     "Two sizes (small, medium)",
@@ -13,7 +14,7 @@ const switchMeta: ComponentMeta = {
     "Disabled state support",
     "Switch group functionality",
     "Accessible design with proper ARIA attributes",
-    "Form integration ready"
+    "Form integration ready",
   ],
   usageExamples: [
     {
@@ -22,7 +23,7 @@ const switchMeta: ComponentMeta = {
       code: `<Switch 
   label="Enable notifications"
   size={SwitchSize.MEDIUM}
-/>`
+/>`,
     },
     {
       title: "Controlled Switch",
@@ -34,7 +35,7 @@ const switchMeta: ComponentMeta = {
   onChange={setIsEnabled}
   label="Dark mode"
   subtext="Toggle between light and dark themes"
-/>`
+/>`,
     },
     {
       title: "Switch with Error State",
@@ -45,7 +46,7 @@ const switchMeta: ComponentMeta = {
   label="Accept terms"
   subtext="You must accept the terms to continue"
   size={SwitchSize.SMALL}
-/>`
+/>`,
     },
     {
       title: "Switch with Custom Slot",
@@ -55,8 +56,8 @@ const switchMeta: ComponentMeta = {
   subtext="Unlock advanced functionality"
   slot={<Badge variant="premium">Pro</Badge>}
   defaultChecked={true}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -192,7 +193,7 @@ const switchMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default switchMeta;

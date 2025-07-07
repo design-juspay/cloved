@@ -74,7 +74,7 @@ const dropdownInputTokens: Readonly<DropdownInputTokensType> = {
 };
 
 export const getDropdownInputTokens = (
-  foundationTheme: FoundationTokenType
+  foundationTheme: FoundationTokenType,
 ): DropdownInputTokensType => {
   return {
     input: {

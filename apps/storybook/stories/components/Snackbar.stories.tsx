@@ -1,14 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Snackbar, addSnackbar, SnackbarVariant } from 'blend-v1';
-import { Button } from 'blend-v1';
-import { Info, CheckCircle, AlertTriangle, XCircle, Trash2, Download, X, Layers, Save, WifiOff, Copy, Clock } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { Snackbar, addSnackbar, SnackbarVariant } from "blend-v1";
+import { Button } from "blend-v1";
+import {
+  Info,
+  CheckCircle,
+  AlertTriangle,
+  XCircle,
+  Trash2,
+  Download,
+  X,
+  Layers,
+  Save,
+  WifiOff,
+  Copy,
+  Clock,
+} from "lucide-react";
 
 const meta: Meta<typeof Snackbar> = {
-  title: 'Components/Snackbar',
+  title: "Components/Snackbar",
   component: Snackbar,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component: `
@@ -51,13 +64,13 @@ addSnackbar({
     (Story) => (
       <>
         <Snackbar />
-        <div style={{ height: 'auto', minHeight: '250px', overflow: 'hidden' }}>
+        <div style={{ height: "auto", minHeight: "250px", overflow: "hidden" }}>
           <Story />
         </div>
       </>
     ),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -66,13 +79,13 @@ type Story = StoryObj<typeof Snackbar>;
 // Default story
 export const Default: Story = {
   render: () => (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Button
-        text='Show Basic Snackbar'
+        text="Show Basic Snackbar"
         onClick={() =>
           addSnackbar({
-            header: 'Default Snackbar',
-            description: 'This is a default snackbar notification.',
+            header: "Default Snackbar",
+            description: "This is a default snackbar notification.",
           })
         }
       />
@@ -83,54 +96,56 @@ export const Default: Story = {
 // Snackbar variants
 export const SnackbarVariants: Story = {
   render: () => (
-    <div style={{ 
-      position: 'relative',
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gridTemplateRows: 'repeat(2, min-content)',
-      gap: '16px',
-      alignContent: 'start'
-    }}>
+    <div
+      style={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gridTemplateRows: "repeat(2, min-content)",
+        gap: "16px",
+        alignContent: "start",
+      }}
+    >
       <Button
-        text='Show Info Snackbar'
+        text="Show Info Snackbar"
         leadingIcon={Info}
         onClick={() =>
           addSnackbar({
-            header: 'Info Notification',
-            description: 'This is an informational message.',
+            header: "Info Notification",
+            description: "This is an informational message.",
             variant: SnackbarVariant.INFO,
           })
         }
       />
       <Button
-        text='Show Success Snackbar'
+        text="Show Success Snackbar"
         leadingIcon={CheckCircle}
         onClick={() =>
           addSnackbar({
-            header: 'Success!',
-            description: 'Your action completed successfully.',
+            header: "Success!",
+            description: "Your action completed successfully.",
             variant: SnackbarVariant.SUCCESS,
           })
         }
       />
       <Button
-        text='Show Warning Snackbar'
+        text="Show Warning Snackbar"
         leadingIcon={AlertTriangle}
         onClick={() =>
           addSnackbar({
-            header: 'Warning',
-            description: 'Please review this important information.',
+            header: "Warning",
+            description: "Please review this important information.",
             variant: SnackbarVariant.WARNING,
           })
         }
       />
       <Button
-        text='Show Error Snackbar'
+        text="Show Error Snackbar"
         leadingIcon={XCircle}
         onClick={() =>
           addSnackbar({
-            header: 'Error',
-            description: 'Something went wrong. Please try again.',
+            header: "Error",
+            description: "Something went wrong. Please try again.",
             variant: SnackbarVariant.ERROR,
           })
         }
@@ -140,7 +155,8 @@ export const SnackbarVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different snackbar variants for various message types and contexts.',
+        story:
+          "Different snackbar variants for various message types and contexts.",
       },
     },
   },
@@ -149,28 +165,30 @@ export const SnackbarVariants: Story = {
 // With action button
 export const WithActionButton: Story = {
   render: () => (
-    <div style={{ 
-      position: 'relative',
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '16px',
-      alignContent: 'start'
-    }}>
+    <div
+      style={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: "16px",
+        alignContent: "start",
+      }}
+    >
       <Button
-        text='Show Delete with Undo'
+        text="Show Delete with Undo"
         leadingIcon={Trash2}
         onClick={() =>
           addSnackbar({
-            header: 'File Deleted',
-            description: 'The file has been moved to trash.',
+            header: "File Deleted",
+            description: "The file has been moved to trash.",
             variant: SnackbarVariant.INFO,
             actionButton: {
-              label: 'Undo',
+              label: "Undo",
               onClick: () => {
-                console.log('Undo clicked');
+                console.log("Undo clicked");
                 addSnackbar({
-                  header: 'Restored',
-                  description: 'File has been restored.',
+                  header: "Restored",
+                  description: "File has been restored.",
                   variant: SnackbarVariant.SUCCESS,
                 });
               },
@@ -179,20 +197,20 @@ export const WithActionButton: Story = {
         }
       />
       <Button
-        text='Show Update Notification'
+        text="Show Update Notification"
         leadingIcon={Download}
         onClick={() =>
           addSnackbar({
-            header: 'Update Available',
-            description: 'A new version is ready to install.',
+            header: "Update Available",
+            description: "A new version is ready to install.",
             variant: SnackbarVariant.SUCCESS,
             actionButton: {
-              label: 'Install Now',
+              label: "Install Now",
               onClick: () => {
-                console.log('Install clicked');
+                console.log("Install clicked");
                 addSnackbar({
-                  header: 'Installing...',
-                  description: 'The update is being installed.',
+                  header: "Installing...",
+                  description: "The update is being installed.",
                   variant: SnackbarVariant.INFO,
                 });
               },
@@ -205,7 +223,7 @@ export const WithActionButton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Snackbars with action buttons for user interaction.',
+        story: "Snackbars with action buttons for user interaction.",
       },
     },
   },
@@ -214,17 +232,17 @@ export const WithActionButton: Story = {
 // With custom close callback
 export const WithCloseCallback: Story = {
   render: () => (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Button
-        text='Show with Close Tracking'
+        text="Show with Close Tracking"
         leadingIcon={X}
         onClick={() =>
           addSnackbar({
-            header: 'Tracking Close Event',
-            description: 'Check console when closing this snackbar.',
+            header: "Tracking Close Event",
+            description: "Check console when closing this snackbar.",
             variant: SnackbarVariant.INFO,
             onClose: () => {
-              console.log('Snackbar was closed');
+              console.log("Snackbar was closed");
               // You could track analytics or perform cleanup here
             },
           })
@@ -235,7 +253,8 @@ export const WithCloseCallback: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Snackbar with custom close callback for tracking or cleanup operations.',
+        story:
+          "Snackbar with custom close callback for tracking or cleanup operations.",
       },
     },
   },
@@ -244,27 +263,27 @@ export const WithCloseCallback: Story = {
 // Multiple snackbars
 export const MultipleSnackbars: Story = {
   render: () => (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Button
-        text='Show Multiple Stacked'
+        text="Show Multiple Stacked"
         leadingIcon={Layers}
         onClick={() => {
           addSnackbar({
-            header: 'First Notification',
-            description: 'This is the first snackbar.',
+            header: "First Notification",
+            description: "This is the first snackbar.",
             variant: SnackbarVariant.INFO,
           });
           setTimeout(() => {
             addSnackbar({
-              header: 'Second Notification',
-              description: 'This is the second snackbar.',
+              header: "Second Notification",
+              description: "This is the second snackbar.",
               variant: SnackbarVariant.SUCCESS,
             });
           }, 500);
           setTimeout(() => {
             addSnackbar({
-              header: 'Third Notification',
-              description: 'This is the third snackbar.',
+              header: "Third Notification",
+              description: "This is the third snackbar.",
               variant: SnackbarVariant.WARNING,
             });
           }, 1000);
@@ -275,7 +294,8 @@ export const MultipleSnackbars: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Multiple snackbars can be stacked and displayed simultaneously.',
+        story:
+          "Multiple snackbars can be stacked and displayed simultaneously.",
       },
     },
   },
@@ -284,39 +304,42 @@ export const MultipleSnackbars: Story = {
 // Real-world examples
 export const RealWorldExamples: Story = {
   render: () => (
-    <div style={{ 
-      position: 'relative',
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gridTemplateRows: 'repeat(2, min-content)',
-      gap: '16px',
-      alignContent: 'start'
-    }}>
+    <div
+      style={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gridTemplateRows: "repeat(2, min-content)",
+        gap: "16px",
+        alignContent: "start",
+      }}
+    >
       <Button
-        text='Show Save Success'
+        text="Show Save Success"
         leadingIcon={Save}
         onClick={() =>
           addSnackbar({
-            header: 'Saved',
-            description: 'Your changes have been saved successfully.',
+            header: "Saved",
+            description: "Your changes have been saved successfully.",
             variant: SnackbarVariant.SUCCESS,
           })
         }
       />
       <Button
-        text='Show Network Error'
+        text="Show Network Error"
         leadingIcon={WifiOff}
         onClick={() =>
           addSnackbar({
-            header: 'Network Error',
-            description: 'Unable to connect. Please check your internet connection.',
+            header: "Network Error",
+            description:
+              "Unable to connect. Please check your internet connection.",
             variant: SnackbarVariant.ERROR,
             actionButton: {
-              label: 'Retry',
+              label: "Retry",
               onClick: () => {
                 addSnackbar({
-                  header: 'Retrying...',
-                  description: 'Attempting to reconnect.',
+                  header: "Retrying...",
+                  description: "Attempting to reconnect.",
                   variant: SnackbarVariant.INFO,
                 });
               },
@@ -325,29 +348,29 @@ export const RealWorldExamples: Story = {
         }
       />
       <Button
-        text='Show Copy Success'
+        text="Show Copy Success"
         leadingIcon={Copy}
         onClick={() =>
           addSnackbar({
-            header: 'Copied to Clipboard',
+            header: "Copied to Clipboard",
             variant: SnackbarVariant.SUCCESS,
           })
         }
       />
       <Button
-        text='Show Session Warning'
+        text="Show Session Warning"
         leadingIcon={Clock}
         onClick={() =>
           addSnackbar({
-            header: 'Session Expiring',
-            description: 'Your session will expire in 5 minutes.',
+            header: "Session Expiring",
+            description: "Your session will expire in 5 minutes.",
             variant: SnackbarVariant.WARNING,
             actionButton: {
-              label: 'Extend Session',
+              label: "Extend Session",
               onClick: () => {
                 addSnackbar({
-                  header: 'Session Extended',
-                  description: 'Your session has been extended by 30 minutes.',
+                  header: "Session Extended",
+                  description: "Your session has been extended by 30 minutes.",
                   variant: SnackbarVariant.SUCCESS,
                 });
               },
@@ -360,7 +383,7 @@ export const RealWorldExamples: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Common real-world use cases for snackbar notifications.',
+        story: "Common real-world use cases for snackbar notifications.",
       },
     },
   },
@@ -369,39 +392,41 @@ export const RealWorldExamples: Story = {
 // Without description
 export const HeaderOnly: Story = {
   render: () => (
-    <div style={{ 
-      position: 'relative',
-      display: 'grid', 
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: '16px',
-      alignContent: 'start'
-    }}>
+    <div
+      style={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "16px",
+        alignContent: "start",
+      }}
+    >
       <Button
-        text='Show Quick Copy'
+        text="Show Quick Copy"
         leadingIcon={Copy}
         onClick={() =>
           addSnackbar({
-            header: 'Copied!',
+            header: "Copied!",
             variant: SnackbarVariant.SUCCESS,
           })
         }
       />
       <Button
-        text='Show Processing'
+        text="Show Processing"
         leadingIcon={Info}
         onClick={() =>
           addSnackbar({
-            header: 'Processing...',
+            header: "Processing...",
             variant: SnackbarVariant.INFO,
           })
         }
       />
       <Button
-        text='Show Quick Error'
+        text="Show Quick Error"
         leadingIcon={XCircle}
         onClick={() =>
           addSnackbar({
-            header: 'Failed to load',
+            header: "Failed to load",
             variant: SnackbarVariant.ERROR,
           })
         }
@@ -411,7 +436,7 @@ export const HeaderOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Snackbars can display just a header for brief notifications.',
+        story: "Snackbars can display just a header for brief notifications.",
       },
     },
   },

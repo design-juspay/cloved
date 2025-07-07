@@ -39,7 +39,7 @@ const TextInput = ({
   required = false,
 }: InputProps) => {
   const textInputTokens = useComponentToken(
-    "TEXT_INPUT"
+    "TEXT_INPUT",
   ) as TextInputTokensType;
   const leftSlotRef = useRef<HTMLDivElement>(null);
   const rightSlotRef = useRef<HTMLDivElement>(null);
@@ -72,7 +72,7 @@ const TextInput = ({
     : paddingX;
   return (
     <Block display="flex" flexDirection="column" gap={8} width={"100%"}>
-     <InputLabels
+      <InputLabels
         label={label}
         sublabel={sublabel}
         helpIconHintText={helpIconHintText}

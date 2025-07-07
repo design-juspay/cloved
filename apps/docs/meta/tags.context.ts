@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const tagsMeta: ComponentMeta = {
   componentName: "Tags",
-  componentDescription: "A versatile tag component for displaying labels, categories, or status indicators with multiple variants, sizes, and interactive capabilities.",
+  componentDescription:
+    "A versatile tag component for displaying labels, categories, or status indicators with multiple variants, sizes, and interactive capabilities.",
   features: [
     "Multiple visual variants (solid, outline, ghost)",
     "Various size options (small, medium, large)",
@@ -13,7 +14,7 @@ const tagsMeta: ComponentMeta = {
     "Click event handling",
     "Custom styling options",
     "Accessible keyboard navigation",
-    "Responsive design"
+    "Responsive design",
   ],
   usageExamples: [
     {
@@ -29,7 +30,7 @@ const tagsMeta: ComponentMeta = {
   <Tags variant={TagVariant.GHOST} color="purple">
     Next.js
   </Tags>
-</div>`
+</div>`,
     },
     {
       title: "Tags with Icons",
@@ -48,7 +49,7 @@ const tagsMeta: ComponentMeta = {
   >
     View Details
   </Tags>
-</div>`
+</div>`,
     },
     {
       title: "Removable Tags",
@@ -70,7 +71,7 @@ const removeTag = (tagToRemove) => {
       {tag}
     </Tags>
   ))}
-</div>`
+</div>`,
     },
     {
       title: "Different Sizes and States",
@@ -87,8 +88,8 @@ const removeTag = (tagToRemove) => {
     <Tags disabled color="gray">Disabled</Tags>
     <Tags loading color="purple">Loading</Tags>
   </div>
-</div>`
-    }
+</div>`,
+    },
   ],
   props: [
     {
@@ -219,7 +220,7 @@ const removeTag = (tagToRemove) => {
       category: "Styling",
       required: false,
     },
-  ]
+  ],
 };
 
 export default tagsMeta;

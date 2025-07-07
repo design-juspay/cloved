@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const statcardMeta: ComponentMeta = {
   componentName: "StatCard",
-  componentDescription: "A versatile statistics card component that displays key metrics with various visualization options including charts, progress bars, and change indicators.",
+  componentDescription:
+    "A versatile statistics card component that displays key metrics with various visualization options including charts, progress bars, and change indicators.",
   features: [
     "Multiple display variants (number, line chart, bar chart, progress bar)",
     "Change indicators with increase/decrease visualization",
@@ -10,7 +11,7 @@ const statcardMeta: ComponentMeta = {
     "Progress tracking with percentage display",
     "Icon support for titles and actions",
     "Help tooltips for additional context",
-    "Responsive design"
+    "Responsive design",
   ],
   usageExamples: [
     {
@@ -20,7 +21,7 @@ const statcardMeta: ComponentMeta = {
   title="Total Revenue"
   value="$125,000"
   variant={StatCardVariant.NUMBER}
-/>`
+/>`,
     },
     {
       title: "Card with Change Indicator",
@@ -30,7 +31,7 @@ const statcardMeta: ComponentMeta = {
   value="$45,000"
   change={{ value: 12, type: ChangeType.INCREASE }}
   variant={StatCardVariant.NUMBER}
-/>`
+/>`,
     },
     {
       title: "Line Chart Card",
@@ -44,7 +45,7 @@ const statcardMeta: ComponentMeta = {
     { label: "Feb", value: 1350 },
     { label: "Mar", value: 1543 }
   ]}
-/>`
+/>`,
     },
     {
       title: "Progress Bar Card",
@@ -54,8 +55,8 @@ const statcardMeta: ComponentMeta = {
   value="75%"
   variant={StatCardVariant.PROGRESS_BAR}
   progressValue={75}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -85,7 +86,8 @@ const statcardMeta: ComponentMeta = {
         value: number;
         type: ChangeType;
       }`,
-      propDescription: "Change indicator showing increase or decrease with value",
+      propDescription:
+        "Change indicator showing increase or decrease with value",
       llmContext: "Change indicator showing increase or decrease with value",
       propDefault: "-",
       category: "Data",
@@ -170,7 +172,7 @@ const statcardMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default statcardMeta;

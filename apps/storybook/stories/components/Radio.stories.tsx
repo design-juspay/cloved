@@ -1,13 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
-import { Radio, RadioGroup, RadioSize } from 'blend-v1';
-import { CreditCard, DollarSign, Smartphone, Star, Shield, Clock } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React, { useState } from "react";
+import { Radio, RadioGroup, RadioSize } from "blend-v1";
+import {
+  CreditCard,
+  DollarSign,
+  Smartphone,
+  Star,
+  Shield,
+  Clock,
+} from "lucide-react";
 
 const meta: Meta<typeof Radio> = {
-  title: 'Components/Radio',
+  title: "Components/Radio",
   component: Radio,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `
@@ -45,52 +52,52 @@ import { Radio, RadioGroup, RadioSize } from 'blend-v1';
   },
   argTypes: {
     checked: {
-      control: 'boolean',
-      description: 'Controlled checked state of the radio',
+      control: "boolean",
+      description: "Controlled checked state of the radio",
     },
     defaultChecked: {
-      control: 'boolean',
-      description: 'Default checked state for uncontrolled mode',
+      control: "boolean",
+      description: "Default checked state for uncontrolled mode",
     },
     size: {
-      control: 'select',
+      control: "select",
       options: Object.values(RadioSize),
-      description: 'Size variant of the radio',
+      description: "Size variant of the radio",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Whether the radio is disabled',
+      control: "boolean",
+      description: "Whether the radio is disabled",
     },
     required: {
-      control: 'boolean',
-      description: 'Whether the radio is required (shows asterisk)',
+      control: "boolean",
+      description: "Whether the radio is required (shows asterisk)",
     },
     error: {
-      control: 'boolean',
-      description: 'Whether the radio is in error state',
+      control: "boolean",
+      description: "Whether the radio is in error state",
     },
     children: {
-      control: 'text',
-      description: 'Label content for the radio',
+      control: "text",
+      description: "Label content for the radio",
     },
     subtext: {
-      control: 'text',
-      description: 'Additional descriptive text below the radio',
+      control: "text",
+      description: "Additional descriptive text below the radio",
     },
     value: {
-      control: 'text',
-      description: 'Value of the radio option',
+      control: "text",
+      description: "Value of the radio option",
     },
     name: {
-      control: 'text',
-      description: 'Name attribute for grouping radios',
+      control: "text",
+      description: "Name attribute for grouping radios",
     },
     onChange: {
-      action: 'changed',
-      description: 'Callback fired when the radio state changes',
+      action: "changed",
+      description: "Callback fired when the radio state changes",
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -99,9 +106,9 @@ type Story = StoryObj<typeof Radio>;
 // Default story
 export const Default: Story = {
   args: {
-    children: 'Default radio',
-    value: 'default',
-    name: 'default-group',
+    children: "Default radio",
+    value: "default",
+    name: "default-group",
     size: RadioSize.MEDIUM,
     defaultChecked: false,
     disabled: false,
@@ -113,25 +120,25 @@ export const Default: Story = {
 // Radio sizes
 export const RadioSizes: Story = {
   render: () => {
-    const [selectedSize, setSelectedSize] = useState('medium');
+    const [selectedSize, setSelectedSize] = useState("medium");
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <Radio 
-          name="size-demo" 
-          value="small" 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Radio
+          name="size-demo"
+          value="small"
           size={RadioSize.SMALL}
-          checked={selectedSize === 'small'}
-          onChange={(checked) => checked && setSelectedSize('small')}
+          checked={selectedSize === "small"}
+          onChange={(checked) => checked && setSelectedSize("small")}
         >
           Small radio
         </Radio>
-        <Radio 
-          name="size-demo" 
-          value="medium" 
+        <Radio
+          name="size-demo"
+          value="medium"
           size={RadioSize.MEDIUM}
-          checked={selectedSize === 'medium'}
-          onChange={(checked) => checked && setSelectedSize('medium')}
+          checked={selectedSize === "medium"}
+          onChange={(checked) => checked && setSelectedSize("medium")}
         >
           Medium radio
         </Radio>
@@ -141,7 +148,8 @@ export const RadioSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different radio sizes: Small and Medium. Click to select between the sizes.',
+        story:
+          "Different radio sizes: Small and Medium. Click to select between the sizes.",
       },
     },
   },
@@ -151,42 +159,90 @@ export const RadioSizes: Story = {
 export const RadioStates: Story = {
   render: () => {
     const [states, setStates] = useState({
-      interactive: 'unchecked' as string,
+      interactive: "unchecked" as string,
     });
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div style={{ marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Interactive States:</div>
-        <Radio 
-          name="interactive-states" 
-          value="unchecked" 
-          checked={states.interactive === 'unchecked'}
-          onChange={(checked) => checked && setStates(prev => ({ ...prev, interactive: 'unchecked' }))}
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div
+          style={{ marginBottom: "8px", fontWeight: "500", fontSize: "14px" }}
+        >
+          Interactive States:
+        </div>
+        <Radio
+          name="interactive-states"
+          value="unchecked"
+          checked={states.interactive === "unchecked"}
+          onChange={(checked) =>
+            checked &&
+            setStates((prev) => ({ ...prev, interactive: "unchecked" }))
+          }
         >
           Unchecked (Click to select)
         </Radio>
-        <Radio 
-          name="interactive-states" 
-          value="checked" 
-          checked={states.interactive === 'checked'}
-          onChange={(checked) => checked && setStates(prev => ({ ...prev, interactive: 'checked' }))}
+        <Radio
+          name="interactive-states"
+          value="checked"
+          checked={states.interactive === "checked"}
+          onChange={(checked) =>
+            checked &&
+            setStates((prev) => ({ ...prev, interactive: "checked" }))
+          }
         >
           Checked (Click to select)
         </Radio>
-        
-        <div style={{ marginTop: '16px', marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Disabled States:</div>
-        <Radio name="disabled-states" value="disabled-unchecked" disabled={true} defaultChecked={false}>
+
+        <div
+          style={{
+            marginTop: "16px",
+            marginBottom: "8px",
+            fontWeight: "500",
+            fontSize: "14px",
+          }}
+        >
+          Disabled States:
+        </div>
+        <Radio
+          name="disabled-states"
+          value="disabled-unchecked"
+          disabled={true}
+          defaultChecked={false}
+        >
           Disabled unchecked
         </Radio>
-        <Radio name="disabled-states" value="disabled-checked" disabled={true} defaultChecked={true}>
+        <Radio
+          name="disabled-states"
+          value="disabled-checked"
+          disabled={true}
+          defaultChecked={true}
+        >
           Disabled checked
         </Radio>
-        
-        <div style={{ marginTop: '16px', marginBottom: '8px', fontWeight: '500', fontSize: '14px' }}>Other States:</div>
-        <Radio name="other-states" value="error" error={true} defaultChecked={false}>
+
+        <div
+          style={{
+            marginTop: "16px",
+            marginBottom: "8px",
+            fontWeight: "500",
+            fontSize: "14px",
+          }}
+        >
+          Other States:
+        </div>
+        <Radio
+          name="other-states"
+          value="error"
+          error={true}
+          defaultChecked={false}
+        >
           Error state
         </Radio>
-        <Radio name="other-states" value="required" required={true} defaultChecked={false}>
+        <Radio
+          name="other-states"
+          value="required"
+          required={true}
+          defaultChecked={false}
+        >
           Required field
         </Radio>
       </div>
@@ -195,7 +251,8 @@ export const RadioStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different radio states: interactive options, disabled variants, error states, and required fields.',
+        story:
+          "Different radio states: interactive options, disabled variants, error states, and required fields.",
       },
     },
   },
@@ -213,7 +270,8 @@ export const BasicRadioGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Basic radio group with multiple options. Click to select different options.',
+        story:
+          "Basic radio group with multiple options. Click to select different options.",
       },
     },
   },
@@ -222,11 +280,11 @@ export const BasicRadioGroup: Story = {
 // Controlled Radio Group
 export const ControlledRadioGroup: Story = {
   render: () => {
-    const [selectedPlan, setSelectedPlan] = useState('pro');
-    
+    const [selectedPlan, setSelectedPlan] = useState("pro");
+
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <RadioGroup 
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <RadioGroup
           name="subscription"
           value={selectedPlan}
           onChange={setSelectedPlan}
@@ -239,7 +297,7 @@ export const ControlledRadioGroup: Story = {
             Yearly Billing
           </Radio>
         </RadioGroup>
-        <div style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>
+        <div style={{ fontSize: "14px", color: "#666", marginTop: "8px" }}>
           Selected: {selectedPlan}
         </div>
       </div>
@@ -248,7 +306,7 @@ export const ControlledRadioGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Controlled radio group with state management.',
+        story: "Controlled radio group with state management.",
       },
     },
   },
@@ -257,23 +315,27 @@ export const ControlledRadioGroup: Story = {
 // Radio with subtext
 export const WithSubtext: Story = {
   render: () => (
-    <RadioGroup name="subscription-options" label="Subscription Options" defaultValue="pro">
-      <Radio 
-        value="basic" 
+    <RadioGroup
+      name="subscription-options"
+      label="Subscription Options"
+      defaultValue="pro"
+    >
+      <Radio
+        value="basic"
         size={RadioSize.MEDIUM}
         subtext="Perfect for individuals getting started"
       >
         Basic Plan - $9/month
       </Radio>
-      <Radio 
-        value="pro" 
+      <Radio
+        value="pro"
         size={RadioSize.MEDIUM}
         subtext="Great for small teams and growing businesses"
       >
         Pro Plan - $29/month
       </Radio>
-      <Radio 
-        value="enterprise" 
+      <Radio
+        value="enterprise"
         size={RadioSize.MEDIUM}
         subtext="Advanced features for large organizations"
       >
@@ -284,7 +346,8 @@ export const WithSubtext: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Radio buttons with descriptive subtext. Click to select different plans.',
+        story:
+          "Radio buttons with descriptive subtext. Click to select different plans.",
       },
     },
   },
@@ -293,8 +356,12 @@ export const WithSubtext: Story = {
 // Radio with custom slots
 export const WithSlots: Story = {
   render: () => (
-    <RadioGroup name="payment-method" label="Payment Method" defaultValue="card">
-      <Radio 
+    <RadioGroup
+      name="payment-method"
+      label="Payment Method"
+      defaultValue="card"
+    >
+      <Radio
         value="card"
         size={RadioSize.MEDIUM}
         slot={<CreditCard size={20} color="#4f46e5" />}
@@ -302,7 +369,7 @@ export const WithSlots: Story = {
       >
         Credit Card
       </Radio>
-      <Radio 
+      <Radio
         value="paypal"
         size={RadioSize.MEDIUM}
         slot={<DollarSign size={20} color="#00457c" />}
@@ -310,7 +377,7 @@ export const WithSlots: Story = {
       >
         PayPal
       </Radio>
-      <Radio 
+      <Radio
         value="mobile"
         size={RadioSize.MEDIUM}
         slot={<Smartphone size={20} color="#10b981" />}
@@ -318,7 +385,7 @@ export const WithSlots: Story = {
       >
         Mobile Payment
       </Radio>
-      <Radio 
+      <Radio
         value="bank"
         size={RadioSize.MEDIUM}
         slot={<Shield size={20} color="#6b7280" />}
@@ -332,7 +399,8 @@ export const WithSlots: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Radio buttons with custom content slots (icons) for visual enhancement. Click to select different payment methods.',
+        story:
+          "Radio buttons with custom content slots (icons) for visual enhancement. Click to select different payment methods.",
       },
     },
   },
@@ -341,7 +409,7 @@ export const WithSlots: Story = {
 // Error and validation states
 export const ErrorAndValidation: Story = {
   render: () => {
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState("");
     const [showError, setShowError] = useState(false);
 
     const handleSubmit = () => {
@@ -354,8 +422,8 @@ export const ErrorAndValidation: Story = {
     };
 
     return (
-      <div style={{ maxWidth: '400px' }}>
-        <RadioGroup 
+      <div style={{ maxWidth: "400px" }}>
+        <RadioGroup
           name="agreement"
           label="Terms Agreement"
           value={selectedOption}
@@ -364,15 +432,19 @@ export const ErrorAndValidation: Story = {
             setShowError(false);
           }}
         >
-          <Radio 
+          <Radio
             value="accept"
             required={true}
             error={showError}
-            subtext={showError ? "You must accept the terms to continue" : "Read our complete terms of service"}
+            subtext={
+              showError
+                ? "You must accept the terms to continue"
+                : "Read our complete terms of service"
+            }
           >
             I accept the terms and conditions
           </Radio>
-          <Radio 
+          <Radio
             value="decline"
             error={showError}
             subtext="You will not be able to proceed without accepting"
@@ -380,24 +452,24 @@ export const ErrorAndValidation: Story = {
             I decline the terms and conditions
           </Radio>
         </RadioGroup>
-        
-        <button 
+
+        <button
           onClick={handleSubmit}
-          style={{ 
-            marginTop: '16px', 
-            padding: '8px 16px', 
-            backgroundColor: '#3b82f6', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '4px',
-            cursor: 'pointer'
+          style={{
+            marginTop: "16px",
+            padding: "8px 16px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
           }}
         >
           Submit
         </button>
-        
+
         {showError && (
-          <div style={{ color: '#ef4444', fontSize: '14px', marginTop: '8px' }}>
+          <div style={{ color: "#ef4444", fontSize: "14px", marginTop: "8px" }}>
             Please select an option to continue.
           </div>
         )}
@@ -407,7 +479,7 @@ export const ErrorAndValidation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Radio group with error states and form validation.',
+        story: "Radio group with error states and form validation.",
       },
     },
   },
@@ -416,23 +488,48 @@ export const ErrorAndValidation: Story = {
 // Different Radio Group configurations
 export const RadioGroupVariations: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       {/* Small size group */}
-      <RadioGroup name="size-small" label="Small Size Options" defaultValue="option2">
-        <Radio value="option1" size={RadioSize.SMALL}>Option 1</Radio>
-        <Radio value="option2" size={RadioSize.SMALL}>Option 2</Radio>
-        <Radio value="option3" size={RadioSize.SMALL}>Option 3</Radio>
+      <RadioGroup
+        name="size-small"
+        label="Small Size Options"
+        defaultValue="option2"
+      >
+        <Radio value="option1" size={RadioSize.SMALL}>
+          Option 1
+        </Radio>
+        <Radio value="option2" size={RadioSize.SMALL}>
+          Option 2
+        </Radio>
+        <Radio value="option3" size={RadioSize.SMALL}>
+          Option 3
+        </Radio>
       </RadioGroup>
 
       {/* Medium size group */}
-      <RadioGroup name="size-medium" label="Medium Size Options" defaultValue="option1">
-        <Radio value="option1" size={RadioSize.MEDIUM}>Option 1</Radio>
-        <Radio value="option2" size={RadioSize.MEDIUM}>Option 2</Radio>
-        <Radio value="option3" size={RadioSize.MEDIUM}>Option 3</Radio>
+      <RadioGroup
+        name="size-medium"
+        label="Medium Size Options"
+        defaultValue="option1"
+      >
+        <Radio value="option1" size={RadioSize.MEDIUM}>
+          Option 1
+        </Radio>
+        <Radio value="option2" size={RadioSize.MEDIUM}>
+          Option 2
+        </Radio>
+        <Radio value="option3" size={RadioSize.MEDIUM}>
+          Option 3
+        </Radio>
       </RadioGroup>
 
       {/* Disabled group */}
-      <RadioGroup name="disabled-group" label="Disabled Group" disabled={true} defaultValue="option2">
+      <RadioGroup
+        name="disabled-group"
+        label="Disabled Group"
+        disabled={true}
+        defaultValue="option2"
+      >
         <Radio value="option1">Disabled Option 1</Radio>
         <Radio value="option2">Disabled Option 2</Radio>
         <Radio value="option3">Disabled Option 3</Radio>
@@ -442,25 +539,28 @@ export const RadioGroupVariations: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different radio group configurations with various sizes and states. Interactive groups show different default selections.',
+        story:
+          "Different radio group configurations with various sizes and states. Interactive groups show different default selections.",
       },
     },
   },
 };
 
-
-
 // Uncontrolled Radio Group
 export const UncontrolledRadioGroup: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <RadioGroup name="uncontrolled-1" label="Uncontrolled (no default)">
         <Radio value="option1">Option 1</Radio>
         <Radio value="option2">Option 2</Radio>
         <Radio value="option3">Option 3</Radio>
       </RadioGroup>
 
-      <RadioGroup name="uncontrolled-2" label="Uncontrolled (with default)" defaultValue="option2">
+      <RadioGroup
+        name="uncontrolled-2"
+        label="Uncontrolled (with default)"
+        defaultValue="option2"
+      >
         <Radio value="option1">Option 1</Radio>
         <Radio value="option2">Option 2 (Default)</Radio>
         <Radio value="option3">Option 3</Radio>
@@ -470,7 +570,8 @@ export const UncontrolledRadioGroup: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Uncontrolled radio groups that manage their own state internally. Click to select options - the first group starts with no selection, the second has a default selection.',
+        story:
+          "Uncontrolled radio groups that manage their own state internally. Click to select options - the first group starts with no selection, the second has a default selection.",
       },
     },
   },

@@ -1,15 +1,15 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes } from "react";
 
 export enum AvatarSize {
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl'
+  SM = "sm",
+  MD = "md",
+  LG = "lg",
+  XL = "xl",
 }
 
 export enum AvatarShape {
-  CIRCULAR = 'circular',
-  ROUNDED = 'rounded'
+  CIRCULAR = "circular",
+  ROUNDED = "rounded",
 }
 
 export type AvatarProps = {
@@ -21,7 +21,7 @@ export type AvatarProps = {
   online?: boolean;
   leadingSlot?: React.ReactNode;
   trailingSlot?: React.ReactNode;
-} & Omit<HTMLAttributes<HTMLDivElement>, 'children'>;
+} & Omit<HTMLAttributes<HTMLDivElement>, "children">;
 
 export type StyledAvatarContainerProps = {
   $size: AvatarSize;

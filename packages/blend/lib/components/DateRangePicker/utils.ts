@@ -1,5 +1,5 @@
-import { DateRange, DateRangePreset } from './types';
-import { CalendarTokenType } from './dateRangePicker.tokens';
+import { DateRange, DateRangePreset } from "./types";
+import { CalendarTokenType } from "./dateRangePicker.tokens";
 
 /**
  * Formats a date according to the specified format
@@ -8,20 +8,20 @@ import { CalendarTokenType } from './dateRangePicker.tokens';
  * @returns The formatted date string or empty string if date is invalid
  */
 export const formatDate = (date: Date, format: string): string => {
-  if (!date || !isValidDate(date)) return '';
-  
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  if (!date || !isValidDate(date)) return "";
+
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
 
   return format
-    .replace('dd', day)
-    .replace('MM', month)
-    .replace('yyyy', year.toString())
-    .replace('HH', hours)
-    .replace('mm', minutes);
+    .replace("dd", day)
+    .replace("MM", month)
+    .replace("yyyy", year.toString())
+    .replace("HH", hours)
+    .replace("mm", minutes);
 };
 
 /**
@@ -34,22 +34,34 @@ export const parseDate = (dateString: string, format: string): Date | null => {
   try {
     const formatParts = format.split(/[^a-zA-Z]/);
     const dateParts = dateString.split(/[^0-9]/);
-    
+
     if (formatParts.length !== dateParts.length) return null;
 
-    let day = 1, month = 1, year = new Date().getFullYear(), hours = 0;
+    let day = 1,
+      month = 1,
+      year = new Date().getFullYear(),
+      hours = 0;
     const minutes = 0;
-    
+
     formatParts.forEach((part, index) => {
       const value = parseInt(dateParts[index]);
       if (isNaN(value)) return null;
-      
+
       switch (part.toLowerCase()) {
-        case 'dd': day = value; break;
-        case 'mm': month = value; break;
-        case 'yyyy': year = value; break;
-        case 'hh': hours = value; break;
-        default: break;
+        case "dd":
+          day = value;
+          break;
+        case "mm":
+          month = value;
+          break;
+        case "yyyy":
+          year = value;
+          break;
+        case "hh":
+          hours = value;
+          break;
+        default:
+          break;
       }
     });
 
@@ -77,9 +89,9 @@ export const isValidDate = (date: Date): boolean => {
 export const formatTimeIn12Hour = (date: Date): string => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const period = hours >= 12 ? 'PM' : 'AM';
+  const period = hours >= 12 ? "PM" : "AM";
   const displayHours = hours % 12 === 0 ? 12 : hours % 12;
-  return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+  return `${displayHours}:${minutes.toString().padStart(2, "0")} ${period}`;
 };
 
 /**
@@ -88,13 +100,16 @@ export const formatTimeIn12Hour = (date: Date): string => {
  * @param showTime Whether to include time in the formatted string
  * @returns The formatted date range string
  */
-export const formatDateRange = (range: DateRange, showTime: boolean = false): string => {
+export const formatDateRange = (
+  range: DateRange,
+  showTime: boolean = false,
+): string => {
   if (!range.startDate) {
-    return '';
+    return "";
   }
 
-  const startFormat = showTime ? 'dd/MM/yyyy, HH:mm' : 'dd/MM/yyyy';
-  const endFormat = showTime ? 'dd/MM/yyyy, HH:mm' : 'dd/MM/yyyy';
+  const startFormat = showTime ? "dd/MM/yyyy, HH:mm" : "dd/MM/yyyy";
+  const endFormat = showTime ? "dd/MM/yyyy, HH:mm" : "dd/MM/yyyy";
 
   const start = formatDate(range.startDate, startFormat);
 
@@ -114,82 +129,82 @@ export const formatDateRange = (range: DateRange, showTime: boolean = false): st
 export const getPresetDateRange = (preset: DateRangePreset): DateRange => {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  
+
   switch (preset) {
     case DateRangePreset.TODAY: {
       return { startDate: today, endDate: today };
     }
-    
+
     case DateRangePreset.YESTERDAY: {
       const yesterday = new Date(today);
       yesterday.setDate(yesterday.getDate() - 1);
       return { startDate: yesterday, endDate: yesterday };
     }
-    
+
     case DateRangePreset.TOMORROW: {
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
       return { startDate: tomorrow, endDate: tomorrow };
     }
-    
+
     case DateRangePreset.LAST_1_HOUR: {
       const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
       return { startDate: oneHourAgo, endDate: now };
     }
-    
+
     case DateRangePreset.LAST_6_HOURS: {
       const sixHoursAgo = new Date(now.getTime() - 6 * 60 * 60 * 1000);
       return { startDate: sixHoursAgo, endDate: now };
     }
-    
+
     case DateRangePreset.LAST_7_DAYS: {
       const sevenDaysAgo = new Date(today);
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
       return { startDate: sevenDaysAgo, endDate: today };
     }
-    
+
     case DateRangePreset.LAST_30_DAYS: {
       const thirtyDaysAgo = new Date(today);
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 29);
       return { startDate: thirtyDaysAgo, endDate: today };
     }
-    
+
     case DateRangePreset.LAST_3_MONTHS: {
       const threeMonthsAgo = new Date(today);
       threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
       return { startDate: threeMonthsAgo, endDate: today };
     }
-    
+
     case DateRangePreset.LAST_12_MONTHS: {
       const twelveMonthsAgo = new Date(today);
       twelveMonthsAgo.setFullYear(twelveMonthsAgo.getFullYear() - 1);
       return { startDate: twelveMonthsAgo, endDate: today };
     }
-    
+
     case DateRangePreset.NEXT_7_DAYS: {
       const sevenDaysLater = new Date(today);
       sevenDaysLater.setDate(sevenDaysLater.getDate() + 6);
       return { startDate: today, endDate: sevenDaysLater };
     }
-    
+
     case DateRangePreset.NEXT_30_DAYS: {
       const thirtyDaysLater = new Date(today);
       thirtyDaysLater.setDate(thirtyDaysLater.getDate() + 29);
       return { startDate: today, endDate: thirtyDaysLater };
     }
-    
+
     case DateRangePreset.NEXT_3_MONTHS: {
       const threeMonthsLater = new Date(today);
       threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
       return { startDate: today, endDate: threeMonthsLater };
     }
-    
+
     case DateRangePreset.NEXT_12_MONTHS: {
       const twelveMonthsLater = new Date(today);
       twelveMonthsLater.setFullYear(twelveMonthsLater.getFullYear() + 1);
       return { startDate: today, endDate: twelveMonthsLater };
     }
-    
+
     default: {
       return { startDate: today, endDate: today };
     }
@@ -203,21 +218,36 @@ export const getPresetDateRange = (preset: DateRangePreset): DateRange => {
  */
 export const getPresetLabel = (preset: DateRangePreset): string => {
   switch (preset) {
-    case DateRangePreset.TODAY: return 'Today';
-    case DateRangePreset.YESTERDAY: return 'Yesterday';
-    case DateRangePreset.TOMORROW: return 'Tomorrow';
-    case DateRangePreset.LAST_1_HOUR: return 'Last 1 hour';
-    case DateRangePreset.LAST_6_HOURS: return 'Last 6 hours';
-    case DateRangePreset.LAST_7_DAYS: return 'Last 7 days';
-    case DateRangePreset.LAST_30_DAYS: return 'Last 30 days';
-    case DateRangePreset.LAST_3_MONTHS: return 'Last 3 months';
-    case DateRangePreset.LAST_12_MONTHS: return 'Last 12 months';
-    case DateRangePreset.NEXT_7_DAYS: return 'Next 7 days';
-    case DateRangePreset.NEXT_30_DAYS: return 'Next 30 days';
-    case DateRangePreset.NEXT_3_MONTHS: return 'Next 3 months';
-    case DateRangePreset.NEXT_12_MONTHS: return 'Next 12 months';
-    case DateRangePreset.CUSTOM: return 'Custom';
-    default: return 'Select Range';
+    case DateRangePreset.TODAY:
+      return "Today";
+    case DateRangePreset.YESTERDAY:
+      return "Yesterday";
+    case DateRangePreset.TOMORROW:
+      return "Tomorrow";
+    case DateRangePreset.LAST_1_HOUR:
+      return "Last 1 hour";
+    case DateRangePreset.LAST_6_HOURS:
+      return "Last 6 hours";
+    case DateRangePreset.LAST_7_DAYS:
+      return "Last 7 days";
+    case DateRangePreset.LAST_30_DAYS:
+      return "Last 30 days";
+    case DateRangePreset.LAST_3_MONTHS:
+      return "Last 3 months";
+    case DateRangePreset.LAST_12_MONTHS:
+      return "Last 12 months";
+    case DateRangePreset.NEXT_7_DAYS:
+      return "Next 7 days";
+    case DateRangePreset.NEXT_30_DAYS:
+      return "Next 30 days";
+    case DateRangePreset.NEXT_3_MONTHS:
+      return "Next 3 months";
+    case DateRangePreset.NEXT_12_MONTHS:
+      return "Next 12 months";
+    case DateRangePreset.CUSTOM:
+      return "Custom";
+    default:
+      return "Select Range";
   }
 };
 
@@ -227,11 +257,11 @@ export const getPresetLabel = (preset: DateRangePreset): string => {
  * @returns The formatted time string
  */
 export const formatTime = (time: string): string => {
-  const [hours, minutes] = time.split(':');
+  const [hours, minutes] = time.split(":");
   const h = parseInt(hours) || 0;
   const m = parseInt(minutes) || 0;
-  
-  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
 };
 
 /**
@@ -251,14 +281,18 @@ export const isValidTime = (time: string): boolean => {
  * @param timeFormat The time format to use
  * @returns The formatted date string
  */
-export const dateToString = (date: Date, includeTime?: boolean, timeFormat?: string): string => {
-  const dateStr = formatDate(date, 'dd/MM/yyyy');
-  
+export const dateToString = (
+  date: Date,
+  includeTime?: boolean,
+  timeFormat?: string,
+): string => {
+  const dateStr = formatDate(date, "dd/MM/yyyy");
+
   if (includeTime && timeFormat) {
     const timeStr = formatDate(date, timeFormat);
     return `${dateStr} ${timeStr}`;
   }
-  
+
   return dateStr;
 };
 
@@ -269,9 +303,11 @@ export const dateToString = (date: Date, includeTime?: boolean, timeFormat?: str
  * @returns True if dates are the same day
  */
 export const isSameDay = (date1: Date, date2: Date): boolean => {
-  return date1.getFullYear() === date2.getFullYear() &&
-         date1.getMonth() === date2.getMonth() &&
-         date1.getDate() === date2.getDate();
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
 };
 
 /**
@@ -281,11 +317,15 @@ export const isSameDay = (date1: Date, date2: Date): boolean => {
  * @param endDate Range end date
  * @returns True if date is in range
  */
-export const isDateInRange = (date: Date, startDate: Date, endDate: Date): boolean => {
+export const isDateInRange = (
+  date: Date,
+  startDate: Date,
+  endDate: Date,
+): boolean => {
   const dateTime = date.getTime();
   const startTime = startDate.getTime();
   const endTime = endDate.getTime();
-  
+
   return dateTime >= startTime && dateTime <= endTime;
 };
 
@@ -315,34 +355,37 @@ export const getFirstDayOfMonth = (year: number, month: number): number => {
  * @param month The month (0-based)
  * @returns Array of weeks, each containing day numbers or null for empty cells
  */
-export const generateCalendarGrid = (year: number, month: number): (number | null)[][] => {
+export const generateCalendarGrid = (
+  year: number,
+  month: number,
+): (number | null)[][] => {
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstDayOfMonth(year, month);
-  
+
   const weeks: (number | null)[][] = [];
   let currentWeek: (number | null)[] = [];
-  
+
   for (let i = 0; i < firstDay; i++) {
     currentWeek.push(null);
   }
-  
+
   for (let day = 1; day <= daysInMonth; day++) {
     currentWeek.push(day);
-    
+
     if (currentWeek.length === 7) {
       weeks.push(currentWeek);
       currentWeek = [];
     }
   }
-  
+
   while (currentWeek.length > 0 && currentWeek.length < 7) {
     currentWeek.push(null);
   }
-  
+
   if (currentWeek.length > 0) {
     weeks.push(currentWeek);
   }
-  
+
   return weeks;
 };
 
@@ -382,7 +425,10 @@ export const isEndDate = (date: Date, selectedRange: DateRange): boolean => {
  * @param selectedRange The selected date range
  * @returns True if the date is in the range
  */
-export const isInSelectedRange = (date: Date, selectedRange: DateRange): boolean => {
+export const isInSelectedRange = (
+  date: Date,
+  selectedRange: DateRange,
+): boolean => {
   if (!selectedRange.startDate || !selectedRange.endDate) return false;
   return date > selectedRange.startDate && date < selectedRange.endDate;
 };
@@ -419,7 +465,7 @@ export const handleCalendarDateClick = (
   today: Date,
   disableFutureDates: boolean = false,
   disablePastDates: boolean = false,
-  isDoubleClick: boolean = false
+  isDoubleClick: boolean = false,
 ): DateRange | null => {
   if (
     (disableFutureDates && clickedDate > today) ||
@@ -450,13 +496,13 @@ export const handleCalendarDateClick = (
       startDate: clickedDate,
       endDate: clickedDate,
     };
-      } else if (!selectedRange.endDate) {
-      if (clickedDate < selectedRange.startDate) {
-        newRange = {
-          startDate: clickedDate,
-          endDate: clickedDate,
-        };
-      } else if (clickedDate.getTime() === selectedRange.startDate.getTime()) {
+  } else if (!selectedRange.endDate) {
+    if (clickedDate < selectedRange.startDate) {
+      newRange = {
+        startDate: clickedDate,
+        endDate: clickedDate,
+      };
+    } else if (clickedDate.getTime() === selectedRange.startDate.getTime()) {
       newRange = {
         startDate: clickedDate,
         endDate: clickedDate,
@@ -471,10 +517,10 @@ export const handleCalendarDateClick = (
     const startTime = selectedRange.startDate.getTime();
     const endTime = selectedRange.endDate.getTime();
     const clickedTime = clickedDate.getTime();
-    
+
     const distanceToStart = Math.abs(clickedTime - startTime);
     const distanceToEnd = Math.abs(clickedTime - endTime);
-    
+
     if (distanceToStart <= distanceToEnd) {
       if (clickedDate <= selectedRange.endDate) {
         newRange = {
@@ -511,7 +557,10 @@ export const handleCalendarDateClick = (
  * @param month The month (0-based)
  * @returns Array of weeks with day numbers or null for empty cells
  */
-export const generateMonthWeeks = (year: number, month: number): (number | null)[][] => {
+export const generateMonthWeeks = (
+  year: number,
+  month: number,
+): (number | null)[][] => {
   const lastDayOfMonth = new Date(year, month + 1, 0);
   const daysInMonth = lastDayOfMonth.getDate();
 
@@ -546,7 +595,7 @@ export const generateMonthWeeks = (year: number, month: number): (number | null)
 export const generateCalendarMonths = (
   startYear: number = 2012,
   startMonth: number = 0,
-  endYear?: number
+  endYear?: number,
 ): { month: number; year: number }[] => {
   const months = [];
   const currentDate = new Date();
@@ -567,7 +616,9 @@ export const generateCalendarMonths = (
  * @param today Current date
  * @returns Array of initial months to display
  */
-export const generateInitialMonths = (today: Date): { month: number; year: number }[] => {
+export const generateInitialMonths = (
+  today: Date,
+): { month: number; year: number }[] => {
   const months = [];
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth();
@@ -595,14 +646,14 @@ export const generateMonthChunk = (
   startYear: number,
   startMonth: number,
   endYear: number,
-  endMonth: number = 11
+  endMonth: number = 11,
 ): { month: number; year: number }[] => {
   const months = [];
 
   for (let year = startYear; year <= endYear; year++) {
     const monthStart = year === startYear ? startMonth : 0;
     const monthEnd = year === endYear ? endMonth : 11;
-    
+
     for (let month = monthStart; month <= monthEnd; month++) {
       months.push({ month, year });
     }
@@ -619,32 +670,33 @@ export const generateMonthChunk = (
  */
 export const getNextChunkParams = (
   currentMonths: { month: number; year: number }[],
-  direction: 'past' | 'future'
+  direction: "past" | "future",
 ): { startYear: number; startMonth: number } | null => {
   const MIN_YEAR = 2012;
   const MAX_YEAR = new Date().getFullYear() + 10;
 
-  if (direction === 'past') {
+  if (direction === "past") {
     const firstMonth = currentMonths[0];
-    
+
     if (firstMonth.year <= MIN_YEAR && firstMonth.month === 0) {
       return null;
     }
-    
+
     const targetYear = Math.max(MIN_YEAR, firstMonth.year - 3);
-    return { 
-      startYear: targetYear, 
-      startMonth: targetYear === MIN_YEAR ? 0 : 0 
+    return {
+      startYear: targetYear,
+      startMonth: targetYear === MIN_YEAR ? 0 : 0,
     };
   } else {
     const lastMonth = currentMonths[currentMonths.length - 1];
-    
+
     if (lastMonth.year >= MAX_YEAR) {
       return null;
     }
-    
+
     const nextMonth = lastMonth.month === 11 ? 0 : lastMonth.month + 1;
-    const nextYear = lastMonth.month === 11 ? lastMonth.year + 1 : lastMonth.year;
+    const nextYear =
+      lastMonth.month === 11 ? lastMonth.year + 1 : lastMonth.year;
     return { startYear: nextYear, startMonth: nextMonth };
   }
 };
@@ -656,8 +708,18 @@ export const getNextChunkParams = (
  */
 export const getMonthName = (monthIndex: number): string => {
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   return monthNames[monthIndex];
 };
@@ -667,7 +729,7 @@ export const getMonthName = (monthIndex: number): string => {
  * @returns Array of day names
  */
 export const getDayNames = (): string[] => {
-  return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 };
 
 /**
@@ -675,7 +737,7 @@ export const getDayNames = (): string[] => {
  * @returns Height in pixels
  */
 export const getMonthHeight = (): number => {
-  return 40 + (6 * 40);
+  return 40 + 6 * 40;
 };
 
 /**
@@ -692,7 +754,7 @@ export const getVisibleMonths = (
   containerHeight: number,
   months: { month: number; year: number }[],
   monthHeight: number,
-  buffer: number = 12
+  buffer: number = 12,
 ): {
   startIndex: number;
   endIndex: number;
@@ -700,11 +762,11 @@ export const getVisibleMonths = (
   totalHeight: number;
 } => {
   const totalHeight = months.length * monthHeight;
-  
+
   const startIndex = Math.max(0, Math.floor(scrollTop / monthHeight) - buffer);
   const endIndex = Math.min(
     months.length - 1,
-    Math.ceil((scrollTop + containerHeight) / monthHeight) + buffer
+    Math.ceil((scrollTop + containerHeight) / monthHeight) + buffer,
   );
 
   const visibleMonths = months
@@ -730,7 +792,7 @@ export const getVisibleMonths = (
  */
 export const throttle = <T extends (...args: unknown[]) => unknown>(
   func: T,
-  limit: number
+  limit: number,
 ): ((...args: Parameters<T>) => void) => {
   let inThrottle: boolean;
   return function (this: unknown, ...args: Parameters<T>) {
@@ -760,11 +822,11 @@ export const getMonthOffset = (index: number, monthHeight: number): number => {
  */
 export const findCurrentMonthIndex = (
   months: { month: number; year: number }[],
-  today: Date
+  today: Date,
 ): number => {
   return months.findIndex(
     ({ month, year }) =>
-      month === today.getMonth() && year === today.getFullYear()
+      month === today.getMonth() && year === today.getFullYear(),
   );
 };
 
@@ -774,7 +836,10 @@ export const findCurrentMonthIndex = (
  * @param monthHeight Height of each month
  * @returns Scroll position
  */
-export const getScrollToMonth = (monthIndex: number, monthHeight: number): number => {
+export const getScrollToMonth = (
+  monthIndex: number,
+  monthHeight: number,
+): number => {
   return monthIndex * monthHeight;
 };
 
@@ -792,7 +857,7 @@ export const getDateCellStates = (
   selectedRange: DateRange,
   today: Date,
   disableFutureDates: boolean = false,
-  disablePastDates: boolean = false
+  disablePastDates: boolean = false,
 ) => {
   const isStart = isStartDate(date, selectedRange);
   const isEnd = isEndDate(date, selectedRange);
@@ -800,7 +865,7 @@ export const getDateCellStates = (
   const isTodayDay = isDateToday(date, today);
   const isSingleDate = isStart && isEnd;
   const isDisabled = Boolean(
-    (disableFutureDates && date > today) || (disablePastDates && date < today)
+    (disableFutureDates && date > today) || (disablePastDates && date < today),
   );
 
   return {
@@ -819,7 +884,7 @@ export const getDateCellStates = (
  * @returns Boolean indicating if today indicator should be shown
  */
 export const shouldShowTodayIndicator = (
-  dateStates: ReturnType<typeof getDateCellStates>
+  dateStates: ReturnType<typeof getDateCellStates>,
 ): boolean => {
   const { isTodayDay, isStart, isEnd, isRangeDay } = dateStates;
   return isTodayDay && !isStart && !isEnd && !isRangeDay;
@@ -830,9 +895,9 @@ export const shouldShowTodayIndicator = (
  */
 export type DateValidationResult = {
   isValid: boolean;
-  error: 'none' | 'format' | 'invalid-date' | 'out-of-range';
+  error: "none" | "format" | "invalid-date" | "out-of-range";
   message?: string;
-}
+};
 
 /**
  * Interface for date range picker tokens used in styling functions
@@ -860,7 +925,7 @@ export type DateRangePickerTokens = {
       color?: string | unknown;
     };
   };
-}
+};
 
 /**
  * Validates date format and date values
@@ -868,68 +933,72 @@ export type DateRangePickerTokens = {
  * @param format The expected format (e.g., 'dd/MM/yyyy')
  * @returns Validation result with specific error type
  */
-export const validateDateInput = (value: string, format: string): DateValidationResult => {
+export const validateDateInput = (
+  value: string,
+  format: string,
+): DateValidationResult => {
   if (!value || value.length === 0) {
-    return { isValid: true, error: 'none' };
+    return { isValid: true, error: "none" };
   }
 
-  if (format === 'dd/MM/yyyy') {
+  if (format === "dd/MM/yyyy") {
     const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
     const match = value.match(dateRegex);
-    
+
     if (!match) {
-      return { 
-        isValid: false, 
-        error: 'format', 
-        message: 'Invalid date' 
+      return {
+        isValid: false,
+        error: "format",
+        message: "Invalid date",
       };
     }
-    
+
     const day = parseInt(match[1], 10);
     const month = parseInt(match[2], 10);
     const year = parseInt(match[3], 10);
-    
+
     if (year < 2001 || year > 2100) {
-      return { 
-        isValid: false, 
-        error: 'out-of-range', 
-        message: 'Date not in range' 
+      return {
+        isValid: false,
+        error: "out-of-range",
+        message: "Date not in range",
       };
     }
-    
+
     if (month < 1 || month > 12) {
-      return { 
-        isValid: false, 
-        error: 'invalid-date', 
-        message: 'Invalid date' 
+      return {
+        isValid: false,
+        error: "invalid-date",
+        message: "Invalid date",
       };
     }
-    
+
     if (day < 1 || day > 31) {
-      return { 
-        isValid: false, 
-        error: 'invalid-date', 
-        message: 'Invalid date' 
+      return {
+        isValid: false,
+        error: "invalid-date",
+        message: "Invalid date",
       };
     }
-    
+
     const date = new Date(year, month - 1, day);
-    const isValidCalendarDate = date.getFullYear() === year && 
-                                date.getMonth() === month - 1 && 
-                                date.getDate() === day;
-    
+    const isValidCalendarDate =
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day;
+
     if (!isValidCalendarDate) {
-      return { 
-        isValid: false, 
-        error: 'invalid-date', 
-        message: 'Invalid date' 
+      return {
+        isValid: false,
+        error: "invalid-date",
+        message: "Invalid date",
       };
     }
-    
-    return { isValid: true, error: 'none' };
+
+    return { isValid: true, error: "none" };
   }
-  
-  return { isValid: true, error: 'none' };
+
+  return { isValid: true, error: "none" };
 };
 
 /**
@@ -939,19 +1008,32 @@ export const validateDateInput = (value: string, format: string): DateValidation
  * @returns Formatted input value
  */
 export const formatDateInput = (value: string, format: string): string => {
-  if (format === 'dd/MM/yyyy') {
-    const cleaned = value.replace(/\D/g, '');
-    
-    if (cleaned.length === 0) return '';
+  if (format === "dd/MM/yyyy") {
+    const cleaned = value.replace(/\D/g, "");
+
+    if (cleaned.length === 0) return "";
     if (cleaned.length <= 2) return cleaned;
-    if (cleaned.length <= 4) return cleaned.slice(0, 2) + '/' + cleaned.slice(2);
+    if (cleaned.length <= 4)
+      return cleaned.slice(0, 2) + "/" + cleaned.slice(2);
     if (cleaned.length <= 8) {
-      return cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4) + '/' + cleaned.slice(4, 8);
+      return (
+        cleaned.slice(0, 2) +
+        "/" +
+        cleaned.slice(2, 4) +
+        "/" +
+        cleaned.slice(4, 8)
+      );
     }
-    
-    return cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4) + '/' + cleaned.slice(4, 8);
+
+    return (
+      cleaned.slice(0, 2) +
+      "/" +
+      cleaned.slice(2, 4) +
+      "/" +
+      cleaned.slice(4, 8)
+    );
   }
-  
+
   return value;
 };
 
@@ -962,10 +1044,10 @@ export const formatDateInput = (value: string, format: string): string => {
  * @returns True if input is complete
  */
 export const isDateInputComplete = (value: string, format: string): boolean => {
-  if (format === 'dd/MM/yyyy') {
-    return value.length === 10; 
+  if (format === "dd/MM/yyyy") {
+    return value.length === 10;
   }
-  return true; 
+  return true;
 };
 
 /**
@@ -976,26 +1058,32 @@ export const isDateInputComplete = (value: string, format: string): boolean => {
  */
 export const formatDateDisplay = (
   selectedRange: DateRange,
-  allowSingleDateSelection: boolean = false
+  allowSingleDateSelection: boolean = false,
 ): string => {
   if (!selectedRange.startDate) {
-    return 'Select date range';
+    return "Select date range";
   }
 
   const formatOptions: Intl.DateTimeFormatOptions = {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   };
 
   const timeFormatOptions: Intl.DateTimeFormatOptions = {
-    hour: 'numeric',
-    minute: '2-digit',
+    hour: "numeric",
+    minute: "2-digit",
     hour12: true,
   };
 
-  const startDateStr = selectedRange.startDate.toLocaleDateString('en-US', formatOptions);
-  const startTimeStr = selectedRange.startDate.toLocaleTimeString('en-US', timeFormatOptions);
+  const startDateStr = selectedRange.startDate.toLocaleDateString(
+    "en-US",
+    formatOptions,
+  );
+  const startTimeStr = selectedRange.startDate.toLocaleTimeString(
+    "en-US",
+    timeFormatOptions,
+  );
 
   if (
     !selectedRange.endDate ||
@@ -1005,8 +1093,14 @@ export const formatDateDisplay = (
     return `${startDateStr}, ${startTimeStr}`;
   }
 
-  const endDateStr = selectedRange.endDate.toLocaleDateString('en-US', formatOptions);
-  const endTimeStr = selectedRange.endDate.toLocaleTimeString('en-US', timeFormatOptions);
+  const endDateStr = selectedRange.endDate.toLocaleDateString(
+    "en-US",
+    formatOptions,
+  );
+  const endTimeStr = selectedRange.endDate.toLocaleTimeString(
+    "en-US",
+    timeFormatOptions,
+  );
 
   return `${startDateStr}, ${startTimeStr} - ${endDateStr}, ${endTimeStr}`;
 };
@@ -1024,7 +1118,7 @@ export const handleDateInputChange = (
   dateFormat: string,
   currentRange: DateRange,
   timeValue: string,
-  isStartDate: boolean = true
+  isStartDate: boolean = true,
 ): {
   formattedValue: string;
   validation: DateValidationResult;
@@ -1032,16 +1126,16 @@ export const handleDateInputChange = (
 } => {
   const formattedValue = formatDateInput(value, dateFormat);
   const validation = validateDateInput(formattedValue, dateFormat);
-  
+
   let updatedRange: DateRange | undefined;
 
   if (validation.isValid && isDateInputComplete(formattedValue, dateFormat)) {
     const parsedDate = parseDate(formattedValue, dateFormat);
     if (parsedDate !== null && isValidDate(parsedDate)) {
-      const [hours, minutes] = timeValue.split(':').map(Number);
+      const [hours, minutes] = timeValue.split(":").map(Number);
       parsedDate.setHours(hours, minutes);
 
-      updatedRange = isStartDate 
+      updatedRange = isStartDate
         ? { ...currentRange, startDate: parsedDate }
         : { ...currentRange, endDate: parsedDate };
     }
@@ -1050,7 +1144,7 @@ export const handleDateInputChange = (
   return {
     formattedValue,
     validation,
-    updatedRange
+    updatedRange,
   };
 };
 
@@ -1064,20 +1158,22 @@ export const handleDateInputChange = (
 export const handleTimeChange = (
   time: string,
   currentRange: DateRange,
-  isStartTime: boolean = true
+  isStartTime: boolean = true,
 ): DateRange => {
-  const targetDate = isStartTime ? currentRange.startDate : currentRange.endDate;
-  
+  const targetDate = isStartTime
+    ? currentRange.startDate
+    : currentRange.endDate;
+
   if (targetDate) {
-    const [hours, minutes] = time.split(':').map(Number);
+    const [hours, minutes] = time.split(":").map(Number);
     const newDate = new Date(targetDate);
     newDate.setHours(hours, minutes);
-    
+
     return isStartTime
       ? { ...currentRange, startDate: newDate }
       : { ...currentRange, endDate: newDate };
   }
-  
+
   return currentRange;
 };
 
@@ -1093,26 +1189,26 @@ export const handleCalendarDateSelect = (
   range: DateRange,
   startTime: string,
   endTime: string,
-  dateFormat: string
+  dateFormat: string,
 ): {
   updatedRange: DateRange;
   formattedStartDate: string;
   formattedEndDate: string;
 } => {
   if (range.startDate) {
-    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [startHour, startMinute] = startTime.split(":").map(Number);
     range.startDate.setHours(startHour, startMinute);
   }
 
   if (range.endDate) {
-    const [endHour, endMinute] = endTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(":").map(Number);
     range.endDate.setHours(endHour, endMinute);
   }
 
   return {
     updatedRange: range,
     formattedStartDate: formatDate(range.startDate, dateFormat),
-    formattedEndDate: formatDate(range.endDate, dateFormat)
+    formattedEndDate: formatDate(range.endDate, dateFormat),
   };
 };
 
@@ -1124,7 +1220,7 @@ export const handleCalendarDateSelect = (
  */
 export const handlePresetSelection = (
   preset: DateRangePreset,
-  dateFormat: string
+  dateFormat: string,
 ): {
   updatedRange: DateRange;
   formattedStartDate: string;
@@ -1133,13 +1229,13 @@ export const handlePresetSelection = (
   formattedEndTime: string;
 } => {
   const range = getPresetDateRange(preset);
-  
+
   return {
     updatedRange: range,
     formattedStartDate: formatDate(range.startDate, dateFormat),
     formattedEndDate: formatDate(range.endDate, dateFormat),
-    formattedStartTime: formatDate(range.startDate, 'HH:mm'),
-    formattedEndTime: formatDate(range.endDate, 'HH:mm')
+    formattedStartTime: formatDate(range.startDate, "HH:mm"),
+    formattedEndTime: formatDate(range.endDate, "HH:mm"),
   };
 };
 
@@ -1151,7 +1247,7 @@ export const handlePresetSelection = (
  */
 export const handleCancelAction = (
   originalValue: DateRange | undefined,
-  dateFormat: string
+  dateFormat: string,
 ): {
   resetRange: DateRange;
   formattedStartDate: string;
@@ -1165,8 +1261,8 @@ export const handleCancelAction = (
     resetRange: originalValue,
     formattedStartDate: formatDate(originalValue.startDate, dateFormat),
     formattedEndDate: formatDate(originalValue.endDate, dateFormat),
-    formattedStartTime: formatDate(originalValue.startDate, 'HH:mm'),
-    formattedEndTime: formatDate(originalValue.endDate, 'HH:mm')
+    formattedStartTime: formatDate(originalValue.startDate, "HH:mm"),
+    formattedEndTime: formatDate(originalValue.endDate, "HH:mm"),
   };
 };
 
@@ -1180,11 +1276,14 @@ export const handleCancelAction = (
  */
 export const handleLoadMoreMonths = async (
   months: { month: number; year: number }[],
-  direction: 'past' | 'future',
+  direction: "past" | "future",
   isLoadingPast: boolean,
-  isLoadingFuture: boolean
+  isLoadingFuture: boolean,
 ): Promise<{ month: number; year: number }[] | null> => {
-  if ((direction === 'past' && isLoadingPast) || (direction === 'future' && isLoadingFuture)) {
+  if (
+    (direction === "past" && isLoadingPast) ||
+    (direction === "future" && isLoadingFuture)
+  ) {
     return null;
   }
 
@@ -1193,17 +1292,23 @@ export const handleLoadMoreMonths = async (
     return null;
   }
 
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   const { startYear, startMonth } = chunkParams;
   let newChunk: { month: number; year: number }[];
 
-  if (direction === 'past') {
+  if (direction === "past") {
     const firstMonth = months[0];
     const endMonth = firstMonth.month === 0 ? 11 : firstMonth.month - 1;
-    const adjustedEndYear = firstMonth.month === 0 ? firstMonth.year - 1 : firstMonth.year;
-    
-    newChunk = generateMonthChunk(startYear, startMonth, adjustedEndYear, endMonth);
+    const adjustedEndYear =
+      firstMonth.month === 0 ? firstMonth.year - 1 : firstMonth.year;
+
+    newChunk = generateMonthChunk(
+      startYear,
+      startMonth,
+      adjustedEndYear,
+      endMonth,
+    );
   } else {
     const endYear = startYear + 2;
     newChunk = generateMonthChunk(startYear, startMonth, endYear);
@@ -1224,17 +1329,18 @@ export const handleCalendarScroll = (
   scrollTop: number,
   scrollHeight: number,
   clientHeight: number,
-  loadThreshold: number = 100
+  loadThreshold: number = 100,
 ): {
   shouldLoadPast: boolean;
   shouldLoadFuture: boolean;
 } => {
   const shouldLoadPast = scrollTop < loadThreshold;
-  const shouldLoadFuture = scrollTop + clientHeight > scrollHeight - loadThreshold;
+  const shouldLoadFuture =
+    scrollTop + clientHeight > scrollHeight - loadThreshold;
 
   return {
     shouldLoadPast,
-    shouldLoadFuture
+    shouldLoadFuture,
   };
 };
 
@@ -1250,7 +1356,7 @@ export const createCalendarMonthData = (
   year: number,
   month: number,
   monthIndex: number,
-  monthHeight: number
+  monthHeight: number,
 ) => {
   const weeks = generateMonthWeeks(year, month);
   const topOffset = getMonthOffset(monthIndex, monthHeight);
@@ -1262,7 +1368,7 @@ export const createCalendarMonthData = (
     weeks,
     topOffset,
     monthHeight,
-    monthName: getMonthName(month)
+    monthName: getMonthName(month),
   };
 };
 
@@ -1282,7 +1388,7 @@ export const calculateDayCellProps = (
   today: Date,
   disableFutureDates: boolean,
   disablePastDates: boolean,
-  calendarToken: CalendarTokenType
+  calendarToken: CalendarTokenType,
 ): {
   dateStates: ReturnType<typeof getDateCellStates>;
   styles: Record<string, unknown>;
@@ -1294,26 +1400,41 @@ export const calculateDayCellProps = (
     selectedRange,
     today,
     disableFutureDates,
-    disablePastDates
+    disablePastDates,
   );
 
   const getCellStyles = () => {
     let styles = { ...calendarToken.calendar.calendarGrid.day.cell };
-    
+
     if (dateStates.isSingleDate) {
-      styles = { ...styles, ...calendarToken.calendar.calendarGrid.day.states.singleDate };
+      styles = {
+        ...styles,
+        ...calendarToken.calendar.calendarGrid.day.states.singleDate,
+      };
     } else if (dateStates.isStart) {
-      styles = { ...styles, ...calendarToken.calendar.calendarGrid.day.states.startDate };
+      styles = {
+        ...styles,
+        ...calendarToken.calendar.calendarGrid.day.states.startDate,
+      };
     } else if (dateStates.isEnd) {
-      styles = { ...styles, ...calendarToken.calendar.calendarGrid.day.states.endDate };
+      styles = {
+        ...styles,
+        ...calendarToken.calendar.calendarGrid.day.states.endDate,
+      };
     } else if (dateStates.isRangeDay) {
-      styles = { ...styles, ...calendarToken.calendar.calendarGrid.day.states.rangeDay };
+      styles = {
+        ...styles,
+        ...calendarToken.calendar.calendarGrid.day.states.rangeDay,
+      };
     }
-    
+
     if (dateStates.isDisabled) {
-      styles = { ...styles, ...calendarToken.calendar.calendarGrid.day.states.disabledDay };
+      styles = {
+        ...styles,
+        ...calendarToken.calendar.calendarGrid.day.states.disabledDay,
+      };
     }
-    
+
     return styles;
   };
 
@@ -1332,6 +1453,6 @@ export const calculateDayCellProps = (
     dateStates,
     styles: getCellStyles(),
     textColor: getTextColor(),
-    showTodayIndicator: shouldShowTodayIndicator(dateStates)
+    showTodayIndicator: shouldShowTodayIndicator(dateStates),
   };
 };

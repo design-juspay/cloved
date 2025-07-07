@@ -6,9 +6,9 @@ import { AccordionProps, AccordionType } from "./types";
 import { AccordionTokenType } from "./accordion.tokens";
 import { useComponentToken } from "../../context/useComponentToken";
 
-const StyledAccordionRoot = styled(RadixAccordion.Root)<{ 
-  $accordionType: AccordionType 
-  $AccordionToken: AccordionTokenType
+const StyledAccordionRoot = styled(RadixAccordion.Root)<{
+  $accordionType: AccordionType;
+  $AccordionToken: AccordionTokenType;
 }>((props) => ({
   width: "100%",
   display: "flex",
@@ -27,7 +27,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       isMultiple = false,
       onValueChange,
     },
-    ref
+    ref,
   ) => {
     const accordionToken = useComponentToken("ACCORDION") as AccordionTokenType;
     const renderChildren = () => {
@@ -72,7 +72,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         {renderChildren()}
       </StyledAccordionRoot>
     );
-  }
+  },
 );
 
 Accordion.displayName = "Accordion";

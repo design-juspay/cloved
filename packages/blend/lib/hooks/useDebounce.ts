@@ -1,7 +1,7 @@
 import { useRef, useCallback } from "react";
 export const useDebounce = <Args extends unknown[]>(
   fn: (...args: Args) => void,
-  delay: number
+  delay: number,
 ): ((...args: Args) => void) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -12,7 +12,7 @@ export const useDebounce = <Args extends unknown[]>(
         fn(...args);
       }, delay);
     },
-    [fn, delay]
+    [fn, delay],
   );
 
   return debouncedFn;

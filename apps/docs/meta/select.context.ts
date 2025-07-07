@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const selectMeta: ComponentMeta = {
   componentName: "Select",
-  componentDescription: "A versatile select menu component with grouped items, multi-selection support, search functionality, and flexible positioning for complex selection scenarios.",
+  componentDescription:
+    "A versatile select menu component with grouped items, multi-selection support, search functionality, and flexible positioning for complex selection scenarios.",
   features: [
     "Single and multi-selection modes",
     "Grouped menu items with labels",
@@ -13,7 +14,7 @@ const selectMeta: ComponentMeta = {
     "Modal mode for mobile devices",
     "Collision boundary detection",
     "Customizable dimensions",
-    "Accessible keyboard navigation"
+    "Accessible keyboard navigation",
   ],
   usageExamples: [
     {
@@ -32,7 +33,7 @@ const selectMeta: ComponentMeta = {
     }
   ]}
   onSelect={(value) => handleSelection(value)}
-/>`
+/>`,
     },
     {
       title: "Multi-Select with Search",
@@ -44,7 +45,7 @@ const selectMeta: ComponentMeta = {
   selected={selectedValues}
   onSelect={setSelectedValues}
   items={menuItems}
-/>`
+/>`,
     },
     {
       title: "Select with Custom Positioning",
@@ -55,7 +56,7 @@ const selectMeta: ComponentMeta = {
   alignment={SelectMenuAlignment.START}
   maxHeight={300}
   items={contextMenuItems}
-/>`
+/>`,
     },
     {
       title: "Modal Select for Mobile",
@@ -65,8 +66,8 @@ const selectMeta: ComponentMeta = {
   asModal={true}
   items={mobileMenuItems}
   onSelect={handleMobileSelection}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -169,7 +170,7 @@ const selectMeta: ComponentMeta = {
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default selectMeta;

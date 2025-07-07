@@ -16,7 +16,6 @@ export enum TextInputState {
   DISABLED = "disabled",
 }
 
-
 export type InputProps = {
   required?: boolean;
   label: string;

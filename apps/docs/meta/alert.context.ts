@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const alertMeta: ComponentMeta = {
   componentName: "Alert",
-  componentDescription: "A versatile alert component for displaying important messages, notifications, and status updates with various styles and action buttons.",
+  componentDescription:
+    "A versatile alert component for displaying important messages, notifications, and status updates with various styles and action buttons.",
   features: [
     "Multiple variants (primary, success, warning, error, purple, orange, neutral)",
     "Two visual styles (subtle, no-fill)",
@@ -10,7 +11,7 @@ const alertMeta: ComponentMeta = {
     "Closable alerts with onClose callback",
     "Custom icon support",
     "Flexible action placement (bottom, right)",
-    "Responsive design"
+    "Responsive design",
   ],
   usageExamples: [
     {
@@ -20,7 +21,7 @@ const alertMeta: ComponentMeta = {
   heading="Success!"
   description="Your changes have been saved successfully."
   variant={AlertVariant.SUCCESS}
-/>`
+/>`,
     },
     {
       title: "Error Alert with Actions",
@@ -37,7 +38,7 @@ const alertMeta: ComponentMeta = {
     label: "Cancel",
     onClick: () => handleCancel()
   }}
-/>`
+/>`,
     },
     {
       title: "Warning Alert with Custom Icon",
@@ -49,7 +50,7 @@ const alertMeta: ComponentMeta = {
   icon={<WarningIcon />}
   onClose={() => handleClose()}
   style={AlertStyle.SUBTLE}
-/>`
+/>`,
     },
     {
       title: "Alert with Bottom Actions",
@@ -67,8 +68,8 @@ const alertMeta: ComponentMeta = {
     label: "Cancel",
     onClick: () => handleCancel()
   }}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -85,7 +86,8 @@ const alertMeta: ComponentMeta = {
       propName: "description",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "The description text providing more details about the alert",
+      propDescription:
+        "The description text providing more details about the alert",
       llmContext: "The description text providing more details about the alert",
       propDefault: "-",
       category: "Content",
@@ -103,8 +105,10 @@ const alertMeta: ComponentMeta = {
         ORANGE = "orange",
         NEUTRAL = "neutral",
       }`,
-      propDescription: "The visual variant of the alert determining its color scheme",
-      llmContext: "The visual variant of the alert determining its color scheme",
+      propDescription:
+        "The visual variant of the alert determining its color scheme",
+      llmContext:
+        "The visual variant of the alert determining its color scheme",
       propDefault: "AlertVariant.PRIMARY",
       category: "Appearance",
       required: false,
@@ -181,7 +185,7 @@ const alertMeta: ComponentMeta = {
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default alertMeta;

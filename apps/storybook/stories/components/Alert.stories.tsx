@@ -1,13 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Alert, AlertVariant, AlertStyle, AlertActionPlacement } from 'blend-v1';
-import { AlertTriangle, CheckCircle, XCircle, Info, Settings, Heart } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import {
+  Alert,
+  AlertVariant,
+  AlertStyle,
+  AlertActionPlacement,
+} from "blend-v1";
+import {
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Info,
+  Settings,
+  Heart,
+} from "lucide-react";
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: "Components/Alert",
   component: Alert,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `
@@ -44,42 +56,44 @@ import { Alert, AlertVariant, AlertStyle } from 'blend-v1';
   },
   argTypes: {
     heading: {
-      control: 'text',
-      description: 'The main heading text of the alert',
+      control: "text",
+      description: "The main heading text of the alert",
     },
     description: {
-      control: 'text',
-      description: 'The description text providing more details about the alert',
+      control: "text",
+      description:
+        "The description text providing more details about the alert",
     },
     variant: {
-      control: 'select',
+      control: "select",
       options: Object.values(AlertVariant),
-      description: 'The visual variant of the alert determining its color scheme',
+      description:
+        "The visual variant of the alert determining its color scheme",
     },
     style: {
-      control: 'select',
+      control: "select",
       options: Object.values(AlertStyle),
-      description: 'The visual style of the alert',
+      description: "The visual style of the alert",
     },
     actionPlacement: {
-      control: 'select',
+      control: "select",
       options: Object.values(AlertActionPlacement),
-      description: 'Placement of action buttons within the alert',
+      description: "Placement of action buttons within the alert",
     },
     onClose: {
-      action: 'closed',
-      description: 'Callback function called when the alert is closed',
+      action: "closed",
+      description: "Callback function called when the alert is closed",
     },
     primaryAction: {
-      control: 'object',
-      description: 'Primary action button configuration',
+      control: "object",
+      description: "Primary action button configuration",
     },
     secondaryAction: {
-      control: 'object',
-      description: 'Secondary action button configuration',
+      control: "object",
+      description: "Secondary action button configuration",
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -88,8 +102,9 @@ type Story = StoryObj<typeof Alert>;
 // Default story
 export const Default: Story = {
   args: {
-    heading: 'Alert Heading',
-    description: 'This is the alert description providing more context about the notification.',
+    heading: "Alert Heading",
+    description:
+      "This is the alert description providing more context about the notification.",
     variant: AlertVariant.PRIMARY,
     style: AlertStyle.SUBTLE,
   },
@@ -98,7 +113,14 @@ export const Default: Story = {
 // Alert variants
 export const AlertVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Primary Alert"
         description="This is a primary alert for general information."
@@ -139,7 +161,8 @@ export const AlertVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different alert variants for various message types and contexts.',
+        story:
+          "Different alert variants for various message types and contexts.",
       },
     },
   },
@@ -148,7 +171,14 @@ export const AlertVariants: Story = {
 // Alert styles
 export const AlertStyles: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Subtle Style"
         description="Alert with subtle background coloring."
@@ -166,7 +196,8 @@ export const AlertStyles: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different visual styles: subtle background vs no-fill with border only.',
+        story:
+          "Different visual styles: subtle background vs no-fill with border only.",
       },
     },
   },
@@ -175,7 +206,14 @@ export const AlertStyles: Story = {
 // With icons
 export const WithIcons: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Success with Icon"
         description="Operation completed successfully."
@@ -205,7 +243,7 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Alerts with custom icons to enhance visual communication.',
+        story: "Alerts with custom icons to enhance visual communication.",
       },
     },
   },
@@ -214,18 +252,25 @@ export const WithIcons: Story = {
 // With actions
 export const WithActions: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Confirmation Required"
         description="Are you sure you want to delete this item?"
         variant={AlertVariant.WARNING}
         primaryAction={{
           label: "Delete",
-          onClick: () => console.log('Delete clicked')
+          onClick: () => console.log("Delete clicked"),
         }}
         secondaryAction={{
           label: "Cancel",
-          onClick: () => console.log('Cancel clicked')
+          onClick: () => console.log("Cancel clicked"),
         }}
       />
       <Alert
@@ -235,11 +280,11 @@ export const WithActions: Story = {
         icon={<Settings size={16} />}
         primaryAction={{
           label: "Update Now",
-          onClick: () => console.log('Update clicked')
+          onClick: () => console.log("Update clicked"),
         }}
         secondaryAction={{
           label: "Later",
-          onClick: () => console.log('Later clicked')
+          onClick: () => console.log("Later clicked"),
         }}
       />
     </div>
@@ -247,7 +292,8 @@ export const WithActions: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Alerts with primary and secondary action buttons for user interaction.',
+        story:
+          "Alerts with primary and secondary action buttons for user interaction.",
       },
     },
   },
@@ -256,7 +302,14 @@ export const WithActions: Story = {
 // Action placement
 export const ActionPlacement: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Actions on Right"
         description="Actions are placed on the right side of the alert content."
@@ -264,11 +317,11 @@ export const ActionPlacement: Story = {
         actionPlacement={AlertActionPlacement.RIGHT}
         primaryAction={{
           label: "Primary",
-          onClick: () => console.log('Primary clicked')
+          onClick: () => console.log("Primary clicked"),
         }}
         secondaryAction={{
           label: "Secondary",
-          onClick: () => console.log('Secondary clicked')
+          onClick: () => console.log("Secondary clicked"),
         }}
       />
       <Alert
@@ -278,11 +331,11 @@ export const ActionPlacement: Story = {
         actionPlacement={AlertActionPlacement.BOTTOM}
         primaryAction={{
           label: "Primary Action",
-          onClick: () => console.log('Primary clicked')
+          onClick: () => console.log("Primary clicked"),
         }}
         secondaryAction={{
           label: "Secondary Action",
-          onClick: () => console.log('Secondary clicked')
+          onClick: () => console.log("Secondary clicked"),
         }}
       />
     </div>
@@ -290,7 +343,8 @@ export const ActionPlacement: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different action button placements: right-aligned or bottom-stacked.',
+        story:
+          "Different action button placements: right-aligned or bottom-stacked.",
       },
     },
   },
@@ -299,12 +353,19 @@ export const ActionPlacement: Story = {
 // Closable alerts
 export const ClosableAlerts: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "600px",
+      }}
+    >
       <Alert
         heading="Closable Alert"
         description="This alert can be dismissed by clicking the close button."
         variant={AlertVariant.PRIMARY}
-        onClose={() => console.log('Alert closed')}
+        onClose={() => console.log("Alert closed")}
       />
       <Alert
         heading="Closable with Actions"
@@ -312,16 +373,17 @@ export const ClosableAlerts: Story = {
         variant={AlertVariant.WARNING}
         primaryAction={{
           label: "Action",
-          onClick: () => console.log('Action clicked')
+          onClick: () => console.log("Action clicked"),
         }}
-        onClose={() => console.log('Alert closed')}
+        onClose={() => console.log("Alert closed")}
       />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Alerts that can be dismissed by users with close functionality.',
+        story:
+          "Alerts that can be dismissed by users with close functionality.",
       },
     },
   },

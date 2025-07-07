@@ -19,7 +19,7 @@ import { MultiSelectTokensType } from "./multiSelect.tokens";
 import { useComponentToken } from "../../context/useComponentToken";
 
 const map = function getValueLabelMap(
-  groups: MultiSelectMenuGroupType[]
+  groups: MultiSelectMenuGroupType[],
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -64,7 +64,7 @@ const MultiSelect = ({
   alignOffset,
 }: MultiSelectProps) => {
   const multiSelectTokens = useComponentToken(
-    "MULTI_SELECT"
+    "MULTI_SELECT",
   ) as MultiSelectTokensType;
   const [open, setOpen] = useState(false);
   const valueLabelMap = map(items);
@@ -208,7 +208,7 @@ const MultiSelect = ({
                       style={{
                         height: "100%",
                         marginLeft: 8,
-                        backgroundColor: 
+                        backgroundColor:
                           multiSelectTokens.trigger.selectionTag.container[
                             selectionTagType
                           ].backgroundColor,

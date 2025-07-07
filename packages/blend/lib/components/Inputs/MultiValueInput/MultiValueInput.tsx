@@ -23,7 +23,7 @@ const MultiValueInput = ({
   size = TextInputSize.MEDIUM,
 }: MultiValueInputProps) => {
   const multiValueInputTokens = useComponentToken(
-    "MULTI_VALUE_INPUT"
+    "MULTI_VALUE_INPUT",
   ) as MultiValueInputTokensType;
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -80,8 +80,8 @@ const MultiValueInput = ({
           error
             ? multiValueInputTokens.input.border.error
             : isFocused
-            ? multiValueInputTokens.input.border.focus
-            : multiValueInputTokens.input.border.default
+              ? multiValueInputTokens.input.border.focus
+              : multiValueInputTokens.input.border.default
         }
         _hover={{
           border: multiValueInputTokens.input.border.hover,

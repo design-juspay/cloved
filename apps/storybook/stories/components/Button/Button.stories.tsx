@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Button, ButtonType, ButtonSize, ButtonSubType } from 'blend-v1';
-import { Plus, Download, Settings, Heart, Star } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { Button, ButtonType, ButtonSize, ButtonSubType } from "blend-v1";
+import { Plus, Download, Settings, Heart, Star } from "lucide-react";
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button/Button (v1)',
+  title: "Components/Button/Button (v1)",
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `
@@ -39,38 +39,38 @@ import { Button, ButtonType, ButtonSize } from 'blend-v1';
   },
   argTypes: {
     buttonType: {
-      control: 'select',
+      control: "select",
       options: Object.values(ButtonType),
-      description: 'The visual style of the button',
+      description: "The visual style of the button",
     },
     size: {
-      control: 'select',
+      control: "select",
       options: Object.values(ButtonSize),
-      description: 'The size of the button',
+      description: "The size of the button",
     },
     subType: {
-      control: 'select',
+      control: "select",
       options: Object.values(ButtonSubType),
-      description: 'Button subtype for special variants',
+      description: "Button subtype for special variants",
     },
     text: {
-      control: 'text',
-      description: 'The text content of the button',
+      control: "text",
+      description: "The text content of the button",
     },
     isLoading: {
-      control: 'boolean',
-      description: 'Shows loading state',
+      control: "boolean",
+      description: "Shows loading state",
     },
     isDisabled: {
-      control: 'boolean',
-      description: 'Disables the button',
+      control: "boolean",
+      description: "Disables the button",
     },
     onClick: {
-      action: 'clicked',
-      description: 'Click handler function',
+      action: "clicked",
+      description: "Click handler function",
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -81,7 +81,7 @@ export const Default: Story = {
   args: {
     buttonType: ButtonType.PRIMARY,
     size: ButtonSize.MEDIUM,
-    text: 'Button',
+    text: "Button",
     isLoading: false,
     isDisabled: false,
   },
@@ -92,12 +92,13 @@ export const ButtonTypes: Story = {
   args: {
     buttonType: ButtonType.SECONDARY,
     size: ButtonSize.MEDIUM,
-    text: 'Secondary Button',
+    text: "Secondary Button",
   },
   parameters: {
     docs: {
       description: {
-        story: 'Different button types for various use cases. Use the controls below to switch between PRIMARY, SECONDARY, DANGER, and SUCCESS types.',
+        story:
+          "Different button types for various use cases. Use the controls below to switch between PRIMARY, SECONDARY, DANGER, and SUCCESS types.",
       },
     },
   },
@@ -106,7 +107,14 @@ export const ButtonTypes: Story = {
 // Button sizes
 export const ButtonSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "12px",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
       <Button size={ButtonSize.SMALL} text="Small" />
       <Button size={ButtonSize.MEDIUM} text="Medium" />
       <Button size={ButtonSize.LARGE} text="Large" />
@@ -115,7 +123,7 @@ export const ButtonSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different button sizes to fit various contexts.',
+        story: "Different button sizes to fit various contexts.",
       },
     },
   },
@@ -124,24 +132,24 @@ export const ButtonSizes: Story = {
 // With icons
 export const WithIcons: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-      <Button 
-        text="Add Item" 
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+      <Button
+        text="Add Item"
         leadingIcon={Plus}
         buttonType={ButtonType.PRIMARY}
       />
-      <Button 
-        text="Download" 
+      <Button
+        text="Download"
         leadingIcon={Download}
         buttonType={ButtonType.SECONDARY}
       />
-      <Button 
-        text="Settings" 
+      <Button
+        text="Settings"
         trailingIcon={Settings}
         buttonType={ButtonType.SECONDARY}
       />
-      <Button 
-        text="Favorite" 
+      <Button
+        text="Favorite"
         leadingIcon={Heart}
         trailingIcon={Star}
         buttonType={ButtonType.SUCCESS}
@@ -151,7 +159,8 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Buttons with leading and trailing icons for enhanced visual communication.',
+        story:
+          "Buttons with leading and trailing icons for enhanced visual communication.",
       },
     },
   },
@@ -160,22 +169,29 @@ export const WithIcons: Story = {
 // Icon only buttons
 export const IconOnly: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-      <Button 
+    <div
+      style={{
+        display: "flex",
+        gap: "12px",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Button
         subType={ButtonSubType.ICON_ONLY}
         leadingIcon={Plus}
         text="Add"
         buttonType={ButtonType.PRIMARY}
         size={ButtonSize.SMALL}
       />
-      <Button 
+      <Button
         subType={ButtonSubType.ICON_ONLY}
         leadingIcon={Download}
         text="Download"
         buttonType={ButtonType.SECONDARY}
         size={ButtonSize.MEDIUM}
       />
-      <Button 
+      <Button
         subType={ButtonSubType.ICON_ONLY}
         leadingIcon={Settings}
         text="Settings"
@@ -187,7 +203,8 @@ export const IconOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Icon-only buttons for compact interfaces. The text prop is used for accessibility.',
+        story:
+          "Icon-only buttons for compact interfaces. The text prop is used for accessibility.",
       },
     },
   },
@@ -196,34 +213,39 @@ export const IconOnly: Story = {
 // Button states
 export const ButtonStates: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
       <Button text="Normal" buttonType={ButtonType.PRIMARY} />
       <Button text="Loading" buttonType={ButtonType.PRIMARY} isLoading={true} />
-      <Button text="Disabled" buttonType={ButtonType.PRIMARY} isDisabled={true} />
+      <Button
+        text="Disabled"
+        buttonType={ButtonType.PRIMARY}
+        isDisabled={true}
+      />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Different button states including normal, loading, and disabled.',
+        story:
+          "Different button states including normal, loading, and disabled.",
       },
     },
   },
 };
-
 
 // Loading state
 export const Loading: Story = {
   args: {
     buttonType: ButtonType.PRIMARY,
     size: ButtonSize.MEDIUM,
-    text: 'Loading Button',
+    text: "Loading Button",
     isLoading: true,
   },
   parameters: {
     docs: {
       description: {
-        story: 'Button in loading state. The text and icons are hidden while loading.',
+        story:
+          "Button in loading state. The text and icons are hidden while loading.",
       },
     },
   },
@@ -234,13 +256,14 @@ export const Disabled: Story = {
   args: {
     buttonType: ButtonType.PRIMARY,
     size: ButtonSize.MEDIUM,
-    text: 'Disabled Button',
+    text: "Disabled Button",
     isDisabled: true,
   },
   parameters: {
     docs: {
       description: {
-        story: 'Button in disabled state. Click events are prevented and visual styling indicates the disabled state.',
+        story:
+          "Button in disabled state. Click events are prevented and visual styling indicates the disabled state.",
       },
     },
   },

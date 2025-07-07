@@ -35,6 +35,10 @@ pnpm build-storybook
 To preview the built Storybook:
 
 ```bash
+# From the root of the monorepo
+pnpm storybook:preview
+
+# Or from this directory
 pnpm preview-storybook
 ```
 
@@ -56,18 +60,21 @@ apps/storybook/
 ## 🎨 What's Included
 
 ### Components
+
 - All 34 Blend components with comprehensive examples
 - Interactive controls for all props
 - Multiple story variants (states, sizes, themes)
 - Real-world usage examples
 
 ### Foundations
+
 - Color palette and tokens
 - Typography system
 - Spacing and layout
 - Design tokens documentation
 
 ### Examples
+
 - Dashboard layouts
 - Form patterns
 - Common UI patterns
@@ -90,8 +97,9 @@ apps/storybook/
 ### Story Templates
 
 We have three main story templates:
+
 - **Simple Components**: Basic components with variants
-- **Form Components**: Form-focused with validation examples  
+- **Form Components**: Form-focused with validation examples
 - **Complex Components**: Advanced components with multiple scenarios
 
 ## 🚀 Deployment

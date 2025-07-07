@@ -22,7 +22,10 @@ export type RadioTokensType = Readonly<{
   activeIndicator: {
     active: {
       background: {
-        [key in Exclude<RadioState, "hover" | "error">]: CSSObject["backgroundColor"];
+        [key in Exclude<
+          RadioState,
+          "hover" | "error"
+        >]: CSSObject["backgroundColor"];
       };
     };
   };

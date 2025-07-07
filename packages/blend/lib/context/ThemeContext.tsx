@@ -10,8 +10,14 @@ import {
   getTextAreaTokens,
   TextAreaTokensType,
 } from "../components/Inputs/TextArea/textarea.token";
-import { RadioTokensType, getRadioTokens } from "../components/Radio/radio.token";
-import { SwitchTokensType, getSwitchTokens } from "../components/Switch/switch.token";
+import {
+  RadioTokensType,
+  getRadioTokens,
+} from "../components/Radio/radio.token";
+import {
+  SwitchTokensType,
+  getSwitchTokens,
+} from "../components/Switch/switch.token";
 import {
   getTextInputTokens,
   TextInputTokensType,
@@ -36,14 +42,23 @@ import {
   getUnitInputTokens,
   UnitInputTokensType,
 } from "../components/Inputs/UnitInput/unitInput.tokens";
-import { getMultiValueInputTokens, MultiValueInputTokensType } from "../components/Inputs/MultiValueInput/multiValueInput.tokens";
+import {
+  getMultiValueInputTokens,
+  MultiValueInputTokensType,
+} from "../components/Inputs/MultiValueInput/multiValueInput.tokens";
 import {
   DropdownInputTokensType,
   getDropdownInputTokens,
 } from "../components/Inputs/DropdownInput/dropdownInput.tokens";
-import { CheckboxTokensType, getCheckboxTokens } from "../components/Checkbox/checkbox.token";
+import {
+  CheckboxTokensType,
+  getCheckboxTokens,
+} from "../components/Checkbox/checkbox.token";
 import { TabsTokensType, getTabsTokens } from "../components/Tabs/tabs.token"; // Added TABS
-import { ButtonTokensType, getButtonTokens } from "../components/ButtonV2/button.tokens";
+import {
+  ButtonTokensType,
+  getButtonTokens,
+} from "../components/ButtonV2/button.tokens";
 import {
   getModalComponentTokens,
   ModalTokensType,
@@ -52,15 +67,27 @@ import {
   BreadcrumbTokenType,
   getBreadcrumbTokens,
 } from "../components/Breadcrumb/breadcrumb.tokens";
-import { getPopoverTokens, PopoverTokenType } from "../components/Popover/popover.tokens";
+import {
+  getPopoverTokens,
+  PopoverTokenType,
+} from "../components/Popover/popover.tokens";
 import { getMenuTokens, MenuTokensType } from "../components/Menu/menu.tokens";
 import {
   getMultiSelectTokens,
   MultiSelectTokensType,
 } from "../components/MultiSelect/multiSelect.tokens";
-import { getTableToken, TableTokenType } from "../components/DataTable/dataTable.tokens";
-import { CalendarTokenType, getCalendarToken } from "../components/DateRangePicker/dateRangePicker.tokens";
-import { AccordionTokenType, getAccordionToken } from "../components/Accordion/accordion.tokens";
+import {
+  getTableToken,
+  TableTokenType,
+} from "../components/DataTable/dataTable.tokens";
+import {
+  CalendarTokenType,
+  getCalendarToken,
+} from "../components/DateRangePicker/dateRangePicker.tokens";
+import {
+  AccordionTokenType,
+  getAccordionToken,
+} from "../components/Accordion/accordion.tokens";
 
 export type ComponentTokenType = {
   TAGS?: TagTokensType;
@@ -84,7 +111,7 @@ export type ComponentTokenType = {
   POPOVER?: PopoverTokenType;
   MENU?: MenuTokensType;
   MULTI_SELECT?: MultiSelectTokensType;
-  TABLE?: TableTokenType
+  TABLE?: TableTokenType;
   CALENDAR?: CalendarTokenType;
   ACCORDION?: AccordionTokenType;
   // add supprort for other components here

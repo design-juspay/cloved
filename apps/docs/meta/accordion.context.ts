@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const accordionMeta: ComponentMeta = {
   componentName: "Accordion",
-  componentDescription: "A flexible and accessible accordion component built on Radix UI that allows users to show and hide sections of content with support for single and multiple panel expansion modes.",
+  componentDescription:
+    "A flexible and accessible accordion component built on Radix UI that allows users to show and hide sections of content with support for single and multiple panel expansion modes.",
   features: [
     "Built on Radix UI for accessibility compliance",
     "Single or multiple panel expansion modes",
@@ -12,7 +13,7 @@ const accordionMeta: ComponentMeta = {
     "Disabled state support",
     "Smooth animations and transitions",
     "Keyboard navigation support",
-    "Focus management and ARIA attributes"
+    "Focus management and ARIA attributes",
   ],
   usageExamples: [
     {
@@ -25,7 +26,7 @@ const accordionMeta: ComponentMeta = {
   <AccordionItem value="item2" title="Second Section">
     <p>Content for the second section goes here.</p>
   </AccordionItem>
-</Accordion>`
+</Accordion>`,
     },
     {
       title: "Multiple Expansion Accordion",
@@ -40,7 +41,7 @@ const accordionMeta: ComponentMeta = {
   <AccordionItem value="item3" title="Also Expanded">
     <p>This section also starts expanded.</p>
   </AccordionItem>
-</Accordion>`
+</Accordion>`,
     },
     {
       title: "Bordered Accordion with Custom Slots",
@@ -58,7 +59,7 @@ const accordionMeta: ComponentMeta = {
       <Button text="Edit Profile" />
     </div>
   </AccordionItem>
-</Accordion>`
+</Accordion>`,
     },
     {
       title: "Controlled Accordion",
@@ -76,15 +77,16 @@ const accordionMeta: ComponentMeta = {
   <AccordionItem value="item2" title="Controlled Item 2">
     <p>State changes are handled by the parent component.</p>
   </AccordionItem>
-</Accordion>`
-    }
+</Accordion>`,
+    },
   ],
   props: [
     {
       propName: "children",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "AccordionItem components to render within the accordion",
+      propDescription:
+        "AccordionItem components to render within the accordion",
       llmContext: "AccordionItem components to render within the accordion",
       propDefault: "-",
       category: "Content",
@@ -157,8 +159,10 @@ const accordionMeta: ComponentMeta = {
       propName: "value",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Unique identifier for the accordion item (AccordionItem prop)",
-      llmContext: "Unique identifier for the accordion item (AccordionItem prop)",
+      propDescription:
+        "Unique identifier for the accordion item (AccordionItem prop)",
+      llmContext:
+        "Unique identifier for the accordion item (AccordionItem prop)",
       propDefault: "-",
       category: "Content",
       required: true,
@@ -167,8 +171,10 @@ const accordionMeta: ComponentMeta = {
       propName: "title",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Main heading text for the accordion item (AccordionItem prop)",
-      llmContext: "Main heading text for the accordion item (AccordionItem prop)",
+      propDescription:
+        "Main heading text for the accordion item (AccordionItem prop)",
+      llmContext:
+        "Main heading text for the accordion item (AccordionItem prop)",
       propDefault: "-",
       category: "Content",
       required: true,
@@ -187,8 +193,10 @@ const accordionMeta: ComponentMeta = {
       propName: "leftSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Custom content on the left side of the header (AccordionItem prop)",
-      llmContext: "Custom content on the left side of the header (AccordionItem prop)",
+      propDescription:
+        "Custom content on the left side of the header (AccordionItem prop)",
+      llmContext:
+        "Custom content on the left side of the header (AccordionItem prop)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -197,8 +205,10 @@ const accordionMeta: ComponentMeta = {
       propName: "rightSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Custom content on the right side of the header (AccordionItem prop)",
-      llmContext: "Custom content on the right side of the header (AccordionItem prop)",
+      propDescription:
+        "Custom content on the right side of the header (AccordionItem prop)",
+      llmContext:
+        "Custom content on the right side of the header (AccordionItem prop)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -207,7 +217,8 @@ const accordionMeta: ComponentMeta = {
       propName: "subtextSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Custom content in the subtext area (AccordionItem prop)",
+      propDescription:
+        "Custom content in the subtext area (AccordionItem prop)",
       llmContext: "Custom content in the subtext area (AccordionItem prop)",
       propDefault: "undefined",
       category: "Content",
@@ -217,7 +228,8 @@ const accordionMeta: ComponentMeta = {
       propName: "isDisabled",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the accordion item is disabled (AccordionItem prop)",
+      propDescription:
+        "Whether the accordion item is disabled (AccordionItem prop)",
       llmContext: "Whether the accordion item is disabled (AccordionItem prop)",
       propDefault: "false",
       category: "State",
@@ -230,13 +242,15 @@ const accordionMeta: ComponentMeta = {
         LEFT = "left",
         RIGHT = "right",
       }`,
-      propDescription: "Position of the expand/collapse chevron (AccordionItem prop)",
-      llmContext: "Position of the expand/collapse chevron (AccordionItem prop)",
+      propDescription:
+        "Position of the expand/collapse chevron (AccordionItem prop)",
+      llmContext:
+        "Position of the expand/collapse chevron (AccordionItem prop)",
       propDefault: "AccordionChevronPosition.RIGHT",
       category: "Appearance",
       required: false,
     },
-  ]
+  ],
 };
 
 export default accordionMeta;

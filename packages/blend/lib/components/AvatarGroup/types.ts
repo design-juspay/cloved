@@ -1,21 +1,20 @@
-import { HTMLAttributes } from 'react';
-import { AvatarProps, AvatarSize, AvatarShape } from '../Avatar/types';
+import { HTMLAttributes } from "react";
+import { AvatarProps, AvatarSize, AvatarShape } from "../Avatar/types";
 
-export interface AvatarData extends Omit<AvatarProps, 'className' | 'id'> {
+export interface AvatarData extends Omit<AvatarProps, "className" | "id"> {
   id: string | number;
   alt?: string;
   fallback?: string | React.ReactNode;
 }
 
 export type AvatarGroupProps = {
-
   avatars: AvatarData[];
   maxCount?: number;
   size?: AvatarSize;
   shape?: AvatarShape;
   selectedAvatarIds?: (string | number)[];
   onSelectionChange?: (selectedIds: (string | number)[]) => void;
-} & Omit<HTMLAttributes<HTMLDivElement>, 'children'>;
+} & Omit<HTMLAttributes<HTMLDivElement>, "children">;
 
 export type StyledAvatarGroupContainerProps = {
   $spacing?: string;

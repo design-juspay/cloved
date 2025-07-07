@@ -157,7 +157,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
       headerRightSlot,
       showDivider = true,
     },
-    ref
+    ref,
   ) => {
     const modalTokens = useComponentToken("MODAL") as ModalTokensType;
     useScrollLock(isOpen);
@@ -235,7 +235,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
         </Block>
       </Block>
     );
-  }
+  },
 );
 
 Modal.displayName = "Modal";

@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Avatar, AvatarSize, AvatarShape } from 'blend-v1';
-import { Crown, Star, CheckCircle, Settings, User } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { Avatar, AvatarSize, AvatarShape } from "blend-v1";
+import { Crown, Star, CheckCircle, Settings, User } from "lucide-react";
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Components/Avatar',
+  title: "Components/Avatar",
   component: Avatar,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component: `
@@ -42,33 +42,34 @@ import { Avatar, AvatarSize, AvatarShape } from 'blend-v1';
   },
   argTypes: {
     src: {
-      control: 'text',
-      description: 'URL of the avatar image to display',
+      control: "text",
+      description: "URL of the avatar image to display",
     },
     alt: {
-      control: 'text',
-      description: 'Alternative text for the avatar image and fallback initials generation',
+      control: "text",
+      description:
+        "Alternative text for the avatar image and fallback initials generation",
     },
     size: {
-      control: 'select',
+      control: "select",
       options: Object.values(AvatarSize),
-      description: 'Size variant of the avatar',
+      description: "Size variant of the avatar",
     },
     shape: {
-      control: 'select',
+      control: "select",
       options: Object.values(AvatarShape),
-      description: 'Shape variant of the avatar',
+      description: "Shape variant of the avatar",
     },
     online: {
-      control: 'boolean',
-      description: 'Whether to show online status indicator',
+      control: "boolean",
+      description: "Whether to show online status indicator",
     },
     fallback: {
-      control: 'text',
-      description: 'Custom fallback content when image is not available',
+      control: "text",
+      description: "Custom fallback content when image is not available",
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -77,8 +78,8 @@ type Story = StoryObj<typeof Avatar>;
 // Default story
 export const Default: Story = {
   args: {
-    src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
-    alt: 'John Doe',
+    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
+    alt: "John Doe",
     size: AvatarSize.MD,
     shape: AvatarShape.CIRCULAR,
     online: false,
@@ -88,33 +89,34 @@ export const Default: Story = {
 // Avatar sizes
 export const AvatarSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Avatar 
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+      <Avatar
         src="https://images.unsplash.com/photo-1494790108755-2616b612b1e0?w=24&h=24&fit=crop&crop=face"
-        alt="Sarah Wilson" 
-        size={AvatarSize.SM} 
+        alt="Sarah Wilson"
+        size={AvatarSize.SM}
       />
-      <Avatar 
+      <Avatar
         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face"
-        alt="Mike Johnson" 
-        size={AvatarSize.MD} 
+        alt="Mike Johnson"
+        size={AvatarSize.MD}
       />
-      <Avatar 
+      <Avatar
         src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
-        alt="Emma Davis" 
-        size={AvatarSize.LG} 
+        alt="Emma Davis"
+        size={AvatarSize.LG}
       />
-      <Avatar 
+      <Avatar
         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
-        alt="David Brown" 
-        size={AvatarSize.XL} 
+        alt="David Brown"
+        size={AvatarSize.XL}
       />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Different avatar sizes: Small (24px), Medium (32px), Large (40px), and Extra Large (48px).',
+        story:
+          "Different avatar sizes: Small (24px), Medium (32px), Large (40px), and Extra Large (48px).",
       },
     },
   },
@@ -123,25 +125,26 @@ export const AvatarSizes: Story = {
 // Avatar shapes
 export const AvatarShapes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Avatar 
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+      <Avatar
         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-        alt="Alex Johnson" 
+        alt="Alex Johnson"
         size={AvatarSize.LG}
-        shape={AvatarShape.CIRCULAR} 
+        shape={AvatarShape.CIRCULAR}
       />
-      <Avatar 
+      <Avatar
         src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
-        alt="Lisa Chen" 
+        alt="Lisa Chen"
         size={AvatarSize.LG}
-        shape={AvatarShape.ROUNDED} 
+        shape={AvatarShape.ROUNDED}
       />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Different avatar shapes: Circular (fully rounded) and Rounded (slightly rounded corners).',
+        story:
+          "Different avatar shapes: Circular (fully rounded) and Rounded (slightly rounded corners).",
       },
     },
   },
@@ -150,7 +153,14 @@ export const AvatarShapes: Story = {
 // Fallback avatars (no image)
 export const FallbackAvatars: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
       <Avatar alt="John Doe" size={AvatarSize.MD} />
       <Avatar alt="Sarah Wilson" size={AvatarSize.MD} />
       <Avatar alt="Mike Johnson" size={AvatarSize.MD} />
@@ -162,7 +172,8 @@ export const FallbackAvatars: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars without images showing automatic initials generation from the alt text.',
+        story:
+          "Avatars without images showing automatic initials generation from the alt text.",
       },
     },
   },
@@ -171,39 +182,41 @@ export const FallbackAvatars: Story = {
 // Online status indicators
 export const OnlineStatus: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar 
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+      <div style={{ textAlign: "center" }}>
+        <Avatar
           src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-          alt="Online User" 
+          alt="Online User"
           size={AvatarSize.LG}
           online={true}
         />
-        <div style={{ fontSize: '12px', marginTop: '8px', color: '#666' }}>Online</div>
+        <div style={{ fontSize: "12px", marginTop: "8px", color: "#666" }}>
+          Online
+        </div>
       </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar 
+      <div style={{ textAlign: "center" }}>
+        <Avatar
           src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
-          alt="Offline User" 
+          alt="Offline User"
           size={AvatarSize.LG}
           online={false}
         />
-        <div style={{ fontSize: '12px', marginTop: '8px', color: '#666' }}>Offline</div>
+        <div style={{ fontSize: "12px", marginTop: "8px", color: "#666" }}>
+          Offline
+        </div>
       </div>
-      <div style={{ textAlign: 'center' }}>
-        <Avatar 
-          alt="Online Fallback" 
-          size={AvatarSize.LG}
-          online={true}
-        />
-        <div style={{ fontSize: '12px', marginTop: '8px', color: '#666' }}>Online (Fallback)</div>
+      <div style={{ textAlign: "center" }}>
+        <Avatar alt="Online Fallback" size={AvatarSize.LG} online={true} />
+        <div style={{ fontSize: "12px", marginTop: "8px", color: "#666" }}>
+          Online (Fallback)
+        </div>
       </div>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Avatars with online status indicators showing user presence.',
+        story: "Avatars with online status indicators showing user presence.",
       },
     },
   },
@@ -212,24 +225,20 @@ export const OnlineStatus: Story = {
 // Custom fallback content
 export const CustomFallback: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Avatar 
-        alt="User Icon" 
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+      <Avatar
+        alt="User Icon"
         size={AvatarSize.LG}
         fallback={<User size={20} />}
       />
-      <Avatar 
-        alt="Star User" 
+      <Avatar
+        alt="Star User"
         size={AvatarSize.LG}
         fallback={<Star size={20} />}
       />
-      <Avatar 
-        alt="Custom Text" 
-        size={AvatarSize.LG}
-        fallback="?"
-      />
-      <Avatar 
-        alt="Settings" 
+      <Avatar alt="Custom Text" size={AvatarSize.LG} fallback="?" />
+      <Avatar
+        alt="Settings"
         size={AvatarSize.LG}
         fallback={<Settings size={20} />}
       />
@@ -238,7 +247,8 @@ export const CustomFallback: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars with custom fallback content including icons and custom text.',
+        story:
+          "Avatars with custom fallback content including icons and custom text.",
       },
     },
   },
@@ -247,21 +257,21 @@ export const CustomFallback: Story = {
 // Error handling (broken images)
 export const ErrorHandling: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Avatar 
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+      <Avatar
         src="https://broken-image-url.jpg"
-        alt="Broken Image User" 
+        alt="Broken Image User"
         size={AvatarSize.LG}
       />
-      <Avatar 
+      <Avatar
         src="https://nonexistent.jpg"
-        alt="Another Broken" 
+        alt="Another Broken"
         size={AvatarSize.LG}
         online={true}
       />
-      <Avatar 
+      <Avatar
         src="https://invalid-url"
-        alt="Custom Fallback" 
+        alt="Custom Fallback"
         size={AvatarSize.LG}
         fallback={<CheckCircle size={20} />}
       />
@@ -270,7 +280,8 @@ export const ErrorHandling: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars gracefully handling broken or invalid image URLs by falling back to initials or custom content.',
+        story:
+          "Avatars gracefully handling broken or invalid image URLs by falling back to initials or custom content.",
       },
     },
   },
@@ -279,21 +290,28 @@ export const ErrorHandling: Story = {
 // With slots (leading and trailing)
 export const WithSlots: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
-      <Avatar 
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        alignItems: "flex-start",
+      }}
+    >
+      <Avatar
         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face"
-        alt="VIP User" 
+        alt="VIP User"
         size={AvatarSize.MD}
         leadingSlot={<Crown size={16} color="#gold" />}
       />
-      <Avatar 
+      <Avatar
         src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face"
-        alt="Star User" 
+        alt="Star User"
         size={AvatarSize.MD}
         trailingSlot={<Star size={16} color="#ffd700" />}
       />
-      <Avatar 
-        alt="Both Slots" 
+      <Avatar
+        alt="Both Slots"
         size={AvatarSize.MD}
         leadingSlot={<Crown size={16} color="#gold" />}
         trailingSlot={<Star size={16} color="#ffd700" />}
@@ -303,7 +321,8 @@ export const WithSlots: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Avatars with leading and trailing content slots for additional context or actions.',
+        story:
+          "Avatars with leading and trailing content slots for additional context or actions.",
       },
     },
   },
@@ -312,16 +331,20 @@ export const WithSlots: Story = {
 // Size and shape combinations
 export const SizeShapeCombinations: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <span style={{ width: '80px', fontSize: '14px', color: '#666' }}>Circular:</span>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <span style={{ width: "80px", fontSize: "14px", color: "#666" }}>
+          Circular:
+        </span>
         <Avatar alt="SM" size={AvatarSize.SM} shape={AvatarShape.CIRCULAR} />
         <Avatar alt="MD" size={AvatarSize.MD} shape={AvatarShape.CIRCULAR} />
         <Avatar alt="LG" size={AvatarSize.LG} shape={AvatarShape.CIRCULAR} />
         <Avatar alt="XL" size={AvatarSize.XL} shape={AvatarShape.CIRCULAR} />
       </div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <span style={{ width: '80px', fontSize: '14px', color: '#666' }}>Rounded:</span>
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <span style={{ width: "80px", fontSize: "14px", color: "#666" }}>
+          Rounded:
+        </span>
         <Avatar alt="SM" size={AvatarSize.SM} shape={AvatarShape.ROUNDED} />
         <Avatar alt="MD" size={AvatarSize.MD} shape={AvatarShape.ROUNDED} />
         <Avatar alt="LG" size={AvatarSize.LG} shape={AvatarShape.ROUNDED} />
@@ -332,7 +355,8 @@ export const SizeShapeCombinations: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All size and shape combinations showcasing the flexibility of the avatar component.',
+        story:
+          "All size and shape combinations showcasing the flexibility of the avatar component.",
       },
     },
   },

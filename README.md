@@ -27,11 +27,32 @@ npx create-turbo@latest -e design-system
 
 ### Useful Commands
 
-- `pnpm build` - Build all packages, including the Storybook site
-- `pnpm dev` - Run all packages locally and preview with Storybook
+- `pnpm dev` - Run all packages locally
+- `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages
+- `pnpm format` - Format all code with Prettier
+- `pnpm clean` - Clean up all `node_modules` and `dist` folders
+
+### Development Commands
+
+- `pnpm docs` - Run documentation site locally
+- `pnpm storybook` - Run Storybook locally
+- `pnpm storybook:build` - Build Storybook for production
+- `pnpm docs:build` - Build documentation site
+
+### Deployment Commands
+
+- `pnpm deploy:staging` - Deploy docs and Storybook to staging
+- `pnpm deploy:production` - Deploy docs and Storybook to production
+- `pnpm deploy:setup` - Setup Firebase hosting targets
+
+### Release Commands
+
 - `pnpm changeset` - Generate a changeset
-- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
+- `pnpm version` - Version packages with changesets
+- `pnpm release` - Build and publish packages
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## Turborepo
 
@@ -164,9 +185,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl ege
 
 This example includes a few helpful Storybook scripts:
 
-- `pnpm dev`: Starts Storybook in dev mode with hot reloading at `localhost:6006`
-- `pnpm build`: Builds the Storybook UI and generates the static HTML files
-- `pnpm preview-storybook`: Starts a local server to view the generated Storybook UI
+- `pnpm storybook`: Starts Storybook in dev mode with hot reloading at `localhost:6006`
+- `pnpm storybook:build`: Builds the Storybook UI and generates the static HTML files
+- `pnpm storybook:preview`: Starts a local server to view the generated Storybook UI
 
 ## Versioning & Publishing Packages
 
@@ -206,4 +227,5 @@ To publish packages to a private npm organization scope, **remove** the followin
 -  "access": "public"
 - },
 ```
+
 # cloved

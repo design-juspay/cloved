@@ -78,7 +78,7 @@ const searchInputTokens: Readonly<SearchInputTokensType> = {
 };
 
 export const getSearchInputTokens = (
-  foundationTokens: FoundationTokenType
+  foundationTokens: FoundationTokenType,
 ): SearchInputTokensType => {
   return {
     width: "100%",

@@ -1,6 +1,10 @@
 import { CSSObject } from "styled-components";
 import { FOUNDATION_THEME, ThemeType } from "../../tokens";
-import { CheckboxSize, CheckboxCheckedState, CheckboxInteractionState } from "./types";
+import {
+  CheckboxSize,
+  CheckboxCheckedState,
+  CheckboxInteractionState,
+} from "./types";
 
 // Token Structure: $component.$target.$property.[$variant].[$type].[$state]
 // $component: CHECKBOX (implied)
@@ -20,23 +24,27 @@ export type CheckboxTokensType = Readonly<{
   indicator: {
     // $property: 'size'
     size: {
-      [key in CheckboxSize]: { // $variant: sm, md
+      [key in CheckboxSize]: {
+        // $variant: sm, md
         width: CSSObject["width"];
         height: CSSObject["height"];
       };
     };
     // $property: 'background'
     background: {
-      [key in CheckboxCheckedState]?: { // $variant: checked, unchecked, indeterminate
+      [key in CheckboxCheckedState]?: {
+        // $variant: checked, unchecked, indeterminate
         [key in CheckboxInteractionState]?: CSSObject["backgroundColor"]; // $state: default, hover, disabled, error
       };
     };
     // $property: 'border'
     border: {
       radius: CSSObject["borderRadius"]; // Direct sub-property
-      width: CSSObject["borderWidth"];   // Direct sub-property
-      color: { // Sub-property 'color'
-        [key in CheckboxCheckedState]?: { // $variant: checked, unchecked, indeterminate
+      width: CSSObject["borderWidth"]; // Direct sub-property
+      color: {
+        // Sub-property 'color'
+        [key in CheckboxCheckedState]?: {
+          // $variant: checked, unchecked, indeterminate
           [key in CheckboxInteractionState]?: CSSObject["borderColor"]; // $state: default, hover, disabled, error
         };
       };
@@ -44,9 +52,9 @@ export type CheckboxTokensType = Readonly<{
     // $property: 'focus' (conceptually, focus is a $state of the 'indicator' $target)
     focus: {
       outlineColor: CSSObject["borderColor"]; // Sub-property
-      outlineWidth: CSSObject["borderWidth"];   // Sub-property
+      outlineWidth: CSSObject["borderWidth"]; // Sub-property
       outlineOffset: CSSObject["outlineOffset"]; // Sub-property
-      boxShadow: CSSObject["boxShadow"];         // Sub-property
+      boxShadow: CSSObject["boxShadow"]; // Sub-property
     };
   };
 
@@ -54,14 +62,19 @@ export type CheckboxTokensType = Readonly<{
   icon: {
     // $property: 'color'
     color: {
-      [key in Exclude<CheckboxCheckedState, 'unchecked'>]?: { // $variant: checked, indeterminate
+      [key in Exclude<CheckboxCheckedState, "unchecked">]?: {
+        // $variant: checked, indeterminate
         // $state: default, disabled
-        [key in Extract<CheckboxInteractionState, 'default' | 'disabled'>]?: CSSObject["color"];
+        [key in Extract<
+          CheckboxInteractionState,
+          "default" | "disabled"
+        >]?: CSSObject["color"];
       };
     };
     // $property: 'size'
     size: {
-      [key in CheckboxSize]: { // $variant: sm, md
+      [key in CheckboxSize]: {
+        // $variant: sm, md
         width: CSSObject["width"];
         height: CSSObject["height"];
         strokeWidth: CSSObject["strokeWidth"];
@@ -77,11 +90,12 @@ export type CheckboxTokensType = Readonly<{
       // $property: 'color'
       color: {
         // $state: default, disabled, error (hover is usually not applied to label color directly)
-        [key in Exclude<CheckboxInteractionState, 'hover'>]: CSSObject["color"];
+        [key in Exclude<CheckboxInteractionState, "hover">]: CSSObject["color"];
       };
       // $property: 'font'
       font: {
-        [key in CheckboxSize]: { // $variant: sm, md
+        [key in CheckboxSize]: {
+          // $variant: sm, md
           fontSize: CSSObject["fontSize"];
           fontWeight: CSSObject["fontWeight"];
         };
@@ -91,18 +105,20 @@ export type CheckboxTokensType = Readonly<{
     subtext: {
       // $property: 'color'
       color: {
-        [key in Exclude<CheckboxInteractionState, 'hover'>]: CSSObject["color"]; // $state: default, disabled, error
+        [key in Exclude<CheckboxInteractionState, "hover">]: CSSObject["color"]; // $state: default, disabled, error
       };
       // $property: 'font'
       font: {
-        [key in CheckboxSize]: { // $variant: sm, md
+        [key in CheckboxSize]: {
+          // $variant: sm, md
           fontSize: CSSObject["fontSize"];
           fontWeight: CSSObject["fontWeight"];
         };
       };
       // $property: 'spacing'
       spacing: {
-        left: { // Sub-property
+        left: {
+          // Sub-property
           [key in CheckboxSize]: CSSObject["marginLeft"]; // $variant: sm, md
         };
         top: CSSObject["marginTop"]; // Sub-property
@@ -123,7 +139,9 @@ export type CheckboxTokensType = Readonly<{
   };
 }>;
 
-export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensType => {
+export const getCheckboxTokens = (
+  foundationToken: ThemeType,
+): CheckboxTokensType => {
   return {
     gap: foundationToken.unit[8],
     slotGap: foundationToken.unit[6],
@@ -131,8 +149,14 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
 
     indicator: {
       size: {
-        sm: { width: foundationToken.unit[14], height: foundationToken.unit[14] },
-        md: { width: foundationToken.unit[16], height: foundationToken.unit[16] },
+        sm: {
+          width: foundationToken.unit[14],
+          height: foundationToken.unit[14],
+        },
+        md: {
+          width: foundationToken.unit[16],
+          height: foundationToken.unit[16],
+        },
       },
       background: {
         unchecked: {
@@ -165,15 +189,15 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
             error: foundationToken.colors.red[500],
           },
           checked: {
-            default: 'transparent',
-            hover: 'transparent',
-            disabled: 'transparent',
+            default: "transparent",
+            hover: "transparent",
+            disabled: "transparent",
             error: foundationToken.colors.red[500],
           },
           indeterminate: {
-            default: 'transparent',
-            hover: 'transparent',
-            disabled: 'transparent',
+            default: "transparent",
+            hover: "transparent",
+            disabled: "transparent",
             error: foundationToken.colors.red[500],
           },
         },
@@ -198,8 +222,16 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
         },
       },
       size: {
-        sm: { width: foundationToken.unit[10], height: foundationToken.unit[10], strokeWidth: 2.5 },
-        md: { width: foundationToken.unit[12], height: foundationToken.unit[12], strokeWidth: 2.5 },
+        sm: {
+          width: foundationToken.unit[10],
+          height: foundationToken.unit[10],
+          strokeWidth: 2.5,
+        },
+        md: {
+          width: foundationToken.unit[12],
+          height: foundationToken.unit[12],
+          strokeWidth: 2.5,
+        },
       },
     },
 
@@ -212,8 +244,14 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
           error: foundationToken.colors.red[600],
         },
         font: {
-          sm: { fontSize: `${foundationToken.font.size.body.md.fontSize}px`, fontWeight: foundationToken.font.weight[500] },
-          md: { fontSize: `${foundationToken.font.size.body.md.fontSize}px`, fontWeight: foundationToken.font.weight[500] },
+          sm: {
+            fontSize: `${foundationToken.font.size.body.md.fontSize}px`,
+            fontWeight: foundationToken.font.weight[500],
+          },
+          md: {
+            fontSize: `${foundationToken.font.size.body.md.fontSize}px`,
+            fontWeight: foundationToken.font.weight[500],
+          },
         },
       },
       subtext: {
@@ -223,8 +261,14 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
           error: foundationToken.colors.red[500],
         },
         font: {
-          sm: { fontSize: `${foundationToken.font.size.body.sm.fontSize}px`, fontWeight: foundationToken.font.weight[400] },
-          md: { fontSize: `${foundationToken.font.size.body.md.fontSize}px`, fontWeight: foundationToken.font.weight[400] },
+          sm: {
+            fontSize: `${foundationToken.font.size.body.sm.fontSize}px`,
+            fontWeight: foundationToken.font.weight[400],
+          },
+          md: {
+            fontSize: `${foundationToken.font.size.body.md.fontSize}px`,
+            fontWeight: foundationToken.font.weight[400],
+          },
         },
         spacing: {
           left: {
@@ -242,8 +286,8 @@ export const getCheckboxTokens = (foundationToken: ThemeType): CheckboxTokensTyp
     },
 
     transition: {
-      duration: '150ms',
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      duration: "150ms",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
     },
   };
 };

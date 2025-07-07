@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const modalMeta: ComponentMeta = {
   componentName: "Modal",
-  componentDescription: "A flexible modal dialog component for displaying content in an overlay with customizable header, footer, and action buttons.",
+  componentDescription:
+    "A flexible modal dialog component for displaying content in an overlay with customizable header, footer, and action buttons.",
   features: [
     "Controlled open/close state",
     "Customizable header with title and subtitle",
@@ -12,7 +13,7 @@ const modalMeta: ComponentMeta = {
     "Optional close button",
     "Header divider option",
     "Flexible content area",
-    "Responsive design"
+    "Responsive design",
   ],
   usageExamples: [
     {
@@ -24,7 +25,7 @@ const modalMeta: ComponentMeta = {
   title="Confirm Action"
 >
   <p>Are you sure you want to proceed?</p>
-</Modal>`
+</Modal>`,
     },
     {
       title: "Modal with Actions",
@@ -46,7 +47,7 @@ const modalMeta: ComponentMeta = {
   }}
 >
   <p>Are you sure you want to delete this item?</p>
-</Modal>`
+</Modal>`,
     },
     {
       title: "Modal with Custom Header",
@@ -63,7 +64,7 @@ const modalMeta: ComponentMeta = {
   showDivider={true}
 >
   <p>Modal content with custom header</p>
-</Modal>`
+</Modal>`,
     },
     {
       title: "Modal with Header Slot",
@@ -81,8 +82,8 @@ const modalMeta: ComponentMeta = {
   }
 >
   <div>Settings content here</div>
-</Modal>`
-    }
+</Modal>`,
+    },
   ],
   props: [
     {
@@ -99,7 +100,8 @@ const modalMeta: ComponentMeta = {
       propName: "onClose",
       propType: "() => void",
       typeDefinition: "() => void",
-      propDescription: "Callback function called when the modal should be closed",
+      propDescription:
+        "Callback function called when the modal should be closed",
       llmContext: "Callback function called when the modal should be closed",
       propDefault: "-",
       category: "Events",
@@ -229,8 +231,10 @@ const modalMeta: ComponentMeta = {
       propName: "headerRightSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Additional content to display on the right side of the header",
-      llmContext: "Additional content to display on the right side of the header",
+      propDescription:
+        "Additional content to display on the right side of the header",
+      llmContext:
+        "Additional content to display on the right side of the header",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -245,7 +249,7 @@ const modalMeta: ComponentMeta = {
       category: "Styling",
       required: false,
     },
-  ]
+  ],
 };
 
 export default modalMeta;

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const menuMeta: ComponentMeta = {
   componentName: "Menu",
-  componentDescription: "A versatile dropdown menu component with support for grouped items, submenus, search functionality, and customizable positioning for creating rich contextual menus.",
+  componentDescription:
+    "A versatile dropdown menu component with support for grouped items, submenus, search functionality, and customizable positioning for creating rich contextual menus.",
   features: [
     "Grouped menu items with labels",
     "Submenu support for nested navigation",
@@ -14,7 +15,7 @@ const menuMeta: ComponentMeta = {
     "Controlled and uncontrolled modes",
     "Collision boundary detection",
     "Modal mode support",
-    "Accessible keyboard navigation"
+    "Accessible keyboard navigation",
   ],
   usageExamples: [
     {
@@ -42,7 +43,7 @@ const menuMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Menu with Search",
@@ -68,7 +69,7 @@ const menuMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Menu with Submenus",
@@ -99,7 +100,7 @@ const menuMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Controlled Menu with Custom Positioning",
@@ -132,8 +133,8 @@ const menuMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -223,7 +224,8 @@ const menuMeta: ComponentMeta = {
         RIGHT = "right",
         BOTTOM = "bottom",
       }`,
-      propDescription: "Side where the menu should appear relative to the trigger",
+      propDescription:
+        "Side where the menu should appear relative to the trigger",
       llmContext: "Side where the menu should appear relative to the trigger",
       propDefault: "MenuSide.BOTTOM",
       category: "Layout",
@@ -263,13 +265,14 @@ const menuMeta: ComponentMeta = {
       propName: "asModal",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to render the menu as a modal on mobile devices",
+      propDescription:
+        "Whether to render the menu as a modal on mobile devices",
       llmContext: "Whether to render the menu as a modal on mobile devices",
       propDefault: "false",
       category: "Behavior",
       required: false,
     },
-  ]
+  ],
 };
 
 export default menuMeta;

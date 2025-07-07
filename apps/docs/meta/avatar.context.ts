@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const avatarMeta: ComponentMeta = {
   componentName: "Avatar",
-  componentDescription: "A flexible avatar component for displaying user profile images with automatic fallback to initials, multiple sizes and shapes, and online status indicators.",
+  componentDescription:
+    "A flexible avatar component for displaying user profile images with automatic fallback to initials, multiple sizes and shapes, and online status indicators.",
   features: [
     "Multiple sizes (small, medium, large, extra large)",
     "Two shape variants (circular, rounded)",
@@ -12,7 +13,7 @@ const avatarMeta: ComponentMeta = {
     "Leading and trailing slot support",
     "Accessible design with screen reader support",
     "Error handling for broken images",
-    "Responsive sizing"
+    "Responsive sizing",
   ],
   usageExamples: [
     {
@@ -22,7 +23,7 @@ const avatarMeta: ComponentMeta = {
   src="/user-profile.jpg" 
   alt="John Doe" 
   size={AvatarSize.MD} 
-/>`
+/>`,
     },
     {
       title: "Avatar with Fallback Initials",
@@ -31,7 +32,7 @@ const avatarMeta: ComponentMeta = {
   alt="Jane Smith" 
   size={AvatarSize.LG}
   shape={AvatarShape.ROUNDED}
-/>`
+/>`,
     },
     {
       title: "Avatar with Online Status",
@@ -41,7 +42,7 @@ const avatarMeta: ComponentMeta = {
   alt="Alex Johnson"
   size={AvatarSize.XL}
   online={true}
-/>`
+/>`,
     },
     {
       title: "Avatar with Custom Slots",
@@ -52,8 +53,8 @@ const avatarMeta: ComponentMeta = {
   size={AvatarSize.MD}
   leadingSlot={<Badge variant="success">Pro</Badge>}
   trailingSlot={<Button size="sm" variant="ghost"><EditIcon /></Button>}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -70,8 +71,10 @@ const avatarMeta: ComponentMeta = {
       propName: "alt",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Alternative text for the avatar image and fallback initials generation",
-      llmContext: "Alternative text for the avatar image and fallback initials generation",
+      propDescription:
+        "Alternative text for the avatar image and fallback initials generation",
+      llmContext:
+        "Alternative text for the avatar image and fallback initials generation",
       propDefault: "''",
       category: "Content",
       required: false,
@@ -144,7 +147,7 @@ const avatarMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default avatarMeta;

@@ -9,18 +9,21 @@ A Model Context Protocol (MCP) server for the Blend Design System that provides 
 There are several ways to run the Blend MCP server:
 
 #### 1. Direct Execution
+
 ```bash
 cd packages/mcp
 node index.js
 ```
 
 #### 2. Using npm script
+
 ```bash
 cd packages/mcp
 npm run inspector
 ```
 
 #### 3. Using the binary
+
 ```bash
 cd packages/mcp
 npx blend
@@ -29,6 +32,7 @@ npx blend
 ### Testing the Server
 
 To test all tools and verify functionality:
+
 ```bash
 cd packages/mcp
 node -e "
@@ -45,9 +49,11 @@ import('./metaReader.js').then(async ({ listAvailableComponents, getComponentMet
 The server provides 5 main tools:
 
 ### 1. `list_blend_components`
+
 Lists all available Blend components.
 
 **Usage:**
+
 ```json
 {
   "name": "list_blend_components",
@@ -56,9 +62,11 @@ Lists all available Blend components.
 ```
 
 ### 2. `get_blend_component_props`
+
 Gets detailed props information for a component.
 
 **Usage:**
+
 ```json
 {
   "name": "get_blend_component_props",
@@ -69,9 +77,11 @@ Gets detailed props information for a component.
 ```
 
 ### 3. `generate_blend_component`
+
 Generates React JSX code for a component.
 
 **Usage:**
+
 ```json
 {
   "name": "generate_blend_component",
@@ -87,9 +97,11 @@ Generates React JSX code for a component.
 ```
 
 ### 4. `scaffold_dashboard_section`
+
 Generates complete dashboard sections.
 
 **Usage:**
+
 ```json
 {
   "name": "scaffold_dashboard_section",
@@ -98,7 +110,12 @@ Generates complete dashboard sections.
     "options": {
       "title": "Financial Dashboard",
       "kpis": [
-        {"title": "Revenue", "value": "$2.5M", "changeValue": 12, "changeDirection": "positive"}
+        {
+          "title": "Revenue",
+          "value": "$2.5M",
+          "changeValue": 12,
+          "changeDirection": "positive"
+        }
       ]
     }
   }
@@ -106,9 +123,11 @@ Generates complete dashboard sections.
 ```
 
 ### 5. `generate_component_documentation`
+
 Generates Markdown documentation for components.
 
 **Usage:**
+
 ```json
 {
   "name": "generate_component_documentation",
@@ -177,16 +196,19 @@ The server supports all 34 Blend components:
 ## 🔍 Debugging
 
 ### Enable Debug Logging
+
 ```bash
 DEBUG=mcp* node index.js
 ```
 
 ### Check Server Status
+
 ```bash
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | node index.js
 ```
 
 ### Validate Meta Files
+
 ```bash
 node -e "
 import('./metaReader.js').then(async ({ listAvailableComponents }) => {
@@ -231,6 +253,7 @@ apps/docs/meta/           # Component meta files
 ### Getting Help
 
 If you encounter issues:
+
 1. Check the console output for detailed error messages
 2. Verify all environment variables are set correctly
 3. Test individual components with the debugging commands above
@@ -247,6 +270,7 @@ If you encounter issues:
 ### Updating Meta Files
 
 Use the generator script:
+
 ```bash
 node generateMetaFiles.js
 ```

@@ -1,4 +1,4 @@
-import { ColumnType } from './columnTypes';
+import { ColumnType } from "./columnTypes";
 
 export enum SortDirection {
   ASCENDING = "asc",
@@ -44,13 +44,19 @@ export type ColumnDefinition<T extends Record<string, unknown>> = {
   /** Custom render function for display mode */
   renderCell?: (value: T[keyof T], row: T) => React.ReactNode;
   /** Custom render for edit mode */
-  renderEditCell?: (value: T[keyof T], row: T, onChange: (value: unknown) => void) => React.ReactNode;
+  renderEditCell?: (
+    value: T[keyof T],
+    row: T,
+    onChange: (value: unknown) => void,
+  ) => React.ReactNode;
 };
 
-export type TypeSafeColumn<T extends Record<string, unknown>, Field extends keyof T> = 
-  ColumnDefinition<T> & {
-    field: Field;
-  };
+export type TypeSafeColumn<
+  T extends Record<string, unknown>,
+  Field extends keyof T,
+> = ColumnDefinition<T> & {
+  field: Field;
+};
 
 export type CreateColumnDefinition<T extends Record<string, unknown>> = {
   <K extends keyof T>(column: TypeSafeColumn<T, K>): TypeSafeColumn<T, K>;
@@ -65,7 +71,7 @@ export type FilterOption = {
   value: string;
   /** Optional nested options */
   options?: FilterOption[];
-}
+};
 
 export type Filter = {
   /** Unique identifier for the filter */
@@ -78,7 +84,7 @@ export type Filter = {
   selectedValues?: string[];
   /** Whether multiple selections are allowed */
   isMultiSelect?: boolean;
-}
+};
 
 export type ColumnFilter = {
   /** Column field to filter */
@@ -88,8 +94,16 @@ export type ColumnFilter = {
   /** Filter value(s) */
   value: string | string[] | number | Date;
   /** Filter operator (equals, contains, startsWith, endsWith, greater than, etc.) */
-  operator?: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'gt' | 'lt' | 'gte' | 'lte';
-}
+  operator?:
+    | "equals"
+    | "contains"
+    | "startsWith"
+    | "endsWith"
+    | "gt"
+    | "lt"
+    | "gte"
+    | "lte";
+};
 
 export type SearchConfig = {
   /** Search query string */
@@ -98,12 +112,12 @@ export type SearchConfig = {
   searchFields?: string[];
   /** Whether search is case sensitive */
   caseSensitive?: boolean;
-}
+};
 
 export type SortConfig = {
   field: string;
   direction: SortDirection;
-}
+};
 
 export type PaginationConfig = {
   currentPage: number;
@@ -112,7 +126,7 @@ export type PaginationConfig = {
   pageSizeOptions: number[];
   onPageChange?: (page: number) => void;
   onPageSizeChange?: (pageSize: number) => void;
-}
+};
 
 export type ColumnManagerProps<T extends Record<string, unknown>> = {
   columns: ColumnDefinition<T>[];
@@ -127,7 +141,7 @@ export type AdvancedFilterProps = {
   onFiltersChange: (filters: unknown[]) => void;
   /** Callback to clear all filters */
   onClearFilters: () => void;
-}
+};
 
 export type DataTableProps<T extends Record<string, unknown>> = {
   /** Array of data objects to display */
@@ -202,7 +216,11 @@ export type DataTableProps<T extends Record<string, unknown>> = {
   /** Callback when row edit is cancelled */
   onRowCancel?: (rowId: unknown) => void;
   /** Callback when row expansion changes */
-  onRowExpansionChange?: (rowId: unknown, isExpanded: boolean, rowData: T) => void;
+  onRowExpansionChange?: (
+    rowId: unknown,
+    isExpanded: boolean,
+    rowData: T,
+  ) => void;
   /** Callback when row is clicked */
   onRowClick?: (row: T, index: number) => void;
   /** Optional additional class name */
@@ -215,4 +233,4 @@ export type DataTableProps<T extends Record<string, unknown>> = {
   headerSlot3?: React.ReactNode;
   /** Custom bulk actions */
   bulkActions?: React.ReactNode;
-}
+};

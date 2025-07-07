@@ -21,7 +21,7 @@ export type AccordionItemProps = {
   isDisabled?: boolean;
   className?: string;
   chevronPosition?: AccordionChevronPosition;
-}
+};
 
 export type AccordionProps = {
   children: ReactNode;
@@ -31,4 +31,4 @@ export type AccordionProps = {
   isMultiple?: boolean;
   onValueChange?: (value: string | string[]) => void;
   className?: string;
-} 
+};

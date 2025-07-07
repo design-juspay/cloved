@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export enum RadioSize {
-  SMALL = 'sm',
-  MEDIUM = 'md',
+  SMALL = "sm",
+  MEDIUM = "md",
 }
 
 export type RadioProps = {

@@ -57,7 +57,7 @@ const tooltipTokens: TooltipTokensType = {
 };
 
 export const getTooltipTokens = (
-  foundationToken: FoundationTokenType
+  foundationToken: FoundationTokenType,
 ): TooltipTokensType => {
   return {
     fontWeight: {

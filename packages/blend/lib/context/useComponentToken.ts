@@ -28,7 +28,7 @@ import { AccordionTokenType } from "../components/Accordion/accordion.tokens";
 // TYPES FOR RETURNS
 // WE WILL ADAPT TO BETTER TYPES LATER
 export const useComponentToken = (
-  component: keyof ComponentTokenType
+  component: keyof ComponentTokenType,
 ):
   | SearchInputTokensType
   | TagTokensType
@@ -52,7 +52,7 @@ export const useComponentToken = (
   | MenuTokensType
   | MultiSelectTokensType
   | TableTokenType
-  | CalendarTokenType 
+  | CalendarTokenType
   | AccordionTokenType => {
   const { componentTokens } = useTheme();
   switch (component) {
@@ -94,13 +94,13 @@ export const useComponentToken = (
       return componentTokens.MENU;
     case "MULTI_SELECT":
       return componentTokens.MULTI_SELECT;
-    case "TABLE": 
+    case "TABLE":
       return componentTokens.TABLE;
     case "CALENDAR":
       return componentTokens.CALENDAR;
     case "ACCORDION":
       return componentTokens.ACCORDION;
-      default:
+    default:
       throw new Error(`Unknown component token: ${component}`);
   }
 };

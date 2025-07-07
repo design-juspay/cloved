@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const checkboxMeta: ComponentMeta = {
   componentName: "Checkbox",
-  componentDescription: "A versatile checkbox component with support for controlled and uncontrolled states, indeterminate state, multiple sizes, and comprehensive form integration capabilities.",
+  componentDescription:
+    "A versatile checkbox component with support for controlled and uncontrolled states, indeterminate state, multiple sizes, and comprehensive form integration capabilities.",
   features: [
     "Controlled and uncontrolled modes",
     "Indeterminate state support",
@@ -13,7 +14,7 @@ const checkboxMeta: ComponentMeta = {
     "Custom slot for additional content",
     "Disabled state support",
     "Accessible design with proper ARIA attributes",
-    "Form integration ready"
+    "Form integration ready",
   ],
   usageExamples: [
     {
@@ -21,7 +22,7 @@ const checkboxMeta: ComponentMeta = {
       description: "Simple checkbox with label",
       code: `<Checkbox>
   Accept terms and conditions
-</Checkbox>`
+</Checkbox>`,
     },
     {
       title: "Controlled Checkbox",
@@ -34,7 +35,7 @@ const checkboxMeta: ComponentMeta = {
   size={CheckboxSize.MEDIUM}
 >
   Subscribe to newsletter
-</Checkbox>`
+</Checkbox>`,
     },
     {
       title: "Checkbox with Subtext and Error",
@@ -46,7 +47,7 @@ const checkboxMeta: ComponentMeta = {
   size={CheckboxSize.SMALL}
 >
   I agree to the privacy policy
-</Checkbox>`
+</Checkbox>`,
     },
     {
       title: "Indeterminate Checkbox with Slot",
@@ -57,8 +58,8 @@ const checkboxMeta: ComponentMeta = {
   subtext="Some items are selected"
 >
   Select all items
-</Checkbox>`
-    }
+</Checkbox>`,
+    },
   ],
   props: [
     {
@@ -184,7 +185,7 @@ const checkboxMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default checkboxMeta;

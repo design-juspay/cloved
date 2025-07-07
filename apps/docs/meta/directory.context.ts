@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const directoryMeta: ComponentMeta = {
   componentName: "Directory",
-  componentDescription: "A hierarchical navigation directory component that organizes content into collapsible sections with nested navigation items, supporting icons, links, and keyboard navigation.",
+  componentDescription:
+    "A hierarchical navigation directory component that organizes content into collapsible sections with nested navigation items, supporting icons, links, and keyboard navigation.",
   features: [
     "Hierarchical navigation structure",
     "Collapsible sections with expand/collapse",
@@ -13,7 +14,7 @@ const directoryMeta: ComponentMeta = {
     "Default open/closed state control",
     "Accessible design with proper ARIA",
     "Custom styling support",
-    "Responsive layout"
+    "Responsive layout",
   ],
   usageExamples: [
     {
@@ -38,7 +39,7 @@ const directoryMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Directory with Icons and Actions",
@@ -70,7 +71,7 @@ const directoryMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Nested Directory Structure",
@@ -100,7 +101,7 @@ const directoryMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Custom Directory with Actions",
@@ -131,8 +132,8 @@ const directoryMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -144,7 +145,8 @@ const directoryMeta: ComponentMeta = {
         isCollapsible?: boolean;
         defaultOpen?: boolean;
       }`,
-      propDescription: "Array of directory sections containing navigation items",
+      propDescription:
+        "Array of directory sections containing navigation items",
       llmContext: "Array of directory sections containing navigation items",
       propDefault: "-",
       category: "Content",
@@ -181,8 +183,10 @@ const directoryMeta: ComponentMeta = {
         onClick?: () => void;
         href?: string;
       }`,
-      propDescription: "Array of navigation items in the section (DirectoryData property)",
-      llmContext: "Array of navigation items in the section (DirectoryData property)",
+      propDescription:
+        "Array of navigation items in the section (DirectoryData property)",
+      llmContext:
+        "Array of navigation items in the section (DirectoryData property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -191,8 +195,10 @@ const directoryMeta: ComponentMeta = {
       propName: "isCollapsible",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the section can be collapsed/expanded (DirectoryData property)",
-      llmContext: "Whether the section can be collapsed/expanded (DirectoryData property)",
+      propDescription:
+        "Whether the section can be collapsed/expanded (DirectoryData property)",
+      llmContext:
+        "Whether the section can be collapsed/expanded (DirectoryData property)",
       propDefault: "true",
       category: "Behavior",
       required: false,
@@ -201,8 +207,10 @@ const directoryMeta: ComponentMeta = {
       propName: "defaultOpen",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the section is open by default (DirectoryData property)",
-      llmContext: "Whether the section is open by default (DirectoryData property)",
+      propDescription:
+        "Whether the section is open by default (DirectoryData property)",
+      llmContext:
+        "Whether the section is open by default (DirectoryData property)",
       propDefault: "false",
       category: "State",
       required: false,
@@ -211,7 +219,8 @@ const directoryMeta: ComponentMeta = {
       propName: "label",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Display text for the navigation item (NavbarItem property)",
+      propDescription:
+        "Display text for the navigation item (NavbarItem property)",
       llmContext: "Display text for the navigation item (NavbarItem property)",
       propDefault: "-",
       category: "Content",
@@ -221,8 +230,10 @@ const directoryMeta: ComponentMeta = {
       propName: "leftSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Content to display on the left side of the navigation item (NavbarItem property)",
-      llmContext: "Content to display on the left side of the navigation item (NavbarItem property)",
+      propDescription:
+        "Content to display on the left side of the navigation item (NavbarItem property)",
+      llmContext:
+        "Content to display on the left side of the navigation item (NavbarItem property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -231,8 +242,10 @@ const directoryMeta: ComponentMeta = {
       propName: "rightSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Content to display on the right side of the navigation item (NavbarItem property)",
-      llmContext: "Content to display on the right side of the navigation item (NavbarItem property)",
+      propDescription:
+        "Content to display on the right side of the navigation item (NavbarItem property)",
+      llmContext:
+        "Content to display on the right side of the navigation item (NavbarItem property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -241,7 +254,8 @@ const directoryMeta: ComponentMeta = {
       propName: "onClick",
       propType: "() => void",
       typeDefinition: "() => void",
-      propDescription: "Click handler for the navigation item (NavbarItem property)",
+      propDescription:
+        "Click handler for the navigation item (NavbarItem property)",
       llmContext: "Click handler for the navigation item (NavbarItem property)",
       propDefault: "undefined",
       category: "Events",
@@ -257,7 +271,7 @@ const directoryMeta: ComponentMeta = {
       category: "Navigation",
       required: false,
     },
-  ]
+  ],
 };
 
 export default directoryMeta;
