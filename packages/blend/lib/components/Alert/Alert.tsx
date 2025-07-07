@@ -29,7 +29,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
       icon,
       actionPlacement = AlertActionPlacement.RIGHT,
     },
-    ref
+    ref,
   ) => {
     const alertTokens = useComponentToken("ALERT") as AlertTokenType;
 
@@ -145,7 +145,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
         </Block>
       </Block>
     );
-  }
+  },
 );
 
 const AlertCloseButton = ({
@@ -197,7 +197,6 @@ const AlertActionButton = styled.button<{
     },
   };
 });
-
 
 Alert.displayName = "Alert";
 

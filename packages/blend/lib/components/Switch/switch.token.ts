@@ -127,23 +127,25 @@ export type SwitchTokensType = Readonly<{
   };
 }>;
 
-export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType => {
+export const getSwitchTokens = (
+  foundationToken: ThemeType,
+): SwitchTokensType => {
   return {
     gap: foundationToken.unit[8],
     slotGap: foundationToken.unit[6],
     contentGap: foundationToken.unit[4],
     height: {
       sm: foundationToken.unit[12],
-      md: foundationToken.unit[16]
+      md: foundationToken.unit[16],
     },
     width: {
       sm: foundationToken.unit[24],
-      md: foundationToken.unit[32]
+      md: foundationToken.unit[32],
     },
 
     borderRadius: {
       base: foundationToken.border.radius.full,
-      thumb: foundationToken.border.radius.full
+      thumb: foundationToken.border.radius.full,
     },
 
     indicator: {
@@ -151,56 +153,56 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
         background: {
           default: foundationToken.colors.primary[500],
           hover: foundationToken.colors.primary[600],
-          disabled: foundationToken.colors.primary[300]
+          disabled: foundationToken.colors.primary[300],
         },
         border: {
           default: foundationToken.colors.primary[500],
           hover: foundationToken.colors.primary[600],
-          disabled: foundationToken.colors.primary[300]
-        }
+          disabled: foundationToken.colors.primary[300],
+        },
       },
       inactive: {
         background: {
           default: foundationToken.colors.gray[150],
           hover: foundationToken.colors.gray[200],
-          disabled: foundationToken.colors.gray[100]
+          disabled: foundationToken.colors.gray[100],
         },
         border: {
           default: foundationToken.colors.gray[150],
           hover: foundationToken.colors.gray[200],
-          disabled: foundationToken.colors.gray[100]
-        }
-      }
+          disabled: foundationToken.colors.gray[100],
+        },
+      },
     },
 
     thumb: {
       background: foundationToken.colors.gray[25],
       border: {
         color: foundationToken.colors.gray[300],
-        width: '0.5px'
+        width: "0.5px",
       },
       size: {
         sm: {
           width: foundationToken.unit[10],
           height: foundationToken.unit[10],
-          top: '1px',
-          left: '1px',
+          top: "1px",
+          left: "1px",
           offset: {
             active: foundationToken.unit[12],
-            inactive: foundationToken.unit[2]
-          }
+            inactive: foundationToken.unit[2],
+          },
         },
         md: {
           width: foundationToken.unit[14],
           height: foundationToken.unit[14],
-          top: '1px',
-          left: '1px',
+          top: "1px",
+          left: "1px",
           offset: {
             active: foundationToken.unit[16],
-            inactive: foundationToken.unit[2]
-          }
-        }
-      }
+            inactive: foundationToken.unit[2],
+          },
+        },
+      },
     },
 
     content: {
@@ -209,87 +211,87 @@ export const getSwitchTokens = (foundationToken: ThemeType): SwitchTokensType =>
           default: foundationToken.colors.gray[700],
           hover: foundationToken.colors.gray[800],
           disabled: foundationToken.colors.gray[300],
-          error: foundationToken.colors.red[600]
+          error: foundationToken.colors.red[600],
         },
         font: {
           sm: {
             fontSize: foundationToken.font.size.body.sm.fontSize,
-            fontWeight: foundationToken.font.weight[500]
+            fontWeight: foundationToken.font.weight[500],
           },
           md: {
             fontSize: foundationToken.font.size.body.md.fontSize,
-            fontWeight: foundationToken.font.weight[500]
-          }
-        }
-      },  
+            fontWeight: foundationToken.font.weight[500],
+          },
+        },
+      },
       sublabel: {
         color: {
           default: foundationToken.colors.gray[400],
           hover: foundationToken.colors.gray[500],
           disabled: foundationToken.colors.gray[200],
-          error: foundationToken.colors.red[600]
+          error: foundationToken.colors.red[600],
         },
         font: {
           sm: {
             fontSize: foundationToken.font.size.body.sm.fontSize,
-            fontWeight: foundationToken.font.weight[400]
+            fontWeight: foundationToken.font.weight[400],
           },
           md: {
             fontSize: foundationToken.font.size.body.md.fontSize,
-            fontWeight: foundationToken.font.weight[400]
-          }
+            fontWeight: foundationToken.font.weight[400],
+          },
         },
         spacing: {
           left: {
             sm: foundationToken.unit[32],
-            md: foundationToken.unit[36]
+            md: foundationToken.unit[36],
           },
-          top: foundationToken.unit[4]
-        }
-      }
+          top: foundationToken.unit[4],
+        },
+      },
     },
 
     borderWidth: {
       inactive: {
         default: 1,
         hover: 1,
-        disabled: 1
+        disabled: 1,
       },
       active: {
         default: 2,
         hover: 2,
-        disabled: 1
-      }
+        disabled: 1,
+      },
     },
 
     focus: {
       outline: {
         width: foundationToken.border.width[2],
         color: foundationToken.colors.primary[200],
-        offset: foundationToken.unit[2]
-      }
+        offset: foundationToken.unit[2],
+      },
     },
 
     slot: {
       size: {
         sm: foundationToken.unit[12],
-        md: foundationToken.unit[12]
+        md: foundationToken.unit[12],
       },
-      spacing: foundationToken.unit[6]
+      spacing: foundationToken.unit[6],
     },
 
     required: {
       color: foundationToken.colors.red[600],
-      spacing: foundationToken.unit[2]
+      spacing: foundationToken.unit[2],
     },
 
     transition: {
-      duration: '300ms',
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-    }
+      duration: "300ms",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+    },
   };
 };
 
 const switchTokens: SwitchTokensType = getSwitchTokens(FOUNDATION_THEME);
 
-export default switchTokens; 
+export default switchTokens;

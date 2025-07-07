@@ -3,15 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next dev --turbo",
+    "build": "next build",
     "start": "next start",
     "postinstall": "fumadocs-mdx",
-    "deploy:staging": "npm run build && firebase deploy --only hosting:blend-staging",
-    "deploy:production": "npm run build && firebase deploy --only hosting:blend-prod",
-    "deploy:all": "npm run build && firebase deploy",
-    "firebase:init": "firebase init hosting",
-    "preview": "firebase hosting:channel:deploy preview",
+    "deploy:staging-env": "./deploy-with-env.sh staging",
+    "deploy:production-env": "./deploy-with-env.sh production",
     "setup:hosting": "firebase target:apply hosting blend-staging blend-staging && firebase target:apply hosting blend-prod blend-prod"
   },
   "dependencies": {

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const chartsMeta: ComponentMeta = {
   componentName: "Charts",
-  componentDescription: "A comprehensive charting component that supports line, bar, and pie charts with customizable styling and interactive features.",
+  componentDescription:
+    "A comprehensive charting component that supports line, bar, and pie charts with customizable styling and interactive features.",
   features: [
     "Multiple chart types (line, bar, pie)",
     "Interactive legends with hover effects",
@@ -10,7 +11,7 @@ const chartsMeta: ComponentMeta = {
     "Flexible slot system for custom content",
     "Responsive design",
     "Custom tooltips",
-    "Axis labeling support"
+    "Axis labeling support",
   ],
   usageExamples: [
     {
@@ -22,7 +23,7 @@ const chartsMeta: ComponentMeta = {
   xAxisLabel="Month"
   yAxisLabel="Revenue"
   chartHeaderSlot="Monthly Revenue"
-/>`
+/>`,
     },
     {
       title: "Bar Chart with Custom Colors",
@@ -32,7 +33,7 @@ const chartsMeta: ComponentMeta = {
   data={chartData}
   colors={["#FF6B6B", "#4ECDC4", "#45B7D1"]}
   chartHeaderSlot="Sales by Category"
-/>`
+/>`,
     },
     {
       title: "Pie Chart with Legend",
@@ -42,8 +43,8 @@ const chartsMeta: ComponentMeta = {
   data={pieData}
   legendPosition={ChartLegendPosition.RIGHT}
   chartHeaderSlot="Market Share"
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -179,7 +180,7 @@ const chartsMeta: ComponentMeta = {
       category: "Content",
       required: true,
     },
-  ]
+  ],
 };
 
 export default chartsMeta;

@@ -41,7 +41,7 @@ export type PopoverTokenType = {
 };
 
 export const getPopoverTokens = (
-  foundationTokens: FoundationTokenType
+  foundationTokens: FoundationTokenType,
 ): PopoverTokenType => {
   return {
     background: foundationTokens.colors.gray[0],
@@ -86,4 +86,3 @@ export const getPopoverTokens = (
     },
   };
 };
-

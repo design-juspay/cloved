@@ -61,7 +61,7 @@ export const textAreaTokens: TextAreaTokensType = {
 };
 
 export const getTextAreaTokens = (
-  foundationTokens: FoundationTokenType
+  foundationTokens: FoundationTokenType,
 ): TextAreaTokensType => {
   return {
     fontFamily: "InterDisplay",

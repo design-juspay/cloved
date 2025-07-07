@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const snackbarMeta: ComponentMeta = {
   componentName: "Snackbar",
-  componentDescription: "A toast notification system for displaying temporary messages with multiple variants, action buttons, and automatic dismissal functionality.",
+  componentDescription:
+    "A toast notification system for displaying temporary messages with multiple variants, action buttons, and automatic dismissal functionality.",
   features: [
     "Four notification variants (info, success, warning, error)",
     "Automatic dismissal with customizable duration",
@@ -13,7 +14,7 @@ const snackbarMeta: ComponentMeta = {
     "Responsive positioning",
     "Custom styling support",
     "Programmatic toast creation",
-    "Event callbacks for user actions"
+    "Event callbacks for user actions",
   ],
   usageExamples: [
     {
@@ -33,7 +34,7 @@ addToast({
   header: "Error occurred",
   description: "Failed to save changes. Please try again.",
   variant: SnackbarVariant.ERROR
-});`
+});`,
     },
     {
       title: "Toast with Action Button",
@@ -49,7 +50,7 @@ addToast({
       window.open('/files/uploaded-file.pdf');
     }
   }
-});`
+});`,
     },
     {
       title: "Toast with Custom Close Handler",
@@ -69,7 +70,7 @@ addToast({
       extendUserSession();
     }
   }
-});`
+});`,
     },
     {
       title: "Multiple Toast Notifications",
@@ -93,8 +94,8 @@ const showProgressToasts = () => {
       }
     });
   }, 3000);
-};`
-    }
+};`,
+    },
   ],
   props: [
     {
@@ -126,8 +127,10 @@ const showProgressToasts = () => {
         WARNING = "warning",
         ERROR = "error",
       }`,
-      propDescription: "The visual variant determining the toast's appearance and icon",
-      llmContext: "The visual variant determining the toast's appearance and icon",
+      propDescription:
+        "The visual variant determining the toast's appearance and icon",
+      llmContext:
+        "The visual variant determining the toast's appearance and icon",
       propDefault: "SnackbarVariant.INFO",
       category: "Appearance",
       required: false,
@@ -149,7 +152,8 @@ const showProgressToasts = () => {
         label: string;
         onClick: () => void;
       }`,
-      propDescription: "Configuration for an optional action button in the toast",
+      propDescription:
+        "Configuration for an optional action button in the toast",
       llmContext: "Configuration for an optional action button in the toast",
       propDefault: "undefined",
       category: "Actions",
@@ -159,7 +163,8 @@ const showProgressToasts = () => {
       propName: "label",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Text label for the action button (ActionButton property)",
+      propDescription:
+        "Text label for the action button (ActionButton property)",
       llmContext: "Text label for the action button (ActionButton property)",
       propDefault: "-",
       category: "Content",
@@ -169,13 +174,14 @@ const showProgressToasts = () => {
       propName: "onClick",
       propType: "() => void",
       typeDefinition: "() => void",
-      propDescription: "Click handler for the action button (ActionButton property)",
+      propDescription:
+        "Click handler for the action button (ActionButton property)",
       llmContext: "Click handler for the action button (ActionButton property)",
       propDefault: "-",
       category: "Events",
       required: true,
     },
-  ]
+  ],
 };
 
 export default snackbarMeta;

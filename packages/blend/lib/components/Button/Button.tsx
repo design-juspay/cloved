@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ariaHasPopup,
       ...props
     },
-    ref
+    ref,
   ) => {
     const hasLeadingIcon = !!LeadingIcon;
     const hasTrailingIcon = !!TrailingIcon;
@@ -71,7 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </StyledButton>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

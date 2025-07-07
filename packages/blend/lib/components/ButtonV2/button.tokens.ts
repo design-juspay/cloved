@@ -8,9 +8,9 @@ export type ButtonState = "default" | "hover" | "active" | "disabled";
 export type ButtonTokensType = {
   gap: CSSObject["gap"];
   backgroundColor: {
-    [key in ButtonTypeV2]: { 
-      [key in ButtonSubTypeV2]: { 
-        [key in ButtonState]: CSSObject["background"]; 
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["background"];
       };
     };
   };
@@ -67,11 +67,9 @@ const buttonTokens: ButtonTokensType = {
         disabled: FOUNDATION_THEME.colors.primary[300],
       },
       iconOnly: {
-        default:
-          `linear-gradient(180deg, ${FOUNDATION_THEME.colors.primary[600]} -5%, ${FOUNDATION_THEME.colors.primary[500]} 107.5%)`,
+        default: `linear-gradient(180deg, ${FOUNDATION_THEME.colors.primary[600]} -5%, ${FOUNDATION_THEME.colors.primary[500]} 107.5%)`,
         hover: FOUNDATION_THEME.colors.primary[500],
-        active:
-          `linear-gradient(180deg, ${FOUNDATION_THEME.colors.primary[600]} -5%, ${FOUNDATION_THEME.colors.primary[500]} 107.5%)`,
+        active: `linear-gradient(180deg, ${FOUNDATION_THEME.colors.primary[600]} -5%, ${FOUNDATION_THEME.colors.primary[500]} 107.5%)`,
         disabled: FOUNDATION_THEME.colors.primary[300],
       },
       inline: {
@@ -572,7 +570,7 @@ const buttonTokens: ButtonTokensType = {
 };
 
 export const getButtonTokens = (
-  foundationToken: FoundationTokenType
+  foundationToken: FoundationTokenType,
 ): ButtonTokensType => {
   return {
     gap: FOUNDATION_THEME.unit[6],

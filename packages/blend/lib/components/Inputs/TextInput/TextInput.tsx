@@ -40,7 +40,7 @@ const TextInput = ({
   ...rest
 }: TextInputProps) => {
   const textInputTokens = useComponentToken(
-    "TEXT_INPUT"
+    "TEXT_INPUT",
   ) as TextInputTokensType;
   const leftSlotRef = useRef<HTMLDivElement>(null);
   const rightSlotRef = useRef<HTMLDivElement>(null);

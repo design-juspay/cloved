@@ -1,16 +1,16 @@
-import { forwardRef } from 'react';
-import { TabsContentProps } from './types';
-import { StyledTabsContent } from './StyledTabs';
-import { useComponentToken } from '../../context/useComponentToken';
-import { TabsTokensType } from './tabs.token';
+import { forwardRef } from "react";
+import { TabsContentProps } from "./types";
+import { StyledTabsContent } from "./StyledTabs";
+import { useComponentToken } from "../../context/useComponentToken";
+import { TabsTokensType } from "./tabs.token";
 
 const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   ({ className, children, ...props }, ref) => {
     const tabsToken = useComponentToken("TABS") as TabsTokensType;
-    
+
     return (
-      <StyledTabsContent 
-        ref={ref} 
+      <StyledTabsContent
+        ref={ref}
         className={className}
         $tabsToken={tabsToken}
         {...props}
@@ -18,9 +18,9 @@ const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
         {children}
       </StyledTabsContent>
     );
-  }
+  },
 );
 
-TabsContent.displayName = 'TabsContent';
+TabsContent.displayName = "TabsContent";
 
 export default TabsContent;

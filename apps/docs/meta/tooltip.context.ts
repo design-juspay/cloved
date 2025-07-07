@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const tooltipMeta: ComponentMeta = {
   componentName: "Tooltip",
-  componentDescription: "A flexible tooltip component for displaying contextual information on hover or focus with customizable positioning, sizing, and content slots.",
+  componentDescription:
+    "A flexible tooltip component for displaying contextual information on hover or focus with customizable positioning, sizing, and content slots.",
   features: [
     "Multiple positioning options (top, right, bottom, left)",
     "Flexible alignment (start, center, end)",
@@ -13,7 +14,7 @@ const tooltipMeta: ComponentMeta = {
     "Customizable delay duration",
     "Offset positioning control",
     "Accessible design with proper ARIA attributes",
-    "Keyboard navigation support"
+    "Keyboard navigation support",
   ],
   usageExamples: [
     {
@@ -21,7 +22,7 @@ const tooltipMeta: ComponentMeta = {
       description: "Simple tooltip with text content",
       code: `<Tooltip content="This is a helpful tooltip">
   <Button>Hover me</Button>
-</Tooltip>`
+</Tooltip>`,
     },
     {
       title: "Tooltip with Custom Positioning",
@@ -34,7 +35,7 @@ const tooltipMeta: ComponentMeta = {
   size={TooltipSize.LARGE}
 >
   <IconButton icon={<InfoIcon />} />
-</Tooltip>`
+</Tooltip>`,
     },
     {
       title: "Tooltip with Rich Content",
@@ -51,7 +52,7 @@ const tooltipMeta: ComponentMeta = {
   delayDuration={500}
 >
   <Button variant="secondary">Advanced Feature</Button>
-</Tooltip>`
+</Tooltip>`,
     },
     {
       title: "Controlled Tooltip",
@@ -70,16 +71,18 @@ const tooltipMeta: ComponentMeta = {
   >
     Controlled Tooltip
   </Button>
-</Tooltip>`
-    }
+</Tooltip>`,
+    },
   ],
   props: [
     {
       propName: "children",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "The trigger element that will show the tooltip on hover/focus",
-      llmContext: "The trigger element that will show the tooltip on hover/focus",
+      propDescription:
+        "The trigger element that will show the tooltip on hover/focus",
+      llmContext:
+        "The trigger element that will show the tooltip on hover/focus",
       propDefault: "-",
       category: "Content",
       required: true,
@@ -113,8 +116,10 @@ const tooltipMeta: ComponentMeta = {
         LEFT = "left",
         BOTTOM = "bottom",
       }`,
-      propDescription: "The side where the tooltip should appear relative to the trigger",
-      llmContext: "The side where the tooltip should appear relative to the trigger",
+      propDescription:
+        "The side where the tooltip should appear relative to the trigger",
+      llmContext:
+        "The side where the tooltip should appear relative to the trigger",
       propDefault: "TooltipSide.TOP",
       category: "Layout",
       required: false,
@@ -137,7 +142,8 @@ const tooltipMeta: ComponentMeta = {
       propName: "showArrow",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to show an arrow pointing to the trigger element",
+      propDescription:
+        "Whether to show an arrow pointing to the trigger element",
       llmContext: "Whether to show an arrow pointing to the trigger element",
       propDefault: "false",
       category: "Appearance",
@@ -193,13 +199,14 @@ const tooltipMeta: ComponentMeta = {
       propName: "offset",
       propType: "number",
       typeDefinition: "number",
-      propDescription: "Distance in pixels between the tooltip and trigger element",
+      propDescription:
+        "Distance in pixels between the tooltip and trigger element",
       llmContext: "Distance in pixels between the tooltip and trigger element",
       propDefault: "5",
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default tooltipMeta;

@@ -2,7 +2,7 @@ import { NewNestedDataPoint, FlattenedDataPoint } from "./types";
 
 export function transformNestedData(
   data: NewNestedDataPoint[],
-  selectedKeys: string[] = []
+  selectedKeys: string[] = [],
 ): FlattenedDataPoint[] {
   return data.map((item) => {
     const flattened: FlattenedDataPoint = { name: item.name };

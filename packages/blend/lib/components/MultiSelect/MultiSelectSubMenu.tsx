@@ -26,7 +26,7 @@ const MultiSelectSubMenu = ({
   selected: string[];
 }) => {
   const multiSelectTokens = useComponentToken(
-    "MULTI_SELECT"
+    "MULTI_SELECT",
   ) as MultiSelectTokensType;
   return (
     <RadixMenu.Sub>

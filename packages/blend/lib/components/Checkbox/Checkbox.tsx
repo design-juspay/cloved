@@ -1,24 +1,21 @@
-import React from 'react';
-import { Check, Minus } from 'lucide-react';
-import { CheckboxProps, CheckboxSize } from './types';
-import { 
-  getCheckboxDataState, 
+import React from "react";
+import { Check, Minus } from "lucide-react";
+import { CheckboxProps, CheckboxSize } from "./types";
+import {
+  getCheckboxDataState,
   extractPixelValue,
   createCheckboxInputProps,
   getCurrentCheckedState,
   getCheckboxIconColor,
   getCheckboxTextProps,
   getCheckboxSubtextProps,
-  getCheckboxLabelStyles
-} from './checkboxUtils';
-import {
-  StyledCheckboxRoot,
-  StyledCheckboxIndicator
-} from './StyledCheckbox';
-import Block from '../Primitives/Block/Block';
-import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
-import { useComponentToken } from '../../context/useComponentToken';
-import { CheckboxTokensType } from './checkbox.token';
+  getCheckboxLabelStyles,
+} from "./checkboxUtils";
+import { StyledCheckboxRoot, StyledCheckboxIndicator } from "./StyledCheckbox";
+import Block from "../Primitives/Block/Block";
+import PrimitiveText from "../Primitives/PrimitiveText/PrimitiveText";
+import { useComponentToken } from "../../context/useComponentToken";
+import { CheckboxTokensType } from "./checkbox.token";
 
 export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
   (
@@ -36,103 +33,102 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       subtext,
       slot,
     },
-    ref
+    ref,
   ) => {
     const tokens = useComponentToken("CHECKBOX") as CheckboxTokensType;
     const generatedId = React.useId();
     const uniqueId = id || generatedId;
-    
+
     const inputProps = createCheckboxInputProps(checked, defaultChecked);
     const currentChecked = getCurrentCheckedState(checked, defaultChecked);
 
     return (
-        <Block display="flex" alignItems="flex-start" gap={tokens.gap}>
-          <StyledCheckboxRoot
-            ref={ref}
-            id={uniqueId}
-            {...inputProps}
-            onCheckedChange={onCheckedChange}
-            disabled={disabled}
-            required={required}
-            value={value}
-            data-state={getCheckboxDataState(currentChecked || false)}
-            data-error={error}
+      <Block display="flex" alignItems="flex-start" gap={tokens.gap}>
+        <StyledCheckboxRoot
+          ref={ref}
+          id={uniqueId}
+          {...inputProps}
+          onCheckedChange={onCheckedChange}
+          disabled={disabled}
+          required={required}
+          value={value}
+          data-state={getCheckboxDataState(currentChecked || false)}
+          data-error={error}
+          size={size}
+          $isDisabled={disabled}
+          $checked={currentChecked || false}
+          $error={error}
+        >
+          <CheckboxIndicator
+            checked={currentChecked}
             size={size}
-            $isDisabled={disabled}
-            $checked={currentChecked || false}
-            $error={error}
-          >
-            <CheckboxIndicator
-              checked={currentChecked}
-              size={size}
-              tokens={tokens}
-              disabled={disabled}
-            />
-          </StyledCheckboxRoot>
-
+            tokens={tokens}
+            disabled={disabled}
+          />
+        </StyledCheckboxRoot>
 
         <Block display="flex" flexDirection="column" gap={tokens.content.gap}>
           <Block display="flex" alignItems="center">
-          <CheckboxContent
-            uniqueId={uniqueId}
-            disabled={disabled}
-            error={error}
-            required={required}
-            size={size}
-            children={children}
-            tokens={tokens}
-          />
-          
-          {slot && (
-            <Block as="span" marginLeft={tokens.slotGap}>
-              {slot}
-            </Block>
-          )}
+            <CheckboxContent
+              uniqueId={uniqueId}
+              disabled={disabled}
+              error={error}
+              required={required}
+              size={size}
+              children={children}
+              tokens={tokens}
+            />
+
+            {slot && (
+              <Block as="span" marginLeft={tokens.slotGap}>
+                {slot}
+              </Block>
+            )}
           </Block>
 
-         {subtext && (
-          <CheckboxSubtext
-            size={size}
-            disabled={disabled}
-            error={error}
-            tokens={tokens}
-          >
-            {subtext}
-          </CheckboxSubtext>
-        )}
+          {subtext && (
+            <CheckboxSubtext
+              size={size}
+              disabled={disabled}
+              error={error}
+              tokens={tokens}
+            >
+              {subtext}
+            </CheckboxSubtext>
+          )}
         </Block>
-        </Block>
+      </Block>
     );
-  }
+  },
 );
 
 const CheckboxIndicator: React.FC<{
-  checked: boolean | 'indeterminate';
+  checked: boolean | "indeterminate";
   size: CheckboxSize;
   tokens: CheckboxTokensType;
   disabled: boolean;
 }> = ({ checked, size, tokens, disabled }) => (
   <StyledCheckboxIndicator
-    forceMount={checked === 'indeterminate' ? true : undefined}
+    forceMount={checked === "indeterminate" ? true : undefined}
     size={size}
   >
     {checked && (
-      <Block 
-        as="span" 
+      <Block
+        as="span"
         display="flex"
         alignItems="center"
         justifyContent="center"
         width="100%"
         height="100%"
       >
-        {checked === 'indeterminate' ? (
-          <Minus 
+        {checked === "indeterminate" ? (
+          <Minus
             size={extractPixelValue(tokens.icon.size[size].width)}
             color={getCheckboxIconColor(tokens, checked, disabled)}
             strokeWidth={tokens.icon.size[size].strokeWidth}
           />
         ) : (
-          <Check 
+          <Check
             size={extractPixelValue(tokens.icon.size[size].width)}
             color={getCheckboxIconColor(tokens, checked, disabled)}
             strokeWidth={tokens.icon.size[size].strokeWidth}
@@ -158,10 +154,7 @@ const CheckboxContent: React.FC<{
   const textProps = getCheckboxTextProps(tokens, size, disabled, error);
 
   return (
-    <label
-      htmlFor={uniqueId}
-      style={labelStyles}
-    >
+    <label htmlFor={uniqueId} style={labelStyles}>
       <PrimitiveText
         as="span"
         fontSize={textProps.fontSize}
@@ -205,6 +198,6 @@ const CheckboxSubtext: React.FC<{
   );
 };
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = "Checkbox";
 
 export default Checkbox;

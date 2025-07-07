@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const radioMeta: ComponentMeta = {
   componentName: "Radio",
-  componentDescription: "A radio button component for single selection within groups, with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.",
+  componentDescription:
+    "A radio button component for single selection within groups, with support for controlled and uncontrolled modes, multiple sizes, and comprehensive form integration.",
   features: [
     "Single selection within radio groups",
     "Controlled and uncontrolled modes",
@@ -14,7 +15,7 @@ const radioMeta: ComponentMeta = {
     "Disabled state support",
     "Radio group functionality",
     "Accessible design with proper ARIA attributes",
-    "Form integration ready"
+    "Form integration ready",
   ],
   usageExamples: [
     {
@@ -30,7 +31,7 @@ const radioMeta: ComponentMeta = {
   <Radio value="enterprise">
     Enterprise Plan
   </Radio>
-</RadioGroup>`
+</RadioGroup>`,
     },
     {
       title: "Controlled Radio Group",
@@ -49,7 +50,7 @@ const radioMeta: ComponentMeta = {
   <Radio value="yearly" size={RadioSize.MEDIUM}>
     Yearly Billing
   </Radio>
-</RadioGroup>`
+</RadioGroup>`,
     },
     {
       title: "Radio with Subtext and Slots",
@@ -77,7 +78,7 @@ const radioMeta: ComponentMeta = {
   >
     Bank Transfer
   </Radio>
-</RadioGroup>`
+</RadioGroup>`,
     },
     {
       title: "Radio with Error State",
@@ -100,8 +101,8 @@ const radioMeta: ComponentMeta = {
   >
     I decline the terms and conditions
   </Radio>
-</RadioGroup>`
-    }
+</RadioGroup>`,
+    },
   ],
   props: [
     {
@@ -247,7 +248,7 @@ const radioMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default radioMeta;

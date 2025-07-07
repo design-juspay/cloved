@@ -25,7 +25,7 @@ const MultiSelectMenuItem = ({
   selected: string[];
 }) => {
   const multiSelectTokens = useComponentToken(
-    "MULTI_SELECT"
+    "MULTI_SELECT",
   ) as MultiSelectTokensType;
   if (item.subMenu) {
     return (
@@ -56,8 +56,8 @@ const MultiSelectMenuItem = ({
           item.disabled
             ? multiSelectTokens.dropdown.item.label.color.disabled
             : isSelected
-            ? multiSelectTokens.dropdown.item.label.color.selected
-            : multiSelectTokens.dropdown.item.label.color.default
+              ? multiSelectTokens.dropdown.item.label.color.selected
+              : multiSelectTokens.dropdown.item.label.color.default
         }
         backgroundColor={
           isSelected

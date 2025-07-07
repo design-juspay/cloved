@@ -2,7 +2,11 @@ import * as RadixAccordion from "@radix-ui/react-accordion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { forwardRef } from "react";
 import { styled } from "styled-components";
-import { AccordionItemProps, AccordionType, AccordionChevronPosition } from "./types";
+import {
+  AccordionItemProps,
+  AccordionType,
+  AccordionChevronPosition,
+} from "./types";
 import { AccordionTokenType } from "./accordion.tokens";
 import { useComponentToken } from "../../context/useComponentToken";
 import Block from "../Primitives/Block/Block";
@@ -14,12 +18,17 @@ const StyledAccordionItem = styled(RadixAccordion.Item)<{
   $isDisabled: boolean;
   $accordionToken: AccordionTokenType;
 }>((props) => ({
-  border: props.$accordionToken.item.trigger.border[props.$accordionType].default,
+  border:
+    props.$accordionToken.item.trigger.border[props.$accordionType].default,
   borderRadius: props.$accordionToken.borderRadius[props.$accordionType],
-  overflow: props.$accordionType === AccordionType.BORDER ? "hidden" : "visible",
-  ...(props.$isDisabled && props.$accordionType === AccordionType.BORDER && {
-    backgroundColor: props.$accordionToken.item.trigger.backgroundColor[props.$accordionType].disabled,
-  }),
+  overflow:
+    props.$accordionType === AccordionType.BORDER ? "hidden" : "visible",
+  ...(props.$isDisabled &&
+    props.$accordionType === AccordionType.BORDER && {
+      backgroundColor:
+        props.$accordionToken.item.trigger.backgroundColor[props.$accordionType]
+          .disabled,
+    }),
 }));
 
 const StyledAccordionHeader = styled(RadixAccordion.Header)({
@@ -40,18 +49,26 @@ const StyledAccordionTrigger = styled(RadixAccordion.Trigger)<{
   outline: "none",
   padding: props.$accordionToken.item.trigger.padding[props.$accordionType],
   borderRadius: props.$accordionToken.borderRadius[props.$accordionType],
-  backgroundColor: props.$accordionToken.item.trigger.backgroundColor[props.$accordionType].default,
+  backgroundColor:
+    props.$accordionToken.item.trigger.backgroundColor[props.$accordionType]
+      .default,
   ...(props.$isDisabled && {
-    backgroundColor: props.$accordionToken.item.trigger.backgroundColor[props.$accordionType].disabled,
+    backgroundColor:
+      props.$accordionToken.item.trigger.backgroundColor[props.$accordionType]
+        .disabled,
     cursor: "not-allowed",
   }),
   '&[data-state="open"]': {
-    backgroundColor: props.$accordionToken.item.trigger.backgroundColor[props.$accordionType].open,
+    backgroundColor:
+      props.$accordionToken.item.trigger.backgroundColor[props.$accordionType]
+        .open,
   },
-  '&:hover:not(:disabled)': {
-    backgroundColor: props.$accordionToken.item.trigger.backgroundColor[props.$accordionType].hover,
+  "&:hover:not(:disabled)": {
+    backgroundColor:
+      props.$accordionToken.item.trigger.backgroundColor[props.$accordionType]
+        .hover,
   },
-  '&:focus-visible': {
+  "&:focus-visible": {
     outline: `2px solid ${foundationToken.colors.primary[500]}`,
     outlineOffset: foundationToken.spacing[2],
   },
@@ -72,24 +89,25 @@ const StyledSeparator = styled.hr<{
   margin: 0,
   border: "none",
   height: foundationToken.borderWidth[1],
-  backgroundColor: props.$accordionToken.item.separator.color[props.$accordionType],
+  backgroundColor:
+    props.$accordionToken.item.separator.color[props.$accordionType],
 }));
 
 const ChevronIcon = styled(Block)<{
   $chevronPosition: AccordionChevronPosition;
 }>((props) => ({
-  transition: 'transform 200ms ease',
-  transformOrigin: 'center',
-  
+  transition: "transform 200ms ease",
+  transformOrigin: "center",
+
   ...(props.$chevronPosition === AccordionChevronPosition.RIGHT && {
     '[data-state="open"] &': {
-      transform: 'rotate(180deg)',
+      transform: "rotate(180deg)",
     },
   }),
-  
+
   ...(props.$chevronPosition === AccordionChevronPosition.LEFT && {
     '[data-state="open"] &': {
-      transform: 'rotate(90deg)',
+      transform: "rotate(90deg)",
     },
   }),
 }));
@@ -115,28 +133,25 @@ const AccordionItem = forwardRef<
       className,
       accordionType = AccordionType.NO_BORDER,
     },
-    ref
+    ref,
   ) => {
     const accordionToken = useComponentToken("ACCORDION") as AccordionTokenType;
-    
+
     const getChevronIcon = () => {
       const iconStyles = {
         width: foundationToken.spacing[16],
         height: foundationToken.spacing[16],
-        color: isDisabled 
+        color: isDisabled
           ? foundationToken.colors.gray[300]
           : foundationToken.colors.gray[500],
       };
 
       return (
-        <ChevronIcon 
-          $chevronPosition={chevronPosition}
-          style={iconStyles}
-        >
+        <ChevronIcon $chevronPosition={chevronPosition} style={iconStyles}>
           {chevronPosition === AccordionChevronPosition.RIGHT ? (
-            <ChevronDown style={{ width: '100%', height: '100%' }} />
+            <ChevronDown style={{ width: "100%", height: "100%" }} />
           ) : (
-            <ChevronRight style={{ width: '100%', height: '100%' }} />
+            <ChevronRight style={{ width: "100%", height: "100%" }} />
           )}
         </ChevronIcon>
       );
@@ -163,7 +178,7 @@ const AccordionItem = forwardRef<
             data-disabled={isDisabled || undefined}
           >
             <Block width="100%" position="relative">
-              <Block 
+              <Block
                 display="flex"
                 alignItems="flex-start"
                 width="100%"
@@ -171,7 +186,7 @@ const AccordionItem = forwardRef<
                 gap={foundationToken.spacing[8]}
               >
                 {chevronPosition === AccordionChevronPosition.LEFT && (
-                  <Block 
+                  <Block
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
@@ -181,25 +196,27 @@ const AccordionItem = forwardRef<
                     {getChevronIcon()}
                   </Block>
                 )}
-                
-                {leftSlot && chevronPosition !== AccordionChevronPosition.LEFT && (
-                  <Block 
-                    flexShrink={0}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    {leftSlot}
-                  </Block>
-                )}
-                
-                <Block 
-                  flexGrow={chevronPosition === AccordionChevronPosition.LEFT ? 1 : 0}
+
+                {leftSlot &&
+                  chevronPosition !== AccordionChevronPosition.LEFT && (
+                    <Block
+                      flexShrink={0}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      {leftSlot}
+                    </Block>
+                  )}
+
+                <Block
+                  flexGrow={
+                    chevronPosition === AccordionChevronPosition.LEFT ? 1 : 0
+                  }
                   display="flex"
                   flexDirection="column"
-
                 >
-                  <Block 
+                  <Block
                     display="flex"
                     alignItems="center"
                     gap={foundationToken.spacing[8]}
@@ -207,16 +224,17 @@ const AccordionItem = forwardRef<
                     <PrimitiveText
                       fontSize={accordionToken.item.trigger.title.fontSize}
                       fontWeight={accordionToken.item.trigger.title.fontWeight}
-                      color={isDisabled 
-                        ? accordionToken.item.trigger.title.color.disabled 
-                        : accordionToken.item.trigger.title.color.default
+                      color={
+                        isDisabled
+                          ? accordionToken.item.trigger.title.color.disabled
+                          : accordionToken.item.trigger.title.color.default
                       }
                     >
                       {title}
                     </PrimitiveText>
-                    
+
                     {rightSlot && (
-                      <Block 
+                      <Block
                         flexShrink={0}
                         display="flex"
                         alignItems="center"
@@ -226,35 +244,38 @@ const AccordionItem = forwardRef<
                       </Block>
                     )}
                   </Block>
-                  
+
                   {(subtext || subtextSlot) && (
-                    <Block 
-                      display="flex" 
+                    <Block
+                      display="flex"
                       alignItems="center"
                       gap={accordionToken.item.trigger.subtext.gap}
                     >
                       {subtext && (
                         <PrimitiveText
-                          fontSize={accordionToken.item.trigger.subtext.fontSize}
-                          color={isDisabled 
-                            ? accordionToken.item.trigger.subtext.color.disabled 
-                            : accordionToken.item.trigger.subtext.color.default
+                          fontSize={
+                            accordionToken.item.trigger.subtext.fontSize
+                          }
+                          color={
+                            isDisabled
+                              ? accordionToken.item.trigger.subtext.color
+                                  .disabled
+                              : accordionToken.item.trigger.subtext.color
+                                  .default
                           }
                         >
                           {subtext}
                         </PrimitiveText>
                       )}
                       {subtextSlot && (
-                        <Block flexShrink={0}>
-                          {subtextSlot}
-                        </Block>
+                        <Block flexShrink={0}>{subtextSlot}</Block>
                       )}
                     </Block>
                   )}
                 </Block>
-                
+
                 {chevronPosition === AccordionChevronPosition.RIGHT && (
-                  <Block 
+                  <Block
                     position="absolute"
                     right={0}
                     top={0}
@@ -271,20 +292,24 @@ const AccordionItem = forwardRef<
             </Block>
           </StyledAccordionTrigger>
         </StyledAccordionHeader>
-        
-        <StyledAccordionContent $accordionType={accordionType} $accordionToken={accordionToken}>
+
+        <StyledAccordionContent
+          $accordionType={accordionType}
+          $accordionToken={accordionToken}
+        >
           {accordionType === AccordionType.BORDER && (
-            <StyledSeparator $accordionType={accordionType} $accordionToken={accordionToken} />
+            <StyledSeparator
+              $accordionType={accordionType}
+              $accordionToken={accordionToken}
+            />
           )}
-          <Block>
-            {children}
-          </Block>
+          <Block>{children}</Block>
         </StyledAccordionContent>
       </StyledAccordionItem>
     );
-  }
+  },
 );
 
 AccordionItem.displayName = "AccordionItem";
 
-export default AccordionItem; 
+export default AccordionItem;

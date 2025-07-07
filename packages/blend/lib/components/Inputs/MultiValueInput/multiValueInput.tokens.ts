@@ -74,7 +74,7 @@ const multiValueInputTokens: Readonly<MultiValueInputTokensType> = {
 };
 
 export const getMultiValueInputTokens = (
-  foundationTheme: FoundationTokenType
+  foundationTheme: FoundationTokenType,
 ): MultiValueInputTokensType => {
   return {
     input: {

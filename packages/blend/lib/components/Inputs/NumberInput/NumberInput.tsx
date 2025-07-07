@@ -29,7 +29,7 @@ const NumberInput = ({
   ...rest
 }: NumberInputProps) => {
   const numberInputTokens = useComponentToken(
-    "NUMBER_INPUT"
+    "NUMBER_INPUT",
   ) as NumberInputTokensType;
   const paddingX = numberInputTokens.input.paddingX[size];
   const paddingY = numberInputTokens.input.paddingY[size];

@@ -17,7 +17,7 @@ import { ChevronDown } from "lucide-react";
 import { SingleSelectProps } from "./types";
 
 const map = function getValueLabelMap(
-  groups: SelectMenuGroupType[]
+  groups: SelectMenuGroupType[],
 ): Record<string, string> {
   const map: Record<string, string> = {};
 

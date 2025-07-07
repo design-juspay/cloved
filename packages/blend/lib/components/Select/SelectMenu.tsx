@@ -54,7 +54,7 @@ const StyledItem = styled(RadixMenu.Item)<{ selected: boolean }>(
       outline: "none",
       backgroundColor: FOUNDATION_THEME.colors.gray[50],
     },
-  })
+  }),
 );
 
 const Sub = styled(RadixMenu.Sub)(() => ({
@@ -355,7 +355,7 @@ const Label = styled(RadixMenu.Label)(() => ({
 // Utility: Recursively filter menu items and groups by search text
 function filterMenuGroups(
   groups: SelectMenuGroupType[],
-  searchText: string
+  searchText: string,
 ): SelectMenuGroupType[] {
   if (!searchText) return groups;
   const lower = searchText.toLowerCase();
@@ -376,7 +376,7 @@ function filterMenuGroups(
 
 function filterMenuItem(
   item: SelectMenuItemType,
-  lower: string
+  lower: string,
 ): SelectMenuItemType | null {
   // Check if this item matches
   const matches =
@@ -398,7 +398,7 @@ function filterMenuItem(
 // Utility: Recursively override onClick for all menu items and submenus
 function overrideOnClickInMenuGroups(
   groups: SelectMenuGroupType[],
-  onSelect?: (value: string) => void
+  onSelect?: (value: string) => void,
 ): SelectMenuGroupType[] {
   return groups.map((group) => ({
     ...group,
@@ -408,7 +408,7 @@ function overrideOnClickInMenuGroups(
 
 function overrideOnClickInMenuItem(
   item: SelectMenuItemType,
-  onSelect?: (value: string) => void
+  onSelect?: (value: string) => void,
 ): SelectMenuItemType {
   const newItem: SelectMenuItemType = {
     ...item,
@@ -416,7 +416,7 @@ function overrideOnClickInMenuItem(
   };
   if (item.subMenu) {
     newItem.subMenu = item.subMenu.map((sub) =>
-      overrideOnClickInMenuItem(sub, onSelect)
+      overrideOnClickInMenuItem(sub, onSelect),
     );
   }
   return newItem;

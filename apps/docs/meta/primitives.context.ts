@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const primitivesMeta: ComponentMeta = {
   componentName: "Primitives",
-  componentDescription: "A collection of low-level, unstyled primitive components that serve as building blocks for creating custom UI components with full control over styling and behavior.",
+  componentDescription:
+    "A collection of low-level, unstyled primitive components that serve as building blocks for creating custom UI components with full control over styling and behavior.",
   features: [
     "Unstyled base components",
     "Accessibility features built-in",
@@ -13,7 +14,7 @@ const primitivesMeta: ComponentMeta = {
     "Headless component patterns",
     "Custom styling flexibility",
     "Event handling abstractions",
-    "Cross-browser compatibility"
+    "Cross-browser compatibility",
   ],
   usageExamples: [
     {
@@ -36,7 +37,7 @@ const CustomButton = ({ children, variant = 'primary', ...props }) => {
       {children}
     </ButtonPrimitive>
   );
-};`
+};`,
     },
     {
       title: "Custom Dialog Primitive",
@@ -64,7 +65,7 @@ const CustomDialog = ({ children, title, open, onOpenChange }) => {
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
   );
-};`
+};`,
     },
     {
       title: "Custom Dropdown Primitive",
@@ -98,7 +99,7 @@ const DropdownItem = ({ children, onSelect }) => (
   >
     {children}
   </DropdownPrimitive.Item>
-);`
+);`,
     },
     {
       title: "Custom Checkbox Primitive",
@@ -123,16 +124,18 @@ const CustomCheckbox = ({ children, ...props }) => {
       )}
     </div>
   );
-};`
-    }
+};`,
+    },
   ],
   props: [
     {
       propName: "asChild",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Merges props with the first child element instead of rendering a wrapper",
-      llmContext: "Merges props with the first child element instead of rendering a wrapper",
+      propDescription:
+        "Merges props with the first child element instead of rendering a wrapper",
+      llmContext:
+        "Merges props with the first child element instead of rendering a wrapper",
       propDefault: "false",
       category: "Composition",
       required: false,
@@ -161,8 +164,10 @@ const CustomCheckbox = ({ children, ...props }) => {
       propName: "onSelect",
       propType: "(event: Event) => void",
       typeDefinition: "(event: Event) => void",
-      propDescription: "Callback fired when an item is selected (for selectable primitives)",
-      llmContext: "Callback fired when an item is selected (for selectable primitives)",
+      propDescription:
+        "Callback fired when an item is selected (for selectable primitives)",
+      llmContext:
+        "Callback fired when an item is selected (for selectable primitives)",
       propDefault: "undefined",
       category: "Events",
       required: false,
@@ -201,7 +206,8 @@ const CustomCheckbox = ({ children, ...props }) => {
       propName: "side",
       propType: "'top' | 'right' | 'bottom' | 'left'",
       typeDefinition: "'top' | 'right' | 'bottom' | 'left'",
-      propDescription: "Preferred side for positioning (for floating primitives)",
+      propDescription:
+        "Preferred side for positioning (for floating primitives)",
       llmContext: "Preferred side for positioning (for floating primitives)",
       propDefault: "'bottom'",
       category: "Layout",
@@ -211,7 +217,8 @@ const CustomCheckbox = ({ children, ...props }) => {
       propName: "align",
       propType: "'start' | 'center' | 'end'",
       typeDefinition: "'start' | 'center' | 'end'",
-      propDescription: "Alignment relative to the trigger (for floating primitives)",
+      propDescription:
+        "Alignment relative to the trigger (for floating primitives)",
       llmContext: "Alignment relative to the trigger (for floating primitives)",
       propDefault: "'center'",
       category: "Layout",
@@ -221,8 +228,10 @@ const CustomCheckbox = ({ children, ...props }) => {
       propName: "sideOffset",
       propType: "number",
       typeDefinition: "number",
-      propDescription: "Distance in pixels from the trigger (for floating primitives)",
-      llmContext: "Distance in pixels from the trigger (for floating primitives)",
+      propDescription:
+        "Distance in pixels from the trigger (for floating primitives)",
+      llmContext:
+        "Distance in pixels from the trigger (for floating primitives)",
       propDefault: "0",
       category: "Layout",
       required: false,
@@ -231,7 +240,8 @@ const CustomCheckbox = ({ children, ...props }) => {
       propName: "checked",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Controlled checked state (for checkbox/radio primitives)",
+      propDescription:
+        "Controlled checked state (for checkbox/radio primitives)",
       llmContext: "Controlled checked state (for checkbox/radio primitives)",
       propDefault: "undefined",
       category: "State",
@@ -267,7 +277,7 @@ const CustomCheckbox = ({ children, ...props }) => {
       category: "Form",
       required: false,
     },
-  ]
+  ],
 };
 
 export default primitivesMeta;

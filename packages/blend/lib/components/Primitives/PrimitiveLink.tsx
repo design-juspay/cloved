@@ -202,11 +202,11 @@ const StyledLink = styled.a.withConfig({ shouldForwardProp })<StyledLinkProps>(
         }
         return acc;
       },
-      {} as CSSObject
+      {} as CSSObject,
     );
 
     return css({ ...base, ...states });
-  }
+  },
 );
 
 type SemanticLinkTag = keyof Pick<JSX.IntrinsicElements, "a" | "span" | "div">;
@@ -230,7 +230,7 @@ const PrimitiveLink = forwardRef<HTMLAnchorElement, PrimitiveLinkProps>(
         {children}
       </StyledLink>
     );
-  }
+  },
 );
 
 PrimitiveLink.displayName = "PrimitiveLink";

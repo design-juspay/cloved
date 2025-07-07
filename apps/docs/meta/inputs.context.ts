@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const inputsMeta: ComponentMeta = {
   componentName: "Inputs",
-  componentDescription: "A comprehensive collection of input components including TextInput, NumberInput, SearchInput, OTPInput, TextArea, and specialized inputs for various data types and use cases.",
+  componentDescription:
+    "A comprehensive collection of input components including TextInput, NumberInput, SearchInput, OTPInput, TextArea, and specialized inputs for various data types and use cases.",
   features: [
     "Multiple input types (text, number, search, OTP, textarea)",
     "Two sizes (medium, large)",
@@ -13,7 +14,7 @@ const inputsMeta: ComponentMeta = {
     "Left and right slot content",
     "Disabled state support",
     "Form integration ready",
-    "Accessible design with proper labeling"
+    "Accessible design with proper labeling",
   ],
   usageExamples: [
     {
@@ -27,7 +28,7 @@ const inputsMeta: ComponentMeta = {
   onChange={(e) => setValue(e.target.value)}
   placeholder="Enter your full name"
   hintText="This will be displayed on your profile"
-/>`
+/>`,
     },
     {
       title: "Required Input with Error",
@@ -42,7 +43,7 @@ const inputsMeta: ComponentMeta = {
   onChange={handleEmailChange}
   placeholder="you@example.com"
   size={TextInputSize.LARGE}
-/>`
+/>`,
     },
     {
       title: "Input with Slots",
@@ -55,7 +56,7 @@ const inputsMeta: ComponentMeta = {
   rightSlot={<Button size="sm" text="Verify" />}
   placeholder="https://example.com"
   hintText="Enter your website or portfolio URL"
-/>`
+/>`,
     },
     {
       title: "Number Input with Help",
@@ -69,8 +70,8 @@ const inputsMeta: ComponentMeta = {
   leftSlot={<DollarIcon />}
   placeholder="0.00"
   disabled={false}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -200,7 +201,8 @@ const inputsMeta: ComponentMeta = {
       propName: "rightSlot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content displayed on the right side of the input",
+      propDescription:
+        "Custom content displayed on the right side of the input",
       llmContext: "Custom content displayed on the right side of the input",
       propDefault: "undefined",
       category: "Content",
@@ -226,7 +228,7 @@ const inputsMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default inputsMeta;

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const popoverMeta: ComponentMeta = {
   componentName: "Popover",
-  componentDescription: "A flexible popover component for displaying contextual content in an overlay with customizable positioning, sizing, and action buttons for rich interactive experiences.",
+  componentDescription:
+    "A flexible popover component for displaying contextual content in an overlay with customizable positioning, sizing, and action buttons for rich interactive experiences.",
   features: [
     "Controlled and uncontrolled open state",
     "Flexible positioning (top, right, bottom, left)",
@@ -13,7 +14,7 @@ const popoverMeta: ComponentMeta = {
     "Modal mode for mobile devices",
     "Customizable dimensions and offsets",
     "Z-index control for layering",
-    "Rich content support with heading and description"
+    "Rich content support with heading and description",
   ],
   usageExamples: [
     {
@@ -28,7 +29,7 @@ const popoverMeta: ComponentMeta = {
     <p>This is the popover content area.</p>
     <p>You can put any React content here.</p>
   </div>
-</Popover>`
+</Popover>`,
     },
     {
       title: "Popover with Actions",
@@ -50,7 +51,7 @@ const popoverMeta: ComponentMeta = {
   showCloseButton={true}
 >
   <p>Are you sure you want to delete this item?</p>
-</Popover>`
+</Popover>`,
     },
     {
       title: "Controlled Popover with Custom Positioning",
@@ -76,7 +77,7 @@ const popoverMeta: ComponentMeta = {
       <li>Drag and drop to reorder items</li>
     </ul>
   </div>
-</Popover>`
+</Popover>`,
     },
     {
       title: "Mobile Modal Popover",
@@ -99,15 +100,16 @@ const popoverMeta: ComponentMeta = {
     <Switch label="Push notifications" />
     <TextInput label="Display name" />
   </div>
-</Popover>`
-    }
+</Popover>`,
+    },
   ],
   props: [
     {
       propName: "trigger",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "The trigger element that opens the popover when clicked",
+      propDescription:
+        "The trigger element that opens the popover when clicked",
       llmContext: "The trigger element that opens the popover when clicked",
       propDefault: "-",
       category: "Content",
@@ -220,8 +222,10 @@ const popoverMeta: ComponentMeta = {
       propName: "side",
       propType: "'top' | 'right' | 'bottom' | 'left'",
       typeDefinition: "'top' | 'right' | 'bottom' | 'left'",
-      propDescription: "Side where the popover should appear relative to the trigger",
-      llmContext: "Side where the popover should appear relative to the trigger",
+      propDescription:
+        "Side where the popover should appear relative to the trigger",
+      llmContext:
+        "Side where the popover should appear relative to the trigger",
       propDefault: "'bottom'",
       category: "Layout",
       required: false,
@@ -330,13 +334,14 @@ const popoverMeta: ComponentMeta = {
       propName: "asModal",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to render the popover as a modal on mobile devices",
+      propDescription:
+        "Whether to render the popover as a modal on mobile devices",
       llmContext: "Whether to render the popover as a modal on mobile devices",
       propDefault: "false",
       category: "Behavior",
       required: false,
     },
-  ]
+  ],
 };
 
 export default popoverMeta;
