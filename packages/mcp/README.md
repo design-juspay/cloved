@@ -17,7 +17,14 @@ An MCP (Model Context Protocol) server for the Blend design system that provides
 You can run the MCP server directly from GitHub without installing:
 
 ```bash
-npx github:design-juspay/cloved#storybook packages/mcp
+# Clone and run in one command
+npx degit design-juspay/cloved/packages/mcp blend-mcp-temp && cd blend-mcp-temp && npm install && node index.js
+```
+
+Or use node directly with the raw file from GitHub:
+
+```bash
+curl -s https://raw.githubusercontent.com/design-juspay/cloved/main/packages/mcp/index.js | node -
 ```
 
 ### Local Installation
@@ -59,10 +66,27 @@ Add to your Claude Desktop configuration file:
 {
   "mcpServers": {
     "blend": {
-      "command": "npx",
-      "args": ["github:design-juspay/cloved#storybook", "packages/mcp"],
+      "command": "node",
+      "args": ["/path/to/cloved/packages/mcp/index.js"],
       "env": {
         "BLEND_LIBRARY_PACKAGE_NAME": "blend-v1"
+      }
+    }
+  }
+}
+```
+
+Or if you have blend-v1 installed as a dependency:
+
+```json
+{
+  "mcpServers": {
+    "blend": {
+      "command": "npx",
+      "args": ["degit", "design-juspay/cloved/packages/mcp", "blend-mcp-temp", "&&", "cd", "blend-mcp-temp", "&&", "npm", "install", "&&", "node", "index.js"],
+      "env": {
+        "BLEND_LIBRARY_PACKAGE_NAME": "blend-v1",
+        "BLEND_LIBRARY_PATH": "./node_modules/blend-v1/lib/components"
       }
     }
   }
@@ -77,8 +101,8 @@ Add to your MCP settings:
 {
   "mcpServers": {
     "blend": {
-      "command": "npx",
-      "args": ["github:design-juspay/cloved#storybook", "packages/mcp"],
+      "command": "node", 
+      "args": ["/path/to/cloved/packages/mcp/index.js"],
       "env": {
         "BLEND_LIBRARY_PACKAGE_NAME": "blend-v1"
       }
@@ -244,7 +268,7 @@ If you see this error, the server cannot locate the Blend components. Set the pa
 
 ```bash
 export BLEND_LIBRARY_PATH="/path/to/blend/lib/components"
-npx github:design-juspay/cloved#storybook packages/mcp
+node /path/to/cloved/packages/mcp/index.js
 ```
 
 ### Meta Features Not Available
