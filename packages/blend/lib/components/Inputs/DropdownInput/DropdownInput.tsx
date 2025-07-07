@@ -71,6 +71,7 @@ const DropdownInput = ({
   dropDownValue,
   onDropDownChange,
   dropDownItems,
+  ...rest
 }: DropdownInputProps) => {
   const dropdownInputTokens = useComponentToken(
     "DROPDOWN_INPUT",
@@ -165,6 +166,7 @@ const DropdownInput = ({
             border: dropdownInputTokens.input.border.disabled,
             cursor: "not-allowed",
           }}
+          {...rest}
         />
         <Block
           ref={dropdownRef}

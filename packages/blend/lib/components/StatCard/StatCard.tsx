@@ -15,13 +15,14 @@ import { Tooltip } from "../Tooltip";
 import Block from "../Primitives/Block/Block";
 import Text from "../Text/Text";
 import { ChangeType, StatCardVariant, type StatCardProps } from "./types";
-import { FOUNDATION_THEME } from "../../tokens";
+import { useComponentToken } from "../../context/useComponentToken";
+import { StatCardTokenType } from "./statcard.tokens";
 
 const StatCard = ({
   title,
   value,
   change,
-  subtitle = "Last 7 days",
+  subtitle,
   variant,
   chartData,
   progressValue,
@@ -29,6 +30,13 @@ const StatCard = ({
   actionIcon,
   helpIconText,
 }: StatCardProps) => {
+  const statCardToken = useComponentToken("STAT_CARD") as StatCardTokenType;
+
+  const gradientId = useMemo(() => 
+    `colorGradient-${Math.random().toString(36).slice(2, 11)}`, 
+    []
+  );
+
   const normalizedVariant =
     variant === StatCardVariant.PROGRESS_BAR ? "progress" : variant;
 
@@ -41,14 +49,19 @@ const StatCard = ({
   const formattedChange = change ? (
     <Block display="flex" alignItems="center">
       {change.type === ChangeType.INCREASE ? (
-        <ArrowUp size={14} style={{ marginRight: FOUNDATION_THEME.unit[2] }} />
+        <ArrowUp 
+          size={parseInt(statCardToken.stats.change.arrow.width?.toString() || "14")} 
+          style={{ marginRight: statCardToken.stats.change.arrow.marginRight }} 
+        />
       ) : (
         <ArrowDown
-          size={14}
-          style={{ marginRight: FOUNDATION_THEME.unit[2] }}
+          size={parseInt(statCardToken.stats.change.arrow.width?.toString() || "14")}
+          style={{ marginRight: statCardToken.stats.change.arrow.marginRight }}
         />
       )}
-      <Text>{Math.abs(change.value).toFixed(2)}%</Text>
+      <Text as="span">
+        {change.value >= 0 ? '+' : ''}{change.value.toFixed(2)}%
+      </Text>
     </Block>
   ) : null;
 
@@ -58,11 +71,23 @@ const StatCard = ({
   }, [chartData]);
 
   const lineColor = isTrendingDown
-    ? FOUNDATION_THEME.colors.red[500]
-    : FOUNDATION_THEME.colors.green[500];
-  const areaColor = isTrendingDown
-    ? FOUNDATION_THEME.colors.red[500]
-    : FOUNDATION_THEME.colors.green[500];
+    ? statCardToken.chart.colors.line.decrease
+    : statCardToken.chart.colors.line.increase;
+  
+  const baseAreaColor = isTrendingDown
+    ? statCardToken.chart.colors.area.decrease
+    : statCardToken.chart.colors.area.increase;
+  
+  const hexToRgba = (hex: string, alpha: number) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+  
+  const areaColor = typeof baseAreaColor === 'string' 
+    ? hexToRgba(baseAreaColor, statCardToken.chart.colors.gradient.startOpacity)
+    : baseAreaColor;
 
   const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     if (!active || !payload || payload.length === 0) return null;
@@ -78,12 +103,12 @@ const StatCard = ({
 
     return (
       <Block
-        backgroundColor={FOUNDATION_THEME.colors.gray[1000]}
-        padding={`${FOUNDATION_THEME.unit[4]} ${FOUNDATION_THEME.unit[8]}`}
-        borderRadius={FOUNDATION_THEME.border.radius[4]}
+        backgroundColor={statCardToken.chart.tooltip.container.backgroundColor}
+        padding={statCardToken.chart.tooltip.container.padding}
+        borderRadius={statCardToken.chart.tooltip.container.borderRadius}
       >
-        <Text color={FOUNDATION_THEME.colors.gray[0]} variant="body.sm">
-          {`${Math.abs(percentage).toFixed(0)}% ${isUp ? "Up" : "Down"}`}
+        <Text as="span" color={statCardToken.chart.tooltip.text.color} variant="body.sm">
+          {`${percentage >= 0 ? '+' : ''}${percentage.toFixed(0)}% ${isUp ? "Up" : "Down"}`}
         </Text>
       </Block>
     );
@@ -98,120 +123,127 @@ const StatCard = ({
 
   return (
     <Block
-      height="190px"
-      border={`${FOUNDATION_THEME.border.width[1]} solid ${FOUNDATION_THEME.colors.gray[200]}`}
-      borderRadius={FOUNDATION_THEME.border.radius[8]}
+      height={statCardToken.height}
+      border={statCardToken.border.default}
+      borderRadius={statCardToken.borderRadius}
       overflow="hidden"
-      backgroundColor={FOUNDATION_THEME.colors.gray[0]}
-      boxShadow={FOUNDATION_THEME.shadows.xs}
-      padding={FOUNDATION_THEME.unit[16]}
+      backgroundColor={statCardToken.backgroundColor.default}
+      boxShadow={statCardToken.boxShadow}
+      padding={statCardToken.padding}
       display="flex"
       flexDirection="column"
-      gap={FOUNDATION_THEME.unit[24]}
+      gap={statCardToken.gap}
       data-statcard-variant={normalizedVariant}
     >
       {effectiveVariant !== StatCardVariant.NUMBER && (
-        <Block
-          display="flex"
-          flexDirection="column"
-          gap={FOUNDATION_THEME.unit[4]}
-        >
-          <Block
-            display="flex"
-            alignItems="flex-start"
-            gap={FOUNDATION_THEME.unit[8]}
-          >
-            {titleIcon && (
-              <Block
-                width={FOUNDATION_THEME.unit[20]}
-                height={FOUNDATION_THEME.unit[20]}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                {titleIcon}
-              </Block>
-            )}
+        <Block display="flex" gap={statCardToken.header.gap}>
+          {titleIcon && (
             <Block
-              width="100%"
+              width={statCardToken.header.titleIcon.width}
+              height={statCardToken.header.titleIcon.height}
               display="flex"
               alignItems="center"
-              flexGrow={1}
-              gap={FOUNDATION_THEME.unit[8]}
+              justifyContent="center"
+              flexShrink={0}
             >
-              <Text
-                variant="body.md"
-                fontWeight={FOUNDATION_THEME.font.weight[500]}
-                color={FOUNDATION_THEME.colors.gray[400]}
-              >
-                {title}
-              </Text>
-              {helpIconText && (
-                <Block flexShrink={0}>
-                  <Tooltip content={helpIconText}>
-                    <CircleHelp
-                      width={16}
-                      height={16}
-                      color={FOUNDATION_THEME.colors.gray[400]}
-                    />
-                  </Tooltip>
-                </Block>
-              )}
+              {titleIcon}
             </Block>
-            {actionIcon && (
-              <Block
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                flexShrink={0}
-              >
-                {actionIcon}
-              </Block>
-            )}
-          </Block>
-
+          )}
+          
           <Block
             display="flex"
             flexDirection="column"
-            alignItems="flex-start"
-            paddingLeft={titleIcon ? FOUNDATION_THEME.unit[28] : "0"}
+            width="100%"
+            gap={statCardToken.headerStatGap.gap}
           >
             <Block
-              width="100%"
               display="flex"
               alignItems="center"
-              gap={FOUNDATION_THEME.unit[4]}
+              justifyContent="space-between"
+              width="100%"
             >
-              <Text
-                variant="heading.lg"
-                fontWeight={FOUNDATION_THEME.font.weight[600]}
-                color={FOUNDATION_THEME.colors.gray[800]}
+              <Block
+                display="flex"
+                alignItems="center"
+                gap={statCardToken.header.gap}
               >
-                {value}
-              </Text>
-              {formattedChange && (
-                <Block marginLeft={FOUNDATION_THEME.unit[8]}>
-                  <Text
-                    color={
-                      change?.type === ChangeType.INCREASE
-                        ? FOUNDATION_THEME.colors.green[600]
-                        : FOUNDATION_THEME.colors.red[600]
-                    }
-                    variant="body.sm"
-                    fontWeight={FOUNDATION_THEME.font.weight[600]}
-                  >
-                    {formattedChange}
-                  </Text>
+                <Text
+                  as="span"
+                  variant="body.md"
+                  fontWeight={statCardToken.header.title[effectiveVariant].fontWeight}
+                  color={statCardToken.header.title[effectiveVariant].color}
+                >
+                  {title}
+                </Text>
+                {helpIconText && (
+                  <Block flexShrink={0} display="flex" alignItems="center" justifyContent="center">
+                    <Tooltip content={helpIconText}>
+                      <CircleHelp
+                        width={parseInt(statCardToken.header.helpIcon.width?.toString() || "16")}
+                        height={parseInt(statCardToken.header.helpIcon.height?.toString() || "16")}
+                        color={statCardToken.header.helpIcon.color}
+                      />
+                    </Tooltip>
+                  </Block>
+                )}
+              </Block>
+              {actionIcon && (
+                <Block
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexShrink={0}
+                >
+                  {actionIcon}
                 </Block>
               )}
             </Block>
-            <Text
-              variant="body.sm"
-              color={FOUNDATION_THEME.colors.gray[400]}
-              fontWeight={FOUNDATION_THEME.font.weight[500]}
+
+            <Block
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
             >
-              {subtitle}
-            </Text>
+              <Block
+                width="100%"
+                display="flex"
+                alignItems="center"
+                gap={statCardToken.stats.gap}
+              >
+                <Text
+                  as="span"
+                  variant="heading.xl"
+                  fontWeight={statCardToken.stats.value[effectiveVariant].fontWeight}
+                  color={statCardToken.stats.value[effectiveVariant].color}
+                >
+                  {value}
+                </Text>
+                {formattedChange && (
+                  <Block marginLeft={statCardToken.stats.change.marginLeft}>
+                    <Text
+                      as="span"
+                      color={
+                        change?.type === ChangeType.INCREASE
+                          ? statCardToken.stats.change.text.increase.color
+                          : statCardToken.stats.change.text.decrease.color
+                      }
+                      variant="body.sm"
+                      fontWeight={statCardToken.stats.change.text.fontWeight}
+                    >
+                      {formattedChange}
+                    </Text>
+                  </Block>
+                )}
+              </Block>
+              <Text
+                as="span"
+                variant="body.sm"
+                color={statCardToken.stats.subtitle[effectiveVariant].color}
+                fontWeight={statCardToken.stats.subtitle[effectiveVariant].fontWeight}
+              >
+                {subtitle}
+              </Text>
+            </Block>
           </Block>
         </Block>
       )}
@@ -228,7 +260,7 @@ const StatCard = ({
             display="flex"
             flexDirection="column"
             alignItems="center"
-            gap={FOUNDATION_THEME.unit[16]}
+            gap={statCardToken.header.titleIcon.marginBottom}
           >
             {titleIcon && (
               <Block
@@ -245,22 +277,23 @@ const StatCard = ({
               display="flex"
               alignItems="center"
               flexGrow={1}
-              gap={FOUNDATION_THEME.unit[8]}
+              gap={statCardToken.header.gap}
             >
               <Text
+                as="span"
                 variant="body.md"
-                fontWeight={FOUNDATION_THEME.font.weight[500]}
-                color={FOUNDATION_THEME.colors.gray[400]}
+                fontWeight={statCardToken.header.title[effectiveVariant].fontWeight}
+                color={statCardToken.header.title[effectiveVariant].color}
               >
                 {title}
               </Text>
               {helpIconText && (
-                <Block>
+                <Block display="flex" alignItems="center" justifyContent="center">
                   <Tooltip content={helpIconText}>
                     <CircleHelp
-                      width={16}
-                      height={16}
-                      color={FOUNDATION_THEME.colors.gray[400]}
+                      width={parseInt(statCardToken.header.helpIcon.width?.toString() || "16")}
+                      height={parseInt(statCardToken.header.helpIcon.height?.toString() || "16")}
+                      color={statCardToken.header.helpIcon.color}
                     />
                   </Tooltip>
                 </Block>
@@ -273,25 +306,27 @@ const StatCard = ({
               width="100%"
               display="flex"
               alignItems="center"
-              gap={FOUNDATION_THEME.unit[4]}
+              gap={statCardToken.stats.gap}
             >
               <Text
+                as="span"
                 variant="heading.xl"
-                fontWeight={FOUNDATION_THEME.font.weight[600]}
-                color={FOUNDATION_THEME.colors.gray[800]}
+                fontWeight={statCardToken.stats.value[effectiveVariant].fontWeight}
+                color={statCardToken.stats.value[effectiveVariant].color}
               >
                 {value}
               </Text>
               {formattedChange && (
-                <Block marginLeft={FOUNDATION_THEME.unit[8]}>
+                <Block marginLeft={statCardToken.stats.change.marginLeft}>
                   <Text
+                    as="span"
                     color={
                       change?.type === ChangeType.INCREASE
-                        ? FOUNDATION_THEME.colors.green[600]
-                        : FOUNDATION_THEME.colors.red[600]
+                        ? statCardToken.stats.change.text.increase.color
+                        : statCardToken.stats.change.text.decrease.color
                     }
                     variant="body.sm"
-                    fontWeight={FOUNDATION_THEME.font.weight[600]}
+                    fontWeight={statCardToken.stats.change.text.fontWeight}
                   >
                     {formattedChange}
                   </Text>
@@ -299,9 +334,10 @@ const StatCard = ({
               )}
             </Block>
             <Text
+              as="span"
               variant="body.sm"
-              color={FOUNDATION_THEME.colors.gray[400]}
-              fontWeight={FOUNDATION_THEME.font.weight[500]}
+              color={statCardToken.stats.subtitle[effectiveVariant].color}
+              fontWeight={statCardToken.stats.subtitle[effectiveVariant].fontWeight}
             >
               {subtitle}
             </Text>
@@ -310,20 +346,20 @@ const StatCard = ({
       )}
 
       {effectiveVariant !== StatCardVariant.NUMBER && (
-        <Block height="50px">
+        <Block height={statCardToken.chart.height}>
           {effectiveVariant === StatCardVariant.LINE && indexedChartData && (
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
                 data={indexedChartData}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
               >
                 <XAxis dataKey="date" hide />
                 <YAxis hide />
                 <RechartsTooltip
                   content={<CustomTooltip />}
                   cursor={{
-                    strokeDasharray: "6 5",
-                    stroke: FOUNDATION_THEME.colors.gray[400],
+                    strokeDasharray: statCardToken.chart.tooltip.cursor.strokeDasharray,
+                    stroke: statCardToken.chart.tooltip.cursor.stroke,
                   }}
                   position={{ y: 0 }}
                   isAnimationActive={false}
@@ -331,17 +367,17 @@ const StatCard = ({
                 />
                 <defs>
                   <linearGradient
-                    id="colorGradient"
+                    id={gradientId}
                     x1="0"
                     y1="0"
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="0%" stopColor={areaColor} stopOpacity={0.2} />
+                    <stop offset="0%" stopColor={areaColor} stopOpacity={statCardToken.chart.colors.gradient.startOpacity} />
                     <stop
                       offset="100%"
-                      stopColor={FOUNDATION_THEME.colors.gray[0]}
-                      stopOpacity={0.5}
+                      stopColor={statCardToken.chart.colors.gradient.end}
+                      stopOpacity={statCardToken.chart.colors.gradient.endOpacity}
                     />
                   </linearGradient>
                 </defs>
@@ -351,11 +387,11 @@ const StatCard = ({
                   type="monotone"
                   dataKey="value"
                   stroke={lineColor}
-                  strokeWidth={2}
-                  fill={`url(#colorGradient)`}
+                  strokeWidth={statCardToken.chart.line.strokeWidth}
+                  fill={`url(#${gradientId})`}
                   activeDot={{
-                    r: 4,
-                    fill: FOUNDATION_THEME.colors.gray[0],
+                    r: statCardToken.chart.line.activeDot.radius,
+                    fill: statCardToken.chart.line.activeDot.fill,
                     stroke: lineColor,
                   }}
                 />
@@ -373,17 +409,17 @@ const StatCard = ({
                 <YAxis hide />
                 <RechartsTooltip
                   content={<CustomTooltip />}
-                  cursor={{ fill: "transparent" }}
+                  cursor={{ fill: statCardToken.chart.tooltip.bar.cursor.fill }}
                   position={{ y: 0 }}
                   isAnimationActive={false}
                 />
                 <Bar
                   dataKey="value"
-                  fill={FOUNDATION_THEME.colors.primary[500]}
-                  radius={[2, 2, 0, 0]}
+                  fill={statCardToken.chart.bar.fill}
+                  radius={statCardToken.chart.bar.radius as [number, number, number, number]}
                   isAnimationActive={false}
                   activeBar={{
-                    fill: FOUNDATION_THEME.colors.primary[100],
+                    fill: statCardToken.chart.bar.activeBar.fill,
                   }}
                 />
               </BarChart>
@@ -394,42 +430,43 @@ const StatCard = ({
             progressValue && (
               <Block
                 width="100%"
-                height={FOUNDATION_THEME.unit[20]}
-                display="flex"
-                alignItems="center"
-                gap={FOUNDATION_THEME.unit[16]}
+            height={statCardToken.chart.progressBar.height}
+            display="flex"
+            alignItems="center"
+            gap={statCardToken.chart.progressBar.gap}
               >
                 <Block
                   width="100%"
                   height="100%"
                   display="flex"
                   flexGrow={1}
-                  borderRadius={FOUNDATION_THEME.border.radius[4]}
+                  borderRadius={statCardToken.chart.progressBar.borderRadius}
                   overflow="hidden"
-                >
-                  <Block
-                    backgroundColor={FOUNDATION_THEME.colors.primary[500]}
-                    height="100%"
-                    width={`${progressValue}%`}
-                  />
-                  <Block
-                    backgroundColor={FOUNDATION_THEME.colors.gray[0]}
-                    height="100%"
-                    backgroundImage={`repeating-linear-gradient(
-                      to right,
-                      ${FOUNDATION_THEME.colors.gray[200]},
-                      ${FOUNDATION_THEME.colors.gray[200]} 5px,
-                      transparent 1px,
-                      transparent
-                    )`}
-                    backgroundSize={`${FOUNDATION_THEME.unit[10]} ${FOUNDATION_THEME.unit[10]}`}
-                    style={{ width: `${100 - progressValue}%` }}
-                  />
-                </Block>
-                <Text
-                  variant="body.md"
-                  fontWeight={FOUNDATION_THEME.font.weight[600]}
-                  color={FOUNDATION_THEME.colors.gray[700]}
+                  >
+                    <Block
+                      backgroundColor={statCardToken.chart.progressBar.background.fill}
+                      height="100%"
+                      width={`${progressValue}%`}
+                    />
+                    <Block
+                      backgroundColor={statCardToken.chart.progressBar.background.empty}
+                      height="100%"
+                      backgroundImage={`repeating-linear-gradient(
+                        to right,
+                        ${statCardToken.chart.progressBar.background.pattern.color},
+                        ${statCardToken.chart.progressBar.background.pattern.color} 5px,
+                        transparent 1px,
+                        transparent
+                      )`}
+                      backgroundSize={statCardToken.chart.progressBar.background.pattern.size}
+                      style={{ width: `${100 - progressValue}%` }}
+                    />
+                  </Block>
+                  <Text
+                    as="span"
+                    variant="body.md"
+                    fontWeight={statCardToken.chart.progressBar.label.fontWeight}
+                    color={statCardToken.chart.progressBar.label.color}
                 >
                   {progressValue}%
                 </Text>

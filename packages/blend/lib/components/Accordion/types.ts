@@ -30,5 +30,4 @@ export type AccordionProps = {
   value?: string | string[];
   isMultiple?: boolean;
   onValueChange?: (value: string | string[]) => void;
-  className?: string;
-};
+} 

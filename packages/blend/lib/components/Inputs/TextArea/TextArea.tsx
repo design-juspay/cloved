@@ -25,6 +25,7 @@ const TextArea = ({
   errorMessage,
   wrap,
   resize = "none",
+  ...rest
 }: TextAreaProps) => {
   const textAreaTokens = useComponentToken("TEXT_AREA") as TextAreaTokensType;
   return (
@@ -70,6 +71,7 @@ const TextArea = ({
           border: textAreaTokens.border.disabled,
           cursor: "not-allowed",
         }}
+        {...rest}
       />
       <InputFooter
         error={error}

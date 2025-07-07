@@ -24,6 +24,7 @@ import { getMultiSelectTokens } from "../components/MultiSelect/multiSelect.toke
 import { getTableToken } from "../components/DataTable/dataTable.tokens";
 import { getCalendarToken } from "../components/DateRangePicker/dateRangePicker.tokens";
 import { getAccordionToken } from "../components/Accordion/accordion.tokens";
+import { getStatCardToken } from "../components/StatCard/statcard.tokens";
 
 const initTokens = (
   componentTokens: ComponentTokenType,
@@ -64,6 +65,7 @@ const initTokens = (
     TABLE: componentTokens.TABLE ?? getTableToken(foundationTokens),
     CALENDAR: componentTokens.CALENDAR ?? getCalendarToken(foundationTokens),
     ACCORDION: componentTokens.ACCORDION ?? getAccordionToken(foundationTokens),
+    STAT_CARD: componentTokens.STAT_CARD ?? getStatCardToken(foundationTokens),
   };
 };
 

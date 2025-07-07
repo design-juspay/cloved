@@ -57,7 +57,6 @@ const Popover = ({
         <Block
           zIndex={popoverTokens.zIndex}
           backgroundColor={popoverTokens.background}
-          padding={popoverTokens.padding}
           boxShadow={popoverTokens.shadow}
           borderRadius={popoverTokens.borderRadius}
           border={popoverTokens.border}

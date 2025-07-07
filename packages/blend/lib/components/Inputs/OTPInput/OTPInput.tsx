@@ -29,6 +29,7 @@ const OTPInput = ({
   value = "",
   onChange,
   form,
+  ...rest
 }: OTPProps) => {
   const otpInputTokens = useComponentToken("OTP_INPUT") as OTPInputTokensType;
   const length = 6;
@@ -190,6 +191,7 @@ const OTPInput = ({
             onFocus={() => setActiveIndex(index)}
             onBlur={() => setActiveIndex(-1)}
             onPaste={index === 0 ? handlePaste : undefined}
+            {...rest}
           />
         ))}
       </Block>

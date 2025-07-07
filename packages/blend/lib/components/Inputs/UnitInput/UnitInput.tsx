@@ -31,6 +31,7 @@ const UnitInput = ({
   unit,
   unitPosition = UnitPosition.RIGHT,
   name,
+  ...rest
 }: UnitInputProps) => {
   const unitInputTokens = useComponentToken(
     "UNIT_INPUT",
@@ -202,6 +203,7 @@ const UnitInput = ({
             border: unitInputTokens.input.border.disabled,
             cursor: "not-allowed",
           }}
+          {...rest}
         />
       </Block>
       <InputFooter

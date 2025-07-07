@@ -29,6 +29,7 @@ const SearchInput = ({
   value,
   onChange,
   name,
+  ...rest
 }: SearchInputProps) => {
   const searchInputTokens = useComponentToken(
     "SEARCH_INPUT",
@@ -118,6 +119,7 @@ const SearchInput = ({
         _focus={{
           borderBottom: searchInputTokens.borderBottom.focus,
         }}
+        {...rest}
       />
     </Block>
   );
