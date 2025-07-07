@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+// import React from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent, TabsVariant, TabsSize } from 'blend-v1';
 import { Settings, User, Bell, Shield, CreditCard, HelpCircle } from 'lucide-react';
 
