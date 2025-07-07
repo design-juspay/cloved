@@ -20,7 +20,7 @@ on:
 
 env:
   NODE_VERSION: '18'
-  PNPM_VERSION: '8.15.6'
+  PNPM_VERSION: '10.12.4'
 
 jobs:
   # Build and test job
