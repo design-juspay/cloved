@@ -10,6 +10,8 @@
     "deploy:staging": "npm run build && firebase deploy --only hosting:blend-staging",
     "deploy:production": "npm run build && firebase deploy --only hosting:blend-prod",
     "deploy:all": "npm run build && firebase deploy",
+    "deploy:staging-with-storybook": "./deploy-with-storybook.sh staging",
+    "deploy:production-with-storybook": "./deploy-with-storybook.sh production",
     "firebase:init": "firebase init hosting",
     "preview": "firebase hosting:channel:deploy preview",
     "setup:hosting": "firebase target:apply hosting blend-staging blend-staging && firebase target:apply hosting blend-prod blend-prod"

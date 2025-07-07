@@ -10,6 +10,10 @@
       ],
       "rewrites": [
         {
+          "source": "/storybook/**",
+          "destination": "/storybook/index.html"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
@@ -53,6 +57,10 @@
         "**/node_modules/**"
       ],
       "rewrites": [
+        {
+          "source": "/storybook/**",
+          "destination": "/storybook/index.html"
+        },
         {
           "source": "**",
           "destination": "/index.html"

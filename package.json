@@ -24,7 +24,9 @@
     "docs:preview": "cd apps/docs && npm run preview",
     "deploy:staging": "npm run docs:deploy:staging",
     "deploy:production": "npm run docs:deploy:production",
-    "deploy:all": "npm run docs:deploy:all"
+    "deploy:all": "npm run docs:deploy:all",
+    "deploy:staging-with-storybook": "cd apps/docs && npm run deploy:staging-with-storybook",
+    "deploy:production-with-storybook": "cd apps/docs && npm run deploy:production-with-storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
