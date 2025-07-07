@@ -75,6 +75,19 @@ const avatars = [
       description: "Callback fired when avatar selection changes",
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ 
+        minHeight: "400px", 
+        display: "flex", 
+        alignItems: "flex-start", 
+        justifyContent: "center",
+        paddingTop: "50px"
+      }}>
+        <Story />
+      </div>
+    ),
+  ],
   tags: ["autodocs"],
 };
 
