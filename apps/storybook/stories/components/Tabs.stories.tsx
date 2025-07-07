@@ -95,7 +95,7 @@ export const Default: Story = {
     variant: TabsVariant.BOXED,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ width: "500px" }}>
       <Tabs
         defaultValue={args.defaultValue}
@@ -197,7 +197,7 @@ export const TabVariants: Story = {
     variant: TabsVariant.BOXED,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div
       style={{
         display: "flex",
@@ -467,7 +467,7 @@ export const TabSizes: Story = {
     variant: TabsVariant.BOXED,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div
       style={{
         display: "flex",
@@ -631,7 +631,7 @@ export const WithIcons: Story = {
     variant: TabsVariant.BOXED,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ width: "600px" }}>
       <Tabs
         defaultValue={args.defaultValue}
@@ -817,7 +817,7 @@ export const ExpandedTabs: Story = {
     variant: TabsVariant.BOXED,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ width: "100%", maxWidth: "800px" }}>
       <Tabs
         defaultValue={args.defaultValue}
@@ -960,7 +960,7 @@ export const FitContentTabs: Story = {
     variant: TabsVariant.UNDERLINE,
     size: TabsSize.MD,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ width: "400px" }}>
       <Tabs
         defaultValue={args.defaultValue}
@@ -1037,7 +1037,7 @@ export const ComplexExample: Story = {
     variant: TabsVariant.FLOATING,
     size: TabsSize.LG,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ width: "700px" }}>
       <Tabs
         defaultValue={args.defaultValue}
