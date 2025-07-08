@@ -24,7 +24,6 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
       disabled,
       onClick,
       loading,
-      buttonGroupPosition,
       fullWidth,
       justifyContent = "center",
       ...htmlProps
@@ -32,17 +31,6 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
     ref,
   ) => {
     const buttonTokens = useComponentToken("BUTTON") as ButtonTokensType;
-    const getBorderRadius = () => {
-      const variantBorderRadius =
-        buttonTokens.borderRadius[buttonType][subType].default;
-      if (buttonGroupPosition === undefined) return variantBorderRadius;
-      if (buttonGroupPosition === "left") {
-        return `${variantBorderRadius} 0 0 ${variantBorderRadius}`;
-      } else if (buttonGroupPosition === "right") {
-        return `0 ${variantBorderRadius} ${variantBorderRadius} 0`;
-      }
-      return `0px 0px 0px 0px`;
-    };
 
     return (
       <PrimitiveButton
@@ -52,15 +40,17 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
         alignItems="center"
         justifyContent={justifyContent}
         width={fullWidth ? "100%" : "fit-content"}
-        height={subType === ButtonSubTypeV2.INLINE ? "fit-content" : "auto"}
+        minHeight={buttonTokens.minHeight?.[size]?.[subType] || (subType === ButtonSubTypeV2.INLINE ? "auto" : undefined)}
+        height={buttonTokens.minHeight?.[size]?.[subType] || (subType === ButtonSubTypeV2.INLINE ? "auto" : undefined)}
         gap={buttonTokens.gap}
         background={buttonTokens.backgroundColor[buttonType][subType].default}
         disabled={disabled}
         color={buttonTokens.color[buttonType][subType].default}
-        borderRadius={getBorderRadius()}
+        borderRadius={buttonTokens.borderRadius[buttonType][subType].default}
         padding={buttonTokens.padding[size][subType]}
         border={buttonTokens.border[buttonType][subType].default}
         outline={buttonTokens.outline[buttonType][subType].default}
+        fontSize={buttonTokens.fontSize?.[size]}
         _active={
           !disabled
             ? {
@@ -107,9 +97,10 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
             )}
             {text && (
               <Text
-                variant="body.md"
                 style={{
                   fontWeight: 500,
+                  fontSize: 'inherit',
+                  lineHeight: 'inherit'
                 }}
                 as="span"
                 color="inherit"
