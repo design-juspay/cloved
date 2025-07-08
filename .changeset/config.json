@@ -7,6 +7,10 @@
   "access": "public",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@repo/docs"
+    "docs",
+    "storybook",
+    "nextdocs",
+    "@repo/eslint-config",
+    "@repo/typescript-config"
   ]
 }
