@@ -4,6 +4,7 @@ import fontTokens, { type FontTokensType } from "./font.tokens";
 import opacityTokens, { type OpacityTokensType } from "./opacity.tokens";
 import unitTokens, { type UnitTokensType } from "./unit.tokens";
 import colorTokens, { type ColorTokensType } from "./color.tokens";
+import { BREAKPOINTS, MEDIA_QUERIES } from "./breakpoints.tokens";
 
 export type FoundationTokenType = {
   shadows: ShadowTokensType;
@@ -12,6 +13,8 @@ export type FoundationTokenType = {
   opacity: OpacityTokensType;
   unit: UnitTokensType;
   colors: ColorTokensType;
+  breakpoints: typeof BREAKPOINTS;
+  mediaQueries: typeof MEDIA_QUERIES;
 };
 
 const FOUNDATION_THEME: FoundationTokenType = {
@@ -21,6 +24,8 @@ const FOUNDATION_THEME: FoundationTokenType = {
   opacity: opacityTokens,
   unit: unitTokens,
   colors: colorTokens,
+  breakpoints: BREAKPOINTS,
+  mediaQueries: MEDIA_QUERIES,
 };
 
 export default FOUNDATION_THEME;

@@ -2,11 +2,12 @@ import { CSSObject } from "styled-components";
 import { FOUNDATION_THEME } from "../../tokens";
 import { ButtonSizeV2, ButtonSubTypeV2, ButtonTypeV2 } from "./types";
 import { FoundationTokenType } from "../../tokens/theme.token";
+import { ResponsiveValue } from "../../tokens/breakpoints.tokens";
 
 export type ButtonState = "default" | "hover" | "active" | "disabled";
 
 export type ButtonTokensType = {
-  gap: CSSObject["gap"];
+  gap: ResponsiveValue<CSSObject["gap"]>;
   backgroundColor: {
     [key in ButtonTypeV2]: {
       [key in ButtonSubTypeV2]: {
@@ -24,13 +25,13 @@ export type ButtonTokensType = {
   borderRadius: {
     [key in ButtonTypeV2]: {
       [key in ButtonSubTypeV2]: {
-        [key in ButtonState]: CSSObject["borderRadius"];
+        [key in ButtonState]: ResponsiveValue<CSSObject["borderRadius"]>;
       };
     };
   };
   padding: {
     [key in ButtonSizeV2]: {
-      [key in ButtonSubTypeV2]: CSSObject["padding"];
+      [key in ButtonSubTypeV2]: ResponsiveValue<CSSObject["padding"]>;
     };
   };
   border: {
@@ -53,6 +54,14 @@ export type ButtonTokensType = {
         [key in ButtonState]: CSSObject["outline"];
       };
     };
+  };
+  minHeight: {
+    [key in ButtonSizeV2]: {
+      [key in ButtonSubTypeV2]: ResponsiveValue<CSSObject["minHeight"]>;
+    };
+  };
+  fontSize: {
+    [key in ButtonSizeV2]: ResponsiveValue<CSSObject["fontSize"]>;
   };
 };
 
@@ -306,19 +315,101 @@ const buttonTokens: ButtonTokensType = {
   },
   padding: {
     sm: {
-      default: "6px 16px",
-      iconOnly: "9px 9px",
+      default: {
+        mobile: "4px 8px",
+        tablet: "6px 16px",
+        desktop: "8px 20px"
+      },
+      iconOnly: {
+        mobile: "6px 6px",
+        tablet: "8px 8px",
+        desktop: "10px 10px"
+      },
       inline: `${FOUNDATION_THEME.unit[0]} ${FOUNDATION_THEME.unit[0]}`,
     },
     md: {
-      default: "8px 16px",
-      iconOnly: "10px 10px",
+      default: {
+        mobile: "6px 12px",
+        tablet: "10px 20px",
+        desktop: "12px 24px"
+      },
+      iconOnly: {
+        mobile: "8px 8px",
+        tablet: "10px 10px",
+        desktop: "12px 12px"
+      },
       inline: `${FOUNDATION_THEME.unit[0]} ${FOUNDATION_THEME.unit[0]}`,
     },
     lg: {
-      default: "10px 16px",
-      iconOnly: "12px 12px",
+      default: {
+        mobile: "8px 16px",
+        tablet: "12px 24px",
+        desktop: "16px 32px"
+      },
+      iconOnly: {
+        mobile: "10px 10px",
+        tablet: "14px 14px",
+        desktop: "16px 16px"
+      },
       inline: `${FOUNDATION_THEME.unit[0]} ${FOUNDATION_THEME.unit[0]}`,
+    },
+  },
+  minHeight: {
+    sm: {
+      default: {
+        mobile: "32px",
+        tablet: "36px",
+        desktop: "40px"
+      },
+      iconOnly: {
+        mobile: "32px",
+        tablet: "36px",
+        desktop: "40px"
+      },
+      inline: "auto",
+    },
+    md: {
+      default: {
+        mobile: "36px",
+        tablet: "44px",
+        desktop: "48px"
+      },
+      iconOnly: {
+        mobile: "36px",
+        tablet: "44px",
+        desktop: "48px"
+      },
+      inline: "auto",
+    },
+    lg: {
+      default: {
+        mobile: "40px",
+        tablet: "48px",
+        desktop: "56px"
+      },
+      iconOnly: {
+        mobile: "40px",
+        tablet: "48px",
+        desktop: "56px"
+      },
+      inline: "auto",
+    },
+  },
+  fontSize: {
+    sm: {
+      mobile: "12px",
+      tablet: "14px",
+      desktop: "14px"
+    },
+    md: {
+      mobile: "14px",
+      tablet: "16px",
+      desktop: "18px"
+    },
+    lg: {
+      mobile: "16px",
+      tablet: "18px",
+      desktop: "20px"
     },
   },
   border: {
@@ -822,19 +913,101 @@ export const getButtonTokens = (
     },
     padding: {
       sm: {
-        default: "6px 16px",
-        iconOnly: "9px 9px",
+        default: {
+          mobile: "4px 8px",
+          tablet: "6px 16px",
+          desktop: "8px 20px"
+        },
+        iconOnly: {
+          mobile: "6px 6px",
+          tablet: "8px 8px",
+          desktop: "10px 10px"
+        },
         inline: `${foundationToken.unit[0]} ${foundationToken.unit[0]}`,
       },
       md: {
-        default: "8px 16px",
-        iconOnly: "10px 10px",
+        default: {
+          mobile: "6px 12px",
+          tablet: "10px 20px",
+          desktop: "12px 24px"
+        },
+        iconOnly: {
+          mobile: "8px 8px",
+          tablet: "10px 10px",
+          desktop: "12px 12px"
+        },
         inline: `${foundationToken.unit[0]} ${foundationToken.unit[0]}`,
       },
       lg: {
-        default: "10px 16px",
-        iconOnly: "12px 12px",
+        default: {
+          mobile: "8px 16px",
+          tablet: "12px 24px",
+          desktop: "16px 32px"
+        },
+        iconOnly: {
+          mobile: "10px 10px",
+          tablet: "14px 14px",
+          desktop: "16px 16px"
+        },
         inline: `${foundationToken.unit[0]} ${foundationToken.unit[0]}`,
+      },
+    },
+    minHeight: {
+      sm: {
+        default: {
+          mobile: "32px",
+          tablet: "36px",
+          desktop: "40px"
+        },
+        iconOnly: {
+          mobile: "32px",
+          tablet: "36px",
+          desktop: "40px"
+        },
+        inline: "auto",
+      },
+      md: {
+        default: {
+          mobile: "36px",
+          tablet: "44px",
+          desktop: "48px"
+        },
+        iconOnly: {
+          mobile: "36px",
+          tablet: "44px",
+          desktop: "48px"
+        },
+        inline: "auto",
+      },
+      lg: {
+        default: {
+          mobile: "40px",
+          tablet: "48px",
+          desktop: "56px"
+        },
+        iconOnly: {
+          mobile: "40px",
+          tablet: "48px",
+          desktop: "56px"
+        },
+        inline: "auto",
+      },
+    },
+    fontSize: {
+      sm: {
+        mobile: "12px",
+        tablet: "14px",
+        desktop: "14px"
+      },
+      md: {
+        mobile: "14px",
+        tablet: "16px",
+        desktop: "18px"
+      },
+      lg: {
+        mobile: "16px",
+        tablet: "18px",
+        desktop: "20px"
       },
     },
     border: {
