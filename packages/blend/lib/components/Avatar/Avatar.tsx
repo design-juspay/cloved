@@ -1,5 +1,5 @@
-import { forwardRef, useState } from 'react';
-import { AvatarProps, AvatarSize, AvatarShape } from './types';
+import { forwardRef, useState } from "react";
+import { AvatarProps, AvatarSize, AvatarShape } from "./types";
 import {
   StyledAvatarContainer,
   StyledAvatarImage,
@@ -7,15 +7,15 @@ import {
   StyledAvatarIndicator,
   StyledAvatarWrapper,
   StyledAvatarLeadingSlot,
-  StyledAvatarTrailingSlot
-} from './StyledAvatar';
-import { getInitialsFromText } from './avatarUtils';
+  StyledAvatarTrailingSlot,
+} from "./StyledAvatar";
+import { getInitialsFromText } from "./avatarUtils";
 
 const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
     {
       src,
-      alt = '',
+      alt = "",
       fallback,
       size = AvatarSize.MD,
       shape = AvatarShape.CIRCULAR,
@@ -24,18 +24,18 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       trailingSlot,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [imageError, setImageError] = useState(false);
     const hasImage = src && !imageError;
 
     const renderFallback = () => {
       if (fallback) {
-        return typeof fallback === 'string' 
-          ? fallback.substring(0, 2) 
+        return typeof fallback === "string"
+          ? fallback.substring(0, 2)
           : fallback;
       }
-      
+
       return getInitialsFromText(alt);
     };
 
@@ -60,7 +60,19 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         )}
 
         {/* Visually hidden text for screen readers */}
-        <span style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>
+        <span
+          style={{
+            position: "absolute",
+            width: "1px",
+            height: "1px",
+            padding: 0,
+            margin: "-1px",
+            overflow: "hidden",
+            clip: "rect(0, 0, 0, 0)",
+            whiteSpace: "nowrap",
+            borderWidth: 0,
+          }}
+        >
           {alt}
         </span>
 
@@ -72,18 +84,22 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     if (leadingSlot || trailingSlot) {
       return (
         <StyledAvatarWrapper>
-          {leadingSlot && <StyledAvatarLeadingSlot>{leadingSlot}</StyledAvatarLeadingSlot>}
+          {leadingSlot && (
+            <StyledAvatarLeadingSlot>{leadingSlot}</StyledAvatarLeadingSlot>
+          )}
           {renderContent()}
-          {trailingSlot && <StyledAvatarTrailingSlot>{trailingSlot}</StyledAvatarTrailingSlot>}
+          {trailingSlot && (
+            <StyledAvatarTrailingSlot>{trailingSlot}</StyledAvatarTrailingSlot>
+          )}
         </StyledAvatarWrapper>
       );
     }
 
     // Otherwise just return the avatar
     return renderContent();
-  }
+  },
 );
 
-Avatar.displayName = 'Avatar';
+Avatar.displayName = "Avatar";
 
 export default Avatar;

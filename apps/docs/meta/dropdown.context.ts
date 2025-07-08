@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const dropdownMeta: ComponentMeta = {
   componentName: "Dropdown",
-  componentDescription: "A form dropdown component that combines a label, trigger button, and menu for selecting options with support for icons, hints, and customizable styling.",
+  componentDescription:
+    "A form dropdown component that combines a label, trigger button, and menu for selecting options with support for icons, hints, and customizable styling.",
   features: [
     "Form-ready with label and hint text",
     "Optional label support",
@@ -12,7 +13,7 @@ const dropdownMeta: ComponentMeta = {
     "Accessible design with proper labeling",
     "Customizable trigger button",
     "Responsive layout",
-    "Integration with Menu component"
+    "Integration with Menu component",
   ],
   usageExamples: [
     {
@@ -31,7 +32,7 @@ const dropdownMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Optional Dropdown with Icon",
@@ -51,7 +52,7 @@ const dropdownMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Grouped Dropdown Options",
@@ -77,7 +78,7 @@ const dropdownMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Custom Dropdown",
@@ -110,8 +111,8 @@ const dropdownMeta: ComponentMeta = {
       ]
     }
   ]}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -148,8 +149,10 @@ const dropdownMeta: ComponentMeta = {
       propName: "slot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content (usually an icon) displayed in the trigger button",
-      llmContext: "Custom content (usually an icon) displayed in the trigger button",
+      propDescription:
+        "Custom content (usually an icon) displayed in the trigger button",
+      llmContext:
+        "Custom content (usually an icon) displayed in the trigger button",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -178,7 +181,7 @@ const dropdownMeta: ComponentMeta = {
       category: "Content",
       required: true,
     },
-  ]
+  ],
 };
 
 export default dropdownMeta;

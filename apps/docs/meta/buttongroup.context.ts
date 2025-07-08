@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const buttongroupMeta: ComponentMeta = {
   componentName: "ButtonGroup",
-  componentDescription: "A flexible button group component that organizes multiple buttons with intelligent styling modes, positioning, and layout options for cohesive user interfaces.",
+  componentDescription:
+    "A flexible button group component that organizes multiple buttons with intelligent styling modes, positioning, and layout options for cohesive user interfaces.",
   features: [
     "Multiple styling modes (single primary, all secondary, no transform)",
     "Stacked and inline layout options",
@@ -11,7 +12,7 @@ const buttongroupMeta: ComponentMeta = {
     "Intelligent primary button detection",
     "Accessible group semantics",
     "Responsive design support",
-    "Seamless button integration"
+    "Seamless button integration",
   ],
   usageExamples: [
     {
@@ -24,7 +25,7 @@ const buttongroupMeta: ComponentMeta = {
   <Button text="Cancel" buttonType={ButtonType.SECONDARY} />
   <Button text="Save" buttonType={ButtonType.PRIMARY} />
   <Button text="Submit" buttonType={ButtonType.SECONDARY} />
-</ButtonGroup>`
+</ButtonGroup>`,
     },
     {
       title: "All Secondary Mode",
@@ -36,7 +37,7 @@ const buttongroupMeta: ComponentMeta = {
   <Button text="Edit" />
   <Button text="Delete" />
   <Button text="Archive" />
-</ButtonGroup>`
+</ButtonGroup>`,
     },
     {
       title: "Inline Button Group",
@@ -48,7 +49,7 @@ const buttongroupMeta: ComponentMeta = {
 >
   <Button text="Previous" buttonType={ButtonType.SECONDARY} />
   <Button text="Next" buttonType={ButtonType.PRIMARY} />
-</ButtonGroup>`
+</ButtonGroup>`,
     },
     {
       title: "Large Button Group",
@@ -61,8 +62,8 @@ const buttongroupMeta: ComponentMeta = {
   <Button text="Draft" buttonType={ButtonType.SECONDARY} />
   <Button text="Preview" buttonType={ButtonType.SECONDARY} />
   <Button text="Publish" buttonType={ButtonType.PRIMARY} />
-</ButtonGroup>`
-    }
+</ButtonGroup>`,
+    },
   ],
   props: [
     {
@@ -83,7 +84,8 @@ const buttongroupMeta: ComponentMeta = {
       propName: "isStacked",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether buttons should be stacked with connected borders",
+      propDescription:
+        "Whether buttons should be stacked with connected borders",
       llmContext: "Whether buttons should be stacked with connected borders",
       propDefault: "true",
       category: "Layout",
@@ -97,8 +99,10 @@ const buttongroupMeta: ComponentMeta = {
         ALL_SECONDARY = "allSecondary",
         NO_TRANSFORM = "noTransform"
       }`,
-      propDescription: "Styling mode that determines how button types are transformed within the group",
-      llmContext: "Styling mode that determines how button types are transformed within the group",
+      propDescription:
+        "Styling mode that determines how button types are transformed within the group",
+      llmContext:
+        "Styling mode that determines how button types are transformed within the group",
       propDefault: "ButtonGroupMode.SINGLE_PRIMARY",
       category: "Behavior",
       required: false,
@@ -112,8 +116,8 @@ const buttongroupMeta: ComponentMeta = {
       propDefault: "-",
       category: "Content",
       required: true,
-    }
-  ]
+    },
+  ],
 };
 
 export default buttongroupMeta;

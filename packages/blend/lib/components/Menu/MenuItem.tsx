@@ -22,7 +22,7 @@ const MenuSlot = ({ slot }: { slot: React.ReactNode }) => {
 const getBgColor = (
   state: MenuItemStates,
   menuTokens: MenuTokensType,
-  item: MenuItemV2Type
+  item: MenuItemV2Type,
 ) => {
   const bg = menuTokens.item.backgroundColor;
 
@@ -57,7 +57,7 @@ const getBgColor = (
 const getColor = (
   state: MenuItemStates,
   menuTokens: MenuTokensType,
-  item: MenuItemV2Type
+  item: MenuItemV2Type,
 ) => {
   const bg = menuTokens.item.label.color;
 
@@ -90,7 +90,6 @@ const getColor = (
 };
 
 const MenuItem = ({ item, idx }: { item: MenuItemV2Type; idx: number }) => {
-  
   const menuTokens = useComponentToken("MENU") as MenuTokensType;
   if (item.subMenu) {
     return <SubMenu item={item} idx={idx} />;

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const tabsMeta: ComponentMeta = {
   componentName: "Tabs",
-  componentDescription: "A flexible tabs component built on Radix UI primitives, providing multiple visual variants and customizable tab triggers with content panels.",
+  componentDescription:
+    "A flexible tabs component built on Radix UI primitives, providing multiple visual variants and customizable tab triggers with content panels.",
   features: [
     "Three visual variants (boxed, floating, underline)",
     "Two sizes (medium, large)",
@@ -11,7 +12,7 @@ const tabsMeta: ComponentMeta = {
     "Built on Radix UI for accessibility",
     "Keyboard navigation support",
     "Controlled and uncontrolled modes",
-    "Customizable styling"
+    "Customizable styling",
   ],
   usageExamples: [
     {
@@ -32,7 +33,7 @@ const tabsMeta: ComponentMeta = {
   <TabsContent value="tab3">
     <p>Settings content here</p>
   </TabsContent>
-</Tabs>`
+</Tabs>`,
     },
     {
       title: "Boxed Tabs with Icons",
@@ -62,7 +63,7 @@ const tabsMeta: ComponentMeta = {
   <TabsContent value="dashboard">Dashboard content</TabsContent>
   <TabsContent value="analytics">Analytics content</TabsContent>
   <TabsContent value="reports">Reports content</TabsContent>
-</Tabs>`
+</Tabs>`,
     },
     {
       title: "Floating Tabs",
@@ -78,7 +79,7 @@ const tabsMeta: ComponentMeta = {
   <TabsContent value="products">Products page content</TabsContent>
   <TabsContent value="services">Services page content</TabsContent>
   <TabsContent value="contact">Contact page content</TabsContent>
-</Tabs>`
+</Tabs>`,
     },
     {
       title: "Controlled Tabs",
@@ -94,8 +95,8 @@ const tabsMeta: ComponentMeta = {
   <TabsContent value="profile">Profile settings</TabsContent>
   <TabsContent value="account">Account settings</TabsContent>
   <TabsContent value="notifications">Notification settings</TabsContent>
-</Tabs>`
-    }
+</Tabs>`,
+    },
   ],
   props: [
     {
@@ -179,8 +180,10 @@ const tabsMeta: ComponentMeta = {
       propName: "activationMode",
       propType: "'automatic' | 'manual'",
       typeDefinition: "'automatic' | 'manual'",
-      propDescription: "Whether tabs are activated automatically on focus or manually",
-      llmContext: "Whether tabs are activated automatically on focus or manually",
+      propDescription:
+        "Whether tabs are activated automatically on focus or manually",
+      llmContext:
+        "Whether tabs are activated automatically on focus or manually",
       propDefault: "'automatic'",
       category: "Behavior",
       required: false,
@@ -189,8 +192,10 @@ const tabsMeta: ComponentMeta = {
       propName: "expanded",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the tab list should expand to fill available space (TabsList prop)",
-      llmContext: "Whether the tab list should expand to fill available space (TabsList prop)",
+      propDescription:
+        "Whether the tab list should expand to fill available space (TabsList prop)",
+      llmContext:
+        "Whether the tab list should expand to fill available space (TabsList prop)",
       propDefault: "false",
       category: "Layout",
       required: false,
@@ -199,8 +204,10 @@ const tabsMeta: ComponentMeta = {
       propName: "leftSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Content to display on the left side of tab trigger (TabsTrigger prop)",
-      llmContext: "Content to display on the left side of tab trigger (TabsTrigger prop)",
+      propDescription:
+        "Content to display on the left side of tab trigger (TabsTrigger prop)",
+      llmContext:
+        "Content to display on the left side of tab trigger (TabsTrigger prop)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -209,8 +216,10 @@ const tabsMeta: ComponentMeta = {
       propName: "rightSlot",
       propType: "ReactNode",
       typeDefinition: "ReactNode",
-      propDescription: "Content to display on the right side of tab trigger (TabsTrigger prop)",
-      llmContext: "Content to display on the right side of tab trigger (TabsTrigger prop)",
+      propDescription:
+        "Content to display on the right side of tab trigger (TabsTrigger prop)",
+      llmContext:
+        "Content to display on the right side of tab trigger (TabsTrigger prop)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -225,7 +234,7 @@ const tabsMeta: ComponentMeta = {
       category: "Content",
       required: true,
     },
-  ]
+  ],
 };
 
 export default tabsMeta;

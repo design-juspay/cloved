@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const gradientblurMeta: ComponentMeta = {
   componentName: "GradientBlur",
-  componentDescription: "A decorative gradient blur background component that creates animated, colorful gradient effects for visual enhancement and modern UI aesthetics.",
+  componentDescription:
+    "A decorative gradient blur background component that creates animated, colorful gradient effects for visual enhancement and modern UI aesthetics.",
   features: [
     "Animated gradient background effects",
     "Multiple gradient layers for depth",
@@ -11,7 +12,7 @@ const gradientblurMeta: ComponentMeta = {
     "Lightweight and performant",
     "Modern visual aesthetics",
     "Responsive design",
-    "Easy integration"
+    "Easy integration",
   ],
   usageExamples: [
     {
@@ -23,7 +24,7 @@ const gradientblurMeta: ComponentMeta = {
     <h1>Content over gradient blur</h1>
     <p>This content appears above the gradient blur effect.</p>
   </div>
-</div>`
+</div>`,
     },
     {
       title: "Hero Section with Gradient Blur",
@@ -45,7 +46,7 @@ const gradientblurMeta: ComponentMeta = {
       <Button text="Get Started" />
     </div>
   </div>
-</section>`
+</section>`,
     },
     {
       title: "Card with Gradient Blur Background",
@@ -61,7 +62,7 @@ const gradientblurMeta: ComponentMeta = {
     <h3>Featured Content</h3>
     <p>This card has a beautiful gradient blur background.</p>
   </div>
-</div>`
+</div>`,
     },
     {
       title: "Modal Backdrop with Gradient Blur",
@@ -85,10 +86,10 @@ const gradientblurMeta: ComponentMeta = {
     <h2>Modal Content</h2>
     <p>Modal with gradient blur backdrop</p>
   </div>
-</div>`
-    }
+</div>`,
+    },
   ],
-  props: []
+  props: [],
 };
 
 export default gradientblurMeta;

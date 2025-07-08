@@ -74,7 +74,7 @@ const textInputTokens: Readonly<TextInputTokensType> = {
 };
 
 export const getTextInputTokens = (
-  foundationTheme: FoundationTokenType
+  foundationTheme: FoundationTokenType,
 ): TextInputTokensType => {
   return {
     input: {

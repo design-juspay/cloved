@@ -36,8 +36,8 @@ export const renderChart = ({
       return hoveredKey === null
         ? baseColor
         : hoveredKey === key
-        ? baseColor
-        : lightenHexColor(baseColor, 0.3);
+          ? baseColor
+          : lightenHexColor(baseColor, 0.3);
     }
 
     if (hoveredKey && hoveredKey !== key) {

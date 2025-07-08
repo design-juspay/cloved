@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const daterangepickerMeta: ComponentMeta = {
   componentName: "DateRangePicker",
-  componentDescription: "A comprehensive date range picker component with calendar interface, time selection, preset ranges, and flexible configuration options for selecting date and time ranges.",
+  componentDescription:
+    "A comprehensive date range picker component with calendar interface, time selection, preset ranges, and flexible configuration options for selecting date and time ranges.",
   features: [
     "Interactive calendar grid for date selection",
     "Optional time picker for precise time selection",
@@ -14,7 +15,7 @@ const daterangepickerMeta: ComponentMeta = {
     "Custom trigger element support",
     "Accessible keyboard navigation",
     "Customizable date formatting",
-    "Disabled state support"
+    "Disabled state support",
   ],
   usageExamples: [
     {
@@ -29,7 +30,7 @@ const daterangepickerMeta: ComponentMeta = {
   value={dateRange}
   onChange={setDateRange}
   placeholder="Select date range"
-/>`
+/>`,
     },
     {
       title: "Date Range Picker with Time",
@@ -40,7 +41,7 @@ const daterangepickerMeta: ComponentMeta = {
   showTimePicker={true}
   showPresets={true}
   placeholder="Select date and time range"
-/>`
+/>`,
     },
     {
       title: "Constrained Date Range Picker",
@@ -52,7 +53,7 @@ const daterangepickerMeta: ComponentMeta = {
   maxDate={new Date('2024-12-31')}
   disableFutureDates={true}
   showPresets={false}
-/>`
+/>`,
     },
     {
       title: "Custom Date Range Picker",
@@ -68,8 +69,8 @@ const daterangepickerMeta: ComponentMeta = {
   }
   dateFormat="MM/dd/yyyy"
   allowSingleDateSelection={true}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -100,8 +101,10 @@ const daterangepickerMeta: ComponentMeta = {
       propName: "showTimePicker",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to show time selection in addition to date selection",
-      llmContext: "Whether to show time selection in addition to date selection",
+      propDescription:
+        "Whether to show time selection in addition to date selection",
+      llmContext:
+        "Whether to show time selection in addition to date selection",
       propDefault: "false",
       category: "Features",
       required: false,
@@ -200,7 +203,8 @@ const daterangepickerMeta: ComponentMeta = {
       propName: "allowSingleDateSelection",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to allow selecting a single date instead of a range",
+      propDescription:
+        "Whether to allow selecting a single date instead of a range",
       llmContext: "Whether to allow selecting a single date instead of a range",
       propDefault: "false",
       category: "Behavior",
@@ -236,7 +240,7 @@ const daterangepickerMeta: ComponentMeta = {
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default daterangepickerMeta;

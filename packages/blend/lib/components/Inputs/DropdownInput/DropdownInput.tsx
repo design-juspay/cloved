@@ -19,7 +19,7 @@ import { DropdownInputTokensType } from "./dropdownInput.tokens";
 import { useComponentToken } from "../../../context/useComponentToken";
 
 const map = function getValueLabelMap(
-  groups: SelectMenuGroupType[]
+  groups: SelectMenuGroupType[],
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -74,7 +74,7 @@ const DropdownInput = ({
   ...rest
 }: DropdownInputProps) => {
   const dropdownInputTokens = useComponentToken(
-    "DROPDOWN_INPUT"
+    "DROPDOWN_INPUT",
   ) as DropdownInputTokensType;
   const slotRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);

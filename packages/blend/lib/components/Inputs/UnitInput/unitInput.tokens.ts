@@ -82,7 +82,7 @@ const unitInputTokens: UnitInputTokensType = {
 };
 
 export const getUnitInputTokens = (
-  foundationTheme: FoundationTokenType
+  foundationTheme: FoundationTokenType,
 ): UnitInputTokensType => {
   return {
     input: {

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const breadcrumbMeta: ComponentMeta = {
   componentName: "Breadcrumb",
-  componentDescription: "A navigation breadcrumb component that displays the current page's location within a navigational hierarchy with support for overflow handling and custom content slots.",
+  componentDescription:
+    "A navigation breadcrumb component that displays the current page's location within a navigational hierarchy with support for overflow handling and custom content slots.",
   features: [
     "Hierarchical navigation display",
     "Automatic overflow handling with ellipsis menu",
@@ -12,7 +13,7 @@ const breadcrumbMeta: ComponentMeta = {
     "Accessible navigation structure",
     "Responsive design",
     "Custom styling support",
-    "Link-based navigation"
+    "Link-based navigation",
   ],
   usageExamples: [
     {
@@ -25,7 +26,7 @@ const breadcrumbMeta: ComponentMeta = {
     { label: "Electronics", href: "/products/electronics" },
     { label: "Smartphones", href: "/products/electronics/smartphones" }
   ]}
-/>`
+/>`,
     },
     {
       title: "Breadcrumb with Icons",
@@ -48,7 +49,7 @@ const breadcrumbMeta: ComponentMeta = {
       leftSlot: <UserIcon size={16} />
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Breadcrumb with Custom Slots",
@@ -71,7 +72,7 @@ const breadcrumbMeta: ComponentMeta = {
       rightSlot: <Badge variant="draft">Draft</Badge>
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Long Breadcrumb with Overflow",
@@ -86,8 +87,8 @@ const breadcrumbMeta: ComponentMeta = {
     { label: "Model", href: "/category/subcategory/type/brand/model" },
     { label: "Variant", href: "/category/subcategory/type/brand/model/variant" }
   ]}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -109,8 +110,10 @@ const breadcrumbMeta: ComponentMeta = {
       propName: "label",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "Display text for the breadcrumb item (BreadcrumbItemType property)",
-      llmContext: "Display text for the breadcrumb item (BreadcrumbItemType property)",
+      propDescription:
+        "Display text for the breadcrumb item (BreadcrumbItemType property)",
+      llmContext:
+        "Display text for the breadcrumb item (BreadcrumbItemType property)",
       propDefault: "-",
       category: "Content",
       required: true,
@@ -119,8 +122,10 @@ const breadcrumbMeta: ComponentMeta = {
       propName: "href",
       propType: "string",
       typeDefinition: "string",
-      propDescription: "URL link for the breadcrumb item (BreadcrumbItemType property)",
-      llmContext: "URL link for the breadcrumb item (BreadcrumbItemType property)",
+      propDescription:
+        "URL link for the breadcrumb item (BreadcrumbItemType property)",
+      llmContext:
+        "URL link for the breadcrumb item (BreadcrumbItemType property)",
       propDefault: "-",
       category: "Content",
       required: true,
@@ -129,8 +134,10 @@ const breadcrumbMeta: ComponentMeta = {
       propName: "leftSlot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content to display on the left side of the breadcrumb item (BreadcrumbItemType property)",
-      llmContext: "Custom content to display on the left side of the breadcrumb item (BreadcrumbItemType property)",
+      propDescription:
+        "Custom content to display on the left side of the breadcrumb item (BreadcrumbItemType property)",
+      llmContext:
+        "Custom content to display on the left side of the breadcrumb item (BreadcrumbItemType property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
@@ -139,13 +146,15 @@ const breadcrumbMeta: ComponentMeta = {
       propName: "rightSlot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content to display on the right side of the breadcrumb item (BreadcrumbItemType property)",
-      llmContext: "Custom content to display on the right side of the breadcrumb item (BreadcrumbItemType property)",
+      propDescription:
+        "Custom content to display on the right side of the breadcrumb item (BreadcrumbItemType property)",
+      llmContext:
+        "Custom content to display on the right side of the breadcrumb item (BreadcrumbItemType property)",
       propDefault: "undefined",
       category: "Content",
       required: false,
     },
-  ]
+  ],
 };
 
 export default breadcrumbMeta;

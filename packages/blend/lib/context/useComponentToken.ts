@@ -26,7 +26,7 @@ import { AccordionTokenType } from "../components/Accordion/accordion.tokens";
 import { StatCardTokenType } from "../components/StatCard/statcard.tokens";
 
 export const useComponentToken = (
-  component: keyof ComponentTokenType
+  component: keyof ComponentTokenType,
 ):
   | SearchInputTokensType
   | TagTokensType

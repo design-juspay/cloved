@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const multiselectMeta: ComponentMeta = {
   componentName: "MultiSelect",
-  componentDescription: "A comprehensive multi-selection dropdown component with grouped items, search functionality, customizable positioning, and flexible selection display options for selecting multiple values from a list.",
+  componentDescription:
+    "A comprehensive multi-selection dropdown component with grouped items, search functionality, customizable positioning, and flexible selection display options for selecting multiple values from a list.",
   features: [
     "Multiple item selection with controlled state",
     "Grouped menu items with labels and separators",
@@ -13,7 +14,7 @@ const multiselectMeta: ComponentMeta = {
     "Form integration with labels and validation",
     "Disabled state and required field support",
     "Submenu support for nested options",
-    "Customizable dimensions and styling"
+    "Customizable dimensions and styling",
   ],
   usageExamples: [
     {
@@ -52,7 +53,7 @@ const handleChange = (value) => {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Multi-Select with Custom Slots",
@@ -84,7 +85,7 @@ const handleChange = (value) => {
       ]
     }
   ]}
-/>`
+/>`,
     },
     {
       title: "Multi-Select with Custom Positioning",
@@ -100,7 +101,7 @@ const handleChange = (value) => {
   maxWidth={400}
   maxHeight={300}
   items={categoryGroups}
-/>`
+/>`,
     },
     {
       title: "Form Multi-Select with Validation",
@@ -117,8 +118,8 @@ const handleChange = (value) => {
   hintText="Select multiple options from the list"
   slot={<FilterIcon />}
   items={formOptions}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -205,7 +206,8 @@ const handleChange = (value) => {
         COUNT = "count",
         TEXT = "text",
       }`,
-      propDescription: "How selected items are displayed (count or individual tags)",
+      propDescription:
+        "How selected items are displayed (count or individual tags)",
       llmContext: "How selected items are displayed (count or individual tags)",
       propDefault: "MultiSelectSelectionTagType.COUNT",
       category: "Appearance",
@@ -269,7 +271,8 @@ const handleChange = (value) => {
       propName: "slot",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Custom content (usually an icon) displayed in the trigger",
+      propDescription:
+        "Custom content (usually an icon) displayed in the trigger",
       llmContext: "Custom content (usually an icon) displayed in the trigger",
       propDefault: "undefined",
       category: "Content",
@@ -294,7 +297,8 @@ const handleChange = (value) => {
         RIGHT = "right",
         BOTTOM = "bottom",
       }`,
-      propDescription: "Side where the menu should appear relative to the trigger",
+      propDescription:
+        "Side where the menu should appear relative to the trigger",
       llmContext: "Side where the menu should appear relative to the trigger",
       propDefault: "MultiSelectMenuSide.BOTTOM",
       category: "Layout",
@@ -364,7 +368,7 @@ const handleChange = (value) => {
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default multiselectMeta;

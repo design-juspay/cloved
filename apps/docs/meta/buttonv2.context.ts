@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const buttonv2Meta: ComponentMeta = {
   componentName: "ButtonV2",
-  componentDescription: "An enhanced button component with comprehensive styling options, multiple variants, loading states, and flexible layout configurations for modern user interfaces.",
+  componentDescription:
+    "An enhanced button component with comprehensive styling options, multiple variants, loading states, and flexible layout configurations for modern user interfaces.",
   features: [
     "Four button types (primary, secondary, danger, success)",
     "Three sizes (small, medium, large)",
@@ -13,7 +14,7 @@ const buttonv2Meta: ComponentMeta = {
     "Button group integration",
     "Disabled state handling",
     "Flexible content justification",
-    "Accessible design"
+    "Accessible design",
   ],
   usageExamples: [
     {
@@ -33,7 +34,7 @@ const buttonv2Meta: ComponentMeta = {
 <ButtonV2 
   text="Delete Item" 
   buttonType={ButtonTypeV2.DANGER} 
-/>`
+/>`,
     },
     {
       title: "Buttons with Icons",
@@ -49,7 +50,7 @@ const buttonv2Meta: ComponentMeta = {
   text="Download" 
   buttonType={ButtonTypeV2.SECONDARY}
   trailingIcon={<DownloadIcon />}
-/>`
+/>`,
     },
     {
       title: "Icon-Only and Loading States",
@@ -66,7 +67,7 @@ const buttonv2Meta: ComponentMeta = {
   buttonType={ButtonTypeV2.PRIMARY}
   loading={true}
   disabled={true}
-/>`
+/>`,
     },
     {
       title: "Full Width and Inline Buttons",
@@ -83,8 +84,8 @@ const buttonv2Meta: ComponentMeta = {
   subType={ButtonSubTypeV2.INLINE}
   buttonType={ButtonTypeV2.SECONDARY}
   onClick={() => handleInlineAction()}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
@@ -204,8 +205,10 @@ const buttonv2Meta: ComponentMeta = {
       propName: "fullWidth",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the button should take the full width of its container",
-      llmContext: "Whether the button should take the full width of its container",
+      propDescription:
+        "Whether the button should take the full width of its container",
+      llmContext:
+        "Whether the button should take the full width of its container",
       propDefault: "false",
       category: "Layout",
       required: false,
@@ -214,13 +217,14 @@ const buttonv2Meta: ComponentMeta = {
       propName: "justifyContent",
       propType: "CSSObject['justifyContent']",
       typeDefinition: "CSSObject['justifyContent']",
-      propDescription: "CSS justify-content property for button content alignment",
+      propDescription:
+        "CSS justify-content property for button content alignment",
       llmContext: "CSS justify-content property for button content alignment",
       propDefault: "undefined",
       category: "Layout",
       required: false,
     },
-  ]
+  ],
 };
 
 export default buttonv2Meta;

@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const textMeta: ComponentMeta = {
   componentName: "Text",
-  componentDescription: "A versatile text component with semantic HTML support, typography variants, and comprehensive styling options for consistent text rendering across the design system.",
+  componentDescription:
+    "A versatile text component with semantic HTML support, typography variants, and comprehensive styling options for consistent text rendering across the design system.",
   features: [
     "Multiple typography variants (body, display, heading, code)",
     "Semantic HTML tag support (p, h1-h5, span, code, etc.)",
@@ -12,7 +13,7 @@ const textMeta: ComponentMeta = {
     "Text truncation capabilities",
     "Responsive typography scaling",
     "Accessible markup generation",
-    "Custom styling support"
+    "Custom styling support",
   ],
   usageExamples: [
     {
@@ -28,7 +29,7 @@ const textMeta: ComponentMeta = {
 
 <Text variant="code.sm">
   console.log('Hello World');
-</Text>`
+</Text>`,
     },
     {
       title: "Custom Semantic Tags",
@@ -43,7 +44,7 @@ const textMeta: ComponentMeta = {
 
 <Text as="label" fontWeight={600}>
   Form Label
-</Text>`
+</Text>`,
     },
     {
       title: "Text with Custom Styling",
@@ -56,7 +57,7 @@ const textMeta: ComponentMeta = {
   style={{ maxWidth: '200px' }}
 >
   This text will be truncated if it's too long
-</Text>`
+</Text>`,
     },
     {
       title: "Display and Heading Variants",
@@ -71,8 +72,8 @@ const textMeta: ComponentMeta = {
 
 <Text variant="heading.md" color="gray.700">
   Subsection Heading
-</Text>`
-    }
+</Text>`,
+    },
   ],
   props: [
     {
@@ -93,8 +94,10 @@ const textMeta: ComponentMeta = {
   | "display.sm" | "display.md" | "display.lg" | "display.xl"
   | "heading.sm" | "heading.md" | "heading.lg" | "heading.xl" | "heading.2xl"
   | "code.sm" | "code.md" | "code.lg"`,
-      propDescription: "Typography variant that determines font size and semantic meaning",
-      llmContext: "Typography variant that determines font size and semantic meaning",
+      propDescription:
+        "Typography variant that determines font size and semantic meaning",
+      llmContext:
+        "Typography variant that determines font size and semantic meaning",
       propDefault: "undefined",
       category: "Appearance",
       required: false,
@@ -105,8 +108,10 @@ const textMeta: ComponentMeta = {
       typeDefinition: `type SemanticTagType = 
   | "p" | "h1" | "h2" | "h3" | "h4" | "h5" 
   | "span" | "code" | "q" | "small" | "label"`,
-      propDescription: "HTML semantic tag to render (overrides automatic tag selection)",
-      llmContext: "HTML semantic tag to render (overrides automatic tag selection)",
+      propDescription:
+        "HTML semantic tag to render (overrides automatic tag selection)",
+      llmContext:
+        "HTML semantic tag to render (overrides automatic tag selection)",
       propDefault: "auto-selected based on variant",
       category: "Content",
       required: false,
@@ -145,7 +150,8 @@ const textMeta: ComponentMeta = {
       propName: "truncate",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether to truncate text with ellipsis when it overflows",
+      propDescription:
+        "Whether to truncate text with ellipsis when it overflows",
       llmContext: "Whether to truncate text with ellipsis when it overflows",
       propDefault: "false",
       category: "Behavior",
@@ -161,7 +167,7 @@ const textMeta: ComponentMeta = {
       category: "Styling",
       required: false,
     },
-  ]
+  ],
 };
 
 export default textMeta;

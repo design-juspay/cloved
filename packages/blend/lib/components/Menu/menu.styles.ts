@@ -14,4 +14,4 @@ export const contentBaseStyle: CSSObject = {
   scrollbarWidth: "none",
   scrollbarColor: "transparent transparent",
   padding: "0px 6px",
-}; 
+};

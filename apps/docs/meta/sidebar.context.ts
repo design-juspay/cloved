@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const sidebarMeta: ComponentMeta = {
   componentName: "Sidebar",
-  componentDescription: "A navigation sidebar component for organizing hierarchical content with collapsible sections, custom styling, and responsive behavior.",
+  componentDescription:
+    "A navigation sidebar component for organizing hierarchical content with collapsible sections, custom styling, and responsive behavior.",
   features: [
     "Hierarchical navigation structure",
     "Collapsible sections and items",
@@ -13,7 +14,7 @@ const sidebarMeta: ComponentMeta = {
     "Nested navigation items",
     "Customizable styling",
     "Accessible navigation",
-    "Mobile-friendly layout"
+    "Mobile-friendly layout",
   ],
   usageExamples: [
     {
@@ -31,7 +32,7 @@ const sidebarMeta: ComponentMeta = {
       Settings
     </SidebarItem>
   </SidebarSection>
-</Sidebar>`
+</Sidebar>`,
     },
     {
       title: "Collapsible Sidebar",
@@ -45,7 +46,7 @@ const sidebarMeta: ComponentMeta = {
     <SidebarItem href="/admin/users">User Management</SidebarItem>
     <SidebarItem href="/admin/settings">System Settings</SidebarItem>
   </SidebarSection>
-</Sidebar>`
+</Sidebar>`,
     },
     {
       title: "Sidebar with Badges",
@@ -65,7 +66,7 @@ const sidebarMeta: ComponentMeta = {
   >
     Notifications
   </SidebarItem>
-</Sidebar>`
+</Sidebar>`,
     },
     {
       title: "Nested Sidebar Navigation",
@@ -80,8 +81,8 @@ const sidebarMeta: ComponentMeta = {
     </SidebarItem>
     <SidebarItem href="/products/inventory">Inventory</SidebarItem>
   </SidebarSection>
-</Sidebar>`
-    }
+</Sidebar>`,
+    },
   ],
   props: [
     {
@@ -138,7 +139,8 @@ const sidebarMeta: ComponentMeta = {
       propName: "collapsible",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the section can be collapsed (SidebarSection prop)",
+      propDescription:
+        "Whether the section can be collapsed (SidebarSection prop)",
       llmContext: "Whether the section can be collapsed (SidebarSection prop)",
       propDefault: "false",
       category: "Behavior",
@@ -148,8 +150,10 @@ const sidebarMeta: ComponentMeta = {
       propName: "defaultOpen",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the section is open by default (SidebarSection prop)",
-      llmContext: "Whether the section is open by default (SidebarSection prop)",
+      propDescription:
+        "Whether the section is open by default (SidebarSection prop)",
+      llmContext:
+        "Whether the section is open by default (SidebarSection prop)",
       propDefault: "true",
       category: "State",
       required: false,
@@ -168,7 +172,8 @@ const sidebarMeta: ComponentMeta = {
       propName: "icon",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Icon to display for the sidebar item (SidebarItem prop)",
+      propDescription:
+        "Icon to display for the sidebar item (SidebarItem prop)",
       llmContext: "Icon to display for the sidebar item (SidebarItem prop)",
       propDefault: "undefined",
       category: "Content",
@@ -188,8 +193,10 @@ const sidebarMeta: ComponentMeta = {
       propName: "active",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether the sidebar item is currently active (SidebarItem prop)",
-      llmContext: "Whether the sidebar item is currently active (SidebarItem prop)",
+      propDescription:
+        "Whether the sidebar item is currently active (SidebarItem prop)",
+      llmContext:
+        "Whether the sidebar item is currently active (SidebarItem prop)",
       propDefault: "false",
       category: "State",
       required: false,
@@ -204,7 +211,7 @@ const sidebarMeta: ComponentMeta = {
       category: "Events",
       required: false,
     },
-  ]
+  ],
 };
 
 export default sidebarMeta;

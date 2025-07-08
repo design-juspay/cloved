@@ -10,26 +10,51 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import { getComponentMeta, listAvailableComponents, hasComponentMeta } from "./metaReader.js";
 
-const DEFAULT_BLEND_LIBRARY_PATH = "/Users/deepanshu.kumar/Documents/design-system/cloved/packages/blend/lib/components/";
-const BLEND_LIBRARY_PATH = process.env.BLEND_LIBRARY_PATH || DEFAULT_BLEND_LIBRARY_PATH;
+// Get the directory of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const DEFAULT_BLEND_DEMO_PATH = "/Users/deepanshu.kumar/Documents/Blend-v1/src/demos/";
-const BLEND_DEMO_PATH = process.env.BLEND_DEMO_PATH || DEFAULT_BLEND_DEMO_PATH;
+// Function to find the blend library path
+function findBlendLibraryPath() {
+  // First check if explicitly set via environment variable
+  if (process.env.BLEND_LIBRARY_PATH) {
+    return process.env.BLEND_LIBRARY_PATH;
+  }
+  
+  // Try to find it relative to the MCP package
+  const possiblePaths = [
+    path.join(__dirname, '..', 'blend', 'lib', 'components'),
+    path.join(__dirname, '..', '..', 'packages', 'blend', 'lib', 'components'),
+    path.join(process.cwd(), 'packages', 'blend', 'lib', 'components'),
+    path.join(process.cwd(), 'node_modules', 'blend-v1', 'lib', 'components'),
+  ];
+  
+  for (const possiblePath of possiblePaths) {
+    if (fs.existsSync(possiblePath)) {
+      return possiblePath;
+    }
+  }
+  
+  // If not found, return a descriptive error path
+  return null;
+}
 
-const DEFAULT_BLEND_LIBRARY_PACKAGE_NAME = "blend-v1";
-const BLEND_LIBRARY_PACKAGE_NAME = process.env.BLEND_LIBRARY_PACKAGE_NAME || DEFAULT_BLEND_LIBRARY_PACKAGE_NAME;
+const BLEND_LIBRARY_PATH = findBlendLibraryPath();
+const BLEND_LIBRARY_PACKAGE_NAME = process.env.BLEND_LIBRARY_PACKAGE_NAME || "blend-v1";
 
-if (process.env.BLEND_LIBRARY_PATH === undefined) {
-  console.error(`[INFO] BLEND_LIBRARY_PATH environment variable not set. Using default: ${DEFAULT_BLEND_LIBRARY_PATH}`);
+if (!BLEND_LIBRARY_PATH) {
+  console.error(`[ERROR] Could not find Blend library components directory.`);
+  console.error(`Please set the BLEND_LIBRARY_PATH environment variable to the path containing Blend components.`);
+  console.error(`Example: export BLEND_LIBRARY_PATH="/path/to/blend/lib/components"`);
+  process.exit(1);
 }
-if (process.env.BLEND_DEMO_PATH === undefined) {
-  console.error(`[INFO] BLEND_DEMO_PATH environment variable not set. Using default: ${BLEND_DEMO_PATH}`);
-}
-if (process.env.BLEND_LIBRARY_PACKAGE_NAME === undefined) {
-  console.error(`[INFO] BLEND_LIBRARY_PACKAGE_NAME environment variable not set. Using default: ${DEFAULT_BLEND_LIBRARY_PACKAGE_NAME}`);
-}
+
+console.error(`[INFO] Using Blend library path: ${BLEND_LIBRARY_PATH}`);
+console.error(`[INFO] Using Blend package name: ${BLEND_LIBRARY_PACKAGE_NAME}`);
 
 function formatPropValue(value, propTypeString) {
   const normalizedPropType = propTypeString?.toLowerCase().replace(/\s*\|\s*undefined$/, "").trim();

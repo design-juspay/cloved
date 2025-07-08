@@ -5,11 +5,36 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DEFAULT_META_PATH = path.resolve(__dirname, "../../apps/docs/meta");
-const META_PATH = process.env.META_PATH || DEFAULT_META_PATH;
+// Function to find the meta files path
+function findMetaPath() {
+  // First check if explicitly set via environment variable
+  if (process.env.META_PATH) {
+    return process.env.META_PATH;
+  }
+  
+  // Try to find it relative to the MCP package
+  const possiblePaths = [
+    path.join(__dirname, '..', '..', 'apps', 'docs', 'meta'),
+    path.join(process.cwd(), 'apps', 'docs', 'meta'),
+    path.join(__dirname, '..', 'docs', 'meta'),
+  ];
+  
+  for (const possiblePath of possiblePaths) {
+    if (fs.existsSync(possiblePath)) {
+      return possiblePath;
+    }
+  }
+  
+  // If not found, return null
+  return null;
+}
 
-if (process.env.META_PATH === undefined) {
-  console.error(`[INFO] META_PATH environment variable not set. Using default: ${DEFAULT_META_PATH}`);
+const META_PATH = findMetaPath();
+
+if (!META_PATH) {
+  console.error(`[WARNING] Could not find meta files directory.`);
+  console.error(`Meta-based features will not be available.`);
+  console.error(`To enable meta features, set META_PATH environment variable.`);
 }
 
 /**

@@ -23,7 +23,7 @@ export enum AlertStyle {
 export type AlertAction = {
   label: string;
   onClick: () => void;
-}
+};
 
 export type AlertProps = {
   heading: string;
@@ -35,4 +35,4 @@ export type AlertProps = {
   onClose?: () => void;
   icon?: ReactNode;
   actionPlacement?: AlertActionPlacement;
-}
+};

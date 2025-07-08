@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const splittagMeta: ComponentMeta = {
   componentName: "SplitTag",
-  componentDescription: "A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.",
+  componentDescription:
+    "A tag component with split functionality, featuring a main content area and a separate action button for enhanced user interactions.",
   features: [
     "Split design with main content and action button",
     "Multiple size variants",
@@ -13,7 +14,7 @@ const splittagMeta: ComponentMeta = {
     "Accessible keyboard navigation",
     "Custom styling support",
     "Flexible content layout",
-    "Responsive design"
+    "Responsive design",
   ],
   usageExamples: [
     {
@@ -23,7 +24,7 @@ const splittagMeta: ComponentMeta = {
   mainContent="JavaScript"
   onMainClick={() => console.log('Main clicked')}
   onActionClick={() => console.log('Action clicked')}
-/>`
+/>`,
     },
     {
       title: "Split Tag with Icons",
@@ -34,7 +35,7 @@ const splittagMeta: ComponentMeta = {
   actionIcon={<CloseIcon />}
   onMainClick={() => selectFramework('react')}
   onActionClick={() => removeFramework('react')}
-/>`
+/>`,
     },
     {
       title: "Colored Split Tag",
@@ -46,7 +47,7 @@ const splittagMeta: ComponentMeta = {
   actionBackgroundColor="#ff6b6b"
   onMainClick={() => viewProfile()}
   onActionClick={() => removeTag()}
-/>`
+/>`,
     },
     {
       title: "Large Split Tag with Custom Content",
@@ -63,15 +64,16 @@ const splittagMeta: ComponentMeta = {
   onMainClick={() => viewUser('john-doe')}
   onActionClick={() => editUser('john-doe')}
   disabled={!canEdit}
-/>`
-    }
+/>`,
+    },
   ],
   props: [
     {
       propName: "mainContent",
       propType: "React.ReactNode",
       typeDefinition: "React.ReactNode",
-      propDescription: "Content to display in the main section of the split tag",
+      propDescription:
+        "Content to display in the main section of the split tag",
       llmContext: "Content to display in the main section of the split tag",
       propDefault: "-",
       category: "Content",
@@ -181,7 +183,7 @@ const splittagMeta: ComponentMeta = {
       category: "Styling",
       required: false,
     },
-  ]
+  ],
 };
 
 export default splittagMeta;

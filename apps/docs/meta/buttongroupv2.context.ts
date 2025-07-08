@@ -2,7 +2,8 @@ import type { ComponentMeta } from "@/components/ui/BlendTypeTable";
 
 const buttongroupv2Meta: ComponentMeta = {
   componentName: "ButtonGroupV2",
-  componentDescription: "A streamlined button group component designed specifically for ButtonV2 components, providing flexible layout options with stacked and inline arrangements.",
+  componentDescription:
+    "A streamlined button group component designed specifically for ButtonV2 components, providing flexible layout options with stacked and inline arrangements.",
   features: [
     "Optimized for ButtonV2 components",
     "Stacked and inline layout modes",
@@ -10,7 +11,7 @@ const buttongroupv2Meta: ComponentMeta = {
     "Seamless button integration",
     "Flexible gap management",
     "Simple and lightweight design",
-    "Responsive layout support"
+    "Responsive layout support",
   ],
   usageExamples: [
     {
@@ -25,7 +26,7 @@ const buttongroupv2Meta: ComponentMeta = {
     text="Save" 
     buttonType={ButtonTypeV2.PRIMARY} 
   />
-</ButtonGroupV2>`
+</ButtonGroupV2>`,
     },
     {
       title: "Stacked Button Group",
@@ -43,7 +44,7 @@ const buttongroupv2Meta: ComponentMeta = {
     text="Archive" 
     buttonType={ButtonTypeV2.SECONDARY} 
   />
-</ButtonGroupV2>`
+</ButtonGroupV2>`,
     },
     {
       title: "Action Button Group",
@@ -59,7 +60,7 @@ const buttongroupv2Meta: ComponentMeta = {
     buttonType={ButtonTypeV2.PRIMARY}
     trailingIcon={<ChevronRightIcon />}
   />
-</ButtonGroupV2>`
+</ButtonGroupV2>`,
     },
     {
       title: "Form Button Group",
@@ -75,16 +76,18 @@ const buttongroupv2Meta: ComponentMeta = {
     buttonType={ButtonTypeV2.SUCCESS}
     size={ButtonSizeV2.LARGE}
   />
-</ButtonGroupV2>`
-    }
+</ButtonGroupV2>`,
+    },
   ],
   props: [
     {
       propName: "stacked",
       propType: "boolean",
       typeDefinition: "boolean",
-      propDescription: "Whether buttons should be stacked together with no gaps (true) or spaced apart (false)",
-      llmContext: "Whether buttons should be stacked together with no gaps (true) or spaced apart (false)",
+      propDescription:
+        "Whether buttons should be stacked together with no gaps (true) or spaced apart (false)",
+      llmContext:
+        "Whether buttons should be stacked together with no gaps (true) or spaced apart (false)",
       propDefault: "false",
       category: "Layout",
       required: false,
@@ -92,14 +95,15 @@ const buttongroupv2Meta: ComponentMeta = {
     {
       propName: "children",
       propType: "ReactElement<ButtonV2Props> | ReactElement<ButtonV2Props>[]",
-      typeDefinition: "ReactElement<ButtonV2Props> | ReactElement<ButtonV2Props>[]",
+      typeDefinition:
+        "ReactElement<ButtonV2Props> | ReactElement<ButtonV2Props>[]",
       propDescription: "ButtonV2 components to be grouped together",
       llmContext: "ButtonV2 components to be grouped together",
       propDefault: "-",
       category: "Content",
       required: true,
     },
-  ]
+  ],
 };
 
 export default buttongroupv2Meta;

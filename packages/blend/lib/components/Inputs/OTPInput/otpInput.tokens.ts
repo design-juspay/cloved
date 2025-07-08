@@ -69,7 +69,7 @@ const otpInputTokens: OTPInputTokensType = {
 };
 
 export const getOTPInputTokens = (
-  foundationToken: FoundationTokenType
+  foundationToken: FoundationTokenType,
 ): OTPInputTokensType => {
   return {
     input: {

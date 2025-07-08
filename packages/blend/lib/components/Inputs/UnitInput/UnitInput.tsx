@@ -34,7 +34,7 @@ const UnitInput = ({
   ...rest
 }: UnitInputProps) => {
   const unitInputTokens = useComponentToken(
-    "UNIT_INPUT"
+    "UNIT_INPUT",
   ) as UnitInputTokensType;
   const paddingX = unitInputTokens.input.paddingX[size];
   const paddingY = unitInputTokens.input.paddingY[size];

@@ -116,7 +116,7 @@ const ModalFooter = ({
           buttonType={secondaryAction.buttonType || ButtonTypeV2.SECONDARY}
           text={secondaryAction.text}
           onClick={secondaryAction.onClick}
-          isDisabled={secondaryAction.isDisabled}
+          disabled={secondaryAction.disabled}
           subType={secondaryAction.subType}
           size={secondaryAction.size}
           leadingIcon={secondaryAction.leadingIcon}
@@ -129,7 +129,7 @@ const ModalFooter = ({
           buttonType={primaryAction.buttonType || ButtonTypeV2.PRIMARY}
           text={primaryAction.text}
           onClick={primaryAction.onClick}
-          isDisabled={primaryAction.isDisabled}
+          disabled={primaryAction.disabled}
           subType={primaryAction.subType}
           size={primaryAction.size}
           leadingIcon={primaryAction.leadingIcon}
@@ -157,7 +157,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
       headerRightSlot,
       showDivider = true,
     },
-    ref
+    ref,
   ) => {
     const modalTokens = useComponentToken("MODAL") as ModalTokensType;
     useScrollLock(isOpen);
@@ -235,7 +235,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
         </Block>
       </Block>
     );
-  }
+  },
 );
 
 Modal.displayName = "Modal";
