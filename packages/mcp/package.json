@@ -2,9 +2,10 @@
   "name": "@design-juspay/blend-mcp-server",
   "version": "1.0.0",
   "description": "MCP server for Blend design system - provides tools for generating React components and documentation",
+  "private": true,
   "type": "module",
   "bin": {
-    "blend-mcp": "./index.js"
+    "blend-mcp-server": "./index.js"
   },
   "files": [
     "index.js",
@@ -34,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/design-juspay/cloved.git",
+    "url": "git+https://github.com/design-juspay/cloved.git",
     "directory": "packages/mcp"
   },
   "bugs": {

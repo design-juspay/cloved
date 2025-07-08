@@ -11,6 +11,7 @@
     "storybook",
     "nextdocs",
     "@repo/eslint-config",
-    "@repo/typescript-config"
+    "@repo/typescript-config",
+    "@design-juspay/blend-mcp-server"
   ]
 }
