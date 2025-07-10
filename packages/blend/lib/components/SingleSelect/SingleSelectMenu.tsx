@@ -277,7 +277,7 @@ const Label = styled(RadixMenu.Label)(() => ({
 // Utility: Recursively filter menu items and groups by search text
 function filterMenuGroups(
   groups: SelectMenuGroupType[],
-  searchText: string,
+  searchText: string
 ): SelectMenuGroupType[] {
   if (!searchText) return groups;
   const lower = searchText.toLowerCase();
@@ -298,7 +298,7 @@ function filterMenuGroups(
 
 function filterMenuItem(
   item: SelectMenuItemType,
-  lower: string,
+  lower: string
 ): SelectMenuItemType | null {
   // Check if this item matches
   const matches =

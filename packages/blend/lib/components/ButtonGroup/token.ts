@@ -1,10 +1,10 @@
-import { foundationToken } from "../../foundationToken";
-import { ButtonSize } from "../Button/types";
+import { foundationToken } from '../../foundationToken';
+import { ButtonSize } from '../Button/types';
 
 const buttonGroupTokens = {
   container: {
     display: "inline-flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   spacing: {
     [ButtonSize.SMALL]: foundationToken.spacing[12],
@@ -17,18 +17,18 @@ const buttonGroupTokens = {
       first: {
         borderTopRightRadius: "0",
         borderBottomRightRadius: "0",
-        borderRight: "0",
+        borderRight: "0"
       },
       middle: {
         borderRadius: "0",
-        borderRight: "0",
+        borderRight: "0"
       },
       last: {
         borderTopLeftRadius: "0",
-        borderBottomLeftRadius: "0",
-      },
-    },
-  },
+        borderBottomLeftRadius: "0"
+      }
+    }
+  }
 };
 
-export default buttonGroupTokens;
+export default buttonGroupTokens; 

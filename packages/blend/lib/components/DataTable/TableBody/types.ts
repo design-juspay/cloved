@@ -1,4 +1,4 @@
-import { ColumnDefinition } from "../types";
+import { ColumnDefinition } from '../types';
 
 export type TableBodyProps<T extends Record<string, unknown>> = {
   currentData: T[];
@@ -25,8 +25,5 @@ export type TableBodyProps<T extends Record<string, unknown>> = {
   onRowExpand: (rowId: unknown) => void;
   onFieldChange: (rowId: unknown, field: keyof T, value: unknown) => void;
   onRowClick?: (row: T, index: number) => void;
-  getColumnWidth: (
-    column: ColumnDefinition<T>,
-    index: number,
-  ) => React.CSSProperties;
-};
+  getColumnWidth: (column: ColumnDefinition<T>, index: number) => React.CSSProperties;
+}; 

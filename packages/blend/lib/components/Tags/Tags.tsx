@@ -20,7 +20,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
       splitTagPosition,
       ...rest
     },
-    ref,
+    ref
   ) => {
     const tagTokens = useComponentToken("TAGS") as TagTokensType;
 
@@ -62,7 +62,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
         {rightSlot && <Block contentCentered>{rightSlot}</Block>}
       </Block>
     );
-  },
+  }
 );
 
 Tag.displayName = "Tag";

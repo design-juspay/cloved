@@ -28,7 +28,7 @@ const Section = ({
   React.useEffect(() => {
     if (section.items) {
       itemRefs.current = section.items.map(() =>
-        React.createRef<HTMLElement | null>(),
+        React.createRef<HTMLElement | null>()
       );
     }
   }, [section.items]);
@@ -63,7 +63,7 @@ const Section = ({
 
   const handleItemNavigation = (
     direction: "up" | "down",
-    currentIndex: number,
+    currentIndex: number
   ) => {
     if (direction === "up") {
       if (currentIndex === 0) {
@@ -142,9 +142,6 @@ const Section = ({
             display: "flex",
             flexDirection: "column",
             gap: "8px",
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
           }}
           id={`section-content-${sectionIndex}`}
           role="menu"

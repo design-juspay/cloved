@@ -53,7 +53,7 @@ const breadcrumbTokens: BreadcrumbTokenType = {
 };
 
 export const getBreadcrumbTokens = (
-  foundationToken: FoundationTokenType,
+  foundationToken: FoundationTokenType
 ): BreadcrumbTokenType => {
   return {
     height: foundationToken.unit[32],

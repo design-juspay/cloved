@@ -29,7 +29,7 @@ const SubContent = styled(RadixMenu.SubContent)(() => ({
 const getBgColor = (
   state: MenuItemStates,
   menuTokens: MenuTokensType,
-  item: MenuItemV2Type,
+  item: MenuItemV2Type
 ) => {
   const bg = menuTokens.item.backgroundColor;
 
@@ -67,7 +67,7 @@ const getBgColor = (
 const getLabelColor = (
   state: MenuItemStates,
   menuTokens: MenuTokensType,
-  item: MenuItemV2Type,
+  item: MenuItemV2Type
 ) => {
   const bg = menuTokens.item.label.color;
 
@@ -105,7 +105,7 @@ const getLabelColor = (
 const getSubLabelColor = (
   state: MenuItemStates,
   menuTokens: MenuTokensType,
-  item: MenuItemV2Type,
+  item: MenuItemV2Type
 ) => {
   const bg = menuTokens.item.subLabel.color;
 
@@ -151,7 +151,10 @@ export const SubMenu = ({
 
   return (
     <RadixMenu.Sub key={idx}>
-      <RadixMenu.SubTrigger asChild style={{ outline: "none", border: "none" }}>
+      <RadixMenu.SubTrigger
+        asChild
+        style={{ outline: "none", border: "none" }}
+      >
         <Block
           display="flex"
           flexDirection="column"

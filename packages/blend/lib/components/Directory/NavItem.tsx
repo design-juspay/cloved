@@ -52,7 +52,6 @@ const NestedList = styled(Block)`
   padding-left: 24px;
   margin-top: 8px;
   position: relative;
-  list-style: none;
 
   & > div:first-child {
     position: absolute;
@@ -96,7 +95,7 @@ const NavItem = ({ item, index, onNavigate }: NavItemProps) => {
     (node: HTMLButtonElement | HTMLAnchorElement | null) => {
       itemRef.current = node;
     },
-    [],
+    []
   );
 
   const handleClick = () => {
@@ -180,7 +179,7 @@ const NavItem = ({ item, index, onNavigate }: NavItemProps) => {
                         ? Math.max(0, currentIndex - 1)
                         : Math.min(
                             (item.items?.length || 0) - 1,
-                            currentIndex + 1,
+                            currentIndex + 1
                           );
                     const nestedItems = itemRef.current?.parentElement
                       ?.querySelector("ul")

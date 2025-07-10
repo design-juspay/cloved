@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
+import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { TabsVariant, TabsSize } from "./types";
-import { TabsTokensType } from "./tabs.token";
+import { TabsTokensType } from "./tabs.token"; 
 import { foundationToken } from "../../foundationToken";
 
 export const StyledTabs = styled(TabsPrimitive.Root)`
@@ -19,7 +19,7 @@ export const StyledTabsContent = styled(TabsPrimitive.Content)<{
 
 export const StyledTabsList = styled(TabsPrimitive.List)<{
   $variant: TabsVariant;
-  $size: TabsSize;
+  $size: TabsSize; 
   $expanded: boolean;
   $fitContent: boolean;
   $tabsToken: TabsTokensType;
@@ -34,15 +34,14 @@ export const StyledTabsList = styled(TabsPrimitive.List)<{
   backgroundColor: props.$tabsToken.list.backgroundColor[props.$variant],
   borderRadius: props.$tabsToken.list.borderRadius[props.$variant],
   borderBottom: props.$tabsToken.list.borderBottom[props.$variant],
-
-  ...(props.$expanded &&
-    !props.$fitContent && {
-      justifyContent: "space-between",
-      "& > *": {
-        flex: 1,
-        textAlign: "center",
-      },
-    }),
+  
+  ...(props.$expanded && !props.$fitContent && {
+    justifyContent: "space-between",
+    "& > *": {
+      flex: 1,
+      textAlign: "center",
+    },
+  }),
 }));
 
 export const StyledTabsTrigger = styled(TabsPrimitive.Trigger)<{
@@ -58,8 +57,7 @@ export const StyledTabsTrigger = styled(TabsPrimitive.Trigger)<{
   fontSize: props.$tabsToken.trigger.fontSize[props.$size],
   fontWeight: props.$tabsToken.trigger.fontWeight[props.$variant].default,
   color: props.$tabsToken.trigger.color[props.$variant].default,
-  backgroundColor:
-    props.$tabsToken.trigger.backgroundColor[props.$variant].default,
+  backgroundColor: props.$tabsToken.trigger.backgroundColor[props.$variant].default,
   borderRadius: props.$tabsToken.trigger.borderRadius[props.$variant],
   border: "none",
   transition: "all 0.2s ease-in-out",
@@ -70,14 +68,12 @@ export const StyledTabsTrigger = styled(TabsPrimitive.Trigger)<{
 
   "&:hover:not([data-state='active']):not(:disabled)": {
     color: props.$tabsToken.trigger.color[props.$variant].hover,
-    backgroundColor:
-      props.$tabsToken.trigger.backgroundColor[props.$variant].hover,
+    backgroundColor: props.$tabsToken.trigger.backgroundColor[props.$variant].hover,
   },
 
   "&[data-state='active']": {
     color: props.$tabsToken.trigger.color[props.$variant].active,
-    backgroundColor:
-      props.$tabsToken.trigger.backgroundColor[props.$variant].active,
+    backgroundColor: props.$tabsToken.trigger.backgroundColor[props.$variant].active,
     fontWeight: props.$tabsToken.trigger.fontWeight[props.$variant].active,
     zIndex: 1,
 

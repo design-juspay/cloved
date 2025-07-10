@@ -171,8 +171,9 @@ const OTPInput = ({
             //   cursor: "not-allowed",
             // }}
             _focus={{
-              border: otpInputTokens.input.border.focus,
-              outline: otpInputTokens.input.outline.focus,
+              border: otpInputTokens.input.border[error ? "error" : "focus"],
+              boxShadow:
+                otpInputTokens.input.boxShadow[error ? "error" : "focus"],
             }}
             disabled={disabled}
             _disabled={{

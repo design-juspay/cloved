@@ -1,6 +1,6 @@
-import React, { RefObject } from "react";
-import { AvatarData } from "./types";
-import { AvatarProps, AvatarSize } from "../Avatar/types";
+import React, { RefObject } from 'react';
+import { AvatarData } from './types';
+import { AvatarProps, AvatarSize } from '../Avatar/types';
 
 // Temporary type definition until Menu component is fully implemented
 interface MenuItemProps {
@@ -17,7 +17,7 @@ interface MenuItemProps {
  */
 export const positionMenu = (
   menuRef: RefObject<HTMLDivElement>,
-  counterRef: RefObject<HTMLButtonElement>,
+  counterRef: RefObject<HTMLButtonElement>
 ): void => {
   if (!menuRef?.current || !counterRef?.current) return;
 
@@ -26,10 +26,10 @@ export const positionMenu = (
   const menuWidth = 320; // Standard menu width
 
   // Position the menu below the counter
-  menuElement.style.position = "fixed";
+  menuElement.style.position = 'fixed';
   menuElement.style.top = `${counterRect.bottom + 4}px`;
   menuElement.style.left = `${counterRect.left + counterRect.width / 2 - menuWidth / 2}px`;
-  menuElement.style.zIndex = "50";
+  menuElement.style.zIndex = '50';
 
   // Make sure menu doesn't go off the right edge of the screen
   const rightEdge = parseFloat(menuElement.style.left) + menuWidth;
@@ -40,7 +40,7 @@ export const positionMenu = (
 
   // Make sure menu doesn't go off the left edge
   if (parseFloat(menuElement.style.left) < 4) {
-    menuElement.style.left = "4px";
+    menuElement.style.left = '4px';
   }
 };
 
@@ -51,18 +51,14 @@ export const createMenuItems = (
   avatars: AvatarData[],
   selectedIds: (string | number)[],
   onSelect: (id: string | number) => void,
-  AvatarComponent: React.ComponentType<AvatarProps>,
+  AvatarComponent: React.ComponentType<AvatarProps>
 ): MenuItemProps[] => {
   return avatars.map((avatar): MenuItemProps => {
     const isSelected = selectedIds.includes(avatar.id);
-
+    
     return {
       id: avatar.id.toString(),
-      text:
-        avatar.alt ||
-        (typeof avatar.fallback === "string"
-          ? avatar.fallback
-          : `Avatar ${avatar.id}`),
+      text: avatar.alt || (typeof avatar.fallback === 'string' ? avatar.fallback : `Avatar ${avatar.id}`),
       hasSlotL: true,
       slotL: (
         <AvatarComponent
@@ -82,22 +78,17 @@ export const createMenuItems = (
 /**
  * Filters avatars based on search term
  */
-export const filterAvatars = (
-  avatars: AvatarData[],
-  searchTerm: string,
-): AvatarData[] => {
+export const filterAvatars = (avatars: AvatarData[], searchTerm: string): AvatarData[] => {
   if (!searchTerm) return avatars;
-
+  
   const lowerSearchTerm = searchTerm.toLowerCase();
-
-  return avatars.filter((avatar) => {
-    const altText = (avatar.alt || "").toLowerCase();
-    const fallbackText =
-      typeof avatar.fallback === "string" ? avatar.fallback.toLowerCase() : "";
-
-    return (
-      altText.includes(lowerSearchTerm) ||
-      fallbackText.includes(lowerSearchTerm)
-    );
+  
+  return avatars.filter(avatar => {
+    const altText = (avatar.alt || '').toLowerCase();
+    const fallbackText = typeof avatar.fallback === 'string' 
+      ? avatar.fallback.toLowerCase() 
+      : '';
+    
+    return altText.includes(lowerSearchTerm) || fallbackText.includes(lowerSearchTerm);
   });
-};
+}; 

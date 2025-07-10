@@ -23,8 +23,8 @@ const ButtonGroupV2: React.FC<ButtonGroupV2Props> = ({
             index === 0
               ? "left"
               : index === Children.count(children) - 1
-                ? "right"
-                : "center",
+              ? "right"
+              : "center",
         });
       })}
     </Block>

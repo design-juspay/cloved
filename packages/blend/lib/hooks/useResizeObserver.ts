@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 export function useResizeObserver(
   targetRef: React.RefObject<HTMLElement>,
-  callback: (rect: DOMRectReadOnly) => void,
+  callback: (rect: DOMRectReadOnly) => void
 ) {
   useEffect(() => {
     const el = targetRef.current;

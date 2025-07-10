@@ -44,7 +44,7 @@ export type TableTokenType = {
       border: CSSObject["border"];
       selectText: CSSObject;
     };
-    table: {
+    table:{
       width: CSSObject["width"];
       tableLayout: CSSObject["tableLayout"];
       borderCollapse: CSSObject["borderCollapse"];
@@ -99,7 +99,7 @@ export type TableTokenType = {
         padding: CSSObject["padding"];
         borderTop: CSSObject["borderTop"];
         height: CSSObject["height"];
-        position: CSSObject["position"];
+        position: CSSObject["position"];    
         bottom: CSSObject["bottom"];
         backgroundColor: CSSObject["backgroundColor"];
         zIndex: CSSObject["zIndex"];
@@ -132,9 +132,7 @@ export type TableTokenType = {
   };
 };
 
-export const getTableToken = (
-  foundationToken: FoundationTokenType,
-): TableTokenType => {
+export const getTableToken = (foundationToken:  FoundationTokenType )  : TableTokenType => { 
   return {
     width: "100%",
     display: "flex",
@@ -174,32 +172,32 @@ export const getTableToken = (
       },
     },
     dataTable: {
-      borderRadius: foundationToken.border.radius[8],
-      border: `1px solid ${foundationToken.colors.gray[200]}`,
-      maxHeight: "calc(100vh - 250px)",
-      minHeight: "380px",
+        borderRadius: foundationToken.border.radius[8],
+        border: `1px solid ${foundationToken.colors.gray[200]}`,
+        maxHeight: "calc(100vh - 250px)",
+        minHeight: "380px",
       bulkActions: {
-        top: "80%",
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 1000,
-        backgroundColor: FOUNDATION_THEME.colors.gray[0],
-        color: FOUNDATION_THEME.colors.gray[700],
-        borderRadius: `${FOUNDATION_THEME.border.radius[12]}`,
-        padding: `${FOUNDATION_THEME.unit[8]} ${FOUNDATION_THEME.unit[16]}`,
-        boxShadow: FOUNDATION_THEME.shadows.lg,
-        display: "flex",
-        alignItems: "center",
-        gap: FOUNDATION_THEME.unit[12],
-        minWidth: "320px",
-        border: `${FOUNDATION_THEME.border.width[1]} solid ${FOUNDATION_THEME.colors.gray[200]}`,
-        selectText: {
-          fontSize: foundationToken.font.size.body.sm.fontSize,
-          fontWeight: foundationToken.font.weight[500],
-          flex: 1,
-        },
+          top: '80%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1000,
+          backgroundColor: FOUNDATION_THEME.colors.gray[0],
+          color: FOUNDATION_THEME.colors.gray[700],
+          borderRadius: `${FOUNDATION_THEME.border.radius[12]}`,
+          padding: `${FOUNDATION_THEME.unit[8]} ${FOUNDATION_THEME.unit[16]}`,
+          boxShadow: FOUNDATION_THEME.shadows.lg,
+          display: 'flex',
+          alignItems: 'center',
+          gap: FOUNDATION_THEME.unit[12],
+          minWidth: '320px',
+          border: `${FOUNDATION_THEME.border.width[1]} solid ${FOUNDATION_THEME.colors.gray[200]}`,
+          selectText: {
+            fontSize: foundationToken.font.size.body.sm.fontSize,
+            fontWeight: foundationToken.font.weight[500],
+            flex: 1,
+          },
       },
-      table: {
+      table:{
         width: "100%",
         tableLayout: "auto",
         borderCollapse: "separate",
@@ -216,7 +214,7 @@ export const getTableToken = (
               backgroundColor: foundationToken.colors.gray[50],
             },
           },
-          cell: {
+          cell:{
             padding: `${foundationToken.unit[4]} ${foundationToken.unit[8]}`,
             textAlign: "left",
             fontWeight: foundationToken.font.weight[500],
@@ -229,7 +227,7 @@ export const getTableToken = (
           },
         },
         body: {
-          backgroundColor: foundationToken.colors.gray[25],
+          backgroundColor: foundationToken.colors.gray[25],    
           borderTop: `1px solid ${foundationToken.colors.gray[150]}`,
           row: {
             height: foundationToken.unit[56],
@@ -238,8 +236,8 @@ export const getTableToken = (
               cursor: "pointer",
             },
             backgroundColor: foundationToken.colors.gray[25],
-          },
-          cell: {
+          },  
+          cell:{
             padding: `${foundationToken.unit[4]} ${foundationToken.unit[8]}`,
             fontWeight: foundationToken.font.weight[500],
             color: foundationToken.colors.gray[400],
@@ -264,9 +262,9 @@ export const getTableToken = (
                   backgroundColor: FOUNDATION_THEME.colors.gray[100],
                   color: FOUNDATION_THEME.colors.gray[700],
                 },
-              },
-            },
-          },
+              }
+            }
+          }
         },
         footer: {
           display: "flex",
@@ -281,7 +279,7 @@ export const getTableToken = (
           zIndex: 0,
           flexShrink: 0,
           pagination: {
-            pageText: {
+            pageText:{
               fontSize: `${foundationToken.font.size.body.md.fontSize}px`,
               color: foundationToken.colors.gray[600],
             },
@@ -301,10 +299,11 @@ export const getTableToken = (
             },
             pageNavigation: {
               gap: foundationToken.unit[4],
-            },
-          },
-        },
-      },
-    },
-  };
-};
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

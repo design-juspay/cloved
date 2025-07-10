@@ -46,12 +46,12 @@ export type VariantType =
   | "code.lg";
 
 const getFontGroup = (
-  variant?: VariantType,
+  variant?: VariantType
 ): { fontSize: number; lineHeight: number } | null => {
   if (!variant) return null;
   const [type, size] = variant.split(".") as [
     keyof typeof FOUNDATION_THEME.font.size,
-    keyof (typeof FOUNDATION_THEME.font.size)[keyof typeof FOUNDATION_THEME.font.size],
+    keyof (typeof FOUNDATION_THEME.font.size)[keyof typeof FOUNDATION_THEME.font.size]
   ];
 
   return FOUNDATION_THEME.font.size[type]?.[size] || null;
@@ -59,7 +59,7 @@ const getFontGroup = (
 
 const getSemanticTag = (
   variant?: VariantType,
-  as?: SemanticTagType,
+  as?: SemanticTagType
 ): SemanticTagType => {
   if (as) return as;
   if (!variant) return "p";

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Block from "../Primitives/Block/Block";
+import { dummyMenuItems } from "../../../src/demos/Menu/MenuDemo";
 import InputLabels from "../Inputs/utils/InputLabels/InputLabels";
 import InputFooter from "../Inputs/utils/InputFooter/InputFooter";
 import MultiSelectMenu from "./MultiSelectMenu";
@@ -19,7 +20,7 @@ import { MultiSelectTokensType } from "./multiSelect.tokens";
 import { useComponentToken } from "../../context/useComponentToken";
 
 const map = function getValueLabelMap(
-  groups: MultiSelectMenuGroupType[],
+  groups: MultiSelectMenuGroupType[]
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -42,7 +43,7 @@ const map = function getValueLabelMap(
 const MultiSelect = ({
   selectedValues,
   onChange,
-  items,
+  items = dummyMenuItems,
   label,
   sublabel,
   disabled,
@@ -64,7 +65,7 @@ const MultiSelect = ({
   alignOffset,
 }: MultiSelectProps) => {
   const multiSelectTokens = useComponentToken(
-    "MULTI_SELECT",
+    "MULTI_SELECT"
   ) as MultiSelectTokensType;
   const [open, setOpen] = useState(false);
   const valueLabelMap = map(items);
@@ -208,7 +209,7 @@ const MultiSelect = ({
                       style={{
                         height: "100%",
                         marginLeft: 8,
-                        backgroundColor:
+                        backgroundColor: 
                           multiSelectTokens.trigger.selectionTag.container[
                             selectionTagType
                           ].backgroundColor,

@@ -28,12 +28,9 @@ export const buttonSizes = {
 // Get button size styles
 export const getButtonSizeStyles = (
   size: ButtonSize,
-  subType: ButtonSubType,
+  subType: ButtonSubType
 ) => {
-  if (
-    subType === ButtonSubType.ICON_ONLY ||
-    subType === ButtonSubType.PLAIN_ICON
-  ) {
+  if (subType === ButtonSubType.ICON_ONLY || subType === ButtonSubType.PLAIN_ICON) {
     return css`
       width: ${buttonSizes[size].height};
       height: ${buttonSizes[size].height};
@@ -50,7 +47,7 @@ export const getButtonSizeStyles = (
 
 // Get button type key
 export const getButtonTypeKey = (
-  type: ButtonType,
+  type: ButtonType
 ): "primary" | "secondary" | "danger" | "success" => {
   switch (type) {
     case ButtonType.PRIMARY:
@@ -69,7 +66,7 @@ export const getButtonTypeKey = (
 // Get button type styles
 export const getButtonTypeStyles = (
   buttonType: ButtonType,
-  subType: ButtonSubType,
+  subType: ButtonSubType
 ) => {
   const typeKey = getButtonTypeKey(buttonType);
 
@@ -86,14 +83,11 @@ export const getButtonTypeStyles = (
       }
 
       &:active:not(:disabled) {
-        color: ${buttonTokens.link.active?.[typeKey] ||
-        buttonTokens.link[typeKey]};
+        color: ${buttonTokens.link.active?.[typeKey] || buttonTokens.link[typeKey]};
       }
 
       &:focus-visible:not(:disabled) {
-        outline: 2px solid
-          ${buttonTokens.outline?.[typeKey] ||
-          foundationToken.colors.primary[300]};
+        outline: 2px solid ${buttonTokens.outline?.[typeKey] || foundationToken.colors.primary[300]};
         outline-offset: 2px;
       }
 
@@ -132,44 +126,33 @@ export const getButtonTypeStyles = (
     `;
   }
 
-  const borderWidth =
-    typeKey === "primary"
-      ? foundationToken.borderWidth[1.5]
-      : typeKey === "danger"
-        ? foundationToken.borderWidth[1.5]
-        : typeKey === "success"
-          ? foundationToken.borderWidth[1.5]
-          : foundationToken.borderWidth[1];
+  const borderWidth = 
+    typeKey === "primary" ? foundationToken.borderWidth[1.5] : 
+    typeKey === "danger" ? foundationToken.borderWidth[1.5] :
+    typeKey === "success" ? foundationToken.borderWidth[1.5] :
+    foundationToken.borderWidth[1];
 
   // Check if this button type uses gradient
-  const hasGradient =
-    typeKey === "primary" || typeKey === "danger" || typeKey === "success";
+  const hasGradient = typeKey === "primary" || typeKey === "danger" || typeKey === "success";
 
   return css`
     background: ${buttonTokens.background[typeKey].default};
     color: ${buttonTokens.text[typeKey].default};
     border: ${borderWidth} solid ${buttonTokens.border[typeKey].default};
-
+    
     /* For gradient buttons, set a background-color matching the gradient to prevent flashing */
-    ${hasGradient &&
-    `
+    ${hasGradient && `
       background-color: ${buttonTokens.background[typeKey].hover};
     `}
 
     &:hover:not(:disabled) {
       background: ${buttonTokens.background[typeKey].hover};
-      border-color: ${buttonTokens.border[typeKey].hover ||
-      buttonTokens.border[typeKey].default};
+      border-color: ${buttonTokens.border[typeKey].hover || buttonTokens.border[typeKey].default};
     }
 
     &:active:not(:disabled) {
       background: ${buttonTokens.background[typeKey].active};
-      border: ${borderWidth} solid
-        ${typeKey === "danger"
-          ? "transparent"
-          : buttonTokens.border[typeKey].active ||
-            buttonTokens.border[typeKey].hover ||
-            buttonTokens.border[typeKey].default};
+      border: ${borderWidth} solid ${typeKey === "danger" ? "transparent" : (buttonTokens.border[typeKey].active || buttonTokens.border[typeKey].hover || buttonTokens.border[typeKey].default)};
       box-shadow: ${buttonTokens.boxShadow[typeKey].active};
       transform: translateY(1px);
     }
@@ -228,8 +211,7 @@ export const getBaseButtonStyles = () => css`
   font-weight: ${foundationToken.fontWeight[600]};
   line-height: ${foundationToken.lineHeight[20]};
   letter-spacing: 0;
-  transition: all ${buttonTokens.transition.duration}
-    ${buttonTokens.transition.timing};
+  transition: all ${buttonTokens.transition.duration} ${buttonTokens.transition.timing};
   cursor: pointer;
   outline: none;
   white-space: nowrap;

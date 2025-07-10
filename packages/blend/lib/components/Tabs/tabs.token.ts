@@ -8,7 +8,7 @@ export type TabsTokensType = {
   gap: {
     [key in TabsVariant]: CSSObject["gap"];
   };
-
+  
   list: {
     padding: {
       [key in TabsVariant]: CSSObject["padding"];
@@ -23,7 +23,7 @@ export type TabsTokensType = {
       [key in TabsVariant]: CSSObject["borderBottom"];
     };
   };
-
+  
   trigger: {
     height: {
       [key in TabsSize]: CSSObject["height"];
@@ -34,9 +34,9 @@ export type TabsTokensType = {
     fontSize: {
       [key in TabsSize]: CSSObject["fontSize"];
     };
-
+    
     iconGap: CSSObject["gap"];
-
+    
     fontWeight: {
       [key in TabsVariant]: {
         [key in TabsState]?: CSSObject["fontWeight"];
@@ -56,7 +56,7 @@ export type TabsTokensType = {
       [key in TabsVariant]: CSSObject["borderRadius"];
     };
   };
-
+  
   underline: {
     height: CSSObject["height"];
     color: CSSObject["color"];
@@ -70,7 +70,7 @@ export const getTabsTokens = (foundationToken: ThemeType): TabsTokensType => {
       [TabsVariant.BOXED]: foundationToken.unit[4],
       [TabsVariant.FLOATING]: foundationToken.unit[8],
     },
-
+    
     list: {
       padding: {
         [TabsVariant.UNDERLINE]: "0",
@@ -93,7 +93,7 @@ export const getTabsTokens = (foundationToken: ThemeType): TabsTokensType => {
         [TabsVariant.FLOATING]: "none",
       },
     },
-
+    
     trigger: {
       height: {
         [TabsSize.MD]: foundationToken.unit[36],
@@ -107,9 +107,9 @@ export const getTabsTokens = (foundationToken: ThemeType): TabsTokensType => {
         [TabsSize.MD]: foundationToken.font.size.body.md.fontSize,
         [TabsSize.LG]: foundationToken.font.size.body.md.fontSize,
       },
-
+      
       iconGap: foundationToken.unit[8],
-
+      
       fontWeight: {
         [TabsVariant.UNDERLINE]: {
           default: foundationToken.font.weight[500],
@@ -167,7 +167,7 @@ export const getTabsTokens = (foundationToken: ThemeType): TabsTokensType => {
         [TabsVariant.FLOATING]: foundationToken.border.radius[8],
       },
     },
-
+    
     underline: {
       height: foundationToken.border.width[2],
       color: foundationToken.colors.gray[700],

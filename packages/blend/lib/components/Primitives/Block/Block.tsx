@@ -376,7 +376,7 @@ const StyledBlock = styled.div.withConfig({
       }
       return acc;
     },
-    {} as CSSObject,
+    {} as CSSObject
   );
 
   return css({ ...base, ...stateStyles });
@@ -417,7 +417,7 @@ const Block = forwardRef<HTMLDivElement, BlockProps>(
         {children}
       </StyledBlock>
     );
-  },
+  }
 );
 
 Block.displayName = "Block";
