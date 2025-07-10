@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import figma from "@figma/code-connect";
 import {
   ButtonV2,
   ButtonTypeV2,
@@ -18,114 +17,7 @@ import {
   Trash2,
 } from "lucide-react";
 
-// Figma Code Connect configuration
-figma.connect(ButtonV2, 'https://www.figma.com/design/fHb0XUhWXZErq97C6N9uG3/-BETA--Dashboard-Design-System?node-id=14667-834&t=IFWLvwV2QQMus9fh-11', {
-  /**
-   * PROP MAPPING ANNOTATIONS
-   * 
-   * This documents the differences between Figma component properties and code props:
-   * 
-   * 1. STATE vs DISABLED:
-   *    - Figma: Uses 'state' variant with values: default, hover, active, focussed, disabled
-   *    - Code: Uses boolean 'disabled' prop
-   *    - Mapping: Only 'disabled' state maps to true, all others map to false
-   * 
-   * 2. ICON HANDLING:
-   *    - Figma: Uses boolean props 'hasLeftIcon' and 'hasRightIcon'
-   *    - Code: Expects actual React components for 'leftIcon' and 'rightIcon'
-   *    - Mapping: When hasIcon is true, we use the Figma instance, otherwise undefined
-   * 
-   * 3. SUBTYPE DIFFERENCES:
-   *    - Figma: Has 'plainIcon' subtype for design purposes
-   *    - Code: Does not have 'plainIcon' - only default, iconOnly, and inline
-   *    - Mapping: 'plainIcon' is excluded from the mapping
-   * 
-   * 4. SIZE VALUES:
-   *    - Figma: Uses 'sm', 'md', 'lg'
-   *    - Code: Uses ButtonSizeV2 enum values (SMALL, MEDIUM, LARGE)
-   *    - Mapping: Direct mapping with enum values
-   * 
-   * 5. PROPS NOT YET IN FIGMA:
-   *    - 'loading': Boolean prop for loading state (planned)
-   *    - 'fullWidth': Boolean prop for full width buttons (planned)
-   *    - 'buttonGroupPosition': For button group styling (not in Figma)
-   *    - 'justifyContent': For content alignment (not in Figma)
-   */
-  props: {
-    // Direct text mapping - same in both Figma and code
-    text: figma.string('text'),
-    
-    // Button type mapping - direct correlation
-    buttonType: figma.enum('buttonType', {
-      'primary': ButtonTypeV2.PRIMARY,
-      'secondary': ButtonTypeV2.SECONDARY,
-      'danger': ButtonTypeV2.DANGER,
-      'success': ButtonTypeV2.SUCCESS
-    }),
-    
-    // Size mapping - Figma uses lowercase, code uses uppercase enum
-    size: figma.enum('size', {
-      'sm': ButtonSizeV2.SMALL,
-      'md': ButtonSizeV2.MEDIUM,
-      'lg': ButtonSizeV2.LARGE
-    }),
-    
-    // SubType mapping - NOTE: 'plainIcon' exists in Figma but not in code
-    subType: figma.enum('subType', {
-      'default': ButtonSubTypeV2.DEFAULT,
-      'iconOnly': ButtonSubTypeV2.ICON_ONLY,
-      'inline': ButtonSubTypeV2.INLINE
-      // 'plainIcon' is intentionally excluded - Figma only variant
-    }),
-    
-    // State to disabled mapping - Figma uses variant, code uses boolean
-    disabled: figma.enum('state', {
-      'disabled': true,    // Only disabled state maps to true
-      'default': false,    // All other states map to false
-      'hover': false,      // Hover is visual only in Figma
-      'active': false,     // Active is visual only in Figma
-      'focussed': false    // Focus is visual only in Figma
-    }),
-    
-    // Icon mappings - Figma uses boolean, code needs component instance
-    leftIcon: figma.boolean('hasLeftIcon', {
-      true: figma.instance('leftIcon'),  // When true, use the icon instance
-      false: undefined                    // When false, no icon
-    }),
-    rightIcon: figma.boolean('hasRightIcon', {
-      true: figma.instance('rightIcon'), // When true, use the icon instance
-      false: undefined                    // When false, no icon
-    }),
-    
-    // Props that exist in code but not yet in Figma design:
-    // loading: figma.boolean('Loading'),        // Coming soon to Figma
-    // fullWidth: figma.boolean('Full Width'),   // Coming soon to Figma
-    // buttonGroupPosition: Not needed in Figma (layout concern)
-    // justifyContent: Not needed in Figma (layout concern)
-  },
-  example: ({ text, buttonType, size, subType, disabled, leftIcon, rightIcon }) => (
-    <ButtonV2
-      text={text}
-      buttonType={buttonType}
-      size={size}
-      subType={subType}
-      disabled={disabled}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-    />
-  ),
-  imports: ["import { ButtonV2 } from 'blend-v1'"],
-  links: [
-    {
-      name: "GitHub",
-      url: "https://github.com/design-juspay/cloved/tree/main/packages/blend/lib/components/ButtonV2"
-    },
-    {
-      name: "Storybook", 
-      url: "https://juspay.design/storybook/?path=/docs/components-button-buttonv2--docs"
-    }
-  ]
-});
+// Figma Code Connect is now in a separate file: ButtonV2.figma.tsx
 
 const meta: Meta<typeof ButtonV2> = {
   title: "Components/Button/ButtonV2",
@@ -386,13 +278,6 @@ export const IconOnly: Story = {
     </div>
   ),
   parameters: {
-    design: {
-      variant: { 'subType': 'iconOnly' },
-      props: {
-        // Override props specific to icon-only buttons
-        leftIcon: figma.instance('leftIcon'), // Always required for icon-only
-      }
-    },
     docs: {
       description: {
         story:

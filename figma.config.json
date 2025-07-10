@@ -3,7 +3,9 @@
     "parser": "react",
     "include": [
       "apps/storybook/stories/**/*.stories.tsx",
-      "apps/storybook/stories/**/*.stories.ts"
+      "apps/storybook/stories/**/*.stories.ts",
+      "apps/storybook/stories/**/*.figma.tsx",
+      "apps/storybook/stories/**/*.figma.ts"
     ],
     "exclude": [
       "**/node_modules/**"
