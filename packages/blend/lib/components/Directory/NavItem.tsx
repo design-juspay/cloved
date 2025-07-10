@@ -52,6 +52,7 @@ const NestedList = styled(Block)`
   padding-left: 24px;
   margin-top: 8px;
   position: relative;
+  list-style: none;
 
   & > div:first-child {
     position: absolute;

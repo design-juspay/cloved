@@ -25,6 +25,14 @@
 - **SplitTag**: Complete story with primary/secondary tag combinations, all sizes/shapes, icons, interactive examples, and comprehensive real-world scenarios. Organized in Tags folder with Tag component.
 - **Snackbar**: Complete story with all variants (Info, Success, Warning, Error), action buttons, close callbacks, multiple stacking, real-world examples, and descriptive trigger buttons with icons
 - **DataTable**: Complete story with all column types, sorting, filtering, pagination, search, inline editing, row expansion, server-side operations, custom actions, loading/empty states, and comprehensive examples
+- **Dropdown**: Complete story with 10 variants including icons, groups, sub-labels, actions, disabled items, multiple slots, theme selector, and complex nested menus
+- **Accordion**: Complete story with 11 variants including border styles, multiple expansion, icons, subtext, chevron positioning, disabled items, complex content, FAQ example, and controlled state
+- **AvatarGroup**: Complete story with all features including sizes, shapes, max display count, overflow handling, custom overflow content, and real-world examples
+- **Menu**: Complete story with 10 variants including search functionality, sub-labels, multiple slots, action variants, disabled items, positioning examples, settings menu, file browser menu, and complex dashboard navigation
+- **StatCard**: Complete story with 7 variants including number, line chart, bar chart, progress bar variants, change indicators, icons, help tooltips, action icons, and dashboard example
+- **Sidebar**: Complete story with 4 comprehensive examples including default, e-commerce, analytics dashboard, and admin panel layouts with multi-tenant support, merchant switching, and integrated directory navigation
+- **SingleSelect**: Complete story with 8 examples including default, search, sizes, no-container variant, form integration, custom slot, disabled state, and complex task management example
+- **MultiSelect**: Complete story with 9 examples including default, count/text display, sizes, no-container variant, form integration, custom slot, pre-selected values, and complex user management dashboard
 
 ## Skipped 🚫
 
@@ -46,33 +54,35 @@
 
 ## Not Started ❌
 
-### Phase 4: Complex Components (3 remaining)
+### Phase 4: Complex Components (1 remaining)
 
 - [✅] DataTable
 - [✅] Charts
-- [ ] Menu
-- [ ] Dropdown
-- [ ] Sidebar
+- [✅] Menu
+- [✅] SingleSelect
+- [✅] MultiSelect
+- [✅] Sidebar
 - [ ] Directory
 - [✅] Tabs
 - [✅] Popover
+- [✅] Accordion
 
-### Phase 5: Specialized Components (2 remaining)
+### Phase 5: Specialized Components (1 remaining)
 
-- [ ] AvatarGroup
+- [✅] AvatarGroup
 - [✅] Snackbar
 - [✅] SplitTag
 - [✅] Tags
-- [ ] StatCard
+- [✅] StatCard
 - [ ] GradientBlur
 - [🚫] Primitives (skipped)
 
 ## Progress Metrics
 
-- **Total Components**: 34
-- **Completed**: 23 (68%)
+- **Total Components**: 35
+- **Completed**: 31 (89%)
 - **Skipped**: 2 (6%)
-- **Remaining**: 9 (26%)
+- **Remaining**: 2 (6%)
 - **Phase 2**: COMPLETE ✅
 - **Phase 3**: COMPLETE ✅
 - **Phase 4**: IN PROGRESS 🚧
@@ -84,10 +94,10 @@
 
 ## Next Immediate Actions
 
-1. ✅ **DataTable Component Complete!** - All features including sorting, filtering, pagination, and row expansion
-2. 🚧 **Phase 4 & 5 Progress** - Working on both complex and specialized components
-3. Focus on Menu, Dropdown, Sidebar, Directory (Phase 4)
-4. Focus on AvatarGroup, StatCard, GradientBlur (Phase 5)
+1. ✅ **SingleSelect & MultiSelect Components Complete!** - Replaced Dropdown with dedicated single and multi-select components
+2. 🚧 **Phase 4 & 5 Progress** - Nearing completion with only 2 components remaining
+3. Focus on Directory (Phase 4)
+4. Focus on GradientBlur (Phase 5)
 
 ## Quality Checks for DataTable ✅
 
@@ -345,3 +355,121 @@
 - [x] Complex examples with professional styling and real-world scenarios
 - [x] Proper ButtonV2 integration with correct props (buttonType, text, leadingIcon instead of type, children, leftSlot)
 - [x] Consistent visual hierarchy and professional color palette throughout all examples
+
+## Quality Checks for Dropdown ✅
+
+- [x] Each story includes Default and comprehensive variant examples (10 total stories)
+- [x] All props are exposed in controls (trigger, items, align, side, sideOffset, alignOffset)
+- [x] Documentation is comprehensive and accurate with usage examples
+- [x] Stories are visually appealing and functional
+- [x] TypeScript types are properly used (DropdownMenuItem interface)
+- [x] All features demonstrated (icons, groups, sub-labels, actions, disabled items)
+- [x] Icon support in both trigger and menu items with proper sizing
+- [x] Group functionality with labels and separators
+- [x] Sub-labels for additional context (e.g., pricing plans, keyboard shortcuts)
+- [x] Action variants including danger actions (delete, remove)
+- [x] Disabled state functionality for locked/unavailable items
+- [x] Multiple slots support for complex layouts
+- [x] Theme selector example with practical implementation
+- [x] Complex nested menus with sub-groups and multiple sections
+- [x] Real-world examples (file actions, user menus, settings)
+- [x] Proper integration with Radix UI DropdownMenu
+- [x] Consistent styling with design system tokens
+
+## Quality Checks for Accordion ✅
+
+- [x] Each story includes Default and comprehensive variant examples (11 total stories)
+- [x] All props are exposed in controls (accordionType, isMultiple, defaultValue, value, onValueChange)
+- [x] Documentation is comprehensive and accurate with usage examples
+- [x] Stories are visually appealing and functional
+- [x] TypeScript types are properly used (AccordionType, AccordionChevronPosition)
+- [x] All accordion types demonstrated (Border, No Border)
+- [x] Single and multiple expansion modes with proper controls
+- [x] Icon support with leftSlot functionality
+- [x] Subtext and additional slots for rich content
+- [x] Chevron positioning options (left, right)
+- [x] Disabled items functionality for locked content
+- [x] Complex content layouts with progress bars and device lists
+- [x] FAQ example with practical implementation
+- [x] Controlled state management demonstration
+- [x] Interactive props controls that work across all stories
+- [x] Smooth animations and transitions
+- [x] Keyboard navigation support
+- [x] Real-world examples (settings, FAQs, storage usage)
+- [x] Proper integration with Radix UI Accordion
+- [x] Fixed render functions to accept and use args for interactive controls
+
+## Quality Checks for Menu ✅
+
+- [x] Each story includes Default and comprehensive variant examples (10 total stories)
+- [x] All props are exposed in controls (trigger, items, alignment, side, sideOffset, alignOffset, asModal, enableSearch, searchPlaceholder, minWidth, maxWidth, maxHeight)
+- [x] Documentation is comprehensive and accurate with usage examples
+- [x] Stories are visually appealing and functional
+- [x] TypeScript types are properly used (MenuAlignment, MenuSide, MenuItemV2Variant, MenuItemV2ActionType, MenuV2GroupType)
+- [x] Search functionality with filtering across menu items
+- [x] Grouped items with labels and separators
+- [x] Sub-labels for additional context and information
+- [x] Multiple slots (slot1-4) for complex layouts
+- [x] Action variants (primary, danger) for important operations
+- [x] Disabled state support for unavailable items
+- [x] All positioning options demonstrated (alignment and side combinations)
+- [x] Settings menu example with comprehensive organization
+- [x] File browser menu with sorting and view options
+- [x] Complex dashboard menu with sub-menus and notifications
+- [x] Keyboard shortcuts displayed in slot2
+- [x] Status indicators and badges integration
+- [x] Avatar/icon support in slot1
+- [x] Real-world examples (team management, file actions, settings)
+- [x] Proper integration with Radix UI DropdownMenu
+- [x] ButtonV2 integration with correct props (size instead of buttonSize)
+- [x] All required Lucide icons imported (Building, Type, DollarSign, TrendingUp)
+
+## Quality Checks for StatCard ✅
+
+- [x] Each story includes Default and comprehensive variant examples (7 total stories)
+- [x] All props are exposed in controls (title, value, subtitle, variant, change, progressValue, helpIconText)
+- [x] Documentation is comprehensive and accurate with usage examples
+- [x] Stories are visually appealing and functional
+- [x] TypeScript types are properly used (StatCardVariant, ChangeType, ChartDataPoint)
+- [x] All variants demonstrated (Number, Line Chart, Bar Chart, Progress Bar)
+- [x] Change indicators with increase/decrease arrows and percentage values
+- [x] Title and action icon support for additional functionality
+- [x] Help tooltips for contextual information
+- [x] Animated charts with interactive hover tooltips
+- [x] Automatic trend detection for line charts (up/down colors)
+- [x] Progress bar with percentage display and pattern fill
+- [x] Dashboard example with mixed stat card types
+- [x] Sample data generator for realistic chart data
+- [x] Responsive grid layouts for different screen sizes
+- [x] Real-world examples (revenue, users, conversion rates, system metrics)
+- [x] Proper integration with Recharts library
+- [x] Custom tooltip component with trend information
+- [x] All required Lucide icons imported (TrendingUp, Users, DollarSign, Activity, etc.)
+
+## Quality Checks for Sidebar ✅
+
+- [x] Each story includes comprehensive examples (4 total stories)
+- [x] All props are exposed in controls (tenants, merchants, data, topbar, activeTenant, activeMerchant, footer)
+- [x] Documentation is comprehensive and accurate with usage examples
+- [x] Stories are visually appealing and functional with fullscreen layout
+- [x] TypeScript types are properly defined (DirectoryData, NavbarItem interfaces)
+- [x] Multi-tenant support with icon-based tenant switcher
+- [x] Merchant dropdown selector for multiple merchants
+- [x] Collapsible/expandable sidebar with smooth animations
+- [x] Integrated Directory component for hierarchical navigation
+- [x] Sticky header and footer sections
+- [x] Customizable topbar with search and action buttons
+- [x] Responsive design with proper scrolling
+- [x] Support for nested navigation items
+- [x] Icon and badge support in navigation items
+- [x] Default story with basic commerce navigation
+- [x] E-commerce example with comprehensive product catalog
+- [x] Analytics dashboard with data sources and insights
+- [x] Admin panel with user management and security settings
+- [x] Real-world navigation patterns (sections, groups, nested items)
+- [x] Interactive elements (search bars, buttons, avatars)
+- [x] Proper state management for active tenant/merchant
+- [x] Footer with user profile and logout functionality
+- [x] All required Lucide icons imported (100+ icons for various use cases)
+- [x] Consistent styling with design system tokens
+- [x] Avatar shapes correctly using CIRCULAR and ROUNDED values

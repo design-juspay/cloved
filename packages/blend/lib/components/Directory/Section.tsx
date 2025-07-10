@@ -142,6 +142,9 @@ const Section = ({
             display: "flex",
             flexDirection: "column",
             gap: "8px",
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
           }}
           id={`section-content-${sectionIndex}`}
           role="menu"
