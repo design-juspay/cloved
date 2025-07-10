@@ -157,14 +157,14 @@ const ExpandButton = styled.button`
                             onClick={() => onSaveRow(row[idField])}
                             title="Save"
                             buttonType={ButtonTypeV2.SECONDARY}
-                            leadingIcon={<Save size={16} />}
+                            leftIcon={<Save size={16} />}
                             size={ButtonSizeV2.SMALL}
                           />
                           <ButtonV2
                             onClick={() => onCancelEdit(row[idField])}
                             title="Cancel"
                             buttonType={ButtonTypeV2.SECONDARY}
-                            leadingIcon={<X size={16} />}
+                            leftIcon={<X size={16} />}
                             size={ButtonSizeV2.SMALL}
                           />
                         </>
@@ -173,7 +173,7 @@ const ExpandButton = styled.button`
                           onClick={() => onEditRow(row[idField])}
                           title="Edit"
                           buttonType={ButtonTypeV2.SECONDARY}
-                          leadingIcon={<Edit size={16} />}
+                          leftIcon={<Edit size={16} />}
                           size={ButtonSizeV2.SMALL}
                         />
                       )}
