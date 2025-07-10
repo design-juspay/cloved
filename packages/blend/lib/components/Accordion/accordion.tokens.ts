@@ -2,13 +2,7 @@ import { CSSObject } from "styled-components";
 import { AccordionType } from "./types";
 import { FoundationTokenType } from "../../tokens/theme.token";
 
-export type AccordionState =
-  | "default"
-  | "hover"
-  | "active"
-  | "disabled"
-  | "open"
-  | "closed";
+export type AccordionState = "default" | "hover" | "active" | "disabled" | "open" | "closed";
 
 export type AccordionTokenType = {
   gap: {
@@ -17,7 +11,7 @@ export type AccordionTokenType = {
   borderRadius: {
     [key in AccordionType]: CSSObject["borderRadius"];
   };
-
+  
   item: {
     trigger: {
       border: {
@@ -56,9 +50,7 @@ export type AccordionTokenType = {
   };
 };
 
-export const getAccordionToken = (
-  foundationToken: FoundationTokenType,
-): AccordionTokenType => {
+export const getAccordionToken = (foundationToken: FoundationTokenType): AccordionTokenType => {
   return {
     gap: {
       [AccordionType.BORDER]: foundationToken.unit[24],
@@ -68,7 +60,7 @@ export const getAccordionToken = (
       [AccordionType.BORDER]: foundationToken.border.radius[8],
       [AccordionType.NO_BORDER]: foundationToken.border.radius[8],
     },
-
+    
     item: {
       trigger: {
         border: {

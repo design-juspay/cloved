@@ -24,7 +24,7 @@ const MultiValueInput = ({
   ...rest
 }: MultiValueInputProps) => {
   const multiValueInputTokens = useComponentToken(
-    "MULTI_VALUE_INPUT",
+    "MULTI_VALUE_INPUT"
   ) as MultiValueInputTokensType;
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -76,16 +76,23 @@ const MultiValueInput = ({
         paddingX={paddingX}
         paddingY={paddingY}
         onClick={handleContainerClick}
-        boxShadow={multiValueInputTokens.input.boxShadow}
+        boxShadow={multiValueInputTokens.input.boxShadow.default}
         border={
           error
             ? multiValueInputTokens.input.border.error
             : isFocused
-              ? multiValueInputTokens.input.border.focus
-              : multiValueInputTokens.input.border.default
+            ? multiValueInputTokens.input.border.focus
+            : multiValueInputTokens.input.border.default
         }
         _hover={{
-          border: multiValueInputTokens.input.border.hover,
+          border: multiValueInputTokens.input.border[error ? "error" : "hover"],
+          boxShadow:
+            multiValueInputTokens.input.boxShadow[error ? "error" : "hover"],
+        }}
+        _focus={{
+          border: multiValueInputTokens.input.border[error ? "error" : "focus"],
+          boxShadow:
+            multiValueInputTokens.input.boxShadow[error ? "error" : "focus"],
         }}
       >
         {tags?.map((tag) => (

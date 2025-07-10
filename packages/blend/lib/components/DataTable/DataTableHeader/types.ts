@@ -1,4 +1,4 @@
-import { ColumnDefinition, SearchConfig, AdvancedFilterProps } from "../types";
+import { ColumnDefinition, SearchConfig, AdvancedFilterProps } from '../types';
 
 export type DataTableHeaderProps<T extends Record<string, unknown>> = {
   title?: string;
@@ -18,4 +18,4 @@ export type DataTableHeaderProps<T extends Record<string, unknown>> = {
   headerSlot1?: React.ReactNode;
   headerSlot2?: React.ReactNode;
   headerSlot3?: React.ReactNode;
-};
+}

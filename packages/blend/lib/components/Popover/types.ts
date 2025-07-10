@@ -1,9 +1,6 @@
 import { ButtonV2Props } from "../ButtonV2";
 
-export type PopoverActionType = Omit<
-  ButtonV2Props,
-  "buttonGroupPosition" | "subType"
->;
+export type PopoverActionType = Omit<ButtonV2Props, "buttonGroupPosition" | "subType">;
 
 export enum PopoverSize {
   SMALL = "small",

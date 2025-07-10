@@ -3,7 +3,7 @@ export const handleSectionNavigation = (
   currentIndex: number,
   totalItems: number,
   selector: string = "[data-state]",
-  childSelector: string = '[role="button"]',
+  childSelector: string = '[role="button"]'
 ) => {
   const nextIndex =
     direction === "up"
@@ -13,7 +13,7 @@ export const handleSectionNavigation = (
   if (nextIndex !== currentIndex) {
     const nextSection = document.querySelectorAll(selector)[nextIndex];
     const elementToFocus = nextSection?.querySelector(
-      childSelector,
+      childSelector
     ) as HTMLElement;
 
     if (elementToFocus) {
@@ -33,7 +33,7 @@ export const handleKeyDown = (
     handleClick?: () => void;
     index?: number;
     onNavigate?: (direction: "up" | "down", index: number) => void;
-  },
+  }
 ) => {
   const {
     hasChildren,

@@ -42,7 +42,7 @@ const MultiSelectMenu = ({
   onOpenChange,
 }: MultiSelectMenuProps) => {
   const multiSelectTokens = useComponentToken(
-    "MULTI_SELECT",
+    "MULTI_SELECT"
   ) as MultiSelectTokensType;
   return (
     <RadixMenu.Root modal={false} open={open} onOpenChange={onOpenChange}>

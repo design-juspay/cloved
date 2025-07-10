@@ -29,7 +29,7 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
       justifyContent = "center",
       ...htmlProps
     },
-    ref,
+    ref
   ) => {
     const buttonTokens = useComponentToken("BUTTON") as ButtonTokensType;
     const getBorderRadius = () => {
@@ -126,7 +126,7 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
         )}
       </PrimitiveButton>
     );
-  },
+  }
 );
 
 ButtonV2.displayName = "ButtonV2";

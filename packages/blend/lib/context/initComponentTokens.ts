@@ -28,7 +28,7 @@ import { getStatCardToken } from "../components/StatCard/statcard.tokens";
 
 const initTokens = (
   componentTokens: ComponentTokenType,
-  foundationTokens: ThemeType,
+  foundationTokens: ThemeType
 ): Required<ComponentTokenType> => {
   return {
     TAGS: componentTokens.TAGS ?? getTagTokens(foundationTokens),
@@ -61,7 +61,8 @@ const initTokens = (
     POPOVER: componentTokens.POPOVER ?? getPopoverTokens(foundationTokens),
     MENU: componentTokens.MENU ?? getMenuTokens(foundationTokens),
     MULTI_SELECT:
-      componentTokens.MULTI_SELECT ?? getMultiSelectTokens(foundationTokens),
+      componentTokens.MULTI_SELECT ??
+      getMultiSelectTokens(foundationTokens),
     TABLE: componentTokens.TABLE ?? getTableToken(foundationTokens),
     CALENDAR: componentTokens.CALENDAR ?? getCalendarToken(foundationTokens),
     ACCORDION: componentTokens.ACCORDION ?? getAccordionToken(foundationTokens),

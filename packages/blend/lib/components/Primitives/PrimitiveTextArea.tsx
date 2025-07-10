@@ -326,7 +326,7 @@ const StyledTextarea = styled.textarea.withConfig({
       }
       return acc;
     },
-    {} as CSSObject,
+    {} as CSSObject
   );
 
   const placeholderStyle = props.placeholderStyles

@@ -163,9 +163,10 @@ const getStyles = (props: PrimitiveButtonProps): CSSObject => {
     outline: "none",
     border: "none",
     font: "inherit",
-    cursor: props.disabled ? "not-allowed" : (props.cursor ?? "pointer"),
+    cursor: props.disabled ? "not-allowed" : props.cursor ?? "pointer",
     opacity: props.disabled ? 0.6 : 1,
   };
+
 
   // Layout
   if (props.contentCentered) {
@@ -276,8 +277,9 @@ const StyledButton = styled.button.withConfig({
       if (stateProps) acc[selector] = getStyles(stateProps);
       return acc;
     },
-    {} as CSSObject,
+    {} as CSSObject
   );
+
 
   return css({ ...base, ...stateStyles });
 });
@@ -296,7 +298,7 @@ const PrimitiveButton = forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </StyledButton>
     );
-  },
+  }
 );
 
 PrimitiveButton.displayName = "PrimitiveButton";

@@ -1,23 +1,13 @@
-import { forwardRef } from "react";
-import { TabsListProps, TabsSize, TabsVariant } from "./types";
-import { StyledTabsList } from "./StyledTabs";
-import { useComponentToken } from "../../context/useComponentToken";
-import { TabsTokensType } from "./tabs.token";
+import { forwardRef } from 'react';
+import { TabsListProps, TabsSize, TabsVariant } from './types';
+import { StyledTabsList } from './StyledTabs';
+import { useComponentToken } from '../../context/useComponentToken';
+import { TabsTokensType } from './tabs.token';
 
 const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
-  (
-    {
-      className,
-      variant = TabsVariant.UNDERLINE,
-      size = TabsSize.MD,
-      expanded = false,
-      fitContent = false,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ className, variant = TabsVariant.UNDERLINE, size = TabsSize.MD, expanded = false, fitContent = false, ...props }, ref) => {
     const tabsToken = useComponentToken("TABS") as TabsTokensType;
-
+    
     return (
       <StyledTabsList
         ref={ref}
@@ -30,9 +20,9 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
         {...props}
       />
     );
-  },
+  }
 );
 
-TabsList.displayName = "TabsList";
+TabsList.displayName = 'TabsList';
 
 export default TabsList;

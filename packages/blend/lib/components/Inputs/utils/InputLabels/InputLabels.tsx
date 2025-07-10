@@ -5,7 +5,7 @@ import Text from "../../../Text/Text";
 import { Tooltip, TooltipSize } from "../../../Tooltip";
 
 type InputLabelsProps = {
-  label: string;
+  label?: string;
   sublabel?: string;
   disabled?: boolean;
   helpIconHintText?: string;
@@ -30,50 +30,52 @@ const InputLabels = ({
   required,
 }: InputLabelsProps) => {
   return (
-    <Block display="flex" alignItems="center" gap={4} width={"100%"}>
-      <Text
-        as="label"
-        htmlFor={name}
-        variant="body.md"
-        fontWeight={500}
-        color={
-          disabled
-            ? FOUNDATION_THEME.colors.gray[400]
-            : FOUNDATION_THEME.colors.gray[700]
-        }
-        style={{ margin: 0, padding: 0 }}
-      >
-        {label}
-      </Text>
-      {required && (
-        <sup style={{ color: FOUNDATION_THEME.colors.red[500] }}>*</sup>
-      )}
-      {sublabel && (
+    label && (
+      <Block display="flex" alignItems="center" gap={4} width={"100%"}>
         <Text
+          as="label"
+          htmlFor={name}
           variant="body.md"
-          fontWeight={400}
+          fontWeight={500}
           color={
             disabled
-              ? FOUNDATION_THEME.colors.gray[300]
-              : FOUNDATION_THEME.colors.gray[400]
+              ? FOUNDATION_THEME.colors.gray[400]
+              : FOUNDATION_THEME.colors.gray[700]
           }
-          margin={0}
+          style={{ margin: 0, padding: 0 }}
         >
-          ({sublabel})
+          {label}
         </Text>
-      )}
+        {required && (
+          <sup style={{ color: FOUNDATION_THEME.colors.red[500] }}>*</sup>
+        )}
+        {sublabel && (
+          <Text
+            variant="body.md"
+            fontWeight={400}
+            color={
+              disabled
+                ? FOUNDATION_THEME.colors.gray[300]
+                : FOUNDATION_THEME.colors.gray[400]
+            }
+            margin={0}
+          >
+            ({sublabel})
+          </Text>
+        )}
 
-      {helpIconHintText && (
-        <Block contentCentered size={16}>
-          <Tooltip content={helpIconHintText} size={TooltipSize.SMALL}>
-            <HelpCircleIcon
-              size={14}
-              color={FOUNDATION_THEME.colors.gray[400]}
-            />
-          </Tooltip>
-        </Block>
-      )}
-    </Block>
+        {helpIconHintText && (
+          <Block contentCentered size={16}>
+            <Tooltip content={helpIconHintText} size={TooltipSize.SMALL}>
+              <HelpCircleIcon
+                size={14}
+                color={FOUNDATION_THEME.colors.gray[400]}
+              />
+            </Tooltip>
+          </Block>
+        )}
+      </Block>
+    )
   );
 };
 

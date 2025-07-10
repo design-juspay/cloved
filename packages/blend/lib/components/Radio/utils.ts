@@ -1,10 +1,10 @@
-import React from "react";
-import { RadioSize, RadioProps } from "./types";
-import { FOUNDATION_THEME } from "../../tokens";
-import { RadioTokensType } from "./radio.token";
+import React from 'react';
+import { RadioSize, RadioProps } from './types';
+import { FOUNDATION_THEME } from '../../tokens';
+import { RadioTokensType } from './radio.token';
 
 export const getRadioDataState = (checked: boolean): string => {
-  return checked ? "checked" : "unchecked";
+  return checked ? 'checked' : 'unchecked';
 };
 
 export const extractPixelValue = (tokenValue: string): number => {
@@ -12,46 +12,48 @@ export const extractPixelValue = (tokenValue: string): number => {
   return match ? parseInt(match[1], 10) : 16;
 };
 
-export const getSpacingBySize = (
-  size: RadioSize,
-): { marginLeft: string; marginTop: string } => {
+export const getSpacingBySize = (size: RadioSize): { marginLeft: string; marginTop: string } => {
   const sizeMap = {
-    [RadioSize.SMALL]: {
-      marginLeft: String(FOUNDATION_THEME.unit[20]),
-      marginTop: String(FOUNDATION_THEME.unit[4]),
+    [RadioSize.SMALL]: { 
+      marginLeft: String(FOUNDATION_THEME.unit[20]), 
+      marginTop: String(FOUNDATION_THEME.unit[4]) 
     },
-    [RadioSize.MEDIUM]: {
-      marginLeft: String(FOUNDATION_THEME.unit[24]),
-      marginTop: String(FOUNDATION_THEME.unit[4]),
-    },
+    [RadioSize.MEDIUM]: { 
+      marginLeft: String(FOUNDATION_THEME.unit[24]), 
+      marginTop: String(FOUNDATION_THEME.unit[4]) 
+    }
   };
-
+  
   return sizeMap[size];
 };
+
 
 export const isControlledRadio = (checked: boolean | undefined): boolean => {
   return checked !== undefined;
 };
 
+
 export const createRadioInputProps = (
   checked: boolean | undefined,
-  defaultChecked: boolean,
+  defaultChecked: boolean
 ) => {
-  return isControlledRadio(checked)
-    ? { checked: checked }
+  return isControlledRadio(checked) 
+    ? { checked: checked } 
     : { defaultChecked: defaultChecked };
 };
 
+
 export const getCurrentCheckedState = (
   checked: boolean | undefined,
-  defaultChecked: boolean,
+  defaultChecked: boolean
 ): boolean => {
   return isControlledRadio(checked) ? checked! : defaultChecked;
 };
 
+
 export const createRadioChangeHandler = (
   disabled: boolean,
-  onChange?: (checked: boolean) => void,
+  onChange?: (checked: boolean) => void
 ) => {
   return (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -59,26 +61,29 @@ export const createRadioChangeHandler = (
   };
 };
 
+
 export const isRadioElement = (
   child: React.ReactElement,
-  RadioComponent: React.ComponentType<RadioProps>,
+  RadioComponent: React.ComponentType<RadioProps>
 ): child is React.ReactElement<RadioProps> => {
   return child.type === RadioComponent;
 };
 
+
 export const shouldRadioBeChecked = (
   groupValue: string | undefined,
   groupDefaultValue: string | undefined,
-  radioValue: string,
+  radioValue: string
 ): boolean => {
   const isGroupControlled = groupValue !== undefined;
-  return isGroupControlled
-    ? groupValue === radioValue
+  return isGroupControlled 
+    ? groupValue === radioValue 
     : groupDefaultValue === radioValue;
 };
 
+
 export const createGroupChangeHandler = (
-  onChange?: (value: string) => void,
+  onChange?: (value: string) => void
 ) => {
   return (isChecked: boolean, childValue: string) => {
     if (isChecked && onChange) {
@@ -87,8 +92,9 @@ export const createGroupChangeHandler = (
   };
 };
 
+
 export const isValidRadioValue = (value: unknown): value is string => {
-  return typeof value === "string";
+  return typeof value === 'string';
 };
 
 /**
@@ -98,13 +104,13 @@ export const getRadioTextColor = (
   radioTokens: RadioTokensType,
   isDisabled: boolean,
   error: boolean,
-  isSubtext: boolean = false,
+  isSubtext: boolean = false
 ): string => {
-  const state = isDisabled ? "disabled" : error ? "error" : "default";
-  const color = isSubtext
-    ? radioTokens.content.sublabel.color[state]
+  const state = isDisabled ? 'disabled' : error ? 'error' : 'default';
+  const color = isSubtext 
+    ? radioTokens.content.sublabel.color[state] 
     : radioTokens.content.label.color[state];
-  return String(color || "");
+  return String(color || '');
 };
 
 /**
@@ -115,20 +121,20 @@ export const getRadioTextProps = (
   size: RadioSize,
   isDisabled: boolean,
   error: boolean,
-  isSubtext: boolean = false,
+  isSubtext: boolean = false
 ): {
   fontSize: string;
   fontWeight: string;
   color: string;
 } => {
-  const fontConfig = isSubtext
+  const fontConfig = isSubtext 
     ? radioTokens.content.sublabel.font[size]
     : radioTokens.content.label.font[size];
-
+    
   return {
-    fontSize: String(fontConfig?.fontSize || ""),
-    fontWeight: String(fontConfig?.fontWeight || ""),
-    color: getRadioTextColor(radioTokens, isDisabled, error, isSubtext),
+    fontSize: String(fontConfig?.fontSize || ''),
+    fontWeight: String(fontConfig?.fontWeight || ''),
+    color: getRadioTextColor(radioTokens, isDisabled, error, isSubtext)
   };
 };
 
@@ -137,21 +143,21 @@ export const getRadioTextProps = (
  */
 export const getRadioLabelStyles = (
   radioTokens: RadioTokensType,
-  isDisabled: boolean,
+  isDisabled: boolean
 ): {
-  display: "inline-flex";
-  alignItems: "center";
+  display: 'inline-flex';
+  alignItems: 'center';
   padding: number;
   margin: number;
   minHeight: string;
-  cursor: "not-allowed" | "pointer";
+  cursor: 'not-allowed' | 'pointer';
   lineHeight: number;
 } => ({
-  display: "inline-flex" as const,
-  alignItems: "center" as const,
+  display: 'inline-flex' as const,
+  alignItems: 'center' as const,
   padding: 0,
   margin: 0,
-  minHeight: String(radioTokens.height.md || ""),
-  cursor: isDisabled ? ("not-allowed" as const) : ("pointer" as const),
-  lineHeight: 1,
+  minHeight: String(radioTokens.height.md || ''),
+  cursor: isDisabled ? 'not-allowed' as const : 'pointer' as const,
+  lineHeight: 1
 });

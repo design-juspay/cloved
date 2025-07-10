@@ -306,7 +306,7 @@ const menuTokens: MenuTokensType = {
 };
 
 export const getMenuTokens = (
-  foundationToken: FoundationTokenType,
+  foundationToken: FoundationTokenType
 ): MenuTokensType => {
   return {
     shadow: foundationToken.shadows.md,
