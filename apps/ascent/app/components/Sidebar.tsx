@@ -4,6 +4,10 @@ import Link from "next/link";
 import React from "react";
 import { DocItem } from "../docs/utils/scanDirectory";
 
+const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const SidebarItem = ({
   item,
   level = 0,
@@ -11,41 +15,38 @@ const SidebarItem = ({
   item: DocItem;
   level?: number;
 }) => {
-  const paddingLeft = level * 16; // 16px indent per level
+  const paddingLeft = (level - 1) * 16;
 
-  if (item.children) {
-    // This is a directory
+  if (item.children && item.children.length > 0) {
     return (
-      <div key={item.slug} className="">
+      <div
+        key={item.slug}
+        className="pt-4"
+      >
         <div
-          className="font-medium py-1  rounded-sm mb-1"
-          style={{ paddingLeft: `${paddingLeft + 8}px` }}
+          className="flex h-8 shrink-0 items-center rounded-md px-2 text-xs outline-hidden text-[var(--muted-foreground)] font-medium select-none"
         >
-          {item.name}
+          {capitalize(item.name)}
         </div>
         {item.children.map((child) => (
           <SidebarItem key={child.slug} item={child} level={level + 1} />
         ))}
       </div>
     );
-  } else {
-    // This is a file
+  }
+
+
     return (
-      <Link
-        key={item.slug}
-        href={`/docs/${item.path}`}
-        className="block py-1  transition-colors  px-1 rounded-sm"
-        style={{ paddingLeft: `${paddingLeft + 8}px` }}
-      >
-        {item.name}
+      <Link href={`/docs/${item.path}`} className="flex h-8 shrink-0 items-center rounded-md px-2 text-sm outline-hidden text-[var(--foreground)] font-medium hover:bg-black/5 touch-manipulation">
+        {capitalize(item.name)}
       </Link>
     );
   }
-};
+
 
 const Sidebar = ({ items }: { items: DocItem[] }) => {
   return (
-    <div className="flex flex-col gap-1 h-full overflow-y-auto px-2">
+    <div className="flex m-2 flex-col gap-1 h-full overflow-y-auto px-2">
       {items.map((item) => (
         <SidebarItem key={item.slug} item={item} />
       ))}

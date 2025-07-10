@@ -92,6 +92,11 @@ body {
     display: none;
   }
 }
+@media (max-width: 800px) {
+  .doc-sidebar {
+    display: none;
+  }
+}
 
 pre {
   background-color: var(--code-background);

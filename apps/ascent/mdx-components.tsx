@@ -2,6 +2,7 @@ import React, { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { highlight } from "sugar-high";
 import CodeBlock from "./app/components/CodeBlock";
+import DocsTypeTable from "./app/components/DocsTypeTable";
 
 // Function to generate a slug from text
 function generateSlug(text: string): string {
@@ -152,6 +153,7 @@ const components = {
       {...props}
     />
   ),
+  DocsTypeTable
 };
 
 declare global {

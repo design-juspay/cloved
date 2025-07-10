@@ -51,7 +51,7 @@ const page = async ({ params }: { params: Promise<{ slug: string[] }> }) => {
   return (
     <div className="w-full flex-1 flex m-0.5">
       <div className="m-1 flex-1 gap-2 px-4">
-        <article className="prose py-10 max-w-[80ch] mx-auto">
+        <article className="prose py-10 max-w-[80ch] mx-auto overflow-x-hidden">
           <PageHeader metadata={metadata} />
           {content}
         </article>
