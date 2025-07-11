@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react';
-import { Check, Copy } from 'lucide-react';
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Check, Copy } from "lucide-react";
 import { highlight } from "sugar-high";
 
 const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
@@ -17,7 +17,10 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
   };
 
   return (
-    <div className="relative">
+    <div
+      data-code-block
+      className="relative w-full rounded-md border border-[var(--code-border)] py-3 px-2"
+    >
       <AnimatePresence initial={false} mode="wait">
         <motion.button
           key={isCopied ? "check" : "copy"}
@@ -25,7 +28,7 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-0 right-0 p-1 flex items-center justify-center text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer hover:text-gray-500"
+          className="absolute top-3 right-1 p-1 flex items-center justify-center text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer hover:text-gray-500"
           onClick={copyToClipboard}
         >
           {isCopied ? (
@@ -58,9 +61,13 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
           )}
         </motion.button>
       </AnimatePresence>
-      <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props}></code>
+      <code
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        {...props}
+        className="p-2"
+      ></code>
     </div>
   );
 };
 
-export default CodeBlock
+export default CodeBlock;

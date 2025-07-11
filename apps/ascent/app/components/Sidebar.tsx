@@ -19,13 +19,8 @@ const SidebarItem = ({
 
   if (item.children && item.children.length > 0) {
     return (
-      <div
-        key={item.slug}
-        className="pt-4"
-      >
-        <div
-          className="flex h-8 shrink-0 items-center rounded-md px-2 text-xs outline-hidden text-[var(--muted-foreground)] font-medium select-none"
-        >
+      <div key={item.slug} className="py-6">
+        <div className="flex h-8 shrink-0 items-center rounded-md px-2 text-xs outline-hidden text-[var(--muted-foreground)] font-medium select-none">
           {capitalize(item.name)}
         </div>
         {item.children.map((child) => (

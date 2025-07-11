@@ -3,6 +3,9 @@ import Link from "next/link";
 import { highlight } from "sugar-high";
 import CodeBlock from "./app/components/CodeBlock";
 import DocsTypeTable from "./app/components/DocsTypeTable";
+import Preview from "./app/components/Preview";
+import ButtonPreview from "./app/components/Previews/ButtonPreview";
+import { Snippet } from "./app/components/Previews/ComponentPreview";
 
 // Function to generate a slug from text
 function generateSlug(text: string): string {
@@ -111,7 +114,7 @@ const components = {
     if (isCodeBlock) {
       return <CodeBlock code={children} props={props} />;
     } else {
-      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} className="bg-[var(--code-background)] outline outline-[var(--code-border)] rounded-md text-sm px-1 py-0.5" />;
     }
   },
   table: (props: ComponentPropsWithoutRef<"table">) => (
@@ -155,6 +158,8 @@ const components = {
   ),
   DocsTypeTable,
   CodeBlock,
+  Preview,
+  ButtonPreview,
 };
 
 declare global {
