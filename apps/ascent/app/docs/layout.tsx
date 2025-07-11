@@ -10,7 +10,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       <nav className="h-[var(--navbar-height)] flex items-center px-4">
         <div className="flex items-center gap-2">
           <div className="sidebar-drawer-trigger">
-            <SidebarDrawer />
+            <SidebarDrawer items={getDirItems("app/docs/content")} />
           </div>
           <Link href="/" className="pl-2">
             Blend Docs
