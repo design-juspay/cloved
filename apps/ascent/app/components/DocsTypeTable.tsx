@@ -1,62 +1,34 @@
 "use client";
 import React from "react";
+import Tooltip from "./Tooltip";
+import { Info } from "lucide-react";
 
-export enum ColumnType {
-  TEXT = "text",
-  NUMBER = "number",
-  DATE = "date",
-  BOOLEAN = "boolean",
-  CUSTOM = "custom",
-}
-
-export type ColumnDefinition<T extends Record<string, unknown>> = {
-  field: keyof T;
-  header: string;
-  type: ColumnType;
-  minWidth?: string;
-  maxWidth?: string;
-  isVisible?: boolean;
-  className?: string;
-  renderCell?: (value: T[keyof T], row: T, index: number) => React.ReactNode;
-  renderHeader?: (header: string) => React.ReactNode;
+export type TableCell = {
+  content: string | React.ReactNode;
+  hintText?: string | React.ReactNode;
 };
 
-export type DocsTypeTableProps<T extends Record<string, unknown>> = {
-  data: T[];
-  columns: ColumnDefinition<T>[];
-  idField: keyof T;
+export type DocsTypeTableProps = {
+  columns: string[];
+  data: TableCell[][];
   isHoverable?: boolean;
   isLoading?: boolean;
   emptyMessage?: string;
   loadingMessage?: string;
   className?: string;
-  onRowClick?: (row: T, index: number) => void;
+  onRowClick?: (row: TableCell[], index: number) => void;
 };
 
-const TableHeader = <T extends Record<string, unknown>>({
-  columns,
-}: {
-  columns: ColumnDefinition<T>[];
-}) => {
+const TableHeader = ({ columns }: { columns: string[] }) => {
   return (
     <thead className="bg-gray-50 border-b border-gray-200">
       <tr>
-        {columns.map((column) => (
+        {columns.map((column, index) => (
           <th
-            key={String(column.field)}
-            className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${column.className || ""}`}
-            style={{
-              minWidth: column.minWidth,
-              maxWidth: column.maxWidth,
-            }}
+            key={index}
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
           >
-            <div className="flex items-center gap-2">
-              {column.renderHeader ? (
-                column.renderHeader(column.header)
-              ) : (
-                <span>{column.header}</span>
-              )}
-            </div>
+            <span>{column}</span>
           </th>
         ))}
       </tr>
@@ -64,71 +36,90 @@ const TableHeader = <T extends Record<string, unknown>>({
   );
 };
 
-const TableBody = <T extends Record<string, unknown>>({
+const TableBody = ({
   data,
-  columns,
-  idField,
   isHoverable = false,
   onRowClick,
 }: {
-  data: T[];
-  columns: ColumnDefinition<T>[];
-  idField: keyof T;
+  data: TableCell[][];
   isHoverable?: boolean;
-  onRowClick?: (row: T, index: number) => void;
+  onRowClick?: (row: TableCell[], index: number) => void;
 }) => {
   return (
     <tbody className="bg-white divide-y divide-gray-200">
-      {data.map((row, index) => (
+      {data.map((row, rowIndex) => (
         <tr
-          key={String(row[idField])}
+          key={rowIndex}
           className={`
             ${isHoverable ? "hover:bg-gray-50" : ""}
             ${onRowClick ? "cursor-pointer" : ""}
           `}
-          onClick={() => onRowClick?.(row, index)}
+          onClick={() => onRowClick?.(row, rowIndex)}
         >
-          {columns.map((column) => (
-            <td
-              key={`${String(row[idField])}-${String(column.field)}`}
-              className="py-4 text-sm text-gray-900"
-              style={{
-                minWidth: column.minWidth,
-                maxWidth: column.maxWidth,
-              }}
-            >
-              <span className="block px-6">
-                {String(row[column.field] ?? "")}
-              </span>
-            </td>
-          ))}
+          {row.map((cell, cellIndex) => {
+            const hasTooltip = cell.hintText !== undefined;
+
+            return (
+              <td
+                key={`${rowIndex}-${cellIndex}`}
+                className="py-4 text-sm text-gray-900"
+              >
+                <div className="flex items-center gap-2 px-6">
+                  <span className="block">{cell.content}</span>
+                  {hasTooltip && (
+                    <Tooltip content={cell.hintText!}>
+                      <Info size={12} color="var(--muted-foreground)" />
+                    </Tooltip>
+                  )}
+                </div>
+              </td>
+            );
+          })}
         </tr>
       ))}
     </tbody>
   );
 };
 
-const DocsTypeTable = <T extends Record<string, unknown>>({
+const DocsTypeTable = ({
+  columns,
   data,
-  columns: initialColumns,
-  idField,
   isHoverable = true,
+  isLoading = false,
+  emptyMessage = "No data available",
+  loadingMessage = "Loading...",
+  className = "",
   onRowClick,
-}: DocsTypeTableProps<T>) => {
-  const visibleColumns = React.useMemo(() => {
-    return initialColumns.filter((col) => col.isVisible !== false);
-  }, [initialColumns]);
+}: DocsTypeTableProps) => {
+  if (isLoading) {
+    return (
+      <div
+        className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+      >
+        <div className="p-6 text-center text-gray-500">{loadingMessage}</div>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div
+        className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+      >
+        <div className="p-6 text-center text-gray-500">{emptyMessage}</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full overflow-hidden border border-gray-200 rounded-lg">
+    <div
+      className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+    >
       <div className="overflow-x-auto">
         <table className="w-full min-w-full divide-y divide-gray-200">
-          <TableHeader columns={visibleColumns} />
-
+          <TableHeader columns={columns} />
           <TableBody
             data={data}
-            columns={visibleColumns}
-            idField={idField}
             isHoverable={isHoverable}
             onRowClick={onRowClick}
           />

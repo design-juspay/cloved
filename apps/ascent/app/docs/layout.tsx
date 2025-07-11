@@ -10,7 +10,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     <main className="min-h-screen w-screen">
       <nav className="h-[var(--navbar-height)] flex items-center px-4">
         <div className="flex items-center gap-2">
-          <SidebarDrawer />
+          {/* <SidebarDrawer /> */}
           <Link href="/" className="pl-2">
             Blend Docs
           </Link>

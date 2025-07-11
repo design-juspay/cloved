@@ -6,7 +6,7 @@ import { Drawer } from "vaul";
 const SidebarDrawer = () => {
   return (
     <Drawer.Root direction="left">
-      <Drawer.Trigger className="size-8 flex items-center justify-center">
+      <Drawer.Trigger asChild className="size-8 flex items-center justify-center">
         <Menu size={16} />
       </Drawer.Trigger>
       <Drawer.Portal>

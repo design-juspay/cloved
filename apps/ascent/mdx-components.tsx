@@ -109,7 +109,7 @@ const components = {
       (typeof props.className === "string" && props.className.includes("hljs"));
 
     if (isCodeBlock) {
-      return <CodeBlock codeHTML={codeHTML} props={props} />;
+      return <CodeBlock code={children} props={props} />;
     } else {
       return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
     }
@@ -153,7 +153,8 @@ const components = {
       {...props}
     />
   ),
-  DocsTypeTable
+  DocsTypeTable,
+  CodeBlock,
 };
 
 declare global {

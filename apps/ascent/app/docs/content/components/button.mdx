@@ -7,126 +7,98 @@ tags:
   - component
 ---
 
-
-
-
-
 ## Usage
 
+
 ```tsx
-import { Button } from '@/components/Button';
+import { Button } from "@/components/Button";
 
 function MyComponent() {
   return (
     <Button
-      variant={ButtonVariant.Primary} 
-      size={ButtonSize.Medium} text="Click me" 
-      onClick={() => console.log('clicked')}
-    >
-    </Button>
+      variant={ButtonVariant.Primary}
+      size={ButtonSize.Medium}
+      text="Click me"
+      onClick={() => console.log("clicked")}
+    ></Button>
   );
 }
 ```
 
 <DocsTypeTable
+  columns={["Prop Name", "Type", "Default"]}
   data={[
-    {
-      propName: "variant",
-      propType: "string",
-      propDescription: "The visual style of the button",
-      propDefault: "'primary'",
-      category: "Appearance"
-    },
-    {
-      propName: "size",
-      propType: "string",
-      propDescription: "The size of the button",
-      propDefault: "'medium'",
-      category: "Appearance"
-    },
-    {
-      propName: "disabled",
-      propType: "boolean",
-      propDescription: "Whether the button is disabled",
-      propDefault: "false",
-      category: "State"
-    },
-    {
-      propName: "onClick",
-      propType: "() => void",
-      propDescription: "Click handler function",
-      propDefault: "-",
-      category: "Events"
-    },
-    {
-      propName: "text",
-      propType: "string",
-      propDescription: "The text content of the button",
-      propDefault: "undefined",
-      category: "Content"
-    },
-    {
-      propName: "leadingIcon",
-      propType: "React.ReactNode",
-      propDescription: "Icon to display before the button text",
-      propDefault: "undefined",
-      category: "Content"
-    },
-    {
-      propName: "trailingIcon",
-      propType: "React.ReactNode",
-      propDescription: "Icon to display after the button text",
-      propDefault: "undefined",
-      category: "Content"
-    },
-    {
-      propName: "loading",
-      propType: "boolean",
-      propDescription: "Whether the button is in loading state",
-      propDefault: "false",
-      category: "State"
-    },
-    {
-      propName: "fullWidth",
-      propType: "boolean",
-      propDescription: "Whether the button should take full width of its container",
-      propDefault: "false",
-      category: "Layout"
-    }
+    [
+      { content: "buttonType", hintText: "The type of the button" },
+      { content: "ButtonTypeV2", hintText: "enum" },
+      { content: "PRIMARY" },
+    ],
+    [
+      { content: "size", hintText: "The size of the button" },
+      { content: "ButtonSizeV2", hintText: "enum" },
+      { content: "MEDIUM" },
+    ],
+    [
+      { content: "subType", hintText: "The subtype of the button" },
+      { content: "ButtonSubTypeV2", hintText: "enum" },
+      { content: "DEFAULT" },
+    ],
+    [
+      { content: "text", hintText: "The text content of the button" },
+      { content: "string", hintText: "string" },
+      { content: "" },
+    ],
+    [
+      { content: "leadingIcon", hintText: "Icon displayed before the text" },
+      { content: "React.ReactNode", hintText: "React node" },
+      { content: "" },
+    ],
+    [
+      { content: "trailingIcon", hintText: "Icon displayed after the text" },
+      { content: "React.ReactNode", hintText: "React node" },
+      { content: "" },
+    ],
+    [
+      { content: "isLoading", hintText: "Whether the button is in loading state" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "isDisabled", hintText: "Whether the button is disabled" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "disabled", hintText: "Alternative prop for disabled state" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "onClick", hintText: "Click handler function" },
+      { content: "() => void", hintText: "function" },
+      { content: "" },
+    ],
+    [
+      { content: "loading", hintText: "Alternative prop for loading state" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "buttonGroupPosition", hintText: "Position when used in a button group" },
+      { content: "'center' | 'left' | 'right'", hintText: "string union" },
+      { content: "" },
+    ],
+    [
+      { content: "fullWidth", hintText: "Whether the button should take full width" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "justifyContent", hintText: "CSS justify-content property" },
+      { content: "CSSObject['justifyContent']", hintText: "CSS property" },
+      { content: "" },
+    ],
   ]}
-  columns={[
-    {
-      field: "propName",
-      header: "Prop Name",
-      type: "text",
-      minWidth: "120px"
-    },
-    {
-      field: "propType",
-      header: "Type",
-      type: "text",
-      minWidth: "100px"
-    },
-    {
-      field: "propDescription",
-      header: "Description",
-      type: "text",
-      minWidth: "200px"
-    },
-    {
-      field: "propDefault",
-      header: "Default",
-      type: "text",
-      minWidth: "100px"
-    },
-    {
-      field: "category",
-      header: "Category",
-      type: "text",
-      minWidth: "100px"
-    }
-  ]}
-  idField="propName"
   isHoverable={true}
   className="mb-8"
   emptyMessage="No props available"
