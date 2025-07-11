@@ -7,7 +7,7 @@ import SidebarDrawer from "../components/SidebarDrawer";
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="min-h-screen w-screen">
-      <nav className="h-[var(--navbar-height)] flex items-center px-4">
+      <nav className="h-[var(--navbar-height)] flex items-center px-4 border-b border-[var(--code-border)]">
         <div className="flex items-center gap-2">
           <div className="sidebar-drawer-trigger">
             <SidebarDrawer items={getDirItems("app/docs/content")} />
@@ -18,7 +18,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </nav>
       <div className="w-screen h-[calc(100vh-var(--navbar-height))] flex">
-        <aside className="doc-sidebar w-[240px] h-[calc(100vh-var(--navbar-height))] overflow-y-auto ">
+        <aside className="doc-sidebar w-[240px] h-[calc(100vh-var(--navbar-height))] overflow-y-auto pt-8">
           <Sidebar items={getDirItems("app/docs/content")} />
         </aside>
         <div className="flex-1 h-[calc(100vh-var(--navbar-height))] overflow-y-auto">

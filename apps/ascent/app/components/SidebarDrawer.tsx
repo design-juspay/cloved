@@ -28,7 +28,7 @@ const SidebarDrawer = ({ items }: { items: DocItem[] }) => {
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
         <Drawer.Content className="left-2 top-2 bottom-2 fixed z-10 outline-none w-[310px] flex">
-          <div className="bg-zinc-50 h-full w-full grow pt-5 flex flex-col rounded-2xl debug">
+          <div className="bg-zinc-50 h-full w-full grow pt-5 flex flex-col rounded-2xl">
             <Sidebar items={items} />
           </div>
         </Drawer.Content>
