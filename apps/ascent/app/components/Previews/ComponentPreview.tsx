@@ -51,7 +51,7 @@ const ComponentPreview = ({
   }
 
   return (
-    <div className="w-full min-h-80 border-[var(--code-border)] border-1 rounded-2xl my-4 flex flex-col items-center justify-center overflow-clip">
+    <div className="w-full min-h-80 border-[var(--code-border)] border-1 rounded-2xl mb-10 mt-25 flex flex-col items-center justify-center overflow-clip">
       <div className="w-full flex flex-1 min-h-60 items-center justify-center gap-4">
         {children}
       </div>
@@ -89,11 +89,13 @@ const ComponentPreview = ({
 export const Snippet = (code: string) => {
   const codeHTML = highlight(code as string);
   return (
-    <pre
-      data-code-snippet
-      dangerouslySetInnerHTML={{ __html: codeHTML }}
-      className="p-2"
-    ></pre>
+    <div className="overflow-x-auto">
+      <pre
+        data-code-snippet
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        className="p-2 block whitespace-pre-wrap break-words"
+      ></pre>
+    </div>
   );
 };
 

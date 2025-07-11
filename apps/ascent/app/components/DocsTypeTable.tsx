@@ -1,32 +1,31 @@
 "use client";
+
+import { Info } from "lucide-react";
 import React from "react";
 import Tooltip from "./Tooltip";
-import { Info } from "lucide-react";
 
-export type TableCell = {
+type TableCell = {
   content: string | React.ReactNode;
   hintText?: string | React.ReactNode;
 };
 
-export type DocsTypeTableProps = {
+type DocsTypeTableProps = {
   columns: string[];
   data: TableCell[][];
-  isHoverable?: boolean;
   isLoading?: boolean;
   emptyMessage?: string;
   loadingMessage?: string;
   className?: string;
-  onRowClick?: (row: TableCell[], index: number) => void;
 };
 
 const TableHeader = ({ columns }: { columns: string[] }) => {
   return (
-    <thead className="bg-gray-50 border-b border-gray-200">
+    <thead className="bg-gray-50 dark:bg-[var(--code-background)] border-b-1 border-[var(--code-border)]">
       <tr>
         {columns.map((column, index) => (
           <th
             key={index}
-            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-[var(--muted-foreground)] uppercase tracking-wider whitespace-nowrap"
           >
             <span>{column}</span>
           </th>
@@ -36,33 +35,18 @@ const TableHeader = ({ columns }: { columns: string[] }) => {
   );
 };
 
-const TableBody = ({
-  data,
-  isHoverable = false,
-  onRowClick,
-}: {
-  data: TableCell[][];
-  isHoverable?: boolean;
-  onRowClick?: (row: TableCell[], index: number) => void;
-}) => {
+const TableBody = ({ data }: { data: TableCell[][] }) => {
   return (
-    <tbody className="bg-white divide-y divide-gray-200">
+    <tbody className="bg-[var(--code-background)] dark:bg-neutral-950 divide-y divide-[var(--code-border)] ">
       {data.map((row, rowIndex) => (
-        <tr
-          key={rowIndex}
-          className={`
-            ${isHoverable ? "hover:bg-gray-50" : ""}
-            ${onRowClick ? "cursor-pointer" : ""}
-          `}
-          onClick={() => onRowClick?.(row, rowIndex)}
-        >
+        <tr key={rowIndex}>
           {row.map((cell, cellIndex) => {
             const hasTooltip = cell.hintText !== undefined;
 
             return (
               <td
                 key={`${rowIndex}-${cellIndex}`}
-                className="py-4 text-sm text-gray-900"
+                className="py-4 text-sm whitespace-nowrap"
               >
                 <div className="flex items-center gap-2 px-6">
                   <span className="block">{cell.content}</span>
@@ -84,17 +68,15 @@ const TableBody = ({
 const DocsTypeTable = ({
   columns,
   data,
-  isHoverable = true,
   isLoading = false,
   emptyMessage = "No data available",
   loadingMessage = "Loading...",
   className = "",
-  onRowClick,
 }: DocsTypeTableProps) => {
   if (isLoading) {
     return (
       <div
-        className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+        className={`w-full overflow-hidden border border-[var(--code-border)] rounded-lg ${className}`}
       >
         <div className="p-6 text-center text-gray-500">{loadingMessage}</div>
       </div>
@@ -104,7 +86,7 @@ const DocsTypeTable = ({
   if (data.length === 0) {
     return (
       <div
-        className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+        className={`w-full overflow-hidden border border-[var(--code-border)] rounded-lg ${className}`}
       >
         <div className="p-6 text-center text-gray-500">{emptyMessage}</div>
       </div>
@@ -113,16 +95,12 @@ const DocsTypeTable = ({
 
   return (
     <div
-      className={`w-full overflow-hidden border border-gray-200 rounded-lg ${className}`}
+      className={`w-full border border-[var(--code-border)] rounded-lg my-8 overflow-hidden ${className}`}
     >
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-full divide-y divide-gray-200">
+      <div className="overflow-x-auto w-full">
+        <table className="w-full min-w-full">
           <TableHeader columns={columns} />
-          <TableBody
-            data={data}
-            isHoverable={isHoverable}
-            onRowClick={onRowClick}
-          />
+          <TableBody data={data} />
         </table>
       </div>
     </div>

@@ -6,7 +6,9 @@ import DocsTypeTable from "./app/components/DocsTypeTable";
 import Preview from "./app/components/Preview";
 import ButtonPreview from "./app/components/Previews/ButtonPreview";
 import { Snippet } from "./app/components/Previews/ComponentPreview";
-
+import AlertPreview from "./app/components/Previews/AlertPreview";
+import TagPreview from "./app/components/Previews/TagPreview";
+import ButtonGroupV2Preview from "./app/components/Previews/ButtonGroupV2Preview";
 // Function to generate a slug from text
 function generateSlug(text: string): string {
   return text
@@ -160,6 +162,9 @@ const components = {
   CodeBlock,
   Preview,
   ButtonPreview,
+  AlertPreview,
+  TagPreview,
+  ButtonGroupV2Preview,
 };
 
 declare global {

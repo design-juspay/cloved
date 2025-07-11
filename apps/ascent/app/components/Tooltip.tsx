@@ -29,12 +29,12 @@ const Tooltip = ({
           alignOffset={alignOffset}
           className={
             typeof content === "string"
-              ? "bg-black text-white rounded-xl py-1 px-3 shadow-md"
+              ? "bg-black dark:bg-white text-white dark:text-black rounded-xl py-1 px-3 shadow-md"
               : ""
           }
         >
           {content}
-          <RadixTooltip.Arrow />
+          <RadixTooltip.Arrow className="fill-black dark:fill-white" />
         </RadixTooltip.Content>
       </RadixTooltip.Root>
     </RadixTooltip.Provider>

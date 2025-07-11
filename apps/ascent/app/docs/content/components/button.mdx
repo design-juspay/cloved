@@ -7,7 +7,9 @@ tags:
   - component
 ---
 
+
 <ButtonPreview />
+
 
 ## Usage
 
@@ -26,7 +28,10 @@ function MyComponent() {
 }
 ```
 
-{/* <DocsTypeTable
+
+## API Reference
+
+<DocsTypeTable
   columns={["Prop Name", "Type", "Default"]}
   data={[
     [
@@ -58,16 +63,6 @@ function MyComponent() {
       { content: "trailingIcon", hintText: "Icon displayed after the text" },
       { content: "React.ReactNode", hintText: "React node" },
       { content: "" },
-    ],
-    [
-      { content: "isLoading", hintText: "Whether the button is in loading state" },
-      { content: "boolean", hintText: "boolean" },
-      { content: "false" },
-    ],
-    [
-      { content: "isDisabled", hintText: "Whether the button is disabled" },
-      { content: "boolean", hintText: "boolean" },
-      { content: "false" },
     ],
     [
       { content: "disabled", hintText: "Alternative prop for disabled state" },
@@ -104,47 +99,56 @@ function MyComponent() {
   className="mb-8"
   emptyMessage="No props available"
   loadingMessage="Loading props..."
-/> */}
+/>
 
-## Examples
+## Features
+- Multiple button types (primary, secondary, danger, success)
+- Three sizes (small, medium, large)
+- Loading and disabled states
+- Icon support (leading and trailing)
+- Full width option
+- Flexible content alignment
+- Button group positioning support
 
-### Primary Button
 
-```tsx
-<Button variant="primary">Primary Button</Button>
-```
+## Usage Examples
 
-### Secondary Button
-
-```tsx
-<Button variant="secondary">Secondary Button</Button>
-```
-
-### Outline Button
-
-```tsx
-<Button variant="outline">Outline Button</Button>
-```
-
-### Different Sizes
+### Basic Button
+Simple button with text
 
 ```tsx
-<Button size="small">Small</Button>
-<Button size="medium">Medium</Button>
-<Button size="large">Large</Button>
+<Button text="Click me" buttonType={ButtonTypeV2.PRIMARY} />
 ```
 
-### Disabled State
+### Button with Icons
+Button with leading and trailing icons
 
 ```tsx
-<Button disabled>Disabled Button</Button>
+<Button 
+  text="Save" 
+  leadingIcon={<SaveIcon />} 
+  buttonType={ButtonTypeV2.SUCCESS} 
+/>
 ```
 
-## Accessibility
+### Loading Button
+Button in loading state
 
-The Button component includes proper ARIA attributes and keyboard navigation support:
+```tsx
+<Button 
+  text="Processing..." 
+  loading={true}
+  buttonType={ButtonTypeV2.PRIMARY} 
+/>
+```
 
-- Supports `Enter` and `Space` key activation
-- Includes `role="button"` when not a native button element
-- Proper focus management
-- Screen reader friendly
+### Full Width Button
+Button that takes full width of container
+
+```tsx
+<Button 
+  text="Full Width" 
+  fullWidth={true}
+  buttonType={ButtonTypeV2.SECONDARY} 
+/>
+```

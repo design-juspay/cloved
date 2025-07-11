@@ -19,7 +19,7 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
   return (
     <div
       data-code-block
-      className="relative w-full rounded-md border border-[var(--code-border)] py-3 px-2"
+      className="relative w-full rounded-md border border-[var(--code-border)] py-3 px-2 overflow-auto"
     >
       <AnimatePresence initial={false} mode="wait">
         <motion.button
@@ -28,7 +28,7 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-3 right-1 p-1 flex items-center justify-center text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer hover:text-gray-500"
+          className="absolute top-3 right-1 p-1 flex items-center justify-center text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md cursor-pointer hover:text-gray-500 z-10"
           onClick={copyToClipboard}
         >
           {isCopied ? (
@@ -61,11 +61,13 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
           )}
         </motion.button>
       </AnimatePresence>
-      <code
-        dangerouslySetInnerHTML={{ __html: codeHTML }}
-        {...props}
-        className="p-2"
-      ></code>
+      <div className="overflow-x-auto">
+        <code
+          dangerouslySetInnerHTML={{ __html: codeHTML }}
+          {...props}
+          className="p-2 block whitespace-pre-wrap break-words"
+        ></code>
+      </div>
     </div>
   );
 };
