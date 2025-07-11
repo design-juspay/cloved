@@ -10,7 +10,6 @@ type TableCell = {
 };
 
 type DocsTypeTableProps = {
-  columns: string[];
   data: TableCell[][];
   isLoading?: boolean;
   emptyMessage?: string;
@@ -18,14 +17,16 @@ type DocsTypeTableProps = {
   className?: string;
 };
 
-const TableHeader = ({ columns }: { columns: string[] }) => {
+const TableHeader = () => {
+  const columns = ["Prop Name", "Type", "Default"];
+
   return (
     <thead className="bg-gray-50 dark:bg-[var(--code-background)] border-b-1 border-[var(--code-border)]">
       <tr>
         {columns.map((column, index) => (
           <th
             key={index}
-            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-[var(--muted-foreground)] uppercase tracking-wider whitespace-nowrap"
+            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-[var(--muted-foreground)] uppercase tracking-wider"
           >
             <span>{column}</span>
           </th>
@@ -44,15 +45,16 @@ const TableBody = ({ data }: { data: TableCell[][] }) => {
             const hasTooltip = cell.hintText !== undefined;
 
             return (
-              <td
-                key={`${rowIndex}-${cellIndex}`}
-                className="py-4 text-sm whitespace-nowrap"
-              >
-                <div className="flex items-center gap-2 px-6">
-                  <span className="block">{cell.content}</span>
+              <td key={`${rowIndex}-${cellIndex}`} className="py-4 text-sm">
+                <div className="flex items-start gap-2 px-6">
+                  <span className="block break-words">{cell.content}</span>
                   {hasTooltip && (
                     <Tooltip content={cell.hintText!}>
-                      <Info size={12} color="var(--muted-foreground)" />
+                      <Info
+                        size={12}
+                        color="var(--muted-foreground)"
+                        className="flex-shrink-0 mt-0.5"
+                      />
                     </Tooltip>
                   )}
                 </div>
@@ -66,7 +68,6 @@ const TableBody = ({ data }: { data: TableCell[][] }) => {
 };
 
 const DocsTypeTable = ({
-  columns,
   data,
   isLoading = false,
   emptyMessage = "No data available",
@@ -99,7 +100,7 @@ const DocsTypeTable = ({
     >
       <div className="overflow-x-auto w-full">
         <table className="w-full min-w-full">
-          <TableHeader columns={columns} />
+          <TableHeader />
           <TableBody data={data} />
         </table>
       </div>

@@ -8,8 +8,8 @@ const ButtonGroupV2Preview = () => {
 
 function MyComponent() {
   return (
-    <ButtonGroupV2 stacked={false}>
-      <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SECONDARY} />
+    <ButtonGroupV2 stacked={true}>
+      <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SUCCESS} />
       <ButtonV2 text="Save" buttonType={ButtonTypeV2.PRIMARY} />
     </ButtonGroupV2>
   );
@@ -42,8 +42,8 @@ external make: (
       rescript={reCode}
       rescriptBinding={bindingCode}
     >
-      <ButtonGroupV2 stacked={false}>
-        <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SECONDARY} />
+      <ButtonGroupV2 stacked={true}>
+        <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SUCCESS} />
         <ButtonV2 text="Save" buttonType={ButtonTypeV2.PRIMARY} />
       </ButtonGroupV2>
     </ComponentPreview>

@@ -1,16 +1,17 @@
-
-import Link from 'next/link';
+import Link from "next/link";
 import React from "react";
-import Sidebar from '../components/Sidebar';
+import Sidebar from "../components/Sidebar";
 import getDirItems from "./utils/getDirItems";
-import SidebarDrawer from '../components/SidebarDrawer';
+import SidebarDrawer from "../components/SidebarDrawer";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="min-h-screen w-screen">
       <nav className="h-[var(--navbar-height)] flex items-center px-4">
         <div className="flex items-center gap-2">
-          {/* <SidebarDrawer /> */}
+          <div className="sidebar-drawer-trigger">
+            <SidebarDrawer />
+          </div>
           <Link href="/" className="pl-2">
             Blend Docs
           </Link>
@@ -28,5 +29,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-
-export default layout
+export default layout;

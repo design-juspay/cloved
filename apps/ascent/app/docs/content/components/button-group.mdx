@@ -19,7 +19,7 @@ import { ButtonGroupV2, ButtonV2, ButtonTypeV2 } from "blend-v1";
 function MyComponent() {
   return (
     <ButtonGroupV2 stacked={false}>
-      <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SECONDARY} />
+      <ButtonV2 text="Cancel" buttonType={ButtonTypeV2.SUCCESS} />
       <ButtonV2 text="Save" buttonType={ButtonTypeV2.PRIMARY} />
     </ButtonGroupV2>
   );
@@ -30,7 +30,6 @@ function MyComponent() {
 ## API Reference
 
 <DocsTypeTable
-  columns={["Prop Name", "Type", "Default"]}
   data={[
     [
       { content: "stacked", hintText: "Whether buttons should be stacked or side by side" },

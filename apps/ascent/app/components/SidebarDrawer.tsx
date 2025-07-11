@@ -7,12 +7,12 @@ const SidebarDrawer = () => {
   return (
     <Drawer.Root direction="left">
       <Drawer.Trigger asChild className="size-8 flex items-center justify-center">
-        <Menu size={16} />
+        <Menu size={14} />
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
         <Drawer.Content
-          className="right-2 top-2 bottom-2 fixed z-10 outline-none w-[310px] flex"
+          className="left-2 top-2 bottom-2 fixed z-10 outline-none w-[310px] flex"
         >
           <div className="bg-zinc-50 h-full w-full grow p-5 flex flex-col rounded-[16px]">
             <div className="max-w-md mx-auto">
