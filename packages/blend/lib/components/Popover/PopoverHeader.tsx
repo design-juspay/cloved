@@ -58,7 +58,7 @@ const PopoverHeader = ({
             <ButtonV2
               subType={ButtonSubTypeV2.INLINE}
               buttonType={ButtonTypeV2.SECONDARY}
-              leadingIcon={<X size={FOUNDATION_THEME.unit[12]} />}
+              leftIcon={<X size={FOUNDATION_THEME.unit[12]} />}
               onClick={onClose}
             ></ButtonV2>
           </Block>

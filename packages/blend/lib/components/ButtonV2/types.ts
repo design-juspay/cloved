@@ -25,10 +25,8 @@ export type ButtonV2Props = {
   size?: ButtonSizeV2;
   subType?: ButtonSubTypeV2;
   text?: string;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  isLoading?: boolean;
-  isDisabled?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
   loading?: boolean;
