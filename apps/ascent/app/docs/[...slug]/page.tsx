@@ -62,6 +62,7 @@ const page = async ({ params }: { params: Promise<{ slug: string[] }> }) => {
         <article className="prose py-10 max-w-[80ch] mx-auto overflow-x-hidden px-4 md:px-2">
           <PageBreadcrumb items={breadcrumbItems} />
           <PageHeader metadata={metadata} />
+
           {/* <DocArticle content={content} /> */}
           {content}
         </article>
@@ -164,7 +165,11 @@ const PageHeader = ({ metadata }: { metadata: PageMetadata }) => {
             Report an issue
           </a>
           <a
-            href="https://github.com/juspay/blend-design-system/issues"
+            href={
+              metadata.storybookLink !== "" || metadata.storybookLink !== undefined
+                ? `https://juspay.design/storybook/?path=/docs/${metadata.StorybookLink}`
+                : "https://juspay.design/storybook/?path=/docs/components-accordion--docs"
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] bg-[var(--code-background)] rounded-md p-2"

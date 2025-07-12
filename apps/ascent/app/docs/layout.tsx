@@ -17,7 +17,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             Blend Docs
           </Link>
         </div>
-        <div className="flex items-center gap-2 justify-center">
+        <div className="flex items-center gap-4 justify-center">
           <SearchProvider />
           <a
             href="https://github.com/juspay/blend-design-system"
@@ -26,8 +26,8 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] size-6 flex items-center justify-center"
           >
             <svg
-              width="16"
-              height="16"
+              width="18"
+              height="18"
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

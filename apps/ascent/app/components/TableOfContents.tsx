@@ -21,13 +21,11 @@ export default function TableOfContents({
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
-    // Handle initial URL hash
     if (typeof window !== 'undefined') {
-      const hash = window.location.hash.slice(1); // Remove the #
+      const hash = window.location.hash.slice(1); 
       if (hash) {
         const element = document.getElementById(hash);
         if (element) {
-          // Small delay to ensure the page is fully loaded
           setTimeout(() => {
             element.scrollIntoView({
               behavior: "smooth",
@@ -53,7 +51,6 @@ export default function TableOfContents({
       }
     );
 
-    // Observe all heading elements
     items.forEach((item) => {
       const element = document.getElementById(item.id);
       if (element) {
@@ -72,7 +69,6 @@ export default function TableOfContents({
         block: "start",
       });
       
-      // Update URL with hash
       const url = new URL(window.location.href);
       url.hash = id;
       window.history.pushState({}, '', url.toString());
@@ -114,4 +110,5 @@ export default function TableOfContents({
     </nav>
   );
 }
+
 
