@@ -21,6 +21,24 @@ export default function TableOfContents({
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
+    // Handle initial URL hash
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.slice(1); // Remove the #
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          // Small delay to ensure the page is fully loaded
+          setTimeout(() => {
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+            setActiveId(hash);
+          }, 100);
+        }
+      }
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -53,6 +71,11 @@ export default function TableOfContents({
         behavior: "smooth",
         block: "start",
       });
+      
+      // Update URL with hash
+      const url = new URL(window.location.href);
+      url.hash = id;
+      window.history.pushState({}, '', url.toString());
     }
   };
 
@@ -72,14 +95,16 @@ export default function TableOfContents({
           <li key={item.id}>
             <button
               onClick={() => scrollToSection(item.id)}
-              className={`text-left w-full px-2 py-1.5 rounded text-sm transition-colors cursor-pointer`}
+              className={`text-left w-full px-2 py-1.5 rounded text-sm transition-colors cursor-pointer ${
+                activeId === item.id 
+                  ? "text-blue-700" 
+                  : "text-gray-700"
+              }`}
               style={{
                 paddingLeft: `${(item.level - 1) * 16 + 8}px`,
               }}
             >
-              <p
-                
-              >
+              <p>
                 {item.text}
               </p>
             </button>

@@ -15,7 +15,8 @@ function generateSlug(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .replace(/(^-|-$)/g, "")
+    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
 }
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
@@ -61,7 +62,33 @@ const components = {
       </h3>
     );
   },
-  h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
+  h4: ({ children, ...props }: HeadingProps) => {
+    const text = typeof children === "string" ? children : "";
+    const id = generateSlug(text);
+    return (
+      <h4 id={id} className="font-medium" {...props}>
+        {children}
+      </h4>
+    );
+  },
+  h5: ({ children, ...props }: HeadingProps) => {
+    const text = typeof children === "string" ? children : "";
+    const id = generateSlug(text);
+    return (
+      <h5 id={id} className="font-medium text-sm" {...props}>
+        {children}
+      </h5>
+    );
+  },
+  h6: ({ children, ...props }: HeadingProps) => {
+    const text = typeof children === "string" ? children : "";
+    const id = generateSlug(text);
+    return (
+      <h6 id={id} className="font-medium text-sm" {...props}>
+        {children}
+      </h6>
+    );
+  },
   p: (props: ParagraphProps) => (
     <p className="leading-relaxed [&:not(:first-child)]:mt-6" {...props} />
   ),
