@@ -19,7 +19,7 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
   return (
     <div
       data-code-block
-      className="relative w-full rounded-md border border-[var(--code-border)] py-3 px-2 overflow-auto"
+      className="relative w-full rounded-md border border-[var(--code-border)] py-3 px-2 overflow-auto bg-[var(--code-background)]"
     >
       <AnimatePresence initial={false} mode="wait">
         <motion.button
@@ -61,7 +61,7 @@ const CodeBlock = ({ code, props }: { code: React.ReactNode; props: any }) => {
           )}
         </motion.button>
       </AnimatePresence>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto bg-[var(--code-background)]">
         <code
           dangerouslySetInnerHTML={{ __html: codeHTML }}
           {...props}

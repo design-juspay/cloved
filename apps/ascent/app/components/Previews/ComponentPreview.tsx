@@ -51,8 +51,8 @@ const ComponentPreview = ({
   }
 
   return (
-    <div className="w-full min-h-80 border-[var(--code-border)] border-1 rounded-2xl mb-10 mt-25 flex flex-col items-center justify-center overflow-clip">
-      <div className="w-full flex flex-1 min-h-60 items-center justify-center gap-4">
+    <div data-component-preview className="w-full min-h-80 border-[var(--code-border)] border-1 rounded-2xl mb-10 mt-25 flex flex-col items-center justify-center overflow-clip">
+      <div className="w-full flex flex-1 min-h-60 items-center justify-center gap-4 debug bg-white">
         {children}
       </div>
       <div className="w-full border-t border-[var(--code-border)]">

@@ -5,6 +5,7 @@ category: components
 tags:
   - button
   - component
+RepoFolderName: ButtonV2
 ---
 
 
@@ -31,74 +32,7 @@ function MyComponent() {
 
 ## API Reference
 
-<DocsTypeTable
-  data={[
-    [
-      { content: "buttonType", hintText: "The type of the button" },
-      { content: "ButtonTypeV2", hintText: "enum" },
-      { content: "PRIMARY" },
-    ],
-    [
-      { content: "size", hintText: "The size of the button" },
-      { content: "ButtonSizeV2", hintText: "enum" },
-      { content: "MEDIUM" },
-    ],
-    [
-      { content: "subType", hintText: "The subtype of the button" },
-      { content: "ButtonSubTypeV2", hintText: "enum" },
-      { content: "DEFAULT" },
-    ],
-    [
-      { content: "text", hintText: "The text content of the button" },
-      { content: "string", hintText: "string" },
-      { content: "" },
-    ],
-    [
-      { content: "leadingIcon", hintText: "Icon displayed before the text" },
-      { content: "React.ReactNode", hintText: "React node" },
-      { content: "" },
-    ],
-    [
-      { content: "trailingIcon", hintText: "Icon displayed after the text" },
-      { content: "React.ReactNode", hintText: "React node" },
-      { content: "" },
-    ],
-    [
-      { content: "disabled", hintText: "Alternative prop for disabled state" },
-      { content: "boolean", hintText: "boolean" },
-      { content: "false" },
-    ],
-    [
-      { content: "onClick", hintText: "Click handler function" },
-      { content: "() => void", hintText: "function" },
-      { content: "" },
-    ],
-    [
-      { content: "loading", hintText: "Alternative prop for loading state" },
-      { content: "boolean", hintText: "boolean" },
-      { content: "false" },
-    ],
-    [
-      { content: "buttonGroupPosition", hintText: "Position when used in a button group" },
-      { content: "'center' | 'left' | 'right'", hintText: "string union" },
-      { content: "" },
-    ],
-    [
-      { content: "fullWidth", hintText: "Whether the button should take full width" },
-      { content: "boolean", hintText: "boolean" },
-      { content: "false" },
-    ],
-    [
-      { content: "justifyContent", hintText: "CSS justify-content property" },
-      { content: "CSSObject['justifyContent']", hintText: "CSS property" },
-      { content: "" },
-    ],
-  ]}
-  isHoverable={true}
-  className="mb-8"
-  emptyMessage="No props available"
-  loadingMessage="Loading props..."
-/>
+
 
 ## Features
 - Multiple button types (primary, secondary, danger, success)
@@ -150,4 +84,62 @@ Button that takes full width of container
   fullWidth={true}
   buttonType={ButtonTypeV2.SECONDARY} 
 />
+```
+
+
+## Component Tokens 
+
+```tsx
+export type ButtonState = "default" | "hover" | "active" | "disabled";
+
+export type ButtonTokensType = {
+  gap: CSSObject["gap"];
+  backgroundColor: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["background"];
+      };
+    };
+  };
+  color: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["color"];
+      };
+    };
+  };
+  borderRadius: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["borderRadius"];
+      };
+    };
+  };
+  padding: {
+    [key in ButtonSizeV2]: {
+      [key in ButtonSubTypeV2]: CSSObject["padding"];
+    };
+  };
+  border: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["border"];
+      };
+    };
+  };
+  shadow: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["boxShadow"];
+      };
+    };
+  };
+  outline: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["outline"];
+      };
+    };
+  };
+};
 ```

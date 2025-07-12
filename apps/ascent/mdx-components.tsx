@@ -9,6 +9,7 @@ import { Snippet } from "./app/components/Previews/ComponentPreview";
 import AlertPreview from "./app/components/Previews/AlertPreview";
 import TagPreview from "./app/components/Previews/TagPreview";
 import ButtonGroupV2Preview from "./app/components/Previews/ButtonGroupV2Preview";
+import SplitTagPreview from "./app/components/Previews/SplitTagPreview";
 // Function to generate a slug from text
 function generateSlug(text: string): string {
   return text
@@ -165,6 +166,7 @@ const components = {
   AlertPreview,
   TagPreview,
   ButtonGroupV2Preview,
+  SplitTagPreview,
 };
 
 declare global {

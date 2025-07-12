@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 
 type TooltipProps = {
@@ -18,10 +18,13 @@ const Tooltip = ({
   sideOffset = 4,
   alignOffset = 0,
 }: TooltipProps) => {
+  const [open, setOpen] = useState(false);
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root>
-        <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+      <RadixTooltip.Root open={open} onOpenChange={setOpen}>
+        <RadixTooltip.Trigger asChild onClick={() => setOpen(true)}>
+          {children}
+        </RadixTooltip.Trigger>
         <RadixTooltip.Content
           side={side}
           align={align}
@@ -29,7 +32,7 @@ const Tooltip = ({
           alignOffset={alignOffset}
           className={
             typeof content === "string"
-              ? "bg-black dark:bg-white text-white dark:text-black rounded-xl py-1 px-3 shadow-md"
+              ? "bg-black dark:bg-white text-white dark:text-black rounded-xl py-1 px-3 shadow-md max-w-60 md:max-w-100"
               : ""
           }
         >
