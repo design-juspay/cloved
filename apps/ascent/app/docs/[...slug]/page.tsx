@@ -131,10 +131,14 @@ const PageHeader = ({ metadata }: { metadata: PageMetadata }) => {
         {metadata.description}
       </p>
 
-      {metadata.RepoFolderName && (
+      {
         <div className="w-full mt-4 flex flex-wrap items-center gap-4">
           <a
-            href={`https://github.com/juspay/blend-design-system/tree/main/packages/blend/lib/components/${metadata.RepoFolderName}`}
+            href={
+              metadata.RepoFolderName && metadata.RepoFolderName !== ""
+                ? `https://github.com/juspay/blend-design-system/tree/main/packages/blend/lib/components/${metadata.RepoFolderName}`
+                : "https://github.com/juspay/blend-design-system"
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] bg-[var(--code-background)] rounded-md p-2"
@@ -166,7 +170,7 @@ const PageHeader = ({ metadata }: { metadata: PageMetadata }) => {
           </a>
           <a
             href={
-              metadata.storybookLink !== "" || metadata.storybookLink !== undefined
+              metadata.storybookLink && metadata.storybookLink !== ""
                 ? `https://juspay.design/storybook/?path=/docs/${metadata.StorybookLink}`
                 : "https://juspay.design/storybook/?path=/docs/components-accordion--docs"
             }
@@ -209,7 +213,7 @@ const PageHeader = ({ metadata }: { metadata: PageMetadata }) => {
             View Storybook
           </a>
         </div>
-      )}
+      }
     </>
   );
 };

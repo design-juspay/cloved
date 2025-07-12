@@ -169,10 +169,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
         <span className="hidden lg:inline-flex">Search documentation...</span>
         <span className="inline-flex lg:hidden">Search...</span>
         <div className="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
-          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-[var(--code-border)] px-1 font-sans text-[0.7rem] font-medium select-none">
             ⌘
           </kbd>
-          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-[var(--code-border)] px-1 font-sans text-[0.7rem] font-medium select-none">
             K
           </kbd>
         </div>
@@ -219,8 +219,14 @@ const MobileSearch = ({
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Content className="h-[70vh] bg-[var(--code-background)] fixed bottom-0 left-0 right-0 outline-none flex flex-col rounded-t-2xl">
+            <Drawer.Title className="text-sm font-medium text-[var(--code-foreground)] hidden">
+              Search
+            </Drawer.Title>
+            <Drawer.Description className="text-sm font-medium text-[var(--code-foreground)] hidden">
+              Search
+            </Drawer.Description>
             <div className="sticky top-0 left-0 right-0">
-              <Drawer.Handle className="h-10 w-full bg-gray-400 dark:bg-gray-600 my-4 rounded-t-xl" />
+              <Drawer.Handle className="h-10 w-full bg-gray-400 dark:bg-gray-600 my-4 rounded-t-xl cursor-grab" />
               <input
                 type="text"
                 placeholder="Search components, styles, tokens..."

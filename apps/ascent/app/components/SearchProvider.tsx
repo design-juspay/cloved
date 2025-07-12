@@ -5,21 +5,22 @@ import SearchBar from "./SearchBar";
 import { SearchResult } from "../docs/utils/searchContent";
 
 const SearchProvider: React.FC = () => {
-  const [searchIndex, setSearchIndex] = useState<{ [key: string]: SearchResult }>({});
+  const [searchIndex, setSearchIndex] = useState<{
+    [key: string]: SearchResult;
+  }>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
 
   useEffect(() => {
     const fetchSearchIndex = async () => {
       try {
         setIsLoading(true);
         const response = await fetch("/api/search");
-        
+
         if (!response.ok) {
           throw new Error("Failed to fetch search index");
         }
-        
+
         const data = await response.json();
         setSearchIndex(data);
       } catch (err) {
@@ -46,10 +47,10 @@ const SearchProvider: React.FC = () => {
         <span className="hidden lg:inline-flex">Search documentation...</span>
         <span className="inline-flex lg:hidden">Search...</span>
         <div className="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
-          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-[var(--code-border) ] px-1 font-sans text-[0.7rem] font-medium select-none">
             ⌘
           </kbd>
-          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-[var(--code-border)] px-1 font-sans text-[0.7rem] font-medium select-none">
             K
           </kbd>
         </div>
@@ -75,4 +76,4 @@ const SearchProvider: React.FC = () => {
   return <SearchBar searchIndex={searchIndex} />;
 };
 
-export default SearchProvider; 
+export default SearchProvider;

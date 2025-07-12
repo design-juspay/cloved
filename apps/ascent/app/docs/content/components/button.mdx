@@ -31,12 +31,75 @@ function MyComponent() {
 ```
 
 
-yo lo 
-
-
 ## API Reference
 
-
+<DocsTypeTable
+  data={[
+    [
+      { content: "buttonType", hintText: "The visual type/variant of the button" },
+      { content: "ButtonTypeV2", hintText: "enum" },
+      { content: "ButtonTypeV2.PRIMARY" },
+    ],
+    [
+      { content: "size", hintText: "The size of the button" },
+      { content: "ButtonSizeV2", hintText: "enum" },
+      { content: "ButtonSizeV2.SMALL" },
+    ],
+    [
+      { content: "subType", hintText: "The subtype that affects button styling and behavior" },
+      { content: "ButtonSubTypeV2", hintText: "enum" },
+      { content: "ButtonSubTypeV2.DEFAULT" },
+    ],
+    [
+      { content: "text", hintText: "The text content displayed in the button" },
+      { content: "string", hintText: "string" },
+      { content: "" },
+    ],
+    [
+      { content: "leadingIcon", hintText: "Icon element to display before the button text" },
+      { content: "React.ReactNode", hintText: "React node" },
+      { content: "" },
+    ],
+    [
+      { content: "trailingIcon", hintText: "Icon element to display after the button text" },
+      { content: "React.ReactNode", hintText: "React node" },
+      { content: "" },
+    ],
+    [
+      { content: "disabled", hintText: "Whether the button is disabled and non-interactive" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "onClick", hintText: "Callback function called when the button is clicked" },
+      { content: "() => void", hintText: "function" },
+      { content: "" },
+    ],
+    [
+      { content: "loading", hintText: "Whether the button is in a loading state with spinner" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "buttonGroupPosition", hintText: "Position of the button within a button group" },
+      { content: "'center' | 'left' | 'right'", hintText: "union type" },
+      { content: "" },
+    ],
+    [
+      { content: "fullWidth", hintText: "Whether the button should take the full width of its container" },
+      { content: "boolean", hintText: "boolean" },
+      { content: "false" },
+    ],
+    [
+      { content: "justifyContent", hintText: "CSS justify-content property for button content alignment" },
+      { content: "CSSObject['justifyContent']", hintText: "CSS property" },
+      { content: "center" },
+    ],
+  ]}
+  className="mb-8"
+  emptyMessage="No props available"
+  loadingMessage="Loading props..."
+/>
 
 ## Features
 - Multiple button types (primary, secondary, danger, success)
