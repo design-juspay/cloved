@@ -1,8 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Search, X, ArrowUp, ArrowDown, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandItem,
+} from "cmdk";
 import { SearchResult } from "../docs/utils/searchContent";
 
 interface SearchBarProps {
@@ -13,44 +18,25 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isSearching, setIsSearching] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const [_, setIsSearching] = useState(false);
 
-  // Helper function to get flattened results for keyboard navigation
-  const getFlattenedResults = () => {
-    const flattened: Array<{ type: 'page' | 'section'; result: SearchResult; section?: any; href: string }> = [];
-    
-    results.forEach(result => {
-      // Add main page result
-      flattened.push({
-        type: 'page',
-        result,
-        href: `/docs/${result.path}`
-      });
-      
-      // Add section results
-      result.sections?.forEach(section => {
-        const sectionMatches = query.toLowerCase().split(/\s+/).some(term =>
-          section.title.toLowerCase().includes(term)
-        );
-        
-        if (sectionMatches) {
-          flattened.push({
-            type: 'section',
-            result,
-            section,
-            href: `/docs/${result.path}#${section.id}`
-          });
+  useEffect(() => {
+    const closeSearchOnEscape = () => {
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          setIsOpen(false);
         }
       });
-    });
-    
-    return flattened;
-  };
+    };
 
-  // Search function
+    closeSearchOnEscape();
+
+    return () => {
+      window.removeEventListener("keydown", closeSearchOnEscape);
+    };
+  }, []);
+
   const performSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([]);
@@ -58,43 +44,34 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
     }
 
     setIsSearching(true);
-    
-    // Simple client-side search implementation
+
     const searchTerms = searchQuery.toLowerCase().split(/\s+/);
     const searchResults: Array<SearchResult & { score: number }> = [];
 
     for (const [slug, result] of Object.entries(searchIndex)) {
+      if (result.category !== "components") {
+        continue;
+      }
+
       let score = 0;
       const searchableText = [
         result.title,
         result.description,
-        result.content,
         ...(result.tags || []),
-        ...(result.sections?.map(s => s.title) || [])
-      ].join(' ').toLowerCase();
+      ]
+        .join(" ")
+        .toLowerCase();
 
       for (const term of searchTerms) {
-        // Title matches get highest score
         if (result.title.toLowerCase().includes(term)) {
           score += 10;
         }
-
-        // Description matches get high score
         if (result.description?.toLowerCase().includes(term)) {
           score += 8;
         }
-
-        // Section header matches get high score
-        if (result.sections?.some(section => section.title.toLowerCase().includes(term))) {
-          score += 7;
-        }
-
-        // Tag matches get medium score
-        if (result.tags?.some(tag => tag.toLowerCase().includes(term))) {
+        if (result.tags?.some((tag) => tag.toLowerCase().includes(term))) {
           score += 6;
         }
-
-        // Content matches get lower score
         if (searchableText.includes(term)) {
           score += 2;
         }
@@ -105,7 +82,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
       }
     }
 
-    // Sort by score and limit results
     const sortedResults = searchResults
       .sort((a, b) => b.score - a.score)
       .slice(0, 8)
@@ -115,7 +91,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
     setIsSearching(false);
   };
 
-  // Debounced search
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       performSearch(query);
@@ -124,47 +99,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
-  // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const flattenedResults = getFlattenedResults();
-    if (!isOpen || flattenedResults.length === 0) return;
-
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setSelectedIndex((prev) => 
-          prev < flattenedResults.length - 1 ? prev + 1 : 0
-        );
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setSelectedIndex((prev) => 
-          prev > 0 ? prev - 1 : flattenedResults.length - 1
-        );
-        break;
-      case "Enter":
-        e.preventDefault();
-        if (flattenedResults[selectedIndex]) {
-          window.location.href = flattenedResults[selectedIndex].href;
-          setIsOpen(false);
-        }
-        break;
-      case "Escape":
-        setIsOpen(false);
-        inputRef.current?.blur();
-        break;
-    }
-  };
-
-  // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node) &&
-        resultsRef.current &&
-        !resultsRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+      const modal = document.querySelector("[cmdk-dialog]");
+      if (modal && !modal.contains(target)) {
         setIsOpen(false);
       }
     };
@@ -173,10 +112,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleInputFocus = () => {
-    setIsOpen(true);
-    setSelectedIndex(0);
-  };
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   const handleResultClick = () => {
     setIsOpen(false);
@@ -185,132 +131,76 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchIndex }) => {
 
   return (
     <div className="relative">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Search documentation..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-          className="w-full border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-sm"
-        />
-        {query && (
-          <button
-            onClick={() => {
-              setQuery("");
-              setResults([]);
-            }}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 hover:text-gray-600"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        )}
-      </div>
+      <button
+        data-slot="dialog-trigger"
+        className="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-secondary/80 px-4 py-2 bg-zinc-100 relative h-8 w-full justify-start pl-2.5 font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64 cursor-pointer"
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        data-state="closed"
+        onClick={() => setIsOpen(true)}
+      >
+        <span className="hidden lg:inline-flex">Search documentation...</span>
+        <span className="inline-flex lg:hidden">Search...</span>
+        <div className="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+            ⌘
+          </kbd>
+          <kbd className="bg-[var(--background)] text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border border-zinc-200 px-1 font-sans text-[0.7rem] font-medium select-none [&amp;_svg:not([class*='size-'])]:size-3">
+            K
+          </kbd>
+        </div>
+      </button>
 
-      {/* Search Results Dropdown */}
-      {isOpen && (query || isSearching) && (
-        <div
-          ref={resultsRef}
-          className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-96 overflow-y-auto"
-        >
-          {isSearching ? (
-            <div className="p-4 text-center text-gray-500">
-              Searching...
-            </div>
-          ) : results.length > 0 ? (
-                        <div className="py-2">
-              {results.map((result, resultIndex) => {
-                const flattenedResults = getFlattenedResults();
-                let currentIndex = resultIndex;
-                
-                return (
-                  <div key={result.slug}>
-                    {/* Main result */}
-                    <Link
-                      href={`/docs/${result.path}`}
-                      onClick={handleResultClick}
-                      className={`block px-4 py-3 hover:bg-gray-50 transition-colors ${
-                        flattenedResults[currentIndex]?.type === 'page' && currentIndex === selectedIndex ? "bg-blue-50" : ""
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-gray-900 truncate">
-                            {result.title}
-                          </div>
-                          {result.description && (
-                            <div className="text-sm text-gray-600 mt-1 line-clamp-2">
-                              {result.description}
-                            </div>
-                          )}
-                          <div className="text-xs text-gray-400 mt-1">
-                            {result.path}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1 text-xs text-gray-400">
-                          {flattenedResults[currentIndex]?.type === 'page' && currentIndex === selectedIndex && (
-                            <>
-                              <ArrowRight className="h-3 w-3" />
-                              <span>Enter</span>
-                            </>
-                          )}
-                        </div>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-[1000] bg-black/40">
+          <Command
+            loop
+            className="fixed min-w-120 w-[800px] min-h-120 mt-1 bg-zinc-50 border flex flex-col gap-4 border-gray-200  shadow-lg max-h-96 overflow-y-auto p-4 rounded-2xl"
+          >
+            <CommandInput
+              placeholder="Search components, styles, tokens..."
+              value={query}
+              onValueChange={(value) => setQuery(value)}
+              className="bg-transparent focus:outline-none w-full py-1 text-base"
+            />
+            <CommandList className="h-full flex-1">
+              {results.length === 0 && query && (
+                <CommandEmpty>No results found</CommandEmpty>
+              )}
+              {results.map((result) => (
+                <CommandItem
+                  key={result.slug}
+                  value={`${result.title} ${result.description || ""} ${result.path}`}
+                  onSelect={() => {
+                    window.location.href = `/docs/${result.path}`;
+                    handleResultClick();
+                  }}
+                  className="px-4 py-3 hover:bg-gray-100 cursor-pointer rounded-md"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-gray-900 truncate">
+                        {result.title}
                       </div>
-                    </Link>
-                    
-                    {/* Section matches */}
-                    {result.sections?.map((section, sectionIndex) => {
-                      const sectionMatches = query.toLowerCase().split(/\s+/).some(term =>
-                        section.title.toLowerCase().includes(term)
-                      );
-                      
-                      if (!sectionMatches) return null;
-                      
-                      currentIndex++; // Move to next flattened index
-                      
-                      return (
-                        <Link
-                          key={`${result.slug}-${section.id}`}
-                          href={`/docs/${result.path}#${section.id}`}
-                          onClick={handleResultClick}
-                          className={`block px-4 py-2 hover:bg-gray-50 transition-colors border-l-2 border-gray-200 ml-4 ${
-                            flattenedResults[currentIndex]?.type === 'section' && currentIndex === selectedIndex ? "bg-blue-50" : ""
-                          }`}
-                        >
-                          <div className="flex items-start gap-3">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-sm text-gray-700 truncate">
-                                {section.title}
-                              </div>
-                              <div className="text-xs text-gray-500 mt-1">
-                                Section in {result.title}
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1 text-xs text-gray-400">
-                              {flattenedResults[currentIndex]?.type === 'section' && currentIndex === selectedIndex && (
-                                <ArrowRight className="h-3 w-3" />
-                              )}
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                      {result.description && (
+                        <div className="text-sm text-gray-600 mt-1 line-clamp-2">
+                          {result.description}
+                        </div>
+                      )}
+                      <div className="text-xs text-gray-400 mt-1">
+                        {result.path}
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-          ) : query ? (
-            <div className="p-4 text-center text-gray-500">
-              No results found for "{query}"
-            </div>
-          ) : null}
+                </CommandItem>
+              ))}
+            </CommandList>
+          </Command>
         </div>
       )}
     </div>
   );
 };
 
-export default SearchBar; 
+export default SearchBar;
