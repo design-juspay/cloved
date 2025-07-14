@@ -26,7 +26,9 @@ const TableHeader = () => {
         {columns.map((column, index) => (
           <th
             key={index}
-            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-[var(--muted-foreground)] uppercase tracking-wider"
+            className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-[var(--muted-foreground)] uppercase tracking-wider ${
+              index === 2 ? "hidden md:table-cell" : ""
+            }`}
           >
             <span>{column}</span>
           </th>
@@ -45,7 +47,12 @@ const TableBody = ({ data }: { data: TableCell[][] }) => {
             const hasTooltip = cell.hintText !== undefined;
 
             return (
-              <td key={`${rowIndex}-${cellIndex}`} className="py-4 text-sm">
+              <td
+                key={`${rowIndex}-${cellIndex}`}
+                className={`py-4 text-sm ${
+                  cellIndex === 2 ? "hidden md:table-cell" : ""
+                }`}
+              >
                 <div className="flex items-start gap-2 px-6">
                   <span className="block break-words">{cell.content}</span>
                   {hasTooltip && (
