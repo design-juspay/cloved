@@ -8,6 +8,54 @@ import TableOfContents from "@/app/components/TableOfContents";
 import { extractHeadings } from "../utils/toc";
 import { BugIcon } from "lucide-react";
 import { generateBreadcrumbItems } from "../utils/generateBreadcrumbs";
+import { Metadata } from "next";
+
+// Generate metadata for the page
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slugArray = resolvedParams.slug || [];
+  const basePath = path.join(process.cwd(), "app", "docs", "content");
+
+  let filePath =
+    path.join(
+      basePath,
+      Array.isArray(slugArray) ? slugArray.join("/") : slugArray
+    ) + ".mdx";
+
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(basePath, ...slugArray, "page.mdx");
+    if (!fs.existsSync(filePath)) {
+      return {
+        title: "Page Not Found",
+        description: "The requested page could not be found.",
+      };
+    }
+  }
+
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const { frontmatter } = await compileMDX({
+    source: fileContent,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [],
+        rehypePlugins: [],
+      },
+    },
+    components: useMDXComponents(),
+  });
+
+  const metadata = frontmatter as PageMetadata;
+
+  return {
+    title: metadata?.title || "Untitled",
+    description: metadata?.description || "",
+  };
+}
 
 const page = async ({ params }: { params: Promise<{ slug: string[] }> }) => {
   const resolvedParams = await params;
