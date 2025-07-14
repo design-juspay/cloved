@@ -85,6 +85,9 @@ const scanDirectory = (dirPath: string, basePath: string = ""): DocItem[] => {
       // Skip config.json files
       if (entry.name === "config.json") continue;
 
+      // Skip files with names enclosed in brackets like (inputs).mdx
+      if (entry.name.match(/^\(.*\)\.mdx$/)) continue;
+
       const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
 

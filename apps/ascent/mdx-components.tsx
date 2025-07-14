@@ -22,6 +22,7 @@ import SwitchPreview from "./app/components/Previews/SwitchPreview";
 import SingleSelectPreview from "./app/components/Previews/SingleSelectPreview";
 import MenuPreview from "./app/components/Previews/MenuPreview";
 import StatCardPreview from "./app/components/Previews/StatCardPreview";
+import ChartPreview from "./app/components/Previews/ChartPreview";
 
 function generateSlug(text: string): string {
   return text
@@ -223,7 +224,8 @@ const components = {
   SwitchPreview,
   SingleSelectPreview,
   MenuPreview,
-  StatCardPreview
+  StatCardPreview,
+  ChartPreview
 };
 
 declare global {
