@@ -80,29 +80,25 @@ export default function TableOfContents({
   }
 
   return (
-    <nav className="w-full h-full">
-      {!isMobile && (
-        <div className="flex items-center gap-2 mb-4 px-2">
-          <AlignLeft size={16} /> <p className="text-sm">On this page</p>
-        </div>
-      )}
+    <nav className="w-full h-full pt-5">
+      <div className="flex items-center gap-2 mb-4 px-2">
+        <AlignLeft size={16} /> <p className="text-sm">On this page</p>
+      </div>
       <ul className="space-y-1">
         {items.map((item) => (
           <li key={item.id}>
             <button
               onClick={() => scrollToSection(item.id)}
               className={`text-left w-full px-2 py-1.5 rounded text-sm transition-colors cursor-pointer ${
-                activeId === item.id 
-                  ? "text-blue-700" 
-                  : "text-gray-700"
+                activeId === item.id
+                  ? "text-primary"
+                  : "text-[var(--muted-foreground)]"
               }`}
               style={{
                 paddingLeft: `${(item.level - 1) * 16 + 8}px`,
               }}
             >
-              <p>
-                {item.text}
-              </p>
+              <p>{item.text}</p>
             </button>
           </li>
         ))}

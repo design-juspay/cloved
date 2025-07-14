@@ -23,6 +23,7 @@ export * from "./components/Inputs";
 export * from "./components/Menu";
 export * from "./components/DataTable";
 export * from "./components/Sidebar";
+export * from "./components/Select";
 export * from "./components/MultiSelect";
 export * from "./components/SingleSelect";
 

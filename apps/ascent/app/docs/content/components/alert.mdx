@@ -188,3 +188,25 @@ Alert with no background fill styling
 />
 ```
 
+
+## Component Tokens 
+
+You can style the alert component using the following tokens:
+
+```tsx
+export type AlertTokenType = {
+  padding: CSSObject["padding"];
+  borderRadius: CSSObject["borderRadius"];
+  background: {
+    [key in AlertVariant]: {
+      [key in AlertStyle]: CSSObject["color"];
+    };
+  };
+  border: {
+    [key in AlertVariant]: CSSObject["color"];
+  };
+  button: {
+    [key in AlertVariant]: CSSObject["color"];
+  };
+};
+```

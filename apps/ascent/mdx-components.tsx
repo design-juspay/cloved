@@ -9,14 +9,26 @@ import { Snippet } from "./app/components/Previews/ComponentPreview";
 import AlertPreview from "./app/components/Previews/AlertPreview";
 import TagPreview from "./app/components/Previews/TagPreview";
 import ButtonGroupV2Preview from "./app/components/Previews/ButtonGroupV2Preview";
+import TabsPreview from "./app/components/Previews/TabsPreview";
 import SplitTagPreview from "./app/components/Previews/SplitTagPreview";
-// Function to generate a slug from text
+import ModalPreview from "./app/components/Previews/ModalPreview";
+import TooltipPreview from "./app/components/Previews/TooltipPreview";
+import AccordionPreview from "./app/components/Previews/AccordionPreview";
+import SnackbarPreview from "./app/components/Previews/SnackbarPreview";
+import PopoverPreview from "./app/components/Previews/PopoverPreview";
+import CheckboxPreview from "./app/components/Previews/CheckboxPreview";
+import RadioPreview from "./app/components/Previews/RadioPreview";
+import SwitchPreview from "./app/components/Previews/SwitchPreview";
+import SingleSelectPreview from "./app/components/Previews/SingleSelectPreview";
+import MenuPreview from "./app/components/Previews/MenuPreview";
+import StatCardPreview from "./app/components/Previews/StatCardPreview";
+
 function generateSlug(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "")
-    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+    .replace(/^-+|-+$/g, "");
 }
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
@@ -144,7 +156,13 @@ const components = {
     if (isCodeBlock) {
       return <CodeBlock code={children} props={props} />;
     } else {
-      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} className="bg-[var(--code-background)] outline outline-[var(--code-border)] rounded-md text-sm px-1 py-0.5" />;
+      return (
+        <code
+          dangerouslySetInnerHTML={{ __html: codeHTML }}
+          {...props}
+          className="bg-[var(--code-background)] outline outline-[var(--code-border)] rounded-md text-sm px-1 py-0.5"
+        />
+      );
     }
   },
   table: (props: ComponentPropsWithoutRef<"table">) => (
@@ -194,6 +212,18 @@ const components = {
   TagPreview,
   ButtonGroupV2Preview,
   SplitTagPreview,
+  TabsPreview,
+  ModalPreview,
+  TooltipPreview,
+  AccordionPreview,
+  SnackbarPreview,
+  PopoverPreview,
+  CheckboxPreview,
+  RadioPreview,
+  SwitchPreview,
+  SingleSelectPreview,
+  MenuPreview,
+  StatCardPreview
 };
 
 declare global {

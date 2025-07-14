@@ -148,3 +148,61 @@ Group with different button types and states
 ``` 
 
 
+## Component Tokens 
+
+ButtonGroup uses Button Component. So you can style the button group component using the same tokens as the Button Component.
+
+```tsx
+export type ButtonState = "default" | "hover" | "active" | "disabled";
+
+export type ButtonTokensType = {
+  gap: CSSObject["gap"];
+  backgroundColor: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["background"];
+      };
+    };
+  };
+  color: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["color"];
+      };
+    };
+  };
+  borderRadius: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["borderRadius"];
+      };
+    };
+  };
+  padding: {
+    [key in ButtonSizeV2]: {
+      [key in ButtonSubTypeV2]: CSSObject["padding"];
+    };
+  };
+  border: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["border"];
+      };
+    };
+  };
+  shadow: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["boxShadow"];
+      };
+    };
+  };
+  outline: {
+    [key in ButtonTypeV2]: {
+      [key in ButtonSubTypeV2]: {
+        [key in ButtonState]: CSSObject["outline"];
+      };
+    };
+  };
+};
+```

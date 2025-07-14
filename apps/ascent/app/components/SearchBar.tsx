@@ -244,7 +244,7 @@ const MobileSearch = ({
                       setQuery("");
                     }}
                     href={`/docs/${result.path}`}
-                    className="flex flex-col items-start gap-2 rounded-xl p-4 bg-[var(--surface)] outline outline-[var(--code-border)] cursor-pointer w-full text-left"
+                    className="flex flex-col items-start gap-2 rounded-xl p-4 bg-[var(--surface)] outline outline-[var(--code-border)] w-full text-left"
                   >
                     <span className="text-sm font-medium">{result.title}</span>
                     <span className="text-xs text-[var(--muted-foreground)]">
