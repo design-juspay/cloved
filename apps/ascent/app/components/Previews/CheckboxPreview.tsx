@@ -184,14 +184,14 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked1}
-              onCheckedChange={setChecked1}
+              onCheckedChange={(checked) => setChecked1(checked === true)}
             >
               Basic checkbox
             </Checkbox>
             
             <Checkbox
               checked={checked2}
-              onCheckedChange={setChecked2}
+              onCheckedChange={(checked) => setChecked2(checked === true)}
               size={CheckboxSize.SMALL}
             >
               Small checkbox
@@ -199,7 +199,7 @@ external make: (
             
             <Checkbox
               checked={checked3}
-              onCheckedChange={setChecked3}
+              onCheckedChange={(checked) => setChecked3(checked === true)}
               required={true}
             >
               Required checkbox
@@ -213,14 +213,14 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked4}
-              onCheckedChange={setChecked4}
+              onCheckedChange={(checked) => setChecked4(checked === true)}
             >
               Unchecked state
             </Checkbox>
             
             <Checkbox
               checked={checked5}
-              onCheckedChange={setChecked5}
+              onCheckedChange={(checked) => setChecked5(checked === true)}
             >
               Checked state
             </Checkbox>
@@ -234,7 +234,7 @@ external make: (
             
             <Checkbox
               checked={checked7}
-              onCheckedChange={setChecked7}
+              onCheckedChange={(checked) => setChecked7(checked === true)}
               disabled={true}
             >
               Disabled checkbox
@@ -242,7 +242,7 @@ external make: (
             
             <Checkbox
               checked={checked8}
-              onCheckedChange={setChecked8}
+              onCheckedChange={(checked) => setChecked8(checked === true)}
               error={true}
             >
               Error state
@@ -256,7 +256,7 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked9}
-              onCheckedChange={setChecked9}
+              onCheckedChange={(checked) => setChecked9(checked === true)}
               subtext="Additional information about this option"
             >
               Option with description
@@ -264,7 +264,7 @@ external make: (
             
             <Checkbox
               checked={checked10}
-              onCheckedChange={setChecked10}
+              onCheckedChange={(checked) => setChecked10(checked === true)}
               subtext="This option is required for the form to be valid"
               required={true}
             >
@@ -273,7 +273,7 @@ external make: (
             
             <Checkbox
               checked={checked11}
-              onCheckedChange={setChecked11}
+              onCheckedChange={(checked) => setChecked11(checked === true)}
               subtext="This option is currently unavailable"
               disabled={true}
             >
@@ -288,7 +288,7 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked12}
-              onCheckedChange={setChecked12}
+              onCheckedChange={(checked) => setChecked12(checked === true)    }
               slot={<span className="text-blue-500 text-sm">New</span>}
             >
               Option with badge
@@ -296,7 +296,7 @@ external make: (
             
             <Checkbox
               checked={checked13}
-              onCheckedChange={setChecked13}
+              onCheckedChange={(checked) => setChecked13(checked === true)}
               slot={<span className="text-green-500 text-sm">✓</span>}
             >
               Option with icon
@@ -304,7 +304,7 @@ external make: (
             
             <Checkbox
               checked={checked14}
-              onCheckedChange={setChecked14}
+              onCheckedChange={(checked) => setChecked14(checked === true)}
               slot={<span className="text-orange-500 text-sm">Pro</span>}
               subtext="Premium feature available"
             >
@@ -319,7 +319,7 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked15}
-              onCheckedChange={setChecked15}
+              onCheckedChange={(checked) => setChecked15(checked === true)}
               size={CheckboxSize.SMALL}
             >
               Small checkbox
@@ -327,7 +327,7 @@ external make: (
             
             <Checkbox
               checked={checked16}
-              onCheckedChange={setChecked16}
+              onCheckedChange={(checked) => setChecked16(checked === true)}
               size={CheckboxSize.MEDIUM}
             >
               Medium checkbox (default)
@@ -341,7 +341,7 @@ external make: (
           <div className="space-y-4">
             <Checkbox
               checked={checked17}
-              onCheckedChange={setChecked17}
+              onCheckedChange={(checked) => setChecked17(checked === true)}
             >
               Controlled checkbox
             </Checkbox>
@@ -362,14 +362,14 @@ external make: (
             
             <Checkbox
               checked={checked18}
-              onCheckedChange={setChecked18}
+              onCheckedChange={(checked) => setChecked18(checked === true)}
             >
               Email notifications
             </Checkbox>
             
             <Checkbox
               checked={checked19}
-              onCheckedChange={setChecked19}
+              onCheckedChange={(checked) => setChecked19(checked === true)}
               subtext="Receive updates about new features and improvements"
             >
               Product updates
@@ -377,7 +377,7 @@ external make: (
             
             <Checkbox
               checked={checked20}
-              onCheckedChange={setChecked20}
+              onCheckedChange={(checked) => setChecked20(checked === true)}
               subtext="Get notified about security updates and important announcements"
               required={true}
             >
@@ -386,7 +386,7 @@ external make: (
             
             <Checkbox
               checked={checked21}
-              onCheckedChange={setChecked21}
+              onCheckedChange={(checked) => setChecked21(checked === true)}
               slot={<span className="text-blue-500 text-sm">Beta</span>}
               subtext="Try out new features before they're released"
             >
