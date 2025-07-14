@@ -77,7 +77,7 @@ const ModalHeader = ({
         <ButtonV2
           subType={ButtonSubTypeV2.INLINE}
           buttonType={ButtonTypeV2.SECONDARY}
-          leftIcon={<X size={16} />}
+          leadingIcon={<X size={16} />}
           onClick={onClose}
           // ariaLabel="Close"
         />
@@ -119,8 +119,8 @@ const ModalFooter = ({
           isDisabled={secondaryAction.isDisabled}
           subType={secondaryAction.subType}
           size={secondaryAction.size}
-          leftIcon={secondaryAction.leftIcon}
-          rightIcon={secondaryAction.rightIcon}
+          leadingIcon={secondaryAction.leadingIcon}
+          trailingIcon={secondaryAction.trailingIcon}
           loading={secondaryAction.loading}
         />
       )}
@@ -132,8 +132,8 @@ const ModalFooter = ({
           isDisabled={primaryAction.isDisabled}
           subType={primaryAction.subType}
           size={primaryAction.size}
-          leftIcon={primaryAction.leftIcon}
-          rightIcon={primaryAction.rightIcon}
+          leadingIcon={primaryAction.leadingIcon}
+          trailingIcon={primaryAction.trailingIcon}
           loading={primaryAction.loading}
         />
       )}

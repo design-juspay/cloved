@@ -167,7 +167,6 @@ const getStyles = (props: PrimitiveButtonProps): CSSObject => {
     opacity: props.disabled ? 0.6 : 1,
   };
 
-
   // Layout
   if (props.contentCentered) {
     styles.display = props.display ?? "flex";
@@ -279,7 +278,6 @@ const StyledButton = styled.button.withConfig({
     },
     {} as CSSObject
   );
-
 
   return css({ ...base, ...stateStyles });
 });

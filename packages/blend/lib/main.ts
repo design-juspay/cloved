@@ -23,16 +23,13 @@ export * from "./components/Inputs";
 export * from "./components/Menu";
 export * from "./components/DataTable";
 export * from "./components/Sidebar";
-export * from "./components/Select";
 export * from "./components/MultiSelect";
 export * from "./components/SingleSelect";
+export * from "./components/Slider";
 
 // V2 Components with Theme Support
 export * from "./components/ButtonGroupV2";
 export * from "./components/ButtonV2";
 
-
 export * from "./context";
 export * from "./tokens";
-
-

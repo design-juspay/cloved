@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Block from "../Primitives/Block/Block";
-import { dummyMenuItems } from "../Select/constants";
+import { dummyMenuItems } from "../../../src/demos/Menu/MenuDemo";
 import InputLabels from "../Inputs/utils/InputLabels/InputLabels";
 import InputFooter from "../Inputs/utils/InputFooter/InputFooter";
 import MultiSelectMenu from "./MultiSelectMenu";

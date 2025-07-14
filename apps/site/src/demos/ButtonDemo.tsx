@@ -1,13 +1,18 @@
 import {
-  ButtonV2,
+  // ButtonV2,
   ButtonTypeV2,
   ButtonSizeV2,
   ButtonSubTypeV2,
   addSnackbar,
 } from "blend-v1";
+ 
+
+
 import { SingleSelect, TextInput, Switch } from "blend-v1";
 import { Hash, X, Plus, Download, Upload, Settings } from "lucide-react";
 import { useState } from "react";
+
+import {ButtonV2} from "../../../../packages/blend/lib/components/ButtonV2"
 
 const ButtonDemo = () => {
   const [playgroundText, setPlaygroundText] = useState("Click me");

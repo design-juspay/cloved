@@ -9,8 +9,8 @@ import {
 } from "./types";
 import { ButtonTokensType } from "./button.tokens";
 import Text from "../Text/Text";
-import { useComponentToken } from "../../context/useComponentToken";
 import { LoaderCircle } from "lucide-react";
+import { useResponsiveTokens } from "../../hooks/useResponsiveTokens";
 
 const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
   (
@@ -19,8 +19,8 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
       size = ButtonSizeV2.SMALL,
       subType = ButtonSubTypeV2.DEFAULT,
       text,
-      leftIcon: leadingIcon,
-      rightIcon: trailingIcon,
+      leadingIcon,
+      trailingIcon,
       disabled,
       onClick,
       loading,
@@ -31,7 +31,8 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
     },
     ref
   ) => {
-    const buttonTokens = useComponentToken("BUTTON") as ButtonTokensType;
+    const buttonTokens = useResponsiveTokens<ButtonTokensType>("BUTTON");
+
     const getBorderRadius = () => {
       const variantBorderRadius =
         buttonTokens.borderRadius[buttonType][subType].default;
@@ -101,7 +102,7 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
         ) : (
           <>
             {leadingIcon && (
-              <Block as="span" contentCentered>
+              <Block as="span" contentCentered data-button-left-slot>
                 {leadingIcon}
               </Block>
             )}
@@ -113,12 +114,13 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
                 }}
                 as="span"
                 color="inherit"
+                data-button-text={text}
               >
                 {text}
               </Text>
             )}
             {trailingIcon && (
-              <Block as="span" contentCentered>
+              <Block as="span" contentCentered data-button-right-slot>
                 {trailingIcon}
               </Block>
             )}

@@ -8,7 +8,6 @@ export * from './DataTableHeader/types';
 export type { TableTokenType } from './dataTable.tokens';
 
 export {
-  ColumnType,
   validateColumnData,
   getColumnTypeConfig
 } from './columnTypes';

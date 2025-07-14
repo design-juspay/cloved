@@ -4,10 +4,10 @@ import { FOUNDATION_THEME } from '../../tokens';
 import Block from '../Primitives/Block/Block';
 import PrimitiveText from '../Primitives/PrimitiveText/PrimitiveText';
 import PrimitiveButton from '../Primitives/PrimitiveButton/PrimitiveButton';
-import Menu from '../Menu/Menu';
-import { MenuAlignment } from '../Menu/types';
 import  { TableTokenType } from './dataTable.tokens';
 import { useComponentToken } from '../../context/useComponentToken';
+import { SelectMenuSize, SelectMenuVariant } from '../Select/types';
+import SingleSelect from '../SingleSelect/SingleSelect';
 
 type DataTablePaginationProps = {
   currentPage: number;
@@ -80,7 +80,7 @@ export function DataTablePagination({
   
   const pageSizeMenuItems = [
     {
-      groupLabel: "Rows per page",
+      groupLabel: "",
       showSeparator: false,
       items: pageSizeOptions.map(size => ({
         label: `${size}`,
@@ -97,56 +97,47 @@ export function DataTablePagination({
       alignItems="center" 
       width="100%"
     >
-      <Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[8]}>
+<Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[8]}>
+    <PrimitiveText 
+      as="span" 
+      fontSize={tableToken.dataTable.table.footer.pagination.pageText.fontSize}
+      color={tableToken.dataTable.table.footer.pagination.pageText.color}
+      style={{
+        minWidth: '94px',
+      }}
+    >
+      Rows per page
+    </PrimitiveText>
+
+    <SingleSelect
+      label='rows per page'
+      items={pageSizeMenuItems}
+      selected={String(pageSize)}
+      onSelect={(value) => {
+        if (typeof value === 'string') {
+          onPageSizeChange(Number(value));
+        }
+      }}
+      enableSearch={false}
+      size={SelectMenuSize.SMALL}
+      variant={SelectMenuVariant.NO_CONTAINER}
+      placeholder=""
+      minWidth={80}
+    />
+    
+    {isLoading && (
+      <Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[4]}>
+        <Loader2 size={FOUNDATION_THEME.unit[16]} className="animate-spin" />
         <PrimitiveText 
           as="span" 
-          fontSize={tableToken.dataTable.table.footer.pagination.pageText.fontSize}
-          color={tableToken.dataTable.table.footer.pagination.pageText.color}
+          fontSize={FOUNDATION_THEME.font.size.body.sm.fontSize}
+          color={FOUNDATION_THEME.colors.gray[500]}
         >
-          Rows per page:
+          Loading...
         </PrimitiveText>
-        
-        <Menu
-          alignment={MenuAlignment.START}
-          enableSearch={false}
-          items={pageSizeMenuItems}
-
-          trigger={
-            <PrimitiveButton
-              contentCentered
-              gap={tableToken.dataTable.table.footer.pagination.pageSizeSelector.gap}
-              paddingX={tableToken.dataTable.table.footer.pagination.pageSizeSelector.padding}
-              paddingY={tableToken.dataTable.table.footer.pagination.pageSizeSelector.padding}
-              border="none"
-              borderRadius={tableToken.dataTable.table.footer.pagination.pageSizeSelector.borderRadius}
-              backgroundColor={tableToken.dataTable.table.footer.pagination.pageSizeSelector.backgroundColor}
-              _hover={{
-                backgroundColor: tableToken.dataTable.table.footer.pagination.pageSizeSelector.hoverColor,
-              }}
-              color={FOUNDATION_THEME.colors.gray[600]}
-              disabled={isLoading}
-              style={{
-                fontSize: FOUNDATION_THEME.font.size.body.md.fontSize,
-              }}
-            >
-              {pageSize}
-            </PrimitiveButton>
-          }
-        />
-
-        {isLoading && (
-          <Block display="flex" alignItems="center" gap={FOUNDATION_THEME.unit[4]}>
-            <Loader2 size={FOUNDATION_THEME.unit[16]} className="animate-spin" />
-            <PrimitiveText 
-              as="span" 
-              fontSize={FOUNDATION_THEME.font.size.body.sm.fontSize}
-              color={FOUNDATION_THEME.colors.gray[500]}
-            >
-              Loading...
-            </PrimitiveText>
-          </Block>
-        )}
       </Block>
+    )}
+  </Block>
       
       <Block display="flex" alignItems="center" gap={tableToken.dataTable.table.footer.pagination.pageNavigation.gap}>
         <PrimitiveButton
