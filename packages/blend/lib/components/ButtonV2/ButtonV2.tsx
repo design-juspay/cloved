@@ -19,8 +19,8 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
       size = ButtonSizeV2.SMALL,
       subType = ButtonSubTypeV2.DEFAULT,
       text,
-      leadingIcon,
-      trailingIcon,
+      leftIcon: leadingIcon,
+      rightIcon: trailingIcon,
       disabled,
       onClick,
       loading,
@@ -29,7 +29,7 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
       justifyContent = "center",
       ...htmlProps
     },
-    ref,
+    ref
   ) => {
     const buttonTokens = useComponentToken("BUTTON") as ButtonTokensType;
     const getBorderRadius = () => {
@@ -126,7 +126,7 @@ const ButtonV2 = forwardRef<HTMLButtonElement, ButtonV2Props>(
         )}
       </PrimitiveButton>
     );
-  },
+  }
 );
 
 ButtonV2.displayName = "ButtonV2";

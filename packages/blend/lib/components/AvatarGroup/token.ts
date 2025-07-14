@@ -1,6 +1,6 @@
-import { foundationToken } from "../../foundationToken";
-import avatarTokens from "../Avatar/token";
-import { AvatarSize } from "../Avatar/types";
+import { foundationToken } from '../../foundationToken';
+import avatarTokens from '../Avatar/token';
+import { AvatarSize } from '../Avatar/types';
 
 const avatarGroupTokens = {
   container: {
@@ -18,13 +18,13 @@ const avatarGroupTokens = {
     },
     selected: {
       ringColor: foundationToken.colors.primary[500],
-      ringWidth: "2px",
-      ringOffset: "2px",
+      ringWidth: '2px',
+      ringOffset: '2px',
     },
     border: {
-      width: "2px",
+      width: '2px',
       color: foundationToken.colors.gray[0],
-    },
+    }
   },
   overflowCounter: {
     background: {
@@ -36,7 +36,7 @@ const avatarGroupTokens = {
       color: foundationToken.colors.gray[50],
     },
     border: {
-      width: "2px",
+      width: '2px',
       color: foundationToken.colors.gray[0],
     },
     // Reuse avatar sizing for consistency
@@ -47,7 +47,7 @@ const avatarGroupTokens = {
   menu: {
     spacing: foundationToken.spacing[4], // Spacing between menu and avatars
     zIndex: 50, // z-index for the menu
-  },
+  }
 };
 
 export default avatarGroupTokens;

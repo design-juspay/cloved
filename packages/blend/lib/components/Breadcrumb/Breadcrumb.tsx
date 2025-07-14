@@ -18,7 +18,7 @@ const BreadcrumbItem = ({
   isActive: boolean;
 }) => {
   const breadcrumbTokens = useComponentToken(
-    "BREADCRUMB",
+    "BREADCRUMB"
   ) as BreadcrumbTokenType;
   return (
     <>
@@ -52,7 +52,7 @@ const BreadcrumbItem = ({
 
 const Breadcrumb = ({ items }: { items: BreadcrumbItemType[] }) => {
   const breadcrumbTokens = useComponentToken(
-    "BREADCRUMB",
+    "BREADCRUMB"
   ) as BreadcrumbTokenType;
   if (items.length === 0) return null;
 

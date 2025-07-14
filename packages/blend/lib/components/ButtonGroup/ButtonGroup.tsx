@@ -1,17 +1,17 @@
 "use client";
 
-import * as React from "react";
-import { ButtonProps, ButtonSize } from "../Button/types";
-import { ButtonGroupProps, ButtonGroupMode } from "./types";
-import {
-  getButtonPosition,
+import * as React from 'react';
+import { ButtonProps, ButtonSize } from '../Button/types';
+import { ButtonGroupProps, ButtonGroupMode } from './types';
+import { 
+  getButtonPosition, 
   findPrimaryButtonIndex,
-  getTransformedButtonType,
-} from "./buttonGroupUtils";
-import {
-  StyledButtonGroupContainer,
-  StyledButtonWrapper,
-} from "./StyledButtonGroup";
+  getTransformedButtonType
+} from './buttonGroupUtils';
+import { 
+  StyledButtonGroupContainer, 
+  StyledButtonWrapper 
+} from './StyledButtonGroup';
 
 const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   (
@@ -22,17 +22,15 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
-    const childrenArray = React.Children.toArray(children).filter(
-      React.isValidElement,
-    ) as React.ReactElement[];
+    const childrenArray = React.Children.toArray(children)
+      .filter(React.isValidElement) as React.ReactElement[];
     const totalChildren = childrenArray.length;
 
-    const primaryButtonIndex =
-      mode === ButtonGroupMode.SINGLE_PRIMARY
-        ? findPrimaryButtonIndex(childrenArray)
-        : -1;
+    const primaryButtonIndex = mode === ButtonGroupMode.SINGLE_PRIMARY 
+      ? findPrimaryButtonIndex(childrenArray) 
+      : -1;
 
     return (
       <StyledButtonGroupContainer
@@ -48,16 +46,16 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
           }
 
           const childProps = child.props as Partial<ButtonProps>;
-
+          
           const finalButtonType = getTransformedButtonType(
-            childProps.buttonType,
-            mode,
-            index,
-            primaryButtonIndex,
+            childProps.buttonType, 
+            mode, 
+            index, 
+            primaryButtonIndex
           );
 
           const position = getButtonPosition(index, totalChildren);
-
+          
           const buttonElement = React.cloneElement(child, {
             ...childProps,
             buttonType: finalButtonType,
@@ -76,9 +74,9 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
         })}
       </StyledButtonGroupContainer>
     );
-  },
+  }
 );
 
-ButtonGroup.displayName = "ButtonGroup";
+ButtonGroup.displayName = 'ButtonGroup';
 
 export default ButtonGroup;

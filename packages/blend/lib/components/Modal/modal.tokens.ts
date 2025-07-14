@@ -91,7 +91,7 @@ export const modalTokens: ModalTokensType = {
 };
 
 export const getModalComponentTokens = (
-  foundationToken: FoundationTokenType,
+  foundationToken: FoundationTokenType
 ): ModalTokensType => {
   return {
     shadow: foundationToken.shadows.xs,

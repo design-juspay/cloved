@@ -3,7 +3,7 @@ import { MenuItemV2Type, MenuV2GroupType } from "./types";
 // Utility: Recursively filter menu items and groups by search text
 export const filterMenuGroups = (
   groups: MenuV2GroupType[],
-  searchText: string,
+  searchText: string
 ): MenuV2GroupType[] => {
   if (!searchText) return groups;
   const lower = searchText.toLowerCase();
@@ -24,7 +24,7 @@ export const filterMenuGroups = (
 
 export const filterMenuItem = (
   item: MenuItemV2Type,
-  lower: string,
+  lower: string
 ): MenuItemV2Type | null => {
   // Check if this item matches
   const matches =

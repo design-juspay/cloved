@@ -1,17 +1,17 @@
 export const getInitialsFromText = (text: string): string => {
-  if (!text) return "";
+  if (!text) return '';
 
   return text
-    .split(" ")
-    .map((word) => word[0])
+    .split(' ')
+    .map(word => word[0])
     .slice(0, 2)
-    .join("")
+    .join('')
     .toUpperCase();
 };
 
 export const isValidImageUrl = (url: string): Promise<boolean> => {
   if (!url) return Promise.resolve(false);
-
+  
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => resolve(true);
@@ -29,4 +29,4 @@ export const hexToRgb = (hex: string) => {
         b: parseInt(result[3], 16),
       }
     : null;
-};
+}; 

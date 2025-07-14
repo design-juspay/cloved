@@ -27,7 +27,7 @@ export type SectionProps = {
   // totalSections: number;
   onNavigateBetweenSections: (
     direction: "up" | "down",
-    currentIndex: number,
+    currentIndex: number
   ) => void;
 };
 

@@ -29,7 +29,7 @@ const NumberInput = ({
   ...rest
 }: NumberInputProps) => {
   const numberInputTokens = useComponentToken(
-    "NUMBER_INPUT",
+    "NUMBER_INPUT"
   ) as NumberInputTokensType;
   const paddingX = numberInputTokens.input.paddingX[size];
   const paddingY = numberInputTokens.input.paddingY[size];
@@ -58,19 +58,20 @@ const NumberInput = ({
           paddingX={paddingX}
           paddingY={paddingY}
           borderRadius={numberInputTokens.input.borderRadius}
-          boxShadow={numberInputTokens.input.boxShadow}
+          boxShadow={numberInputTokens.input.boxShadow.default}
           border={numberInputTokens.input.border[error ? "error" : "default"]}
           outline="none"
           width={"100%"}
           _hover={{
-            border: numberInputTokens.input.border.hover,
+            border: numberInputTokens.input.border[error ? "error" : "hover"],
           }}
           color={
             numberInputTokens.input.color[disabled ? "disabled" : "default"]
           }
           _focus={{
-            border: numberInputTokens.input.border.focus,
-            outline: numberInputTokens.input.outline.focus,
+            border: numberInputTokens.input.border[error ? "error" : "focus"],
+            boxShadow:
+              numberInputTokens.input.boxShadow[error ? "error" : "focus"],
           }}
           disabled={disabled}
           _disabled={{

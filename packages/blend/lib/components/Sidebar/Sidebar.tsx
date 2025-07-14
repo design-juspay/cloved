@@ -51,7 +51,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       merchants,
       footer,
     },
-    ref,
+    ref
   ) => {
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
@@ -274,7 +274,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         </MainContentContainer>
       </Block>
     );
-  },
+  }
 );
 
 const SidebarFooter = ({ footer }: { footer: React.ReactNode }) => {

@@ -22,7 +22,7 @@ const Directory = ({ directoryData, className }: DirectoryProps) => {
 
   useEffect(() => {
     sectionRefs.current = directoryData.map(() =>
-      createRef<HTMLDivElement | null>(),
+      createRef<HTMLDivElement | null>()
     );
   }, [directoryData]);
 
@@ -51,7 +51,7 @@ const Directory = ({ directoryData, className }: DirectoryProps) => {
               handleSectionNavigation(
                 direction,
                 currentIndex,
-                directoryData.length,
+                directoryData.length
               )
             }
           />

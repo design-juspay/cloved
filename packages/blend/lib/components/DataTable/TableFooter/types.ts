@@ -1,4 +1,4 @@
-import { PaginationConfig } from "../types";
+import { PaginationConfig } from '../types';
 
 export type TableFooterProps = {
   pagination?: PaginationConfig;
@@ -8,4 +8,4 @@ export type TableFooterProps = {
   isLoading?: boolean;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
-};
+}; 

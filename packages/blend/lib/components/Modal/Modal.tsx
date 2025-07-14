@@ -77,7 +77,7 @@ const ModalHeader = ({
         <ButtonV2
           subType={ButtonSubTypeV2.INLINE}
           buttonType={ButtonTypeV2.SECONDARY}
-          leadingIcon={<X size={16} />}
+          leftIcon={<X size={16} />}
           onClick={onClose}
           // ariaLabel="Close"
         />
@@ -116,11 +116,11 @@ const ModalFooter = ({
           buttonType={secondaryAction.buttonType || ButtonTypeV2.SECONDARY}
           text={secondaryAction.text}
           onClick={secondaryAction.onClick}
-          disabled={secondaryAction.disabled}
+          isDisabled={secondaryAction.isDisabled}
           subType={secondaryAction.subType}
           size={secondaryAction.size}
-          leadingIcon={secondaryAction.leadingIcon}
-          trailingIcon={secondaryAction.trailingIcon}
+          leftIcon={secondaryAction.leftIcon}
+          rightIcon={secondaryAction.rightIcon}
           loading={secondaryAction.loading}
         />
       )}
@@ -129,11 +129,11 @@ const ModalFooter = ({
           buttonType={primaryAction.buttonType || ButtonTypeV2.PRIMARY}
           text={primaryAction.text}
           onClick={primaryAction.onClick}
-          disabled={primaryAction.disabled}
+          isDisabled={primaryAction.isDisabled}
           subType={primaryAction.subType}
           size={primaryAction.size}
-          leadingIcon={primaryAction.leadingIcon}
-          trailingIcon={primaryAction.trailingIcon}
+          leftIcon={primaryAction.leftIcon}
+          rightIcon={primaryAction.rightIcon}
           loading={primaryAction.loading}
         />
       )}
@@ -157,7 +157,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
       headerRightSlot,
       showDivider = true,
     },
-    ref,
+    ref
   ) => {
     const modalTokens = useComponentToken("MODAL") as ModalTokensType;
     useScrollLock(isOpen);
@@ -235,7 +235,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
         </Block>
       </Block>
     );
-  },
+  }
 );
 
 Modal.displayName = "Modal";

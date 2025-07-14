@@ -1,10 +1,10 @@
-import React from "react";
-import { SwitchSize, SwitchProps } from "./types";
-import { FOUNDATION_THEME } from "../../tokens";
-import { SwitchTokensType } from "./switch.token";
+import React from 'react';
+import { SwitchSize, SwitchProps } from './types';
+import { FOUNDATION_THEME } from '../../tokens';
+import { SwitchTokensType } from './switch.token';
 
 export const getSwitchDataState = (checked: boolean): string => {
-  return checked ? "checked" : "unchecked";
+  return checked ? 'checked' : 'unchecked';
 };
 
 export const extractPixelValue = (tokenValue: string): number => {
@@ -12,21 +12,19 @@ export const extractPixelValue = (tokenValue: string): number => {
   return match ? parseInt(match[1], 10) : 16;
 };
 
-export const getSpacingBySize = (
-  size: SwitchSize,
-): { marginLeft: string; marginTop: string } => {
+export const getSpacingBySize = (size: SwitchSize): { marginLeft: string; marginTop: string } => {
   // Use foundation tokens for consistent spacing
   const sizeMap = {
-    [SwitchSize.SMALL]: {
-      marginLeft: String(FOUNDATION_THEME.unit[32]),
-      marginTop: String(FOUNDATION_THEME.unit[4]),
+    [SwitchSize.SMALL]: { 
+      marginLeft: String(FOUNDATION_THEME.unit[32]), 
+      marginTop: String(FOUNDATION_THEME.unit[4]) 
     },
-    [SwitchSize.MEDIUM]: {
-      marginLeft: String(FOUNDATION_THEME.unit[36]),
-      marginTop: String(FOUNDATION_THEME.unit[4]),
-    },
+    [SwitchSize.MEDIUM]: { 
+      marginLeft: String(FOUNDATION_THEME.unit[36]), 
+      marginTop: String(FOUNDATION_THEME.unit[4]) 
+    }
   };
-
+  
   return sizeMap[size];
 };
 
@@ -45,18 +43,18 @@ export const createSwitchToggleHandler = (
   disabled: boolean,
   isControlled: boolean,
   setInternalChecked?: React.Dispatch<React.SetStateAction<boolean>>,
-  onChange?: (checked: boolean) => void,
+  onChange?: (checked: boolean) => void
 ) => {
   return () => {
     if (disabled) return;
-
+    
     const newChecked = !currentChecked;
-
+    
     // Update internal state if uncontrolled
     if (!isControlled && setInternalChecked) {
       setInternalChecked(newChecked);
     }
-
+    
     // Call onChange callback
     onChange?.(newChecked);
   };
@@ -68,11 +66,11 @@ export const createSwitchToggleHandler = (
 export const getSwitchTextColor = (
   tokens: SwitchTokensType,
   disabled: boolean,
-  error: boolean,
+  error: boolean
 ): string => {
-  if (error) return String(tokens.content.label.color.error || "");
-  if (disabled) return String(tokens.content.label.color.disabled || "");
-  return String(tokens.content.label.color.default || "");
+  if (error) return String(tokens.content.label.color.error || '');
+  if (disabled) return String(tokens.content.label.color.disabled || '');
+  return String(tokens.content.label.color.default || '');
 };
 
 /**
@@ -81,11 +79,11 @@ export const getSwitchTextColor = (
 export const getSwitchSubtextColor = (
   tokens: SwitchTokensType,
   disabled: boolean,
-  error: boolean,
+  error: boolean
 ): string => {
-  if (disabled) return String(tokens.content.sublabel.color.disabled || "");
-  if (error) return String(tokens.content.sublabel.color.error || "");
-  return String(tokens.content.sublabel.color.default || "");
+  if (disabled) return String(tokens.content.sublabel.color.disabled || '');
+  if (error) return String(tokens.content.sublabel.color.error || '');
+  return String(tokens.content.sublabel.color.default || '');
 };
 
 /**
@@ -95,15 +93,15 @@ export const getSwitchTextProps = (
   tokens: SwitchTokensType,
   size: SwitchSize,
   disabled: boolean,
-  error: boolean,
+  error: boolean
 ): {
   fontSize: string;
   fontWeight: string;
   color: string;
 } => ({
-  fontSize: String(tokens.content.label.font[size]?.fontSize || ""),
-  fontWeight: String(tokens.content.label.font[size]?.fontWeight || ""),
-  color: getSwitchTextColor(tokens, disabled, error),
+  fontSize: String(tokens.content.label.font[size]?.fontSize || ''),
+  fontWeight: String(tokens.content.label.font[size]?.fontWeight || ''),
+  color: getSwitchTextColor(tokens, disabled, error)
 });
 
 /**
@@ -113,24 +111,26 @@ export const getSwitchSubtextProps = (
   tokens: SwitchTokensType,
   size: SwitchSize,
   disabled: boolean,
-  error: boolean,
+  error: boolean
 ): {
   fontSize: string;
   color: string;
 } => ({
-  fontSize: String(tokens.content.sublabel.font[size]?.fontSize || ""),
-  color: getSwitchSubtextColor(tokens, disabled, error),
+  fontSize: String(tokens.content.sublabel.font[size]?.fontSize || ''),
+  color: getSwitchSubtextColor(tokens, disabled, error)
 });
 
 /**
  * Gets label styles for switch components
  */
-export const getSwitchLabelStyles = (disabled: boolean) => ({
-  cursor: disabled ? ("not-allowed" as const) : ("pointer" as const),
-  display: "flex" as const,
-  alignItems: "center" as const,
+export const getSwitchLabelStyles = (
+  disabled: boolean
+) => ({
+  cursor: disabled ? 'not-allowed' as const : 'pointer' as const,
+  display: 'flex' as const,
+  alignItems: 'center' as const,
   margin: 0,
-  padding: 0,
+  padding: 0
 });
 
 /**
@@ -138,7 +138,7 @@ export const getSwitchLabelStyles = (disabled: boolean) => ({
  */
 export const isSwitchElement = (
   child: React.ReactElement,
-  SwitchComponent: React.ComponentType<SwitchProps>,
+  SwitchComponent: React.ComponentType<SwitchProps>
 ): child is React.ReactElement<SwitchProps> => {
   return child.type === SwitchComponent;
 };
@@ -150,7 +150,7 @@ export const createSwitchGroupChangeHandler = (
   values: string[],
   isControlled: boolean,
   setInternalValues?: React.Dispatch<React.SetStateAction<string[]>>,
-  onChange?: (values: string[]) => void,
+  onChange?: (values: string[]) => void
 ) => {
   return (checked: boolean, childValue: string) => {
     let newValues: string[];
@@ -158,7 +158,7 @@ export const createSwitchGroupChangeHandler = (
     if (checked) {
       newValues = [...values, childValue];
     } else {
-      newValues = values.filter((v) => v !== childValue);
+      newValues = values.filter(v => v !== childValue);
     }
 
     if (!isControlled && setInternalValues) {

@@ -1,28 +1,21 @@
-import styled from "styled-components";
-import {
-  StyledAvatarContainerProps,
-  StyledAvatarIndicatorProps,
-} from "./types";
-import avatarTokens from "./token";
-import { foundationToken } from "../../foundationToken";
+import styled from 'styled-components';
+import { StyledAvatarContainerProps, StyledAvatarIndicatorProps } from './types';
+import avatarTokens from './token';
+import { foundationToken } from '../../foundationToken';
 
 export const StyledAvatarContainer = styled.div<StyledAvatarContainerProps>`
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ $hasImage }) =>
-    $hasImage ? "transparent" : avatarTokens.container.background.default};
-  border: 1px solid
-    ${({ $hasImage }) =>
-      $hasImage
-        ? avatarTokens.container.border.withImage
-        : avatarTokens.container.border.withoutImage};
-
+  background-color: ${({ $hasImage }) => $hasImage ? 'transparent' : avatarTokens.container.background.default};
+  border: 1px solid ${({ $hasImage }) => 
+    $hasImage ? avatarTokens.container.border.withImage : avatarTokens.container.border.withoutImage};
+  
   width: ${({ $size }) => avatarTokens.sizes[$size].width};
   height: ${({ $size }) => avatarTokens.sizes[$size].height};
   border-radius: ${({ $shape }) => avatarTokens.shapes[$shape].borderRadius};
-
+  
   font-size: ${({ $size }) => avatarTokens.sizes[$size].fontSize};
   font-weight: ${({ $size }) => avatarTokens.sizes[$size].fontWeight};
 `;
@@ -55,8 +48,7 @@ export const StyledAvatarIndicator = styled.span<StyledAvatarIndicatorProps>`
   height: ${({ $size }) => avatarTokens.sizes[$size].indicatorSize};
   background-color: ${avatarTokens.indicator.background.default};
   border-radius: ${avatarTokens.shapes.circular.borderRadius};
-  border: ${({ $size }) => avatarTokens.sizes[$size].indicatorRingWidth} solid
-    ${avatarTokens.indicator.ring.color};
+  border: ${({ $size }) => avatarTokens.sizes[$size].indicatorRingWidth} solid ${avatarTokens.indicator.ring.color};
   transform: translate(30%, -30%);
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);

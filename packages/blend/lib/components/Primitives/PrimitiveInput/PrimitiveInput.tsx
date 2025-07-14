@@ -342,7 +342,7 @@ const StyledInput = styled.input.withConfig({
       }
       return acc;
     },
-    {} as CSSObject,
+    {} as CSSObject
   );
 
   const placeholderStyle = props.placeholderStyles

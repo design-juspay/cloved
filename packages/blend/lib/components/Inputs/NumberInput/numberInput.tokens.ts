@@ -19,7 +19,9 @@ export type NumberInputTokensType = {
   input: {
     gap: CSSObject["gap"];
     borderRadius?: CSSObject["borderRadius"];
-    boxShadow: CSSObject["boxShadow"];
+    boxShadow: {
+      [key in TextInputState]: CSSObject["boxShadow"];
+    };
     paddingX: {
       [key in TextInputSize]: CSSObject["padding"];
     };
@@ -79,12 +81,18 @@ const numberInputTokens: Readonly<NumberInputTokensType> = {
       default: FOUNDATION_THEME.colors.gray[0],
       disabled: FOUNDATION_THEME.colors.gray[50],
     },
-    boxShadow: FOUNDATION_THEME.shadows.sm,
+    boxShadow: {
+      default: FOUNDATION_THEME.shadows.sm,
+      hover: FOUNDATION_THEME.shadows.sm,
+      focus: FOUNDATION_THEME.shadows.focusPrimary,
+      error: FOUNDATION_THEME.shadows.focusError,
+      disabled: FOUNDATION_THEME.shadows.sm,
+    },
   },
 };
 
 export const getNumberInputTokens = (
-  foundationTheme: FoundationTokenType,
+  foundationTheme: FoundationTokenType
 ): NumberInputTokensType => {
   return {
     input: {
@@ -123,7 +131,13 @@ export const getNumberInputTokens = (
         default: foundationTheme.colors.gray[0],
         disabled: foundationTheme.colors.gray[50],
       },
-      boxShadow: foundationTheme.shadows.sm,
+      boxShadow: {
+        default: foundationTheme.shadows.sm,
+        hover: foundationTheme.shadows.sm,
+        focus: foundationTheme.shadows.focusPrimary,
+        error: foundationTheme.shadows.focusError,
+        disabled: foundationTheme.shadows.sm,
+      },
     },
   };
 };

@@ -83,5 +83,5 @@ export const dummyMenuItemsLong: SelectMenuGroupType[] = Array.from(
             : undefined,
       };
     }),
-  }),
+  })
 );

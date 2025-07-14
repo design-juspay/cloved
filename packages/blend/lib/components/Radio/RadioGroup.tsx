@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
 import { RadioGroupProps } from "./types";
-import {
-  isRadioElement,
-  shouldRadioBeChecked,
-  createGroupChangeHandler,
+import { 
+  isRadioElement, 
+  shouldRadioBeChecked, 
+  createGroupChangeHandler, 
   isValidRadioValue,
-  getRadioTextProps,
+  getRadioTextProps
 } from "./utils";
 import Block from "../Primitives/Block/Block";
 import PrimitiveText from "../Primitives/PrimitiveText/PrimitiveText";
@@ -26,7 +26,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
 
       const childValue = child.props.value;
       if (!isValidRadioValue(childValue)) {
-        console.warn("RadioGroup: Radio child must have a string value prop");
+        console.warn('RadioGroup: Radio child must have a string value prop');
         return null;
       }
 
@@ -45,32 +45,26 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
     });
 
     return (
-      <Block
-        ref={ref}
-        display="flex"
-        flexDirection="column"
-        gap={radioTokens.groupGap}
-      >
-        {label && <GroupLabel radioTokens={radioTokens}>{label}</GroupLabel>}
+      <Block ref={ref} display="flex" flexDirection="column" gap={radioTokens.groupGap}>
+        {label && (
+          <GroupLabel radioTokens={radioTokens}>
+            {label}
+          </GroupLabel>
+        )}
         <Block display="flex" flexDirection="column" gap={radioTokens.groupGap}>
           {enhancedChildren}
         </Block>
       </Block>
     );
-  },
+  }
 );
 
 const GroupLabel: React.FC<{
   children: React.ReactNode;
   radioTokens: RadioTokensType;
 }> = ({ children, radioTokens }) => {
-  const textProps = getRadioTextProps(
-    radioTokens,
-    RadioSize.MEDIUM,
-    false,
-    false,
-  );
-
+  const textProps = getRadioTextProps(radioTokens, RadioSize.MEDIUM, false, false);
+  
   return (
     <PrimitiveText
       as="label"

@@ -38,7 +38,7 @@ type SelectProps = {
 };
 
 const map = function getValueLabelMap(
-  groups: SelectMenuGroupType[],
+  groups: SelectMenuGroupType[]
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -232,7 +232,7 @@ const Select = ({
                               color={FOUNDATION_THEME.colors.gray[400]}
                             >
                               {getLabelsForSelectedValues(
-                                selected as string[],
+                                selected as string[]
                               ).join(", ")}
                             </Text>
                           ) : (

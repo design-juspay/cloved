@@ -1,4 +1,4 @@
-import { ColumnDefinition } from "../types";
+import { ColumnDefinition } from '../types';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   column: ColumnDefinition<T>;
@@ -7,4 +7,4 @@ export type TableCellProps<T extends Record<string, unknown>> = {
   currentValue: unknown;
   width: React.CSSProperties;
   onFieldChange: (value: unknown) => void;
-};
+}; 

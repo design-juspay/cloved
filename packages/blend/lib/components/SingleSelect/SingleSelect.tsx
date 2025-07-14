@@ -11,13 +11,14 @@ import {
 } from "../Select";
 import Text from "../Text/Text";
 import SingleSelectMenu from "./SingleSelectMenu";
+import { dummyMenuItems } from "../Select/constants";
 import { FOUNDATION_THEME } from "../../tokens";
 import selectTokens from "../Select/select.token";
 import { ChevronDown } from "lucide-react";
 import { SingleSelectProps } from "./types";
 
 const map = function getValueLabelMap(
-  groups: SelectMenuGroupType[],
+  groups: SelectMenuGroupType[]
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -45,7 +46,7 @@ const SingleSelect = ({
   helpIconText,
   placeholder,
   size = SelectMenuSize.MEDIUM,
-  items,
+  items = dummyMenuItems,
   name,
   variant = SelectMenuVariant.CONTAINER,
   disabled,
